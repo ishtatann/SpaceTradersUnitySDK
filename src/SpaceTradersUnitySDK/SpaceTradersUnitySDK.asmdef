@@ -1,0 +1,7 @@
+{
+    "name": "SpaceTradersUnitySDK",
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Newtonsoft.Json.dll"
+    ]
+}
