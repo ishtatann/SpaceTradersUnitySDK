@@ -43,7 +43,8 @@ namespace SpaceTradersUnitySDK.Model
         /// <param name="symbol">symbol (required).</param>
         /// <param name="headquarters">The headquarters of the agent. (required).</param>
         /// <param name="credits">The number of credits the agent has available. Credits can be negative if funds have been overdrawn. (required).</param>
-        public Agent(string accountId = default(string), string symbol = default(string), string headquarters = default(string), int credits = default(int))
+        /// <param name="startingFaction">The faction the agent started with. (required).</param>
+        public Agent(string accountId = default(string), string symbol = default(string), string headquarters = default(string), int credits = default(int), string startingFaction = default(string))
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -64,6 +65,12 @@ namespace SpaceTradersUnitySDK.Model
             }
             this.Headquarters = headquarters;
             this.Credits = credits;
+            // to ensure "startingFaction" is required (not null)
+            if (startingFaction == null)
+            {
+                throw new ArgumentNullException("startingFaction is a required property for Agent and cannot be null");
+            }
+            this.StartingFaction = startingFaction;
         }
 
         /// <summary>
@@ -93,6 +100,13 @@ namespace SpaceTradersUnitySDK.Model
         public int Credits { get; set; }
 
         /// <summary>
+        /// The faction the agent started with.
+        /// </summary>
+        /// <value>The faction the agent started with.</value>
+        [DataMember(Name = "startingFaction", IsRequired = true, EmitDefaultValue = true)]
+        public string StartingFaction { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -104,6 +118,7 @@ namespace SpaceTradersUnitySDK.Model
             sb.Append("  Symbol: ").Append(Symbol).Append("\n");
             sb.Append("  Headquarters: ").Append(Headquarters).Append("\n");
             sb.Append("  Credits: ").Append(Credits).Append("\n");
+            sb.Append("  StartingFaction: ").Append(StartingFaction).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -157,6 +172,11 @@ namespace SpaceTradersUnitySDK.Model
                 (
                     this.Credits == input.Credits ||
                     this.Credits.Equals(input.Credits)
+                ) && 
+                (
+                    this.StartingFaction == input.StartingFaction ||
+                    (this.StartingFaction != null &&
+                    this.StartingFaction.Equals(input.StartingFaction))
                 );
         }
 
@@ -182,6 +202,10 @@ namespace SpaceTradersUnitySDK.Model
                     hashCode = (hashCode * 59) + this.Headquarters.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Credits.GetHashCode();
+                if (this.StartingFaction != null)
+                {
+                    hashCode = (hashCode * 59) + this.StartingFaction.GetHashCode();
+                }
                 return hashCode;
             }
         }

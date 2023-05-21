@@ -41,7 +41,8 @@ namespace SpaceTradersUnitySDK.Model
         /// </summary>
         /// <param name="agent">agent (required).</param>
         /// <param name="fuel">fuel (required).</param>
-        public RefuelShip200ResponseData(Agent agent = default(Agent), ShipFuel fuel = default(ShipFuel))
+        /// <param name="transaction">transaction (required).</param>
+        public RefuelShip200ResponseData(Agent agent = default(Agent), ShipFuel fuel = default(ShipFuel), MarketTransaction transaction = default(MarketTransaction))
         {
             // to ensure "agent" is required (not null)
             if (agent == null)
@@ -55,6 +56,12 @@ namespace SpaceTradersUnitySDK.Model
                 throw new ArgumentNullException("fuel is a required property for RefuelShip200ResponseData and cannot be null");
             }
             this.Fuel = fuel;
+            // to ensure "transaction" is required (not null)
+            if (transaction == null)
+            {
+                throw new ArgumentNullException("transaction is a required property for RefuelShip200ResponseData and cannot be null");
+            }
+            this.Transaction = transaction;
         }
 
         /// <summary>
@@ -70,6 +77,12 @@ namespace SpaceTradersUnitySDK.Model
         public ShipFuel Fuel { get; set; }
 
         /// <summary>
+        /// Gets or Sets Transaction
+        /// </summary>
+        [DataMember(Name = "transaction", IsRequired = true, EmitDefaultValue = true)]
+        public MarketTransaction Transaction { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -79,6 +92,7 @@ namespace SpaceTradersUnitySDK.Model
             sb.Append("class RefuelShip200ResponseData {\n");
             sb.Append("  Agent: ").Append(Agent).Append("\n");
             sb.Append("  Fuel: ").Append(Fuel).Append("\n");
+            sb.Append("  Transaction: ").Append(Transaction).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -123,6 +137,11 @@ namespace SpaceTradersUnitySDK.Model
                     this.Fuel == input.Fuel ||
                     (this.Fuel != null &&
                     this.Fuel.Equals(input.Fuel))
+                ) && 
+                (
+                    this.Transaction == input.Transaction ||
+                    (this.Transaction != null &&
+                    this.Transaction.Equals(input.Transaction))
                 );
         }
 
@@ -142,6 +161,10 @@ namespace SpaceTradersUnitySDK.Model
                 if (this.Fuel != null)
                 {
                     hashCode = (hashCode * 59) + this.Fuel.GetHashCode();
+                }
+                if (this.Transaction != null)
+                {
+                    hashCode = (hashCode * 59) + this.Transaction.GetHashCode();
                 }
                 return hashCode;
             }

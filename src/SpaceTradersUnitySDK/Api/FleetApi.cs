@@ -353,6 +353,26 @@ namespace SpaceTradersUnitySDK.Api
         /// <returns>ApiResponse of NavigateShip200Response</returns>
         ApiResponse<NavigateShip200Response> NavigateShipWithHttpInfo(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest));
         /// <summary>
+        /// Negotiate Contract
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="body"> (optional)</param>
+        /// <returns>NegotiateContract200Response</returns>
+        NegotiateContract200Response NegotiateContract(string shipSymbol, Object body = default(Object));
+
+        /// <summary>
+        /// Negotiate Contract
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="body"> (optional)</param>
+        /// <returns>ApiResponse of NegotiateContract200Response</returns>
+        ApiResponse<NegotiateContract200Response> NegotiateContractWithHttpInfo(string shipSymbol, Object body = default(Object));
+        /// <summary>
         /// Orbit Ship
         /// </summary>
         /// <remarks>
@@ -917,6 +937,31 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NavigateShip200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<NavigateShip200Response>> NavigateShipWithHttpInfoAsync(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Negotiate Contract
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="body"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of NegotiateContract200Response</returns>
+        System.Threading.Tasks.Task<NegotiateContract200Response> NegotiateContractAsync(string shipSymbol, Object body = default(Object), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Negotiate Contract
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="body"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (NegotiateContract200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<NegotiateContract200Response>> NegotiateContractWithHttpInfoAsync(string shipSymbol, Object body = default(Object), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Orbit Ship
         /// </summary>
@@ -3386,6 +3431,152 @@ namespace SpaceTradersUnitySDK.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("NavigateShip", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Negotiate Contract 
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="body"> (optional)</param>
+        /// <returns>NegotiateContract200Response</returns>
+        public NegotiateContract200Response NegotiateContract(string shipSymbol, Object body = default(Object))
+        {
+            SpaceTradersUnitySDK.Client.ApiResponse<NegotiateContract200Response> localVarResponse = NegotiateContractWithHttpInfo(shipSymbol, body);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Negotiate Contract 
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="body"> (optional)</param>
+        /// <returns>ApiResponse of NegotiateContract200Response</returns>
+        public SpaceTradersUnitySDK.Client.ApiResponse<NegotiateContract200Response> NegotiateContractWithHttpInfo(string shipSymbol, Object body = default(Object))
+        {
+            // verify the required parameter 'shipSymbol' is set
+            if (shipSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'shipSymbol' when calling FleetApi->NegotiateContract");
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("shipSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(shipSymbol)); // path parameter
+            localVarRequestOptions.Data = body;
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<NegotiateContract200Response>("/my/ships/{shipSymbol}/negotiate/contract", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("NegotiateContract", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Negotiate Contract 
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="body"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of NegotiateContract200Response</returns>
+        public async System.Threading.Tasks.Task<NegotiateContract200Response> NegotiateContractAsync(string shipSymbol, Object body = default(Object), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = NegotiateContractWithHttpInfoAsync(shipSymbol, body, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            SpaceTradersUnitySDK.Client.ApiResponse<NegotiateContract200Response> localVarResponse = await task.ConfigureAwait(false);
+#else
+            SpaceTradersUnitySDK.Client.ApiResponse<NegotiateContract200Response> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Negotiate Contract 
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="body"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (NegotiateContract200Response)</returns>
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<NegotiateContract200Response>> NegotiateContractWithHttpInfoAsync(string shipSymbol, Object body = default(Object), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'shipSymbol' is set
+            if (shipSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'shipSymbol' when calling FleetApi->NegotiateContract");
+
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("shipSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(shipSymbol)); // path parameter
+            localVarRequestOptions.Data = body;
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.PostAsync<NegotiateContract200Response>("/my/ships/{shipSymbol}/negotiate/contract", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("NegotiateContract", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

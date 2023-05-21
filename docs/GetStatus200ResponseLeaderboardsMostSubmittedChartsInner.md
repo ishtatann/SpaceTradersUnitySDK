@@ -1,12 +1,11 @@
-# SpaceTradersUnitySDK.Model.RefuelShip200ResponseData
+# SpaceTradersUnitySDK.Model.GetStatus200ResponseLeaderboardsMostSubmittedChartsInner
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Agent** | [**Agent**](Agent.md) |  | 
-**Fuel** | [**ShipFuel**](ShipFuel.md) |  | 
-**Transaction** | [**MarketTransaction**](MarketTransaction.md) |  | 
+**AgentSymbol** | **string** |  | 
+**ChartCount** | **int** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

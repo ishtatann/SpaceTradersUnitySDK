@@ -42,7 +42,7 @@ namespace SpaceTradersUnitySDK.Model
         /// <param name="shipSymbol">The symbol of the ship that is on cooldown (required).</param>
         /// <param name="totalSeconds">The total duration of the cooldown in seconds (required).</param>
         /// <param name="remainingSeconds">The remaining duration of the cooldown in seconds (required).</param>
-        /// <param name="expiration">The date and time when the cooldown expires in ISO 8601 format (required).</param>
+        /// <param name="expiration">The date and time when the cooldown expires in ISO 8601 format.</param>
         public Cooldown(string shipSymbol = default(string), int totalSeconds = default(int), int remainingSeconds = default(int), DateTime expiration = default(DateTime))
         {
             // to ensure "shipSymbol" is required (not null)
@@ -81,7 +81,7 @@ namespace SpaceTradersUnitySDK.Model
         /// The date and time when the cooldown expires in ISO 8601 format
         /// </summary>
         /// <value>The date and time when the cooldown expires in ISO 8601 format</value>
-        [DataMember(Name = "expiration", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "expiration", EmitDefaultValue = false)]
         public DateTime Expiration { get; set; }
 
         /// <summary>

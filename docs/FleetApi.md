@@ -19,6 +19,7 @@ All URIs are relative to *https://api.spacetraders.io/v2*
 | [**Jettison**](FleetApi.md#jettison) | **POST** /my/ships/{shipSymbol}/jettison | Jettison Cargo |
 | [**JumpShip**](FleetApi.md#jumpship) | **POST** /my/ships/{shipSymbol}/jump | Jump Ship |
 | [**NavigateShip**](FleetApi.md#navigateship) | **POST** /my/ships/{shipSymbol}/navigate | Navigate Ship |
+| [**NegotiateContract**](FleetApi.md#negotiatecontract) | **POST** /my/ships/{shipSymbol}/negotiate/contract | Negotiate Contract |
 | [**OrbitShip**](FleetApi.md#orbitship) | **POST** /my/ships/{shipSymbol}/orbit | Orbit Ship |
 | [**PatchShipNav**](FleetApi.md#patchshipnav) | **PATCH** /my/ships/{shipSymbol}/nav | Patch Ship Nav |
 | [**PurchaseCargo**](FleetApi.md#purchasecargo) | **POST** /my/ships/{shipSymbol}/purchase | Purchase Cargo |
@@ -1447,6 +1448,100 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The successful transit information including the route details and changes to ship fuel, supplies, and crew wages paid. The route includes the expected time of arrival. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="negotiatecontract"></a>
+# **NegotiateContract**
+> NegotiateContract200Response NegotiateContract (string shipSymbol, Object body = null)
+
+Negotiate Contract
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using SpaceTradersUnitySDK.Api;
+using SpaceTradersUnitySDK.Client;
+using SpaceTradersUnitySDK.Model;
+
+namespace Example
+{
+    public class NegotiateContractExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.spacetraders.io/v2";
+            // Configure Bearer token for authorization: AgentToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new FleetApi(config);
+            var shipSymbol = "shipSymbol_example";  // string | 
+            var body = null;  // Object |  (optional) 
+
+            try
+            {
+                // Negotiate Contract
+                NegotiateContract200Response result = apiInstance.NegotiateContract(shipSymbol, body);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FleetApi.NegotiateContract: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the NegotiateContractWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Negotiate Contract
+    ApiResponse<NegotiateContract200Response> response = apiInstance.NegotiateContractWithHttpInfo(shipSymbol, body);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling FleetApi.NegotiateContractWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **shipSymbol** | **string** |  |  |
+| **body** | **Object** |  | [optional]  |
+
+### Return type
+
+[**NegotiateContract200Response**](NegotiateContract200Response.md)
+
+### Authorization
+
+[AgentToken](../README.md#AgentToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Created |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

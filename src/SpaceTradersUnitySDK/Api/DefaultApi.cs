@@ -28,6 +28,25 @@ namespace SpaceTradersUnitySDK.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Get Status
+        /// </summary>
+        /// <remarks>
+        /// Return the status of the game server.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>GetStatus200Response</returns>
+        GetStatus200Response GetStatus();
+
+        /// <summary>
+        /// Get Status
+        /// </summary>
+        /// <remarks>
+        /// Return the status of the game server.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of GetStatus200Response</returns>
+        ApiResponse<GetStatus200Response> GetStatusWithHttpInfo();
+        /// <summary>
         /// Register New Agent
         /// </summary>
         /// <remarks>
@@ -57,6 +76,27 @@ namespace SpaceTradersUnitySDK.Api
     public interface IDefaultApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
+        /// <summary>
+        /// Get Status
+        /// </summary>
+        /// <remarks>
+        /// Return the status of the game server.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetStatus200Response</returns>
+        System.Threading.Tasks.Task<GetStatus200Response> GetStatusAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Get Status
+        /// </summary>
+        /// <remarks>
+        /// Return the status of the game server.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetStatus200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetStatus200Response>> GetStatusWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Register New Agent
         /// </summary>
@@ -222,6 +262,130 @@ namespace SpaceTradersUnitySDK.Api
                 return _exceptionFactory;
             }
             set { _exceptionFactory = value; }
+        }
+
+        /// <summary>
+        /// Get Status Return the status of the game server.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>GetStatus200Response</returns>
+        public GetStatus200Response GetStatus()
+        {
+            SpaceTradersUnitySDK.Client.ApiResponse<GetStatus200Response> localVarResponse = GetStatusWithHttpInfo();
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Status Return the status of the game server.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of GetStatus200Response</returns>
+        public SpaceTradersUnitySDK.Client.ApiResponse<GetStatus200Response> GetStatusWithHttpInfo()
+        {
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetStatus200Response>("/", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetStatus", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Status Return the status of the game server.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetStatus200Response</returns>
+        public async System.Threading.Tasks.Task<GetStatus200Response> GetStatusAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = GetStatusWithHttpInfoAsync(cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            SpaceTradersUnitySDK.Client.ApiResponse<GetStatus200Response> localVarResponse = await task.ConfigureAwait(false);
+#else
+            SpaceTradersUnitySDK.Client.ApiResponse<GetStatus200Response> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Status Return the status of the game server.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetStatus200Response)</returns>
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetStatus200Response>> GetStatusWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.GetAsync<GetStatus200Response>("/", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetStatus", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
         }
 
         /// <summary>

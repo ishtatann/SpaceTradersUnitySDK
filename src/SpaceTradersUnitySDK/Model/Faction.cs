@@ -44,7 +44,8 @@ namespace SpaceTradersUnitySDK.Model
         /// <param name="description">description (required).</param>
         /// <param name="headquarters">headquarters (required).</param>
         /// <param name="traits">traits (required).</param>
-        public Faction(string symbol = default(string), string name = default(string), string description = default(string), string headquarters = default(string), List<FactionTrait> traits = default(List<FactionTrait>))
+        /// <param name="isRecruiting">Whether or not the faction is currently recruiting new agents. (required).</param>
+        public Faction(string symbol = default(string), string name = default(string), string description = default(string), string headquarters = default(string), List<FactionTrait> traits = default(List<FactionTrait>), bool isRecruiting = default(bool))
         {
             // to ensure "symbol" is required (not null)
             if (symbol == null)
@@ -76,6 +77,7 @@ namespace SpaceTradersUnitySDK.Model
                 throw new ArgumentNullException("traits is a required property for Faction and cannot be null");
             }
             this.Traits = traits;
+            this.IsRecruiting = isRecruiting;
         }
 
         /// <summary>
@@ -109,6 +111,13 @@ namespace SpaceTradersUnitySDK.Model
         public List<FactionTrait> Traits { get; set; }
 
         /// <summary>
+        /// Whether or not the faction is currently recruiting new agents.
+        /// </summary>
+        /// <value>Whether or not the faction is currently recruiting new agents.</value>
+        [DataMember(Name = "isRecruiting", IsRequired = true, EmitDefaultValue = true)]
+        public bool IsRecruiting { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -121,6 +130,7 @@ namespace SpaceTradersUnitySDK.Model
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Headquarters: ").Append(Headquarters).Append("\n");
             sb.Append("  Traits: ").Append(Traits).Append("\n");
+            sb.Append("  IsRecruiting: ").Append(IsRecruiting).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -181,6 +191,10 @@ namespace SpaceTradersUnitySDK.Model
                     this.Traits != null &&
                     input.Traits != null &&
                     this.Traits.SequenceEqual(input.Traits)
+                ) && 
+                (
+                    this.IsRecruiting == input.IsRecruiting ||
+                    this.IsRecruiting.Equals(input.IsRecruiting)
                 );
         }
 
@@ -213,6 +227,7 @@ namespace SpaceTradersUnitySDK.Model
                 {
                     hashCode = (hashCode * 59) + this.Traits.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.IsRecruiting.GetHashCode();
                 return hashCode;
             }
         }

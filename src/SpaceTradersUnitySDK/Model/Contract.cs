@@ -77,8 +77,9 @@ namespace SpaceTradersUnitySDK.Model
         /// <param name="terms">terms (required).</param>
         /// <param name="accepted">Whether the contract has been accepted by the agent (required) (default to false).</param>
         /// <param name="fulfilled">Whether the contract has been fulfilled (required) (default to false).</param>
-        /// <param name="expiration">The time at which the contract expires (required).</param>
-        public Contract(string id = default(string), string factionSymbol = default(string), TypeEnum type = default(TypeEnum), ContractTerms terms = default(ContractTerms), bool accepted = false, bool fulfilled = false, DateTime expiration = default(DateTime))
+        /// <param name="expiration">Deprecated in favor of deadlineToAccept (required).</param>
+        /// <param name="deadlineToAccept">The time at which the contract is no longer available to be accepted.</param>
+        public Contract(string id = default(string), string factionSymbol = default(string), TypeEnum type = default(TypeEnum), ContractTerms terms = default(ContractTerms), bool accepted = false, bool fulfilled = false, DateTime expiration = default(DateTime), DateTime deadlineToAccept = default(DateTime))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -102,6 +103,7 @@ namespace SpaceTradersUnitySDK.Model
             this.Accepted = accepted;
             this.Fulfilled = fulfilled;
             this.Expiration = expiration;
+            this.DeadlineToAccept = deadlineToAccept;
         }
 
         /// <summary>
@@ -138,11 +140,19 @@ namespace SpaceTradersUnitySDK.Model
         public bool Fulfilled { get; set; }
 
         /// <summary>
-        /// The time at which the contract expires
+        /// Deprecated in favor of deadlineToAccept
         /// </summary>
-        /// <value>The time at which the contract expires</value>
+        /// <value>Deprecated in favor of deadlineToAccept</value>
         [DataMember(Name = "expiration", IsRequired = true, EmitDefaultValue = true)]
+        [Obsolete]
         public DateTime Expiration { get; set; }
+
+        /// <summary>
+        /// The time at which the contract is no longer available to be accepted
+        /// </summary>
+        /// <value>The time at which the contract is no longer available to be accepted</value>
+        [DataMember(Name = "deadlineToAccept", EmitDefaultValue = false)]
+        public DateTime DeadlineToAccept { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -159,6 +169,7 @@ namespace SpaceTradersUnitySDK.Model
             sb.Append("  Accepted: ").Append(Accepted).Append("\n");
             sb.Append("  Fulfilled: ").Append(Fulfilled).Append("\n");
             sb.Append("  Expiration: ").Append(Expiration).Append("\n");
+            sb.Append("  DeadlineToAccept: ").Append(DeadlineToAccept).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -225,6 +236,11 @@ namespace SpaceTradersUnitySDK.Model
                     this.Expiration == input.Expiration ||
                     (this.Expiration != null &&
                     this.Expiration.Equals(input.Expiration))
+                ) && 
+                (
+                    this.DeadlineToAccept == input.DeadlineToAccept ||
+                    (this.DeadlineToAccept != null &&
+                    this.DeadlineToAccept.Equals(input.DeadlineToAccept))
                 );
         }
 
@@ -255,6 +271,10 @@ namespace SpaceTradersUnitySDK.Model
                 if (this.Expiration != null)
                 {
                     hashCode = (hashCode * 59) + this.Expiration.GetHashCode();
+                }
+                if (this.DeadlineToAccept != null)
+                {
+                    hashCode = (hashCode * 59) + this.DeadlineToAccept.GetHashCode();
                 }
                 return hashCode;
             }
