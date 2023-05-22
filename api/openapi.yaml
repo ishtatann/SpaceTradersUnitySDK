@@ -890,8 +890,10 @@ paths:
       - fleet
   /my/ships/{shipSymbol}/jump:
     post:
-      description: "Jump your ship instantly to a target system. Unlike other forms\
-        \ of navigation, jumping requires a unit of antimatter."
+      description: "Jump your ship instantly to a target system. When used while in\
+        \ orbit or docked to a jump gate waypoint, any ship can use this command.\
+        \ When used elsewhere, jumping requires a jump drive unit and consumes a unit\
+        \ of antimatter (which needs to be in your cargo)."
       operationId: jump-ship
       parameters:
       - explode: false
@@ -1436,7 +1438,7 @@ components:
             crew: 1
           name: name
           description: description
-          speed: 1.6683562403749608
+          speed: 1
         fuel:
           consumed:
             amount: 0
@@ -1743,20 +1745,20 @@ components:
           description: description
         transactions:
         - tradeSymbol: tradeSymbol
-          totalPrice: 1
+          totalPrice: 0
           waypointSymbol: waypointSymbol
           shipSymbol: shipSymbol
-          units: 1
+          units: 0
           type: PURCHASE
-          pricePerUnit: 1
+          pricePerUnit: 0
           timestamp: 2000-01-23T04:56:07.000+00:00
         - tradeSymbol: tradeSymbol
-          totalPrice: 1
+          totalPrice: 0
           waypointSymbol: waypointSymbol
           shipSymbol: shipSymbol
-          units: 1
+          units: 0
           type: PURCHASE
-          pricePerUnit: 1
+          pricePerUnit: 0
           timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         symbol:
@@ -1814,7 +1816,7 @@ components:
               crew: 1
             name: name
             description: description
-            speed: 1.6683562403749608
+            speed: 1
           reactor:
             symbol: REACTOR_SOLAR_I
             condition: 50
@@ -1892,7 +1894,7 @@ components:
               crew: 1
             name: name
             description: description
-            speed: 1.6683562403749608
+            speed: 1
           reactor:
             symbol: REACTOR_SOLAR_I
             condition: 50
@@ -1963,12 +1965,12 @@ components:
             mountingPoints: 0
         transactions:
         - waypointSymbol: waypointSymbol
-          price: 1
+          price: 0
           shipSymbol: shipSymbol
           agentSymbol: agentSymbol
           timestamp: 2000-01-23T04:56:07.000+00:00
         - waypointSymbol: waypointSymbol
-          price: 1
+          price: 0
           shipSymbol: shipSymbol
           agentSymbol: agentSymbol
           timestamp: 2000-01-23T04:56:07.000+00:00
@@ -2084,7 +2086,7 @@ components:
     ShipyardTransaction:
       example:
         waypointSymbol: waypointSymbol
-        price: 1
+        price: 0
         shipSymbol: shipSymbol
         agentSymbol: agentSymbol
         timestamp: 2000-01-23T04:56:07.000+00:00
@@ -2097,7 +2099,7 @@ components:
           type: string
         price:
           description: The price of the transaction.
-          minimum: 1
+          minimum: 0
           type: integer
         agentSymbol:
           description: The symbol of the agent that made the transaction.
@@ -2302,12 +2304,12 @@ components:
     MarketTransaction:
       example:
         tradeSymbol: tradeSymbol
-        totalPrice: 1
+        totalPrice: 0
         waypointSymbol: waypointSymbol
         shipSymbol: shipSymbol
-        units: 1
+        units: 0
         type: PURCHASE
-        pricePerUnit: 1
+        pricePerUnit: 0
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         waypointSymbol:
@@ -2327,15 +2329,15 @@ components:
           type: string
         units:
           description: The number of units of the transaction.
-          minimum: 1
+          minimum: 0
           type: integer
         pricePerUnit:
           description: The price per unit of the transaction.
-          minimum: 1
+          minimum: 0
           type: integer
         totalPrice:
           description: The total price of the transaction.
-          minimum: 1
+          minimum: 0
           type: integer
         timestamp:
           description: The timestamp of the transaction.
@@ -2806,7 +2808,7 @@ components:
           crew: 1
         name: name
         description: description
-        speed: 1.6683562403749608
+        speed: 1
       properties:
         symbol:
           enum:
@@ -2827,7 +2829,7 @@ components:
           type: integer
         speed:
           minimum: 1
-          type: number
+          type: integer
         requirements:
           $ref: '#/components/schemas/ShipRequirements'
       required:
@@ -3181,7 +3183,7 @@ components:
             crew: 1
           name: name
           description: description
-          speed: 1.6683562403749608
+          speed: 1
         reactor:
           symbol: REACTOR_SOLAR_I
           condition: 50
@@ -3930,7 +3932,7 @@ components:
               crew: 1
             name: name
             description: description
-            speed: 1.6683562403749608
+            speed: 1
           fuel:
             consumed:
               amount: 0
@@ -4119,7 +4121,7 @@ components:
                 crew: 1
               name: name
               description: description
-              speed: 1.6683562403749608
+              speed: 1
             fuel:
               consumed:
                 amount: 0
@@ -4430,20 +4432,20 @@ components:
             description: description
           transactions:
           - tradeSymbol: tradeSymbol
-            totalPrice: 1
+            totalPrice: 0
             waypointSymbol: waypointSymbol
             shipSymbol: shipSymbol
-            units: 1
+            units: 0
             type: PURCHASE
-            pricePerUnit: 1
+            pricePerUnit: 0
             timestamp: 2000-01-23T04:56:07.000+00:00
           - tradeSymbol: tradeSymbol
-            totalPrice: 1
+            totalPrice: 0
             waypointSymbol: waypointSymbol
             shipSymbol: shipSymbol
-            units: 1
+            units: 0
             type: PURCHASE
-            pricePerUnit: 1
+            pricePerUnit: 0
             timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
@@ -4469,7 +4471,7 @@ components:
                 crew: 1
               name: name
               description: description
-              speed: 1.6683562403749608
+              speed: 1
             reactor:
               symbol: REACTOR_SOLAR_I
               condition: 50
@@ -4547,7 +4549,7 @@ components:
                 crew: 1
               name: name
               description: description
-              speed: 1.6683562403749608
+              speed: 1
             reactor:
               symbol: REACTOR_SOLAR_I
               condition: 50
@@ -4618,12 +4620,12 @@ components:
               mountingPoints: 0
           transactions:
           - waypointSymbol: waypointSymbol
-            price: 1
+            price: 0
             shipSymbol: shipSymbol
             agentSymbol: agentSymbol
             timestamp: 2000-01-23T04:56:07.000+00:00
           - waypointSymbol: waypointSymbol
-            price: 1
+            price: 0
             shipSymbol: shipSymbol
             agentSymbol: agentSymbol
             timestamp: 2000-01-23T04:56:07.000+00:00
@@ -5078,7 +5080,7 @@ components:
               crew: 1
             name: name
             description: description
-            speed: 1.6683562403749608
+            speed: 1
           fuel:
             consumed:
               amount: 0
@@ -5202,7 +5204,7 @@ components:
               crew: 1
             name: name
             description: description
-            speed: 1.6683562403749608
+            speed: 1
           fuel:
             consumed:
               amount: 0
@@ -5361,7 +5363,7 @@ components:
               crew: 1
             name: name
             description: description
-            speed: 1.6683562403749608
+            speed: 1
           fuel:
             consumed:
               amount: 0
@@ -5457,7 +5459,7 @@ components:
             mountingPoints: 0
         transaction:
           waypointSymbol: waypointSymbol
-          price: 1
+          price: 0
           shipSymbol: shipSymbol
           agentSymbol: agentSymbol
           timestamp: 2000-01-23T04:56:07.000+00:00
@@ -5514,7 +5516,7 @@ components:
                 crew: 1
               name: name
               description: description
-              speed: 1.6683562403749608
+              speed: 1
             fuel:
               consumed:
                 amount: 0
@@ -5610,7 +5612,7 @@ components:
               mountingPoints: 0
           transaction:
             waypointSymbol: waypointSymbol
-            price: 1
+            price: 0
             shipSymbol: shipSymbol
             agentSymbol: agentSymbol
             timestamp: 2000-01-23T04:56:07.000+00:00
@@ -5654,7 +5656,7 @@ components:
               crew: 1
             name: name
             description: description
-            speed: 1.6683562403749608
+            speed: 1
           fuel:
             consumed:
               amount: 0
@@ -6482,12 +6484,12 @@ components:
           capacity: 0
         transaction:
           tradeSymbol: tradeSymbol
-          totalPrice: 1
+          totalPrice: 0
           waypointSymbol: waypointSymbol
           shipSymbol: shipSymbol
-          units: 1
+          units: 0
           type: PURCHASE
-          pricePerUnit: 1
+          pricePerUnit: 0
           timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         agent:
@@ -6525,12 +6527,12 @@ components:
             capacity: 0
           transaction:
             tradeSymbol: tradeSymbol
-            totalPrice: 1
+            totalPrice: 0
             waypointSymbol: waypointSymbol
             shipSymbol: shipSymbol
-            units: 1
+            units: 0
             type: PURCHASE
-            pricePerUnit: 1
+            pricePerUnit: 0
             timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
@@ -6904,12 +6906,12 @@ components:
           capacity: 0
         transaction:
           tradeSymbol: tradeSymbol
-          totalPrice: 1
+          totalPrice: 0
           waypointSymbol: waypointSymbol
           shipSymbol: shipSymbol
-          units: 1
+          units: 0
           type: PURCHASE
-          pricePerUnit: 1
+          pricePerUnit: 0
           timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         agent:
@@ -6941,12 +6943,12 @@ components:
             capacity: 0
           transaction:
             tradeSymbol: tradeSymbol
-            totalPrice: 1
+            totalPrice: 0
             waypointSymbol: waypointSymbol
             shipSymbol: shipSymbol
-            units: 1
+            units: 0
             type: PURCHASE
-            pricePerUnit: 1
+            pricePerUnit: 0
             timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
@@ -6989,12 +6991,12 @@ components:
             capacity: 0
           transaction:
             tradeSymbol: tradeSymbol
-            totalPrice: 1
+            totalPrice: 0
             waypointSymbol: waypointSymbol
             shipSymbol: shipSymbol
-            units: 1
+            units: 0
             type: PURCHASE
-            pricePerUnit: 1
+            pricePerUnit: 0
             timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         data:

@@ -83,7 +83,7 @@ namespace SpaceTradersUnitySDK.Model
         /// <param name="condition">Condition is a range of 0 to 100 where 0 is completely worn out and 100 is brand new..</param>
         /// <param name="speed">speed (required).</param>
         /// <param name="requirements">requirements (required).</param>
-        public ShipEngine(SymbolEnum symbol = default(SymbolEnum), string name = default(string), string description = default(string), int condition = default(int), decimal speed = default(decimal), ShipRequirements requirements = default(ShipRequirements))
+        public ShipEngine(SymbolEnum symbol = default(SymbolEnum), string name = default(string), string description = default(string), int condition = default(int), int speed = default(int), ShipRequirements requirements = default(ShipRequirements))
         {
             this.Symbol = symbol;
             // to ensure "name" is required (not null)
@@ -131,7 +131,7 @@ namespace SpaceTradersUnitySDK.Model
         /// Gets or Sets Speed
         /// </summary>
         [DataMember(Name = "speed", IsRequired = true, EmitDefaultValue = true)]
-        public decimal Speed { get; set; }
+        public int Speed { get; set; }
 
         /// <summary>
         /// Gets or Sets Requirements

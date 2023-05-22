@@ -310,7 +310,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Jump Ship
         /// </summary>
         /// <remarks>
-        /// Jump your ship instantly to a target system. Unlike other forms of navigation, jumping requires a unit of antimatter.
+        /// Jump your ship instantly to a target system. When used while in orbit or docked to a jump gate waypoint, any ship can use this command. When used elsewhere, jumping requires a jump drive unit and consumes a unit of antimatter (which needs to be in your cargo).
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol"></param>
@@ -322,7 +322,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Jump Ship
         /// </summary>
         /// <remarks>
-        /// Jump your ship instantly to a target system. Unlike other forms of navigation, jumping requires a unit of antimatter.
+        /// Jump your ship instantly to a target system. When used while in orbit or docked to a jump gate waypoint, any ship can use this command. When used elsewhere, jumping requires a jump drive unit and consumes a unit of antimatter (which needs to be in your cargo).
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol"></param>
@@ -891,7 +891,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Jump Ship
         /// </summary>
         /// <remarks>
-        /// Jump your ship instantly to a target system. Unlike other forms of navigation, jumping requires a unit of antimatter.
+        /// Jump your ship instantly to a target system. When used while in orbit or docked to a jump gate waypoint, any ship can use this command. When used elsewhere, jumping requires a jump drive unit and consumes a unit of antimatter (which needs to be in your cargo).
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol"></param>
@@ -904,7 +904,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Jump Ship
         /// </summary>
         /// <remarks>
-        /// Jump your ship instantly to a target system. Unlike other forms of navigation, jumping requires a unit of antimatter.
+        /// Jump your ship instantly to a target system. When used while in orbit or docked to a jump gate waypoint, any ship can use this command. When used elsewhere, jumping requires a jump drive unit and consumes a unit of antimatter (which needs to be in your cargo).
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol"></param>
@@ -3146,7 +3146,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Jump Ship Jump your ship instantly to a target system. Unlike other forms of navigation, jumping requires a unit of antimatter.
+        /// Jump Ship Jump your ship instantly to a target system. When used while in orbit or docked to a jump gate waypoint, any ship can use this command. When used elsewhere, jumping requires a jump drive unit and consumes a unit of antimatter (which needs to be in your cargo).
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol"></param>
@@ -3159,7 +3159,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Jump Ship Jump your ship instantly to a target system. Unlike other forms of navigation, jumping requires a unit of antimatter.
+        /// Jump Ship Jump your ship instantly to a target system. When used while in orbit or docked to a jump gate waypoint, any ship can use this command. When used elsewhere, jumping requires a jump drive unit and consumes a unit of antimatter (which needs to be in your cargo).
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol"></param>
@@ -3211,7 +3211,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Jump Ship Jump your ship instantly to a target system. Unlike other forms of navigation, jumping requires a unit of antimatter.
+        /// Jump Ship Jump your ship instantly to a target system. When used while in orbit or docked to a jump gate waypoint, any ship can use this command. When used elsewhere, jumping requires a jump drive unit and consumes a unit of antimatter (which needs to be in your cargo).
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol"></param>
@@ -3230,7 +3230,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Jump Ship Jump your ship instantly to a target system. Unlike other forms of navigation, jumping requires a unit of antimatter.
+        /// Jump Ship Jump your ship instantly to a target system. When used while in orbit or docked to a jump gate waypoint, any ship can use this command. When used elsewhere, jumping requires a jump drive unit and consumes a unit of antimatter (which needs to be in your cargo).
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol"></param>
