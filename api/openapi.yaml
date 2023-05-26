@@ -53,6 +53,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/get_status_200_response'
           description: OK
+      security: []
       summary: Get Status
       tags: []
   /register:
@@ -87,6 +88,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/register_201_response'
           description: OK
+      security: []
       summary: Register New Agent
       tags: []
   /systems:
@@ -120,8 +122,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/get_systems_200_response'
           description: OK
-      security:
-      - AgentToken: []
+      security: []
       summary: List Systems
       tags:
       - systems
@@ -146,8 +147,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/get_system_200_response'
           description: OK
-      security:
-      - AgentToken: []
+      security: []
       summary: Get System
       tags:
       - systems
@@ -224,8 +224,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/get_waypoint_200_response'
           description: OK
-      security:
-      - AgentToken: []
+      security: []
       summary: Get Waypoint
       tags:
       - systems
@@ -260,8 +259,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/get_market_200_response'
           description: OK
-      security:
-      - AgentToken: []
+      security: []
       summary: Get Market
       tags:
       - systems
@@ -294,8 +292,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/get_shipyard_200_response'
           description: OK
-      security:
-      - AgentToken: []
+      security: []
       summary: Get Shipyard
       tags:
       - systems
@@ -327,8 +324,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/get_jump_gate_200_response'
           description: OK
-      security:
-      - AgentToken: []
+      security: []
       summary: Get Jump Gate
       tags:
       - systems
