@@ -565,6 +565,12 @@ namespace SpaceTradersUnitySDK.Api
             localVarRequestOptions.PathParameters.Add("systemSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(systemSymbol)); // path parameter
             localVarRequestOptions.PathParameters.Add("waypointSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(waypointSymbol)); // path parameter
 
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<GetJumpGate200Response>("/systems/{systemSymbol}/waypoints/{waypointSymbol}/jump-gate", localVarRequestOptions, this.Configuration);
@@ -636,6 +642,12 @@ namespace SpaceTradersUnitySDK.Api
             localVarRequestOptions.PathParameters.Add("systemSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(systemSymbol)); // path parameter
             localVarRequestOptions.PathParameters.Add("waypointSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(waypointSymbol)); // path parameter
 
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
@@ -705,6 +717,12 @@ namespace SpaceTradersUnitySDK.Api
             localVarRequestOptions.PathParameters.Add("systemSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(systemSymbol)); // path parameter
             localVarRequestOptions.PathParameters.Add("waypointSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(waypointSymbol)); // path parameter
 
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<GetMarket200Response>("/systems/{systemSymbol}/waypoints/{waypointSymbol}/market", localVarRequestOptions, this.Configuration);
@@ -776,6 +794,12 @@ namespace SpaceTradersUnitySDK.Api
             localVarRequestOptions.PathParameters.Add("systemSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(systemSymbol)); // path parameter
             localVarRequestOptions.PathParameters.Add("waypointSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(waypointSymbol)); // path parameter
 
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
@@ -845,6 +869,12 @@ namespace SpaceTradersUnitySDK.Api
             localVarRequestOptions.PathParameters.Add("systemSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(systemSymbol)); // path parameter
             localVarRequestOptions.PathParameters.Add("waypointSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(waypointSymbol)); // path parameter
 
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<GetShipyard200Response>("/systems/{systemSymbol}/waypoints/{waypointSymbol}/shipyard", localVarRequestOptions, this.Configuration);
@@ -916,6 +946,12 @@ namespace SpaceTradersUnitySDK.Api
             localVarRequestOptions.PathParameters.Add("systemSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(systemSymbol)); // path parameter
             localVarRequestOptions.PathParameters.Add("waypointSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(waypointSymbol)); // path parameter
 
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
@@ -978,6 +1014,12 @@ namespace SpaceTradersUnitySDK.Api
 
             localVarRequestOptions.PathParameters.Add("systemSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(systemSymbol)); // path parameter
 
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<GetSystem200Response>("/systems/{systemSymbol}", localVarRequestOptions, this.Configuration);
@@ -1042,6 +1084,12 @@ namespace SpaceTradersUnitySDK.Api
 
             localVarRequestOptions.PathParameters.Add("systemSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(systemSymbol)); // path parameter
 
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
@@ -1271,6 +1319,12 @@ namespace SpaceTradersUnitySDK.Api
                 localVarRequestOptions.QueryParameters.Add(SpaceTradersUnitySDK.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
 
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<GetSystems200Response>("/systems", localVarRequestOptions, this.Configuration);
@@ -1340,6 +1394,12 @@ namespace SpaceTradersUnitySDK.Api
                 localVarRequestOptions.QueryParameters.Add(SpaceTradersUnitySDK.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
 
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
@@ -1409,6 +1469,12 @@ namespace SpaceTradersUnitySDK.Api
             localVarRequestOptions.PathParameters.Add("systemSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(systemSymbol)); // path parameter
             localVarRequestOptions.PathParameters.Add("waypointSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(waypointSymbol)); // path parameter
 
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<GetWaypoint200Response>("/systems/{systemSymbol}/waypoints/{waypointSymbol}", localVarRequestOptions, this.Configuration);
@@ -1480,6 +1546,12 @@ namespace SpaceTradersUnitySDK.Api
             localVarRequestOptions.PathParameters.Add("systemSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(systemSymbol)); // path parameter
             localVarRequestOptions.PathParameters.Add("waypointSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(waypointSymbol)); // path parameter
 
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 

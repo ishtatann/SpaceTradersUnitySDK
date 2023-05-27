@@ -36,6 +36,9 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://api.spacetraders.io/v2";
+            // Configure Bearer token for authorization: AgentToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
             var apiInstance = new SystemsApi(config);
             var systemSymbol = "systemSymbol_example";  // string | The system symbol
             var waypointSymbol = "waypointSymbol_example";  // string | The waypoint symbol
@@ -90,7 +93,7 @@ catch (ApiException e)
 
 ### Authorization
 
-No authorization required
+[AgentToken](../README.md#AgentToken)
 
 ### HTTP request headers
 
@@ -129,6 +132,9 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://api.spacetraders.io/v2";
+            // Configure Bearer token for authorization: AgentToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
             var apiInstance = new SystemsApi(config);
             var systemSymbol = "systemSymbol_example";  // string | The system symbol
             var waypointSymbol = "waypointSymbol_example";  // string | The waypoint symbol
@@ -183,7 +189,7 @@ catch (ApiException e)
 
 ### Authorization
 
-No authorization required
+[AgentToken](../README.md#AgentToken)
 
 ### HTTP request headers
 
@@ -222,6 +228,9 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://api.spacetraders.io/v2";
+            // Configure Bearer token for authorization: AgentToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
             var apiInstance = new SystemsApi(config);
             var systemSymbol = "systemSymbol_example";  // string | The system symbol
             var waypointSymbol = "waypointSymbol_example";  // string | The waypoint symbol
@@ -276,7 +285,7 @@ catch (ApiException e)
 
 ### Authorization
 
-No authorization required
+[AgentToken](../README.md#AgentToken)
 
 ### HTTP request headers
 
@@ -315,6 +324,9 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://api.spacetraders.io/v2";
+            // Configure Bearer token for authorization: AgentToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
             var apiInstance = new SystemsApi(config);
             var systemSymbol = "\"X1-OE\"";  // string | The system symbol (default to "X1-OE")
 
@@ -367,7 +379,7 @@ catch (ApiException e)
 
 ### Authorization
 
-No authorization required
+[AgentToken](../README.md#AgentToken)
 
 ### HTTP request headers
 
@@ -504,6 +516,9 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://api.spacetraders.io/v2";
+            // Configure Bearer token for authorization: AgentToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
             var apiInstance = new SystemsApi(config);
             var page = 56;  // int? | What entry offset to request (optional) 
             var limit = 56;  // int? | How many entries to return per page (optional) 
@@ -558,7 +573,7 @@ catch (ApiException e)
 
 ### Authorization
 
-No authorization required
+[AgentToken](../README.md#AgentToken)
 
 ### HTTP request headers
 
@@ -597,6 +612,9 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://api.spacetraders.io/v2";
+            // Configure Bearer token for authorization: AgentToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
             var apiInstance = new SystemsApi(config);
             var systemSymbol = "systemSymbol_example";  // string | The system symbol
             var waypointSymbol = "waypointSymbol_example";  // string | The waypoint symbol
@@ -651,7 +669,7 @@ catch (ApiException e)
 
 ### Authorization
 
-No authorization required
+[AgentToken](../README.md#AgentToken)
 
 ### HTTP request headers
 
