@@ -1292,6 +1292,7 @@ components:
         credits:
           description: The number of credits the agent has available. Credits can
             be negative if funds have been overdrawn.
+          format: int64
           type: integer
         startingFaction:
           description: The faction the agent started with.
@@ -3685,6 +3686,7 @@ components:
         agentSymbol:
           type: string
         credits:
+          format: int64
           type: integer
       required:
       - agentSymbol

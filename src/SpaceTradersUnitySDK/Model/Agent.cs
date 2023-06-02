@@ -44,7 +44,7 @@ namespace SpaceTradersUnitySDK.Model
         /// <param name="headquarters">The headquarters of the agent. (required).</param>
         /// <param name="credits">The number of credits the agent has available. Credits can be negative if funds have been overdrawn. (required).</param>
         /// <param name="startingFaction">The faction the agent started with. (required).</param>
-        public Agent(string accountId = default(string), string symbol = default(string), string headquarters = default(string), int credits = default(int), string startingFaction = default(string))
+        public Agent(string accountId = default(string), string symbol = default(string), string headquarters = default(string), long credits = default(long), string startingFaction = default(string))
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -97,7 +97,7 @@ namespace SpaceTradersUnitySDK.Model
         /// </summary>
         /// <value>The number of credits the agent has available. Credits can be negative if funds have been overdrawn.</value>
         [DataMember(Name = "credits", IsRequired = true, EmitDefaultValue = true)]
-        public int Credits { get; set; }
+        public long Credits { get; set; }
 
         /// <summary>
         /// The faction the agent started with.

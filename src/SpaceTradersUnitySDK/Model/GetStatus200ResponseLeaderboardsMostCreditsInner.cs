@@ -41,7 +41,7 @@ namespace SpaceTradersUnitySDK.Model
         /// </summary>
         /// <param name="agentSymbol">agentSymbol (required).</param>
         /// <param name="credits">credits (required).</param>
-        public GetStatus200ResponseLeaderboardsMostCreditsInner(string agentSymbol = default(string), int credits = default(int))
+        public GetStatus200ResponseLeaderboardsMostCreditsInner(string agentSymbol = default(string), long credits = default(long))
         {
             // to ensure "agentSymbol" is required (not null)
             if (agentSymbol == null)
@@ -62,7 +62,7 @@ namespace SpaceTradersUnitySDK.Model
         /// Gets or Sets Credits
         /// </summary>
         [DataMember(Name = "credits", IsRequired = true, EmitDefaultValue = true)]
-        public int Credits { get; set; }
+        public long Credits { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
