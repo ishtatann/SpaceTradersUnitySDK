@@ -36,7 +36,7 @@ namespace SpaceTradersUnitySDK.Model
         /// </summary>
         /// <param name="tradeSymbol">tradeSymbol.</param>
         /// <param name="units">units.</param>
-        public ShipRefine200ResponseDataProducedInner(string tradeSymbol = default(string), int units = default(int))
+        public ShipRefine200ResponseDataProducedInner(string tradeSymbol = default(string), long units = default(long))
         {
             this.TradeSymbol = tradeSymbol;
             this.Units = units;
@@ -52,7 +52,7 @@ namespace SpaceTradersUnitySDK.Model
         /// Gets or Sets Units
         /// </summary>
         [DataMember(Name = "units", EmitDefaultValue = false)]
-        public int Units { get; set; }
+        public long Units { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

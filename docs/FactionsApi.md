@@ -103,7 +103,7 @@ catch (ApiException e)
 
 <a id="getfactions"></a>
 # **GetFactions**
-> GetFactions200Response GetFactions (int? page = null, int? limit = null)
+> GetFactions200Response GetFactions (long? page = null, long? limit = null)
 
 List Factions
 
@@ -129,8 +129,8 @@ namespace Example
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new FactionsApi(config);
-            var page = 56;  // int? | What entry offset to request (optional) 
-            var limit = 56;  // int? | How many entries to return per page (optional) 
+            var page = 789L;  // long? | What entry offset to request (optional) 
+            var limit = 789L;  // long? | How many entries to return per page (optional) 
 
             try
             {
@@ -173,8 +173,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **page** | **int?** | What entry offset to request | [optional]  |
-| **limit** | **int?** | How many entries to return per page | [optional]  |
+| **page** | **long?** | What entry offset to request | [optional]  |
+| **limit** | **long?** | How many entries to return per page | [optional]  |
 
 ### Return type
 

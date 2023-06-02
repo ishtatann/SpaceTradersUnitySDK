@@ -390,7 +390,7 @@ catch (ApiException e)
 
 <a id="getcontracts"></a>
 # **GetContracts**
-> GetContracts200Response GetContracts (int? page = null, int? limit = null)
+> GetContracts200Response GetContracts (long? page = null, long? limit = null)
 
 List Contracts
 
@@ -416,8 +416,8 @@ namespace Example
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ContractsApi(config);
-            var page = 56;  // int? | What entry offset to request (optional) 
-            var limit = 56;  // int? | How many entries to return per page (optional) 
+            var page = 789L;  // long? | What entry offset to request (optional) 
+            var limit = 789L;  // long? | How many entries to return per page (optional) 
 
             try
             {
@@ -460,8 +460,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **page** | **int?** | What entry offset to request | [optional]  |
-| **limit** | **int?** | How many entries to return per page | [optional]  |
+| **page** | **long?** | What entry offset to request | [optional]  |
+| **limit** | **long?** | How many entries to return per page | [optional]  |
 
 ### Return type
 

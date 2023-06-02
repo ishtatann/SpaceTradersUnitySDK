@@ -123,7 +123,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="page">What entry offset to request (optional)</param>
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <returns>GetContracts200Response</returns>
-        GetContracts200Response GetContracts(int? page = default(int?), int? limit = default(int?));
+        GetContracts200Response GetContracts(long? page = default(long?), long? limit = default(long?));
 
         /// <summary>
         /// List Contracts
@@ -135,7 +135,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="page">What entry offset to request (optional)</param>
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <returns>ApiResponse of GetContracts200Response</returns>
-        ApiResponse<GetContracts200Response> GetContractsWithHttpInfo(int? page = default(int?), int? limit = default(int?));
+        ApiResponse<GetContracts200Response> GetContractsWithHttpInfo(long? page = default(long?), long? limit = default(long?));
         #endregion Synchronous Operations
     }
 
@@ -250,7 +250,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetContracts200Response</returns>
-        System.Threading.Tasks.Task<GetContracts200Response> GetContractsAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<GetContracts200Response> GetContractsAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// List Contracts
@@ -263,7 +263,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetContracts200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetContracts200Response>> GetContractsWithHttpInfoAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<GetContracts200Response>> GetContractsWithHttpInfoAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -975,7 +975,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="page">What entry offset to request (optional)</param>
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <returns>GetContracts200Response</returns>
-        public GetContracts200Response GetContracts(int? page = default(int?), int? limit = default(int?))
+        public GetContracts200Response GetContracts(long? page = default(long?), long? limit = default(long?))
         {
             SpaceTradersUnitySDK.Client.ApiResponse<GetContracts200Response> localVarResponse = GetContractsWithHttpInfo(page, limit);
             return localVarResponse.Data;
@@ -988,7 +988,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="page">What entry offset to request (optional)</param>
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <returns>ApiResponse of GetContracts200Response</returns>
-        public SpaceTradersUnitySDK.Client.ApiResponse<GetContracts200Response> GetContractsWithHttpInfo(int? page = default(int?), int? limit = default(int?))
+        public SpaceTradersUnitySDK.Client.ApiResponse<GetContracts200Response> GetContractsWithHttpInfo(long? page = default(long?), long? limit = default(long?))
         {
             SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
 
@@ -1042,7 +1042,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetContracts200Response</returns>
-        public async System.Threading.Tasks.Task<GetContracts200Response> GetContractsAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<GetContracts200Response> GetContractsAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = GetContractsWithHttpInfoAsync(page, limit, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
@@ -1061,7 +1061,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetContracts200Response)</returns>
-        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetContracts200Response>> GetContractsWithHttpInfoAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetContracts200Response>> GetContractsWithHttpInfoAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();

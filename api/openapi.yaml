@@ -102,6 +102,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           minimum: 1
           type: integer
         style: form
@@ -111,6 +112,7 @@ paths:
         name: limit
         required: false
         schema:
+          format: int64
           maximum: 20
           minimum: 1
           type: integer
@@ -175,6 +177,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           minimum: 1
           type: integer
         style: form
@@ -184,6 +187,7 @@ paths:
         name: limit
         required: false
         schema:
+          format: int64
           maximum: 20
           minimum: 1
           type: integer
@@ -352,6 +356,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           minimum: 1
           type: integer
         style: form
@@ -361,6 +366,7 @@ paths:
         name: limit
         required: false
         schema:
+          format: int64
           maximum: 20
           minimum: 1
           type: integer
@@ -426,6 +432,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           minimum: 1
           type: integer
         style: form
@@ -435,6 +442,7 @@ paths:
         name: limit
         required: false
         schema:
+          format: int64
           maximum: 20
           minimum: 1
           type: integer
@@ -566,6 +574,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           minimum: 1
           type: integer
         style: form
@@ -575,6 +584,7 @@ paths:
         name: limit
         required: false
         schema:
+          format: int64
           maximum: 20
           minimum: 1
           type: integer
@@ -3665,12 +3675,16 @@ components:
         agents: 0
       properties:
         agents:
+          format: int64
           type: integer
         ships:
+          format: int64
           type: integer
         systems:
+          format: int64
           type: integer
         waypoints:
+          format: int64
           type: integer
       required:
       - agents
@@ -3700,6 +3714,7 @@ components:
         agentSymbol:
           type: string
         chartCount:
+          format: int64
           type: integer
       required:
       - agentSymbol
@@ -4924,6 +4939,7 @@ components:
         tradeSymbol:
           type: string
         units:
+          format: int64
           type: integer
       required:
       - shipSymbol
@@ -5872,6 +5888,7 @@ components:
         tradeSymbol:
           type: string
         units:
+          format: int64
           type: integer
       type: object
     Ship_Refine_200_Response_data:
@@ -6217,6 +6234,7 @@ components:
         symbol:
           type: string
         units:
+          format: int64
           minimum: 1
           type: integer
       required:
@@ -6467,6 +6485,7 @@ components:
         symbol:
           type: string
         units:
+          format: int64
           type: integer
       required:
       - symbol
@@ -6972,6 +6991,7 @@ components:
         symbol:
           type: string
         units:
+          format: int64
           type: integer
       required:
       - symbol
@@ -7021,6 +7041,7 @@ components:
         tradeSymbol:
           type: string
         units:
+          format: int64
           type: integer
         shipSymbol:
           type: string

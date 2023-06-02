@@ -42,7 +42,7 @@ namespace SpaceTradersUnitySDK.Model
         /// <param name="tradeSymbol">tradeSymbol (required).</param>
         /// <param name="units">units (required).</param>
         /// <param name="shipSymbol">shipSymbol (required).</param>
-        public TransferCargoRequest(string tradeSymbol = default(string), int units = default(int), string shipSymbol = default(string))
+        public TransferCargoRequest(string tradeSymbol = default(string), long units = default(long), string shipSymbol = default(string))
         {
             // to ensure "tradeSymbol" is required (not null)
             if (tradeSymbol == null)
@@ -69,7 +69,7 @@ namespace SpaceTradersUnitySDK.Model
         /// Gets or Sets Units
         /// </summary>
         [DataMember(Name = "units", IsRequired = true, EmitDefaultValue = true)]
-        public int Units { get; set; }
+        public long Units { get; set; }
 
         /// <summary>
         /// Gets or Sets ShipSymbol

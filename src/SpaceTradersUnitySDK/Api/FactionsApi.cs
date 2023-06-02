@@ -58,7 +58,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="page">What entry offset to request (optional)</param>
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <returns>GetFactions200Response</returns>
-        GetFactions200Response GetFactions(int? page = default(int?), int? limit = default(int?));
+        GetFactions200Response GetFactions(long? page = default(long?), long? limit = default(long?));
 
         /// <summary>
         /// List Factions
@@ -70,7 +70,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="page">What entry offset to request (optional)</param>
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <returns>ApiResponse of GetFactions200Response</returns>
-        ApiResponse<GetFactions200Response> GetFactionsWithHttpInfo(int? page = default(int?), int? limit = default(int?));
+        ApiResponse<GetFactions200Response> GetFactionsWithHttpInfo(long? page = default(long?), long? limit = default(long?));
         #endregion Synchronous Operations
     }
 
@@ -114,7 +114,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetFactions200Response</returns>
-        System.Threading.Tasks.Task<GetFactions200Response> GetFactionsAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<GetFactions200Response> GetFactionsAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// List Factions
@@ -127,7 +127,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetFactions200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetFactions200Response>> GetFactionsWithHttpInfoAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<GetFactions200Response>> GetFactionsWithHttpInfoAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -417,7 +417,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="page">What entry offset to request (optional)</param>
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <returns>GetFactions200Response</returns>
-        public GetFactions200Response GetFactions(int? page = default(int?), int? limit = default(int?))
+        public GetFactions200Response GetFactions(long? page = default(long?), long? limit = default(long?))
         {
             SpaceTradersUnitySDK.Client.ApiResponse<GetFactions200Response> localVarResponse = GetFactionsWithHttpInfo(page, limit);
             return localVarResponse.Data;
@@ -430,7 +430,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="page">What entry offset to request (optional)</param>
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <returns>ApiResponse of GetFactions200Response</returns>
-        public SpaceTradersUnitySDK.Client.ApiResponse<GetFactions200Response> GetFactionsWithHttpInfo(int? page = default(int?), int? limit = default(int?))
+        public SpaceTradersUnitySDK.Client.ApiResponse<GetFactions200Response> GetFactionsWithHttpInfo(long? page = default(long?), long? limit = default(long?))
         {
             SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
 
@@ -484,7 +484,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetFactions200Response</returns>
-        public async System.Threading.Tasks.Task<GetFactions200Response> GetFactionsAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<GetFactions200Response> GetFactionsAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = GetFactionsWithHttpInfoAsync(page, limit, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
@@ -503,7 +503,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetFactions200Response)</returns>
-        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetFactions200Response>> GetFactionsWithHttpInfoAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetFactions200Response>> GetFactionsWithHttpInfoAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();

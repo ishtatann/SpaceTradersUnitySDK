@@ -228,7 +228,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="page">What entry offset to request (optional)</param>
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <returns>GetMyShips200Response</returns>
-        GetMyShips200Response GetMyShips(int? page = default(int?), int? limit = default(int?));
+        GetMyShips200Response GetMyShips(long? page = default(long?), long? limit = default(long?));
 
         /// <summary>
         /// List Ships
@@ -240,7 +240,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="page">What entry offset to request (optional)</param>
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <returns>ApiResponse of GetMyShips200Response</returns>
-        ApiResponse<GetMyShips200Response> GetMyShipsWithHttpInfo(int? page = default(int?), int? limit = default(int?));
+        ApiResponse<GetMyShips200Response> GetMyShipsWithHttpInfo(long? page = default(long?), long? limit = default(long?));
         /// <summary>
         /// Get Ship Cooldown
         /// </summary>
@@ -802,7 +802,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetMyShips200Response</returns>
-        System.Threading.Tasks.Task<GetMyShips200Response> GetMyShipsAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<GetMyShips200Response> GetMyShipsAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// List Ships
@@ -815,7 +815,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetMyShips200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetMyShips200Response>> GetMyShipsWithHttpInfoAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<GetMyShips200Response>> GetMyShipsWithHttpInfoAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Get Ship Cooldown
         /// </summary>
@@ -2582,7 +2582,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="page">What entry offset to request (optional)</param>
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <returns>GetMyShips200Response</returns>
-        public GetMyShips200Response GetMyShips(int? page = default(int?), int? limit = default(int?))
+        public GetMyShips200Response GetMyShips(long? page = default(long?), long? limit = default(long?))
         {
             SpaceTradersUnitySDK.Client.ApiResponse<GetMyShips200Response> localVarResponse = GetMyShipsWithHttpInfo(page, limit);
             return localVarResponse.Data;
@@ -2595,7 +2595,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="page">What entry offset to request (optional)</param>
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <returns>ApiResponse of GetMyShips200Response</returns>
-        public SpaceTradersUnitySDK.Client.ApiResponse<GetMyShips200Response> GetMyShipsWithHttpInfo(int? page = default(int?), int? limit = default(int?))
+        public SpaceTradersUnitySDK.Client.ApiResponse<GetMyShips200Response> GetMyShipsWithHttpInfo(long? page = default(long?), long? limit = default(long?))
         {
             SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
 
@@ -2649,7 +2649,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetMyShips200Response</returns>
-        public async System.Threading.Tasks.Task<GetMyShips200Response> GetMyShipsAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<GetMyShips200Response> GetMyShipsAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = GetMyShipsWithHttpInfoAsync(page, limit, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
@@ -2668,7 +2668,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetMyShips200Response)</returns>
-        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetMyShips200Response>> GetMyShipsWithHttpInfoAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetMyShips200Response>> GetMyShipsWithHttpInfoAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();

@@ -41,7 +41,7 @@ namespace SpaceTradersUnitySDK.Model
         /// </summary>
         /// <param name="agentSymbol">agentSymbol (required).</param>
         /// <param name="chartCount">chartCount (required).</param>
-        public GetStatus200ResponseLeaderboardsMostSubmittedChartsInner(string agentSymbol = default(string), int chartCount = default(int))
+        public GetStatus200ResponseLeaderboardsMostSubmittedChartsInner(string agentSymbol = default(string), long chartCount = default(long))
         {
             // to ensure "agentSymbol" is required (not null)
             if (agentSymbol == null)
@@ -62,7 +62,7 @@ namespace SpaceTradersUnitySDK.Model
         /// Gets or Sets ChartCount
         /// </summary>
         [DataMember(Name = "chartCount", IsRequired = true, EmitDefaultValue = true)]
-        public int ChartCount { get; set; }
+        public long ChartCount { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -41,7 +41,7 @@ namespace SpaceTradersUnitySDK.Model
         /// </summary>
         /// <param name="symbol">symbol (required).</param>
         /// <param name="units">units (required).</param>
-        public PurchaseCargoRequest(string symbol = default(string), int units = default(int))
+        public PurchaseCargoRequest(string symbol = default(string), long units = default(long))
         {
             // to ensure "symbol" is required (not null)
             if (symbol == null)
@@ -62,7 +62,7 @@ namespace SpaceTradersUnitySDK.Model
         /// Gets or Sets Units
         /// </summary>
         [DataMember(Name = "units", IsRequired = true, EmitDefaultValue = true)]
-        public int Units { get; set; }
+        public long Units { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -396,7 +396,7 @@ catch (ApiException e)
 
 <a id="getsystemwaypoints"></a>
 # **GetSystemWaypoints**
-> GetSystemWaypoints200Response GetSystemWaypoints (string systemSymbol, int? page = null, int? limit = null)
+> GetSystemWaypoints200Response GetSystemWaypoints (string systemSymbol, long? page = null, long? limit = null)
 
 List Waypoints
 
@@ -423,8 +423,8 @@ namespace Example
 
             var apiInstance = new SystemsApi(config);
             var systemSymbol = "systemSymbol_example";  // string | The system symbol
-            var page = 56;  // int? | What entry offset to request (optional) 
-            var limit = 56;  // int? | How many entries to return per page (optional) 
+            var page = 789L;  // long? | What entry offset to request (optional) 
+            var limit = 789L;  // long? | How many entries to return per page (optional) 
 
             try
             {
@@ -468,8 +468,8 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **systemSymbol** | **string** | The system symbol |  |
-| **page** | **int?** | What entry offset to request | [optional]  |
-| **limit** | **int?** | How many entries to return per page | [optional]  |
+| **page** | **long?** | What entry offset to request | [optional]  |
+| **limit** | **long?** | How many entries to return per page | [optional]  |
 
 ### Return type
 
@@ -494,7 +494,7 @@ catch (ApiException e)
 
 <a id="getsystems"></a>
 # **GetSystems**
-> GetSystems200Response GetSystems (int? page = null, int? limit = null)
+> GetSystems200Response GetSystems (long? page = null, long? limit = null)
 
 List Systems
 
@@ -520,8 +520,8 @@ namespace Example
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new SystemsApi(config);
-            var page = 56;  // int? | What entry offset to request (optional) 
-            var limit = 56;  // int? | How many entries to return per page (optional) 
+            var page = 789L;  // long? | What entry offset to request (optional) 
+            var limit = 789L;  // long? | How many entries to return per page (optional) 
 
             try
             {
@@ -564,8 +564,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **page** | **int?** | What entry offset to request | [optional]  |
-| **limit** | **int?** | How many entries to return per page | [optional]  |
+| **page** | **long?** | What entry offset to request | [optional]  |
+| **limit** | **long?** | How many entries to return per page | [optional]  |
 
 ### Return type
 

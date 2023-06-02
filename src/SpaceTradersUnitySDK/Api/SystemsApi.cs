@@ -128,7 +128,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="page">What entry offset to request (optional)</param>
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <returns>GetSystemWaypoints200Response</returns>
-        GetSystemWaypoints200Response GetSystemWaypoints(string systemSymbol, int? page = default(int?), int? limit = default(int?));
+        GetSystemWaypoints200Response GetSystemWaypoints(string systemSymbol, long? page = default(long?), long? limit = default(long?));
 
         /// <summary>
         /// List Waypoints
@@ -141,7 +141,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="page">What entry offset to request (optional)</param>
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <returns>ApiResponse of GetSystemWaypoints200Response</returns>
-        ApiResponse<GetSystemWaypoints200Response> GetSystemWaypointsWithHttpInfo(string systemSymbol, int? page = default(int?), int? limit = default(int?));
+        ApiResponse<GetSystemWaypoints200Response> GetSystemWaypointsWithHttpInfo(string systemSymbol, long? page = default(long?), long? limit = default(long?));
         /// <summary>
         /// List Systems
         /// </summary>
@@ -152,7 +152,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="page">What entry offset to request (optional)</param>
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <returns>GetSystems200Response</returns>
-        GetSystems200Response GetSystems(int? page = default(int?), int? limit = default(int?));
+        GetSystems200Response GetSystems(long? page = default(long?), long? limit = default(long?));
 
         /// <summary>
         /// List Systems
@@ -164,7 +164,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="page">What entry offset to request (optional)</param>
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <returns>ApiResponse of GetSystems200Response</returns>
-        ApiResponse<GetSystems200Response> GetSystemsWithHttpInfo(int? page = default(int?), int? limit = default(int?));
+        ApiResponse<GetSystems200Response> GetSystemsWithHttpInfo(long? page = default(long?), long? limit = default(long?));
         /// <summary>
         /// Get Waypoint
         /// </summary>
@@ -307,7 +307,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetSystemWaypoints200Response</returns>
-        System.Threading.Tasks.Task<GetSystemWaypoints200Response> GetSystemWaypointsAsync(string systemSymbol, int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<GetSystemWaypoints200Response> GetSystemWaypointsAsync(string systemSymbol, long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// List Waypoints
@@ -321,7 +321,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetSystemWaypoints200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetSystemWaypoints200Response>> GetSystemWaypointsWithHttpInfoAsync(string systemSymbol, int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<GetSystemWaypoints200Response>> GetSystemWaypointsWithHttpInfoAsync(string systemSymbol, long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// List Systems
         /// </summary>
@@ -333,7 +333,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetSystems200Response</returns>
-        System.Threading.Tasks.Task<GetSystems200Response> GetSystemsAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<GetSystems200Response> GetSystemsAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// List Systems
@@ -346,7 +346,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetSystems200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetSystems200Response>> GetSystemsWithHttpInfoAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<GetSystems200Response>> GetSystemsWithHttpInfoAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Get Waypoint
         /// </summary>
@@ -1118,7 +1118,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="page">What entry offset to request (optional)</param>
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <returns>GetSystemWaypoints200Response</returns>
-        public GetSystemWaypoints200Response GetSystemWaypoints(string systemSymbol, int? page = default(int?), int? limit = default(int?))
+        public GetSystemWaypoints200Response GetSystemWaypoints(string systemSymbol, long? page = default(long?), long? limit = default(long?))
         {
             SpaceTradersUnitySDK.Client.ApiResponse<GetSystemWaypoints200Response> localVarResponse = GetSystemWaypointsWithHttpInfo(systemSymbol, page, limit);
             return localVarResponse.Data;
@@ -1132,7 +1132,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="page">What entry offset to request (optional)</param>
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <returns>ApiResponse of GetSystemWaypoints200Response</returns>
-        public SpaceTradersUnitySDK.Client.ApiResponse<GetSystemWaypoints200Response> GetSystemWaypointsWithHttpInfo(string systemSymbol, int? page = default(int?), int? limit = default(int?))
+        public SpaceTradersUnitySDK.Client.ApiResponse<GetSystemWaypoints200Response> GetSystemWaypointsWithHttpInfo(string systemSymbol, long? page = default(long?), long? limit = default(long?))
         {
             // verify the required parameter 'systemSymbol' is set
             if (systemSymbol == null)
@@ -1192,7 +1192,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetSystemWaypoints200Response</returns>
-        public async System.Threading.Tasks.Task<GetSystemWaypoints200Response> GetSystemWaypointsAsync(string systemSymbol, int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<GetSystemWaypoints200Response> GetSystemWaypointsAsync(string systemSymbol, long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = GetSystemWaypointsWithHttpInfoAsync(systemSymbol, page, limit, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
@@ -1212,7 +1212,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetSystemWaypoints200Response)</returns>
-        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetSystemWaypoints200Response>> GetSystemWaypointsWithHttpInfoAsync(string systemSymbol, int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetSystemWaypoints200Response>> GetSystemWaypointsWithHttpInfoAsync(string systemSymbol, long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'systemSymbol' is set
             if (systemSymbol == null)
@@ -1279,7 +1279,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="page">What entry offset to request (optional)</param>
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <returns>GetSystems200Response</returns>
-        public GetSystems200Response GetSystems(int? page = default(int?), int? limit = default(int?))
+        public GetSystems200Response GetSystems(long? page = default(long?), long? limit = default(long?))
         {
             SpaceTradersUnitySDK.Client.ApiResponse<GetSystems200Response> localVarResponse = GetSystemsWithHttpInfo(page, limit);
             return localVarResponse.Data;
@@ -1292,7 +1292,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="page">What entry offset to request (optional)</param>
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <returns>ApiResponse of GetSystems200Response</returns>
-        public SpaceTradersUnitySDK.Client.ApiResponse<GetSystems200Response> GetSystemsWithHttpInfo(int? page = default(int?), int? limit = default(int?))
+        public SpaceTradersUnitySDK.Client.ApiResponse<GetSystems200Response> GetSystemsWithHttpInfo(long? page = default(long?), long? limit = default(long?))
         {
             SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
 
@@ -1346,7 +1346,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetSystems200Response</returns>
-        public async System.Threading.Tasks.Task<GetSystems200Response> GetSystemsAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<GetSystems200Response> GetSystemsAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = GetSystemsWithHttpInfoAsync(page, limit, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
@@ -1365,7 +1365,7 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="limit">How many entries to return per page (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetSystems200Response)</returns>
-        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetSystems200Response>> GetSystemsWithHttpInfoAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetSystems200Response>> GetSystemsWithHttpInfoAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();

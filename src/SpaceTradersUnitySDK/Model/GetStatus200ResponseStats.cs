@@ -43,7 +43,7 @@ namespace SpaceTradersUnitySDK.Model
         /// <param name="ships">ships (required).</param>
         /// <param name="systems">systems (required).</param>
         /// <param name="waypoints">waypoints (required).</param>
-        public GetStatus200ResponseStats(int agents = default(int), int ships = default(int), int systems = default(int), int waypoints = default(int))
+        public GetStatus200ResponseStats(long agents = default(long), long ships = default(long), long systems = default(long), long waypoints = default(long))
         {
             this.Agents = agents;
             this.Ships = ships;
@@ -55,25 +55,25 @@ namespace SpaceTradersUnitySDK.Model
         /// Gets or Sets Agents
         /// </summary>
         [DataMember(Name = "agents", IsRequired = true, EmitDefaultValue = true)]
-        public int Agents { get; set; }
+        public long Agents { get; set; }
 
         /// <summary>
         /// Gets or Sets Ships
         /// </summary>
         [DataMember(Name = "ships", IsRequired = true, EmitDefaultValue = true)]
-        public int Ships { get; set; }
+        public long Ships { get; set; }
 
         /// <summary>
         /// Gets or Sets Systems
         /// </summary>
         [DataMember(Name = "systems", IsRequired = true, EmitDefaultValue = true)]
-        public int Systems { get; set; }
+        public long Systems { get; set; }
 
         /// <summary>
         /// Gets or Sets Waypoints
         /// </summary>
         [DataMember(Name = "waypoints", IsRequired = true, EmitDefaultValue = true)]
-        public int Waypoints { get; set; }
+        public long Waypoints { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
