@@ -124,11 +124,13 @@ Class | Method | HTTP request | Description
 *FleetApi* | [**CreateSurvey**](FleetApi.md#createsurvey) | **POST** /my/ships/{shipSymbol}/survey | Create Survey
 *FleetApi* | [**DockShip**](FleetApi.md#dockship) | **POST** /my/ships/{shipSymbol}/dock | Dock Ship
 *FleetApi* | [**ExtractResources**](FleetApi.md#extractresources) | **POST** /my/ships/{shipSymbol}/extract | Extract Resources
+*FleetApi* | [**GetMounts**](FleetApi.md#getmounts) | **GET** /my/ships/{shipSymbol}/mounts | Get Mounts
 *FleetApi* | [**GetMyShip**](FleetApi.md#getmyship) | **GET** /my/ships/{shipSymbol} | Get Ship
 *FleetApi* | [**GetMyShipCargo**](FleetApi.md#getmyshipcargo) | **GET** /my/ships/{shipSymbol}/cargo | Get Ship Cargo
 *FleetApi* | [**GetMyShips**](FleetApi.md#getmyships) | **GET** /my/ships | List Ships
 *FleetApi* | [**GetShipCooldown**](FleetApi.md#getshipcooldown) | **GET** /my/ships/{shipSymbol}/cooldown | Get Ship Cooldown
 *FleetApi* | [**GetShipNav**](FleetApi.md#getshipnav) | **GET** /my/ships/{shipSymbol}/nav | Get Ship Nav
+*FleetApi* | [**InstallMount**](FleetApi.md#installmount) | **POST** /my/ships/{shipSymbol}/mounts/install | Install Mount
 *FleetApi* | [**Jettison**](FleetApi.md#jettison) | **POST** /my/ships/{shipSymbol}/jettison | Jettison Cargo
 *FleetApi* | [**JumpShip**](FleetApi.md#jumpship) | **POST** /my/ships/{shipSymbol}/jump | Jump Ship
 *FleetApi* | [**NavigateShip**](FleetApi.md#navigateship) | **POST** /my/ships/{shipSymbol}/navigate | Navigate Ship
@@ -138,6 +140,7 @@ Class | Method | HTTP request | Description
 *FleetApi* | [**PurchaseCargo**](FleetApi.md#purchasecargo) | **POST** /my/ships/{shipSymbol}/purchase | Purchase Cargo
 *FleetApi* | [**PurchaseShip**](FleetApi.md#purchaseship) | **POST** /my/ships | Purchase Ship
 *FleetApi* | [**RefuelShip**](FleetApi.md#refuelship) | **POST** /my/ships/{shipSymbol}/refuel | Refuel Ship
+*FleetApi* | [**RemoveMount**](FleetApi.md#removemount) | **POST** /my/ships/{shipSymbol}/mounts/remove | Remove Mount
 *FleetApi* | [**SellCargo**](FleetApi.md#sellcargo) | **POST** /my/ships/{shipSymbol}/sell | Sell Cargo
 *FleetApi* | [**ShipRefine**](FleetApi.md#shiprefine) | **POST** /my/ships/{shipSymbol}/refine | Ship Refine
 *FleetApi* | [**TransferCargo**](FleetApi.md#transfercargo) | **POST** /my/ships/{shipSymbol}/transfer | Transfer Cargo
@@ -192,6 +195,7 @@ Class | Method | HTTP request | Description
  - [Model.GetFactions200Response](GetFactions200Response.md)
  - [Model.GetJumpGate200Response](GetJumpGate200Response.md)
  - [Model.GetMarket200Response](GetMarket200Response.md)
+ - [Model.GetMounts200Response](GetMounts200Response.md)
  - [Model.GetMyAgent200Response](GetMyAgent200Response.md)
  - [Model.GetMyShip200Response](GetMyShip200Response.md)
  - [Model.GetMyShipCargo200Response](GetMyShipCargo200Response.md)
@@ -211,6 +215,10 @@ Class | Method | HTTP request | Description
  - [Model.GetSystemWaypoints200Response](GetSystemWaypoints200Response.md)
  - [Model.GetSystems200Response](GetSystems200Response.md)
  - [Model.GetWaypoint200Response](GetWaypoint200Response.md)
+ - [Model.InstallMount201Response](InstallMount201Response.md)
+ - [Model.InstallMount201ResponseData](InstallMount201ResponseData.md)
+ - [Model.InstallMount201ResponseDataTransaction](InstallMount201ResponseDataTransaction.md)
+ - [Model.InstallMountRequest](InstallMountRequest.md)
  - [Model.Jettison200Response](Jettison200Response.md)
  - [Model.Jettison200ResponseData](Jettison200ResponseData.md)
  - [Model.JettisonRequest](JettisonRequest.md)
@@ -240,6 +248,8 @@ Class | Method | HTTP request | Description
  - [Model.Register201Response](Register201Response.md)
  - [Model.Register201ResponseData](Register201ResponseData.md)
  - [Model.RegisterRequest](RegisterRequest.md)
+ - [Model.RemoveMount201Response](RemoveMount201Response.md)
+ - [Model.RemoveMountRequest](RemoveMountRequest.md)
  - [Model.ScannedShip](ScannedShip.md)
  - [Model.ScannedShipEngine](ScannedShipEngine.md)
  - [Model.ScannedShipFrame](ScannedShipFrame.md)

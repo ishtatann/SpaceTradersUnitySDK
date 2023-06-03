@@ -11,11 +11,13 @@ All URIs are relative to *https://api.spacetraders.io/v2*
 | [**CreateSurvey**](FleetApi.md#createsurvey) | **POST** /my/ships/{shipSymbol}/survey | Create Survey |
 | [**DockShip**](FleetApi.md#dockship) | **POST** /my/ships/{shipSymbol}/dock | Dock Ship |
 | [**ExtractResources**](FleetApi.md#extractresources) | **POST** /my/ships/{shipSymbol}/extract | Extract Resources |
+| [**GetMounts**](FleetApi.md#getmounts) | **GET** /my/ships/{shipSymbol}/mounts | Get Mounts |
 | [**GetMyShip**](FleetApi.md#getmyship) | **GET** /my/ships/{shipSymbol} | Get Ship |
 | [**GetMyShipCargo**](FleetApi.md#getmyshipcargo) | **GET** /my/ships/{shipSymbol}/cargo | Get Ship Cargo |
 | [**GetMyShips**](FleetApi.md#getmyships) | **GET** /my/ships | List Ships |
 | [**GetShipCooldown**](FleetApi.md#getshipcooldown) | **GET** /my/ships/{shipSymbol}/cooldown | Get Ship Cooldown |
 | [**GetShipNav**](FleetApi.md#getshipnav) | **GET** /my/ships/{shipSymbol}/nav | Get Ship Nav |
+| [**InstallMount**](FleetApi.md#installmount) | **POST** /my/ships/{shipSymbol}/mounts/install | Install Mount |
 | [**Jettison**](FleetApi.md#jettison) | **POST** /my/ships/{shipSymbol}/jettison | Jettison Cargo |
 | [**JumpShip**](FleetApi.md#jumpship) | **POST** /my/ships/{shipSymbol}/jump | Jump Ship |
 | [**NavigateShip**](FleetApi.md#navigateship) | **POST** /my/ships/{shipSymbol}/navigate | Navigate Ship |
@@ -25,6 +27,7 @@ All URIs are relative to *https://api.spacetraders.io/v2*
 | [**PurchaseCargo**](FleetApi.md#purchasecargo) | **POST** /my/ships/{shipSymbol}/purchase | Purchase Cargo |
 | [**PurchaseShip**](FleetApi.md#purchaseship) | **POST** /my/ships | Purchase Ship |
 | [**RefuelShip**](FleetApi.md#refuelship) | **POST** /my/ships/{shipSymbol}/refuel | Refuel Ship |
+| [**RemoveMount**](FleetApi.md#removemount) | **POST** /my/ships/{shipSymbol}/mounts/remove | Remove Mount |
 | [**SellCargo**](FleetApi.md#sellcargo) | **POST** /my/ships/{shipSymbol}/sell | Sell Cargo |
 | [**ShipRefine**](FleetApi.md#shiprefine) | **POST** /my/ships/{shipSymbol}/refine | Ship Refine |
 | [**TransferCargo**](FleetApi.md#transfercargo) | **POST** /my/ships/{shipSymbol}/transfer | Transfer Cargo |
@@ -690,6 +693,100 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="getmounts"></a>
+# **GetMounts**
+> GetMounts200Response GetMounts (string shipSymbol)
+
+Get Mounts
+
+Get the mounts on a ship.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using SpaceTradersUnitySDK.Api;
+using SpaceTradersUnitySDK.Client;
+using SpaceTradersUnitySDK.Model;
+
+namespace Example
+{
+    public class GetMountsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.spacetraders.io/v2";
+            // Configure Bearer token for authorization: AgentToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new FleetApi(config);
+            var shipSymbol = "shipSymbol_example";  // string | 
+
+            try
+            {
+                // Get Mounts
+                GetMounts200Response result = apiInstance.GetMounts(shipSymbol);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FleetApi.GetMounts: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetMountsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get Mounts
+    ApiResponse<GetMounts200Response> response = apiInstance.GetMountsWithHttpInfo(shipSymbol);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling FleetApi.GetMountsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **shipSymbol** | **string** |  |  |
+
+### Return type
+
+[**GetMounts200Response**](GetMounts200Response.md)
+
+### Authorization
+
+[AgentToken](../README.md#AgentToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="getmyship"></a>
 # **GetMyShip**
 > GetMyShip200Response GetMyShip (string shipSymbol)
@@ -1160,6 +1257,102 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The current nav status of the ship. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="installmount"></a>
+# **InstallMount**
+> InstallMount201Response InstallMount (string shipSymbol, InstallMountRequest installMountRequest = null)
+
+Install Mount
+
+Install a mount on a ship.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using SpaceTradersUnitySDK.Api;
+using SpaceTradersUnitySDK.Client;
+using SpaceTradersUnitySDK.Model;
+
+namespace Example
+{
+    public class InstallMountExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.spacetraders.io/v2";
+            // Configure Bearer token for authorization: AgentToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new FleetApi(config);
+            var shipSymbol = "shipSymbol_example";  // string | 
+            var installMountRequest = new InstallMountRequest(); // InstallMountRequest |  (optional) 
+
+            try
+            {
+                // Install Mount
+                InstallMount201Response result = apiInstance.InstallMount(shipSymbol, installMountRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FleetApi.InstallMount: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the InstallMountWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Install Mount
+    ApiResponse<InstallMount201Response> response = apiInstance.InstallMountWithHttpInfo(shipSymbol, installMountRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling FleetApi.InstallMountWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **shipSymbol** | **string** |  |  |
+| **installMountRequest** | [**InstallMountRequest**](InstallMountRequest.md) |  | [optional]  |
+
+### Return type
+
+[**InstallMount201Response**](InstallMount201Response.md)
+
+### Authorization
+
+[AgentToken](../README.md#AgentToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Created |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2016,6 +2209,102 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="removemount"></a>
+# **RemoveMount**
+> RemoveMount201Response RemoveMount (string shipSymbol, RemoveMountRequest removeMountRequest = null)
+
+Remove Mount
+
+Remove a mount from a ship.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using SpaceTradersUnitySDK.Api;
+using SpaceTradersUnitySDK.Client;
+using SpaceTradersUnitySDK.Model;
+
+namespace Example
+{
+    public class RemoveMountExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.spacetraders.io/v2";
+            // Configure Bearer token for authorization: AgentToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new FleetApi(config);
+            var shipSymbol = "shipSymbol_example";  // string | 
+            var removeMountRequest = new RemoveMountRequest(); // RemoveMountRequest |  (optional) 
+
+            try
+            {
+                // Remove Mount
+                RemoveMount201Response result = apiInstance.RemoveMount(shipSymbol, removeMountRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FleetApi.RemoveMount: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the RemoveMountWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Remove Mount
+    ApiResponse<RemoveMount201Response> response = apiInstance.RemoveMountWithHttpInfo(shipSymbol, removeMountRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling FleetApi.RemoveMountWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **shipSymbol** | **string** |  |  |
+| **removeMountRequest** | [**RemoveMountRequest**](RemoveMountRequest.md) |  | [optional]  |
+
+### Return type
+
+[**RemoveMount201Response**](RemoveMount201Response.md)
+
+### Authorization
+
+[AgentToken](../README.md#AgentToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Created |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

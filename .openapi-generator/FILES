@@ -44,6 +44,7 @@ docs/GetFaction200Response.md
 docs/GetFactions200Response.md
 docs/GetJumpGate200Response.md
 docs/GetMarket200Response.md
+docs/GetMounts200Response.md
 docs/GetMyAgent200Response.md
 docs/GetMyShip200Response.md
 docs/GetMyShipCargo200Response.md
@@ -63,6 +64,10 @@ docs/GetSystem200Response.md
 docs/GetSystemWaypoints200Response.md
 docs/GetSystems200Response.md
 docs/GetWaypoint200Response.md
+docs/InstallMount201Response.md
+docs/InstallMount201ResponseData.md
+docs/InstallMount201ResponseDataTransaction.md
+docs/InstallMountRequest.md
 docs/Jettison200Response.md
 docs/Jettison200ResponseData.md
 docs/JettisonRequest.md
@@ -92,6 +97,8 @@ docs/RefuelShip200ResponseData.md
 docs/Register201Response.md
 docs/Register201ResponseData.md
 docs/RegisterRequest.md
+docs/RemoveMount201Response.md
+docs/RemoveMountRequest.md
 docs/ScannedShip.md
 docs/ScannedShipEngine.md
 docs/ScannedShipFrame.md
@@ -147,6 +154,13 @@ docs/WaypointOrbital.md
 docs/WaypointTrait.md
 docs/WaypointType.md
 git_push.sh
+src/SpaceTradersUnitySDK.Test/Model/GetMounts200ResponseTests.cs
+src/SpaceTradersUnitySDK.Test/Model/InstallMount201ResponseDataTests.cs
+src/SpaceTradersUnitySDK.Test/Model/InstallMount201ResponseDataTransactionTests.cs
+src/SpaceTradersUnitySDK.Test/Model/InstallMount201ResponseTests.cs
+src/SpaceTradersUnitySDK.Test/Model/InstallMountRequestTests.cs
+src/SpaceTradersUnitySDK.Test/Model/RemoveMount201ResponseTests.cs
+src/SpaceTradersUnitySDK.Test/Model/RemoveMountRequestTests.cs
 src/SpaceTradersUnitySDK.Test/SpaceTradersUnitySDK.Test.asmdef
 src/SpaceTradersUnitySDK/Api/AgentsApi.cs
 src/SpaceTradersUnitySDK/Api/ContractsApi.cs
@@ -210,6 +224,7 @@ src/SpaceTradersUnitySDK/Model/GetFaction200Response.cs
 src/SpaceTradersUnitySDK/Model/GetFactions200Response.cs
 src/SpaceTradersUnitySDK/Model/GetJumpGate200Response.cs
 src/SpaceTradersUnitySDK/Model/GetMarket200Response.cs
+src/SpaceTradersUnitySDK/Model/GetMounts200Response.cs
 src/SpaceTradersUnitySDK/Model/GetMyAgent200Response.cs
 src/SpaceTradersUnitySDK/Model/GetMyShip200Response.cs
 src/SpaceTradersUnitySDK/Model/GetMyShipCargo200Response.cs
@@ -229,6 +244,10 @@ src/SpaceTradersUnitySDK/Model/GetSystem200Response.cs
 src/SpaceTradersUnitySDK/Model/GetSystemWaypoints200Response.cs
 src/SpaceTradersUnitySDK/Model/GetSystems200Response.cs
 src/SpaceTradersUnitySDK/Model/GetWaypoint200Response.cs
+src/SpaceTradersUnitySDK/Model/InstallMount201Response.cs
+src/SpaceTradersUnitySDK/Model/InstallMount201ResponseData.cs
+src/SpaceTradersUnitySDK/Model/InstallMount201ResponseDataTransaction.cs
+src/SpaceTradersUnitySDK/Model/InstallMountRequest.cs
 src/SpaceTradersUnitySDK/Model/Jettison200Response.cs
 src/SpaceTradersUnitySDK/Model/Jettison200ResponseData.cs
 src/SpaceTradersUnitySDK/Model/JettisonRequest.cs
@@ -258,6 +277,8 @@ src/SpaceTradersUnitySDK/Model/RefuelShip200ResponseData.cs
 src/SpaceTradersUnitySDK/Model/Register201Response.cs
 src/SpaceTradersUnitySDK/Model/Register201ResponseData.cs
 src/SpaceTradersUnitySDK/Model/RegisterRequest.cs
+src/SpaceTradersUnitySDK/Model/RemoveMount201Response.cs
+src/SpaceTradersUnitySDK/Model/RemoveMountRequest.cs
 src/SpaceTradersUnitySDK/Model/ScannedShip.cs
 src/SpaceTradersUnitySDK/Model/ScannedShipEngine.cs
 src/SpaceTradersUnitySDK/Model/ScannedShipFrame.cs

@@ -177,6 +177,27 @@ namespace SpaceTradersUnitySDK.Api
         /// <returns>ApiResponse of ExtractResources201Response</returns>
         ApiResponse<ExtractResources201Response> ExtractResourcesWithHttpInfo(string shipSymbol, ExtractResourcesRequest extractResourcesRequest = default(ExtractResourcesRequest));
         /// <summary>
+        /// Get Mounts
+        /// </summary>
+        /// <remarks>
+        /// Get the mounts on a ship.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <returns>GetMounts200Response</returns>
+        GetMounts200Response GetMounts(string shipSymbol);
+
+        /// <summary>
+        /// Get Mounts
+        /// </summary>
+        /// <remarks>
+        /// Get the mounts on a ship.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <returns>ApiResponse of GetMounts200Response</returns>
+        ApiResponse<GetMounts200Response> GetMountsWithHttpInfo(string shipSymbol);
+        /// <summary>
         /// Get Ship
         /// </summary>
         /// <remarks>
@@ -283,6 +304,29 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="shipSymbol">The ship symbol</param>
         /// <returns>ApiResponse of GetShipNav200Response</returns>
         ApiResponse<GetShipNav200Response> GetShipNavWithHttpInfo(string shipSymbol);
+        /// <summary>
+        /// Install Mount
+        /// </summary>
+        /// <remarks>
+        /// Install a mount on a ship.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="installMountRequest"> (optional)</param>
+        /// <returns>InstallMount201Response</returns>
+        InstallMount201Response InstallMount(string shipSymbol, InstallMountRequest installMountRequest = default(InstallMountRequest));
+
+        /// <summary>
+        /// Install Mount
+        /// </summary>
+        /// <remarks>
+        /// Install a mount on a ship.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="installMountRequest"> (optional)</param>
+        /// <returns>ApiResponse of InstallMount201Response</returns>
+        ApiResponse<InstallMount201Response> InstallMountWithHttpInfo(string shipSymbol, InstallMountRequest installMountRequest = default(InstallMountRequest));
         /// <summary>
         /// Jettison Cargo
         /// </summary>
@@ -481,6 +525,29 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="shipSymbol"></param>
         /// <returns>ApiResponse of RefuelShip200Response</returns>
         ApiResponse<RefuelShip200Response> RefuelShipWithHttpInfo(string shipSymbol);
+        /// <summary>
+        /// Remove Mount
+        /// </summary>
+        /// <remarks>
+        /// Remove a mount from a ship.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="removeMountRequest"> (optional)</param>
+        /// <returns>RemoveMount201Response</returns>
+        RemoveMount201Response RemoveMount(string shipSymbol, RemoveMountRequest removeMountRequest = default(RemoveMountRequest));
+
+        /// <summary>
+        /// Remove Mount
+        /// </summary>
+        /// <remarks>
+        /// Remove a mount from a ship.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="removeMountRequest"> (optional)</param>
+        /// <returns>ApiResponse of RemoveMount201Response</returns>
+        ApiResponse<RemoveMount201Response> RemoveMountWithHttpInfo(string shipSymbol, RemoveMountRequest removeMountRequest = default(RemoveMountRequest));
         /// <summary>
         /// Sell Cargo
         /// </summary>
@@ -746,6 +813,29 @@ namespace SpaceTradersUnitySDK.Api
         /// <returns>Task of ApiResponse (ExtractResources201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ExtractResources201Response>> ExtractResourcesWithHttpInfoAsync(string shipSymbol, ExtractResourcesRequest extractResourcesRequest = default(ExtractResourcesRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
+        /// Get Mounts
+        /// </summary>
+        /// <remarks>
+        /// Get the mounts on a ship.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetMounts200Response</returns>
+        System.Threading.Tasks.Task<GetMounts200Response> GetMountsAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Get Mounts
+        /// </summary>
+        /// <remarks>
+        /// Get the mounts on a ship.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetMounts200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetMounts200Response>> GetMountsWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
         /// Get Ship
         /// </summary>
         /// <remarks>
@@ -862,6 +952,31 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetShipNav200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetShipNav200Response>> GetShipNavWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Install Mount
+        /// </summary>
+        /// <remarks>
+        /// Install a mount on a ship.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="installMountRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of InstallMount201Response</returns>
+        System.Threading.Tasks.Task<InstallMount201Response> InstallMountAsync(string shipSymbol, InstallMountRequest installMountRequest = default(InstallMountRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Install Mount
+        /// </summary>
+        /// <remarks>
+        /// Install a mount on a ship.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="installMountRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (InstallMount201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<InstallMount201Response>> InstallMountWithHttpInfoAsync(string shipSymbol, InstallMountRequest installMountRequest = default(InstallMountRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Jettison Cargo
         /// </summary>
@@ -1081,6 +1196,31 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RefuelShip200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<RefuelShip200Response>> RefuelShipWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Remove Mount
+        /// </summary>
+        /// <remarks>
+        /// Remove a mount from a ship.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="removeMountRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RemoveMount201Response</returns>
+        System.Threading.Tasks.Task<RemoveMount201Response> RemoveMountAsync(string shipSymbol, RemoveMountRequest removeMountRequest = default(RemoveMountRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Remove Mount
+        /// </summary>
+        /// <remarks>
+        /// Remove a mount from a ship.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="removeMountRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RemoveMount201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RemoveMount201Response>> RemoveMountWithHttpInfoAsync(string shipSymbol, RemoveMountRequest removeMountRequest = default(RemoveMountRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Sell Cargo
         /// </summary>
@@ -2300,6 +2440,144 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
+        /// Get Mounts Get the mounts on a ship.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <returns>GetMounts200Response</returns>
+        public GetMounts200Response GetMounts(string shipSymbol)
+        {
+            SpaceTradersUnitySDK.Client.ApiResponse<GetMounts200Response> localVarResponse = GetMountsWithHttpInfo(shipSymbol);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Mounts Get the mounts on a ship.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <returns>ApiResponse of GetMounts200Response</returns>
+        public SpaceTradersUnitySDK.Client.ApiResponse<GetMounts200Response> GetMountsWithHttpInfo(string shipSymbol)
+        {
+            // verify the required parameter 'shipSymbol' is set
+            if (shipSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'shipSymbol' when calling FleetApi->GetMounts");
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("shipSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(shipSymbol)); // path parameter
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetMounts200Response>("/my/ships/{shipSymbol}/mounts", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetMounts", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Mounts Get the mounts on a ship.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetMounts200Response</returns>
+        public async System.Threading.Tasks.Task<GetMounts200Response> GetMountsAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = GetMountsWithHttpInfoAsync(shipSymbol, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            SpaceTradersUnitySDK.Client.ApiResponse<GetMounts200Response> localVarResponse = await task.ConfigureAwait(false);
+#else
+            SpaceTradersUnitySDK.Client.ApiResponse<GetMounts200Response> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Mounts Get the mounts on a ship.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetMounts200Response)</returns>
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetMounts200Response>> GetMountsWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'shipSymbol' is set
+            if (shipSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'shipSymbol' when calling FleetApi->GetMounts");
+
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("shipSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(shipSymbol)); // path parameter
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.GetAsync<GetMounts200Response>("/my/ships/{shipSymbol}/mounts", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetMounts", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Get Ship Retrieve the details of your ship.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
@@ -2993,6 +3271,152 @@ namespace SpaceTradersUnitySDK.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetShipNav", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Install Mount Install a mount on a ship.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="installMountRequest"> (optional)</param>
+        /// <returns>InstallMount201Response</returns>
+        public InstallMount201Response InstallMount(string shipSymbol, InstallMountRequest installMountRequest = default(InstallMountRequest))
+        {
+            SpaceTradersUnitySDK.Client.ApiResponse<InstallMount201Response> localVarResponse = InstallMountWithHttpInfo(shipSymbol, installMountRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Install Mount Install a mount on a ship.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="installMountRequest"> (optional)</param>
+        /// <returns>ApiResponse of InstallMount201Response</returns>
+        public SpaceTradersUnitySDK.Client.ApiResponse<InstallMount201Response> InstallMountWithHttpInfo(string shipSymbol, InstallMountRequest installMountRequest = default(InstallMountRequest))
+        {
+            // verify the required parameter 'shipSymbol' is set
+            if (shipSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'shipSymbol' when calling FleetApi->InstallMount");
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("shipSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(shipSymbol)); // path parameter
+            localVarRequestOptions.Data = installMountRequest;
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<InstallMount201Response>("/my/ships/{shipSymbol}/mounts/install", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("InstallMount", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Install Mount Install a mount on a ship.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="installMountRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of InstallMount201Response</returns>
+        public async System.Threading.Tasks.Task<InstallMount201Response> InstallMountAsync(string shipSymbol, InstallMountRequest installMountRequest = default(InstallMountRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = InstallMountWithHttpInfoAsync(shipSymbol, installMountRequest, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            SpaceTradersUnitySDK.Client.ApiResponse<InstallMount201Response> localVarResponse = await task.ConfigureAwait(false);
+#else
+            SpaceTradersUnitySDK.Client.ApiResponse<InstallMount201Response> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Install Mount Install a mount on a ship.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="installMountRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (InstallMount201Response)</returns>
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<InstallMount201Response>> InstallMountWithHttpInfoAsync(string shipSymbol, InstallMountRequest installMountRequest = default(InstallMountRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'shipSymbol' is set
+            if (shipSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'shipSymbol' when calling FleetApi->InstallMount");
+
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("shipSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(shipSymbol)); // path parameter
+            localVarRequestOptions.Data = installMountRequest;
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.PostAsync<InstallMount201Response>("/my/ships/{shipSymbol}/mounts/install", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("InstallMount", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -4277,6 +4701,152 @@ namespace SpaceTradersUnitySDK.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("RefuelShip", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Remove Mount Remove a mount from a ship.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="removeMountRequest"> (optional)</param>
+        /// <returns>RemoveMount201Response</returns>
+        public RemoveMount201Response RemoveMount(string shipSymbol, RemoveMountRequest removeMountRequest = default(RemoveMountRequest))
+        {
+            SpaceTradersUnitySDK.Client.ApiResponse<RemoveMount201Response> localVarResponse = RemoveMountWithHttpInfo(shipSymbol, removeMountRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Remove Mount Remove a mount from a ship.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="removeMountRequest"> (optional)</param>
+        /// <returns>ApiResponse of RemoveMount201Response</returns>
+        public SpaceTradersUnitySDK.Client.ApiResponse<RemoveMount201Response> RemoveMountWithHttpInfo(string shipSymbol, RemoveMountRequest removeMountRequest = default(RemoveMountRequest))
+        {
+            // verify the required parameter 'shipSymbol' is set
+            if (shipSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'shipSymbol' when calling FleetApi->RemoveMount");
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("shipSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(shipSymbol)); // path parameter
+            localVarRequestOptions.Data = removeMountRequest;
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<RemoveMount201Response>("/my/ships/{shipSymbol}/mounts/remove", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RemoveMount", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Remove Mount Remove a mount from a ship.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="removeMountRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RemoveMount201Response</returns>
+        public async System.Threading.Tasks.Task<RemoveMount201Response> RemoveMountAsync(string shipSymbol, RemoveMountRequest removeMountRequest = default(RemoveMountRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = RemoveMountWithHttpInfoAsync(shipSymbol, removeMountRequest, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            SpaceTradersUnitySDK.Client.ApiResponse<RemoveMount201Response> localVarResponse = await task.ConfigureAwait(false);
+#else
+            SpaceTradersUnitySDK.Client.ApiResponse<RemoveMount201Response> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Remove Mount Remove a mount from a ship.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol"></param>
+        /// <param name="removeMountRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RemoveMount201Response)</returns>
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<RemoveMount201Response>> RemoveMountWithHttpInfoAsync(string shipSymbol, RemoveMountRequest removeMountRequest = default(RemoveMountRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'shipSymbol' is set
+            if (shipSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'shipSymbol' when calling FleetApi->RemoveMount");
+
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("shipSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(shipSymbol)); // path parameter
+            localVarRequestOptions.Data = removeMountRequest;
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.PostAsync<RemoveMount201Response>("/my/ships/{shipSymbol}/mounts/remove", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RemoveMount", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

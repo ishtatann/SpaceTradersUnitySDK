@@ -26,60 +26,35 @@ using OpenAPIDateConverter = SpaceTradersUnitySDK.Client.OpenAPIDateConverter;
 namespace SpaceTradersUnitySDK.Model
 {
     /// <summary>
-    /// RegisterRequest
+    /// InstallMountRequest
     /// </summary>
-    [DataContract(Name = "register_request")]
-    public partial class RegisterRequest : IEquatable<RegisterRequest>
+    [DataContract(Name = "Install_Mount_Request")]
+    public partial class InstallMountRequest : IEquatable<InstallMountRequest>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RegisterRequest" /> class.
+        /// Initializes a new instance of the <see cref="InstallMountRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected RegisterRequest() { }
+        protected InstallMountRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="RegisterRequest" /> class.
+        /// Initializes a new instance of the <see cref="InstallMountRequest" /> class.
         /// </summary>
-        /// <param name="faction">The faction you choose determines your headquarters. (required).</param>
-        /// <param name="symbol">How other agents will see your ships and information. (required).</param>
-        /// <param name="email">Your email address. This is used if you reserved your call sign between resets..</param>
-        public RegisterRequest(Object faction = default(Object), string symbol = default(string), string email = default(string))
+        /// <param name="symbol">symbol (required).</param>
+        public InstallMountRequest(string symbol = default(string))
         {
-            // to ensure "faction" is required (not null)
-            if (faction == null)
-            {
-                throw new ArgumentNullException("faction is a required property for RegisterRequest and cannot be null");
-            }
-            this.Faction = faction;
             // to ensure "symbol" is required (not null)
             if (symbol == null)
             {
-                throw new ArgumentNullException("symbol is a required property for RegisterRequest and cannot be null");
+                throw new ArgumentNullException("symbol is a required property for InstallMountRequest and cannot be null");
             }
             this.Symbol = symbol;
-            this.Email = email;
         }
 
         /// <summary>
-        /// The faction you choose determines your headquarters.
+        /// Gets or Sets Symbol
         /// </summary>
-        /// <value>The faction you choose determines your headquarters.</value>
-        [DataMember(Name = "faction", IsRequired = true, EmitDefaultValue = true)]
-        public Object Faction { get; set; }
-
-        /// <summary>
-        /// How other agents will see your ships and information.
-        /// </summary>
-        /// <value>How other agents will see your ships and information.</value>
-        /// <example>&quot;BADGER&quot;</example>
         [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
         public string Symbol { get; set; }
-
-        /// <summary>
-        /// Your email address. This is used if you reserved your call sign between resets.
-        /// </summary>
-        /// <value>Your email address. This is used if you reserved your call sign between resets.</value>
-        [DataMember(Name = "email", EmitDefaultValue = false)]
-        public string Email { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -88,10 +63,8 @@ namespace SpaceTradersUnitySDK.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class RegisterRequest {\n");
-            sb.Append("  Faction: ").Append(Faction).Append("\n");
+            sb.Append("class InstallMountRequest {\n");
             sb.Append("  Symbol: ").Append(Symbol).Append("\n");
-            sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -112,15 +85,15 @@ namespace SpaceTradersUnitySDK.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as RegisterRequest);
+            return this.Equals(input as InstallMountRequest);
         }
 
         /// <summary>
-        /// Returns true if RegisterRequest instances are equal
+        /// Returns true if InstallMountRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of RegisterRequest to be compared</param>
+        /// <param name="input">Instance of InstallMountRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(RegisterRequest input)
+        public bool Equals(InstallMountRequest input)
         {
             if (input == null)
             {
@@ -128,19 +101,9 @@ namespace SpaceTradersUnitySDK.Model
             }
             return 
                 (
-                    this.Faction == input.Faction ||
-                    (this.Faction != null &&
-                    this.Faction.Equals(input.Faction))
-                ) && 
-                (
                     this.Symbol == input.Symbol ||
                     (this.Symbol != null &&
                     this.Symbol.Equals(input.Symbol))
-                ) && 
-                (
-                    this.Email == input.Email ||
-                    (this.Email != null &&
-                    this.Email.Equals(input.Email))
                 );
         }
 
@@ -153,17 +116,9 @@ namespace SpaceTradersUnitySDK.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Faction != null)
-                {
-                    hashCode = (hashCode * 59) + this.Faction.GetHashCode();
-                }
                 if (this.Symbol != null)
                 {
                     hashCode = (hashCode * 59) + this.Symbol.GetHashCode();
-                }
-                if (this.Email != null)
-                {
-                    hashCode = (hashCode * 59) + this.Email.GetHashCode();
                 }
                 return hashCode;
             }

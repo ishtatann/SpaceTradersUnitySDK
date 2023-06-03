@@ -1277,6 +1277,88 @@ paths:
       summary: Negotiate Contract
       tags:
       - fleet
+  /my/ships/{shipSymbol}/mounts:
+    get:
+      description: Get the mounts on a ship.
+      operationId: get-mounts
+      parameters:
+      - explode: false
+        in: path
+        name: shipSymbol
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Get_Mounts_200_Response'
+          description: OK
+      security:
+      - AgentToken: []
+      summary: Get Mounts
+      tags:
+      - fleet
+  /my/ships/{shipSymbol}/mounts/install:
+    post:
+      description: Install a mount on a ship.
+      operationId: install-mount
+      parameters:
+      - explode: false
+        in: path
+        name: shipSymbol
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Install_Mount_Request'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Install_Mount_201_Response'
+          description: Created
+      security:
+      - AgentToken: []
+      summary: Install Mount
+      tags:
+      - fleet
+  /my/ships/{shipSymbol}/mounts/remove:
+    post:
+      description: Remove a mount from a ship.
+      operationId: remove-mount
+      parameters:
+      - explode: false
+        in: path
+        name: shipSymbol
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Remove_Mount_Request'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Remove_Mount_201_Response'
+          description: Created
+      security:
+      - AgentToken: []
+      summary: Remove Mount
+      tags:
+      - fleet
 components:
   requestBodies: {}
   schemas:
@@ -2527,6 +2609,72 @@ components:
       - registration
       - symbol
       type: object
+    ShipMount:
+      description: A mount is installed on the exterier of a ship.
+      example:
+        symbol: MOUNT_GAS_SIPHON_I
+        requirements:
+          slots: 4
+          power: 7
+          crew: 1
+        strength: 0
+        name: name
+        description: description
+        deposits:
+        - QUARTZ_SAND
+        - QUARTZ_SAND
+      properties:
+        symbol:
+          enum:
+          - MOUNT_GAS_SIPHON_I
+          - MOUNT_GAS_SIPHON_II
+          - MOUNT_GAS_SIPHON_III
+          - MOUNT_SURVEYOR_I
+          - MOUNT_SURVEYOR_II
+          - MOUNT_SURVEYOR_III
+          - MOUNT_SENSOR_ARRAY_I
+          - MOUNT_SENSOR_ARRAY_II
+          - MOUNT_SENSOR_ARRAY_III
+          - MOUNT_MINING_LASER_I
+          - MOUNT_MINING_LASER_II
+          - MOUNT_MINING_LASER_III
+          - MOUNT_LASER_CANNON_I
+          - MOUNT_MISSILE_LAUNCHER_I
+          - MOUNT_TURRET_I
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        strength:
+          minimum: 0
+          type: integer
+        deposits:
+          items:
+            enum:
+            - QUARTZ_SAND
+            - SILICON_CRYSTALS
+            - PRECIOUS_STONES
+            - ICE_WATER
+            - AMMONIA_ICE
+            - IRON_ORE
+            - COPPER_ORE
+            - SILVER_ORE
+            - ALUMINUM_ORE
+            - GOLD_ORE
+            - PLATINUM_ORE
+            - DIAMONDS
+            - URANITE_ORE
+            - MERITIUM_ORE
+            type: string
+          type: array
+        requirements:
+          $ref: '#/components/schemas/ShipRequirements'
+      required:
+      - name
+      - requirements
+      - symbol
+      type: object
     ContractTerms:
       example:
         deliver:
@@ -2903,72 +3051,6 @@ components:
           type: string
         description:
           type: string
-        requirements:
-          $ref: '#/components/schemas/ShipRequirements'
-      required:
-      - name
-      - requirements
-      - symbol
-      type: object
-    ShipMount:
-      description: A mount is installed on the exterier of a ship.
-      example:
-        symbol: MOUNT_GAS_SIPHON_I
-        requirements:
-          slots: 4
-          power: 7
-          crew: 1
-        strength: 0
-        name: name
-        description: description
-        deposits:
-        - QUARTZ_SAND
-        - QUARTZ_SAND
-      properties:
-        symbol:
-          enum:
-          - MOUNT_GAS_SIPHON_I
-          - MOUNT_GAS_SIPHON_II
-          - MOUNT_GAS_SIPHON_III
-          - MOUNT_SURVEYOR_I
-          - MOUNT_SURVEYOR_II
-          - MOUNT_SURVEYOR_III
-          - MOUNT_SENSOR_ARRAY_I
-          - MOUNT_SENSOR_ARRAY_II
-          - MOUNT_SENSOR_ARRAY_III
-          - MOUNT_MINING_LASER_I
-          - MOUNT_MINING_LASER_II
-          - MOUNT_MINING_LASER_III
-          - MOUNT_LASER_CANNON_I
-          - MOUNT_MISSILE_LAUNCHER_I
-          - MOUNT_TURRET_I
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        strength:
-          minimum: 0
-          type: integer
-        deposits:
-          items:
-            enum:
-            - QUARTZ_SAND
-            - SILICON_CRYSTALS
-            - PRECIOUS_STONES
-            - ICE_WATER
-            - AMMONIA_ICE
-            - IRON_ORE
-            - COPPER_ORE
-            - SILVER_ORE
-            - ALUMINUM_ORE
-            - GOLD_ORE
-            - PLATINUM_ORE
-            - DIAMONDS
-            - URANITE_ORE
-            - MERITIUM_ORE
-            type: string
-          type: array
         requirements:
           $ref: '#/components/schemas/ShipRequirements'
       required:
@@ -3441,6 +3523,23 @@ components:
       - symbol
       - units
       type: object
+    ShipRequirements:
+      description: The requirements for installation on a ship
+      example:
+        slots: 4
+        power: 7
+        crew: 1
+      properties:
+        power:
+          description: The amount of power required from the reactor.
+          type: integer
+        crew:
+          description: The number of crew required for operation.
+          type: integer
+        slots:
+          description: The number of module slots required for installation.
+          type: integer
+      type: object
     ContractPayment:
       example:
         onFulfilled: 1
@@ -3509,23 +3608,6 @@ components:
       maximum: 100
       minimum: 0
       type: integer
-    ShipRequirements:
-      description: The requirements for installation on a ship
-      example:
-        slots: 4
-        power: 7
-        crew: 1
-      properties:
-        power:
-          description: The amount of power required from the reactor.
-          type: integer
-        crew:
-          description: The number of crew required for operation.
-          type: integer
-        slots:
-          description: The number of module slots required for installation.
-          type: integer
-      type: object
     TradeSymbol:
       enum:
       - PRECIOUS_STONES
@@ -3863,13 +3945,7 @@ components:
       properties:
         faction:
           description: The faction you choose determines your headquarters.
-          enum:
-          - COSMIC
-          - VOID
-          - GALACTIC
-          - QUANTUM
-          - DOMINION
-          type: string
+          example: COSMIC
         symbol:
           description: How other agents will see your ships and information.
           example: BADGER
@@ -7136,6 +7212,246 @@ components:
       required:
       - data
       title: Negotiate Contract 200 Response
+      type: object
+    Get_Mounts_200_Response:
+      description: ""
+      example:
+        data:
+        - symbol: MOUNT_GAS_SIPHON_I
+          requirements:
+            slots: 4
+            power: 7
+            crew: 1
+          strength: 0
+          name: name
+          description: description
+          deposits:
+          - QUARTZ_SAND
+          - QUARTZ_SAND
+        - symbol: MOUNT_GAS_SIPHON_I
+          requirements:
+            slots: 4
+            power: 7
+            crew: 1
+          strength: 0
+          name: name
+          description: description
+          deposits:
+          - QUARTZ_SAND
+          - QUARTZ_SAND
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ShipMount'
+          type: array
+      required:
+      - data
+      title: Get Mounts 200 Response
+      type: object
+    Install_Mount_Request:
+      properties:
+        symbol:
+          type: string
+      required:
+      - symbol
+      title: Install Mount Request
+      type: object
+    Install_Mount_201_Response_data_transaction:
+      example:
+        totalPrice: 0
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        totalPrice:
+          description: The total price of the transaction.
+          minimum: 0
+          type: integer
+        timestamp:
+          description: The timestamp of the transaction.
+          format: date-time
+          type: string
+      required:
+      - timestamp
+      - totalPrice
+    Install_Mount_201_Response_data:
+      example:
+        agent:
+          accountId: accountId
+          symbol: symbol
+          headquarters: headquarters
+          credits: 0
+          startingFaction: startingFaction
+        mounts:
+        - symbol: MOUNT_GAS_SIPHON_I
+          requirements:
+            slots: 4
+            power: 7
+            crew: 1
+          strength: 0
+          name: name
+          description: description
+          deposits:
+          - QUARTZ_SAND
+          - QUARTZ_SAND
+        - symbol: MOUNT_GAS_SIPHON_I
+          requirements:
+            slots: 4
+            power: 7
+            crew: 1
+          strength: 0
+          name: name
+          description: description
+          deposits:
+          - QUARTZ_SAND
+          - QUARTZ_SAND
+        cargo:
+          units: 0
+          inventory:
+          - symbol: symbol
+            name: name
+            description: description
+            units: 1
+          - symbol: symbol
+            name: name
+            description: description
+            units: 1
+          capacity: 0
+        transaction:
+          totalPrice: 0
+          timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        agent:
+          $ref: '#/components/schemas/Agent'
+        mounts:
+          items:
+            $ref: '#/components/schemas/ShipMount'
+          type: array
+        cargo:
+          $ref: '#/components/schemas/ShipCargo'
+        transaction:
+          $ref: '#/components/schemas/Install_Mount_201_Response_data_transaction'
+      required:
+      - agent
+      - cargo
+      - mounts
+      - transaction
+      type: object
+    Install_Mount_201_Response:
+      description: ""
+      example:
+        data:
+          agent:
+            accountId: accountId
+            symbol: symbol
+            headquarters: headquarters
+            credits: 0
+            startingFaction: startingFaction
+          mounts:
+          - symbol: MOUNT_GAS_SIPHON_I
+            requirements:
+              slots: 4
+              power: 7
+              crew: 1
+            strength: 0
+            name: name
+            description: description
+            deposits:
+            - QUARTZ_SAND
+            - QUARTZ_SAND
+          - symbol: MOUNT_GAS_SIPHON_I
+            requirements:
+              slots: 4
+              power: 7
+              crew: 1
+            strength: 0
+            name: name
+            description: description
+            deposits:
+            - QUARTZ_SAND
+            - QUARTZ_SAND
+          cargo:
+            units: 0
+            inventory:
+            - symbol: symbol
+              name: name
+              description: description
+              units: 1
+            - symbol: symbol
+              name: name
+              description: description
+              units: 1
+            capacity: 0
+          transaction:
+            totalPrice: 0
+            timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        data:
+          $ref: '#/components/schemas/Install_Mount_201_Response_data'
+      required:
+      - data
+      title: Install Mount 201 Response
+      type: object
+    Remove_Mount_Request:
+      properties:
+        symbol:
+          type: string
+      required:
+      - symbol
+      title: Remove Mount Request
+      type: object
+    Remove_Mount_201_Response:
+      description: ""
+      example:
+        data:
+          agent:
+            accountId: accountId
+            symbol: symbol
+            headquarters: headquarters
+            credits: 0
+            startingFaction: startingFaction
+          mounts:
+          - symbol: MOUNT_GAS_SIPHON_I
+            requirements:
+              slots: 4
+              power: 7
+              crew: 1
+            strength: 0
+            name: name
+            description: description
+            deposits:
+            - QUARTZ_SAND
+            - QUARTZ_SAND
+          - symbol: MOUNT_GAS_SIPHON_I
+            requirements:
+              slots: 4
+              power: 7
+              crew: 1
+            strength: 0
+            name: name
+            description: description
+            deposits:
+            - QUARTZ_SAND
+            - QUARTZ_SAND
+          cargo:
+            units: 0
+            inventory:
+            - symbol: symbol
+              name: name
+              description: description
+              units: 1
+            - symbol: symbol
+              name: name
+              description: description
+              units: 1
+            capacity: 0
+          transaction:
+            totalPrice: 0
+            timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        data:
+          $ref: '#/components/schemas/Install_Mount_201_Response_data'
+      required:
+      - data
+      title: Remove Mount 201 Response
       type: object
     Shipyard_shipTypes_inner:
       example:
