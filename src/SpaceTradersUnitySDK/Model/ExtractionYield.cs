@@ -26,11 +26,17 @@ using OpenAPIDateConverter = SpaceTradersUnitySDK.Client.OpenAPIDateConverter;
 namespace SpaceTradersUnitySDK.Model
 {
     /// <summary>
-    /// ExtractionYield
+    /// A yield from the extraction operation.
     /// </summary>
     [DataContract(Name = "ExtractionYield")]
     public partial class ExtractionYield : IEquatable<ExtractionYield>
     {
+
+        /// <summary>
+        /// Gets or Sets Symbol
+        /// </summary>
+        [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
+        public TradeSymbol Symbol { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ExtractionYield" /> class.
         /// </summary>
@@ -41,22 +47,11 @@ namespace SpaceTradersUnitySDK.Model
         /// </summary>
         /// <param name="symbol">symbol (required).</param>
         /// <param name="units">The number of units extracted that were placed into the ship&#39;s cargo hold. (required).</param>
-        public ExtractionYield(string symbol = default(string), int units = default(int))
+        public ExtractionYield(TradeSymbol symbol = default(TradeSymbol), int units = default(int))
         {
-            // to ensure "symbol" is required (not null)
-            if (symbol == null)
-            {
-                throw new ArgumentNullException("symbol is a required property for ExtractionYield and cannot be null");
-            }
             this.Symbol = symbol;
             this.Units = units;
         }
-
-        /// <summary>
-        /// Gets or Sets Symbol
-        /// </summary>
-        [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
-        public string Symbol { get; set; }
 
         /// <summary>
         /// The number of units extracted that were placed into the ship&#39;s cargo hold.
@@ -112,8 +107,7 @@ namespace SpaceTradersUnitySDK.Model
             return 
                 (
                     this.Symbol == input.Symbol ||
-                    (this.Symbol != null &&
-                    this.Symbol.Equals(input.Symbol))
+                    this.Symbol.Equals(input.Symbol)
                 ) && 
                 (
                     this.Units == input.Units ||
@@ -130,10 +124,7 @@ namespace SpaceTradersUnitySDK.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Symbol != null)
-                {
-                    hashCode = (hashCode * 59) + this.Symbol.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Symbol.GetHashCode();
                 hashCode = (hashCode * 59) + this.Units.GetHashCode();
                 return hashCode;
             }

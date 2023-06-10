@@ -31,6 +31,12 @@ namespace SpaceTradersUnitySDK.Model
     [DataContract(Name = "SellCargoRequest")]
     public partial class SellCargoRequest : IEquatable<SellCargoRequest>
     {
+
+        /// <summary>
+        /// Gets or Sets Symbol
+        /// </summary>
+        [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
+        public TradeSymbol Symbol { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="SellCargoRequest" /> class.
         /// </summary>
@@ -40,29 +46,19 @@ namespace SpaceTradersUnitySDK.Model
         /// Initializes a new instance of the <see cref="SellCargoRequest" /> class.
         /// </summary>
         /// <param name="symbol">symbol (required).</param>
-        /// <param name="units">units (required).</param>
-        public SellCargoRequest(string symbol = default(string), long units = default(long))
+        /// <param name="units">Amounts of units to sell of the selected good. (required).</param>
+        public SellCargoRequest(TradeSymbol symbol = default(TradeSymbol), int units = default(int))
         {
-            // to ensure "symbol" is required (not null)
-            if (symbol == null)
-            {
-                throw new ArgumentNullException("symbol is a required property for SellCargoRequest and cannot be null");
-            }
             this.Symbol = symbol;
             this.Units = units;
         }
 
         /// <summary>
-        /// Gets or Sets Symbol
+        /// Amounts of units to sell of the selected good.
         /// </summary>
-        [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
-        public string Symbol { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Units
-        /// </summary>
+        /// <value>Amounts of units to sell of the selected good.</value>
         [DataMember(Name = "units", IsRequired = true, EmitDefaultValue = true)]
-        public long Units { get; set; }
+        public int Units { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -111,8 +107,7 @@ namespace SpaceTradersUnitySDK.Model
             return 
                 (
                     this.Symbol == input.Symbol ||
-                    (this.Symbol != null &&
-                    this.Symbol.Equals(input.Symbol))
+                    this.Symbol.Equals(input.Symbol)
                 ) && 
                 (
                     this.Units == input.Units ||
@@ -129,10 +124,7 @@ namespace SpaceTradersUnitySDK.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Symbol != null)
-                {
-                    hashCode = (hashCode * 59) + this.Symbol.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Symbol.GetHashCode();
                 hashCode = (hashCode * 59) + this.Units.GetHashCode();
                 return hashCode;
             }

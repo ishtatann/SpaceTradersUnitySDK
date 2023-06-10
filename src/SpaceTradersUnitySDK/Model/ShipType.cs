@@ -26,8 +26,9 @@ using OpenAPIDateConverter = SpaceTradersUnitySDK.Client.OpenAPIDateConverter;
 namespace SpaceTradersUnitySDK.Model
 {
     /// <summary>
-    /// Defines ShipType
+    /// Type of ship
     /// </summary>
+    /// <value>Type of ship</value>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ShipType
     {

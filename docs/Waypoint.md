@@ -5,12 +5,12 @@ A waypoint is a location that ships can travel to such as a Planet, Moon or Spac
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | **string** |  | 
+**Symbol** | **string** | Symbol fo the waypoint. | 
 **Type** | **WaypointType** |  | 
-**SystemSymbol** | **string** |  | 
-**X** | **int** |  | 
-**Y** | **int** |  | 
-**Orbitals** | [**List&lt;WaypointOrbital&gt;**](WaypointOrbital.md) |  | 
+**SystemSymbol** | **string** | The symbol of the system this waypoint belongs to. | 
+**X** | **int** | Position in the universe in the x axis. | 
+**Y** | **int** | Position in the universe in the Y axis. | 
+**Orbitals** | [**List&lt;WaypointOrbital&gt;**](WaypointOrbital.md) | Waypoints that orbit this waypoint. | 
 **Faction** | [**WaypointFaction**](WaypointFaction.md) |  | [optional] 
 **Traits** | [**List&lt;WaypointTrait&gt;**](WaypointTrait.md) | The traits of the waypoint. | 
 **Chart** | [**Chart**](Chart.md) |  | [optional] 

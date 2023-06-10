@@ -32,8 +32,9 @@ namespace SpaceTradersUnitySDK.Model
     public partial class ShipMount : IEquatable<ShipMount>
     {
         /// <summary>
-        /// Defines Symbol
+        /// Symbo of this mount.
         /// </summary>
+        /// <value>Symbo of this mount.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum SymbolEnum
         {
@@ -131,8 +132,9 @@ namespace SpaceTradersUnitySDK.Model
 
 
         /// <summary>
-        /// Gets or Sets Symbol
+        /// Symbo of this mount.
         /// </summary>
+        /// <value>Symbo of this mount.</value>
         [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
         public SymbolEnum Symbol { get; set; }
         /// <summary>
@@ -235,11 +237,11 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ShipMount" /> class.
         /// </summary>
-        /// <param name="symbol">symbol (required).</param>
-        /// <param name="name">name (required).</param>
-        /// <param name="description">description.</param>
-        /// <param name="strength">strength.</param>
-        /// <param name="deposits">deposits.</param>
+        /// <param name="symbol">Symbo of this mount. (required).</param>
+        /// <param name="name">Name of this mount. (required).</param>
+        /// <param name="description">Description of this mount..</param>
+        /// <param name="strength">Mounts that have this value, such as mining lasers, denote how powerful this mount&#39;s capabilities are..</param>
+        /// <param name="deposits">Mounts that have this value denote what goods can be produced from using the mount..</param>
         /// <param name="requirements">requirements (required).</param>
         public ShipMount(SymbolEnum symbol = default(SymbolEnum), string name = default(string), string description = default(string), int strength = default(int), List<DepositsEnum> deposits = default(List<DepositsEnum>), ShipRequirements requirements = default(ShipRequirements))
         {
@@ -262,26 +264,30 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Name of this mount.
         /// </summary>
+        /// <value>Name of this mount.</value>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Description
+        /// Description of this mount.
         /// </summary>
+        /// <value>Description of this mount.</value>
         [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or Sets Strength
+        /// Mounts that have this value, such as mining lasers, denote how powerful this mount&#39;s capabilities are.
         /// </summary>
+        /// <value>Mounts that have this value, such as mining lasers, denote how powerful this mount&#39;s capabilities are.</value>
         [DataMember(Name = "strength", EmitDefaultValue = false)]
         public int Strength { get; set; }
 
         /// <summary>
-        /// Gets or Sets Deposits
+        /// Mounts that have this value denote what goods can be produced from using the mount.
         /// </summary>
+        /// <value>Mounts that have this value denote what goods can be produced from using the mount.</value>
         [DataMember(Name = "deposits", EmitDefaultValue = false)]
         public List<ShipMount.DepositsEnum> Deposits { get; set; }
 

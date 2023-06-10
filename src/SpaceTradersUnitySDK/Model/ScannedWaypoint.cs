@@ -26,7 +26,7 @@ using OpenAPIDateConverter = SpaceTradersUnitySDK.Client.OpenAPIDateConverter;
 namespace SpaceTradersUnitySDK.Model
 {
     /// <summary>
-    /// A waypoint is a location that ships can travel to such as a Planet, Moon or Space Station.
+    /// A waypoint that was scanned by a ship.
     /// </summary>
     [DataContract(Name = "ScannedWaypoint")]
     public partial class ScannedWaypoint : IEquatable<ScannedWaypoint>
@@ -45,12 +45,12 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ScannedWaypoint" /> class.
         /// </summary>
-        /// <param name="symbol">symbol (required).</param>
+        /// <param name="symbol">Symbol of the waypoint. (required).</param>
         /// <param name="type">type (required).</param>
-        /// <param name="systemSymbol">systemSymbol (required).</param>
-        /// <param name="x">x (required).</param>
-        /// <param name="y">y (required).</param>
-        /// <param name="orbitals">orbitals (required).</param>
+        /// <param name="systemSymbol">Symbol of the system. (required).</param>
+        /// <param name="x">Position in the universe in the x axis. (required).</param>
+        /// <param name="y">Position in the universe in the y axis. (required).</param>
+        /// <param name="orbitals">List of waypoints that orbit this waypoint. (required).</param>
         /// <param name="faction">faction.</param>
         /// <param name="traits">The traits of the waypoint. (required).</param>
         /// <param name="chart">chart.</param>
@@ -88,32 +88,37 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Gets or Sets Symbol
+        /// Symbol of the waypoint.
         /// </summary>
+        /// <value>Symbol of the waypoint.</value>
         [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
         public string Symbol { get; set; }
 
         /// <summary>
-        /// Gets or Sets SystemSymbol
+        /// Symbol of the system.
         /// </summary>
+        /// <value>Symbol of the system.</value>
         [DataMember(Name = "systemSymbol", IsRequired = true, EmitDefaultValue = true)]
         public string SystemSymbol { get; set; }
 
         /// <summary>
-        /// Gets or Sets X
+        /// Position in the universe in the x axis.
         /// </summary>
+        /// <value>Position in the universe in the x axis.</value>
         [DataMember(Name = "x", IsRequired = true, EmitDefaultValue = true)]
         public int X { get; set; }
 
         /// <summary>
-        /// Gets or Sets Y
+        /// Position in the universe in the y axis.
         /// </summary>
+        /// <value>Position in the universe in the y axis.</value>
         [DataMember(Name = "y", IsRequired = true, EmitDefaultValue = true)]
         public int Y { get; set; }
 
         /// <summary>
-        /// Gets or Sets Orbitals
+        /// List of waypoints that orbit this waypoint.
         /// </summary>
+        /// <value>List of waypoints that orbit this waypoint.</value>
         [DataMember(Name = "orbitals", IsRequired = true, EmitDefaultValue = true)]
         public List<WaypointOrbital> Orbitals { get; set; }
 

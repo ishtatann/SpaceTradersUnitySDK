@@ -34,25 +34,27 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ShipRefine200ResponseDataProducedInner" /> class.
         /// </summary>
-        /// <param name="tradeSymbol">tradeSymbol.</param>
-        /// <param name="units">units.</param>
-        public ShipRefine200ResponseDataProducedInner(string tradeSymbol = default(string), long units = default(long))
+        /// <param name="tradeSymbol">Symbol of the good..</param>
+        /// <param name="units">Amount of units of the good..</param>
+        public ShipRefine200ResponseDataProducedInner(string tradeSymbol = default(string), int units = default(int))
         {
             this.TradeSymbol = tradeSymbol;
             this.Units = units;
         }
 
         /// <summary>
-        /// Gets or Sets TradeSymbol
+        /// Symbol of the good.
         /// </summary>
+        /// <value>Symbol of the good.</value>
         [DataMember(Name = "tradeSymbol", EmitDefaultValue = false)]
         public string TradeSymbol { get; set; }
 
         /// <summary>
-        /// Gets or Sets Units
+        /// Amount of units of the good.
         /// </summary>
+        /// <value>Amount of units of the good.</value>
         [DataMember(Name = "units", EmitDefaultValue = false)]
-        public long Units { get; set; }
+        public int Units { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

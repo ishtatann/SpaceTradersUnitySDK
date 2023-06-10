@@ -26,7 +26,7 @@ using OpenAPIDateConverter = SpaceTradersUnitySDK.Client.OpenAPIDateConverter;
 namespace SpaceTradersUnitySDK.Model
 {
     /// <summary>
-    /// Extraction
+    /// Extraction details.
     /// </summary>
     [DataContract(Name = "Extraction")]
     public partial class Extraction : IEquatable<Extraction>
@@ -39,7 +39,7 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Extraction" /> class.
         /// </summary>
-        /// <param name="shipSymbol">shipSymbol (required).</param>
+        /// <param name="shipSymbol">Symbol of the ship that executed the extraction. (required).</param>
         /// <param name="yield">yield (required).</param>
         public Extraction(string shipSymbol = default(string), ExtractionYield yield = default(ExtractionYield))
         {
@@ -58,8 +58,9 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Gets or Sets ShipSymbol
+        /// Symbol of the ship that executed the extraction.
         /// </summary>
+        /// <value>Symbol of the ship that executed the extraction.</value>
         [DataMember(Name = "shipSymbol", IsRequired = true, EmitDefaultValue = true)]
         public string ShipSymbol { get; set; }
 

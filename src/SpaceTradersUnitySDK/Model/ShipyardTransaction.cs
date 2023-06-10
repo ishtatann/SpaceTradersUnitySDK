@@ -26,7 +26,7 @@ using OpenAPIDateConverter = SpaceTradersUnitySDK.Client.OpenAPIDateConverter;
 namespace SpaceTradersUnitySDK.Model
 {
     /// <summary>
-    /// ShipyardTransaction
+    /// Results of a transaction with a shipyard.
     /// </summary>
     [DataContract(Name = "ShipyardTransaction")]
     public partial class ShipyardTransaction : IEquatable<ShipyardTransaction>
@@ -40,7 +40,7 @@ namespace SpaceTradersUnitySDK.Model
         /// Initializes a new instance of the <see cref="ShipyardTransaction" /> class.
         /// </summary>
         /// <param name="waypointSymbol">The symbol of the waypoint where the transaction took place. (required).</param>
-        /// <param name="shipSymbol">The symbol of the ship that was purchased. (required).</param>
+        /// <param name="shipSymbol">The symbol of the ship that was the subject of the transaction. (required).</param>
         /// <param name="price">The price of the transaction. (required).</param>
         /// <param name="agentSymbol">The symbol of the agent that made the transaction. (required).</param>
         /// <param name="timestamp">The timestamp of the transaction. (required).</param>
@@ -76,9 +76,9 @@ namespace SpaceTradersUnitySDK.Model
         public string WaypointSymbol { get; set; }
 
         /// <summary>
-        /// The symbol of the ship that was purchased.
+        /// The symbol of the ship that was the subject of the transaction.
         /// </summary>
-        /// <value>The symbol of the ship that was purchased.</value>
+        /// <value>The symbol of the ship that was the subject of the transaction.</value>
         [DataMember(Name = "shipSymbol", IsRequired = true, EmitDefaultValue = true)]
         public string ShipSymbol { get; set; }
 

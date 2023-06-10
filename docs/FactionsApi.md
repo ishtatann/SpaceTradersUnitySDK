@@ -35,7 +35,7 @@ namespace Example
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new FactionsApi(config);
-            var factionSymbol = "\"CGR\"";  // string | The faction symbol (default to "CGR")
+            var factionSymbol = COSMIC;  // string | The faction symbol
 
             try
             {
@@ -78,7 +78,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **factionSymbol** | **string** | The faction symbol | [default to &quot;CGR&quot;] |
+| **factionSymbol** | **string** | The faction symbol |  |
 
 ### Return type
 
@@ -97,17 +97,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK |  -  |
+| **200** | Successfully fetched a faction. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getfactions"></a>
 # **GetFactions**
-> GetFactions200Response GetFactions (long? page = null, long? limit = null)
+> GetFactions200Response GetFactions (int? page = null, int? limit = null)
 
 List Factions
 
-List all discovered factions in the game.
+Return a paginated list of all the factions in the game.
 
 ### Example
 ```csharp
@@ -129,8 +129,8 @@ namespace Example
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new FactionsApi(config);
-            var page = 789L;  // long? | What entry offset to request (optional) 
-            var limit = 789L;  // long? | How many entries to return per page (optional) 
+            var page = 1;  // int? | What entry offset to request (optional)  (default to 1)
+            var limit = 10;  // int? | How many entries to return per page (optional)  (default to 10)
 
             try
             {
@@ -173,8 +173,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **page** | **long?** | What entry offset to request | [optional]  |
-| **limit** | **long?** | How many entries to return per page | [optional]  |
+| **page** | **int?** | What entry offset to request | [optional] [default to 1] |
+| **limit** | **int?** | How many entries to return per page | [optional] [default to 10] |
 
 ### Return type
 
@@ -193,7 +193,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** |  |  -  |
+| **200** | Succesfully fetched factions. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

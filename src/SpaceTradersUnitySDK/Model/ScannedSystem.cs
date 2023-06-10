@@ -26,7 +26,7 @@ using OpenAPIDateConverter = SpaceTradersUnitySDK.Client.OpenAPIDateConverter;
 namespace SpaceTradersUnitySDK.Model
 {
     /// <summary>
-    /// ScannedSystem
+    /// Details of a system was that scanned.
     /// </summary>
     [DataContract(Name = "ScannedSystem")]
     public partial class ScannedSystem : IEquatable<ScannedSystem>
@@ -45,12 +45,12 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ScannedSystem" /> class.
         /// </summary>
-        /// <param name="symbol">symbol (required).</param>
-        /// <param name="sectorSymbol">sectorSymbol (required).</param>
+        /// <param name="symbol">Symbol of the system. (required).</param>
+        /// <param name="sectorSymbol">Symbol of the system&#39;s sector. (required).</param>
         /// <param name="type">type (required).</param>
-        /// <param name="x">x (required).</param>
-        /// <param name="y">y (required).</param>
-        /// <param name="distance">distance (required).</param>
+        /// <param name="x">Position in the universe in the x axis. (required).</param>
+        /// <param name="y">Position in the universe in the y axis. (required).</param>
+        /// <param name="distance">The system&#39;s distance from the scanning ship. (required).</param>
         public ScannedSystem(string symbol = default(string), string sectorSymbol = default(string), SystemType type = default(SystemType), int x = default(int), int y = default(int), int distance = default(int))
         {
             // to ensure "symbol" is required (not null)
@@ -72,32 +72,37 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Gets or Sets Symbol
+        /// Symbol of the system.
         /// </summary>
+        /// <value>Symbol of the system.</value>
         [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
         public string Symbol { get; set; }
 
         /// <summary>
-        /// Gets or Sets SectorSymbol
+        /// Symbol of the system&#39;s sector.
         /// </summary>
+        /// <value>Symbol of the system&#39;s sector.</value>
         [DataMember(Name = "sectorSymbol", IsRequired = true, EmitDefaultValue = true)]
         public string SectorSymbol { get; set; }
 
         /// <summary>
-        /// Gets or Sets X
+        /// Position in the universe in the x axis.
         /// </summary>
+        /// <value>Position in the universe in the x axis.</value>
         [DataMember(Name = "x", IsRequired = true, EmitDefaultValue = true)]
         public int X { get; set; }
 
         /// <summary>
-        /// Gets or Sets Y
+        /// Position in the universe in the y axis.
         /// </summary>
+        /// <value>Position in the universe in the y axis.</value>
         [DataMember(Name = "y", IsRequired = true, EmitDefaultValue = true)]
         public int Y { get; set; }
 
         /// <summary>
-        /// Gets or Sets Distance
+        /// The system&#39;s distance from the scanning ship.
         /// </summary>
+        /// <value>The system&#39;s distance from the scanning ship.</value>
         [DataMember(Name = "distance", IsRequired = true, EmitDefaultValue = true)]
         public int Distance { get; set; }
 

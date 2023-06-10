@@ -26,47 +26,47 @@ using OpenAPIDateConverter = SpaceTradersUnitySDK.Client.OpenAPIDateConverter;
 namespace SpaceTradersUnitySDK.Model
 {
     /// <summary>
-    /// InstallMount201ResponseData
+    /// RemoveMount201ResponseData
     /// </summary>
-    [DataContract(Name = "Install_Mount_201_Response_data")]
-    public partial class InstallMount201ResponseData : IEquatable<InstallMount201ResponseData>
+    [DataContract(Name = "Remove_Mount_201_Response_data")]
+    public partial class RemoveMount201ResponseData : IEquatable<RemoveMount201ResponseData>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="InstallMount201ResponseData" /> class.
+        /// Initializes a new instance of the <see cref="RemoveMount201ResponseData" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected InstallMount201ResponseData() { }
+        protected RemoveMount201ResponseData() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="InstallMount201ResponseData" /> class.
+        /// Initializes a new instance of the <see cref="RemoveMount201ResponseData" /> class.
         /// </summary>
         /// <param name="agent">agent (required).</param>
-        /// <param name="mounts">List of installed mounts after the installation of the new mount. (required).</param>
+        /// <param name="mounts">List of installed mounts after the removal of the selected mount. (required).</param>
         /// <param name="cargo">cargo (required).</param>
         /// <param name="transaction">transaction (required).</param>
-        public InstallMount201ResponseData(Agent agent = default(Agent), List<ShipMount> mounts = default(List<ShipMount>), ShipCargo cargo = default(ShipCargo), ShipyardTransaction transaction = default(ShipyardTransaction))
+        public RemoveMount201ResponseData(Agent agent = default(Agent), List<ShipMount> mounts = default(List<ShipMount>), ShipCargo cargo = default(ShipCargo), ShipyardTransaction transaction = default(ShipyardTransaction))
         {
             // to ensure "agent" is required (not null)
             if (agent == null)
             {
-                throw new ArgumentNullException("agent is a required property for InstallMount201ResponseData and cannot be null");
+                throw new ArgumentNullException("agent is a required property for RemoveMount201ResponseData and cannot be null");
             }
             this.Agent = agent;
             // to ensure "mounts" is required (not null)
             if (mounts == null)
             {
-                throw new ArgumentNullException("mounts is a required property for InstallMount201ResponseData and cannot be null");
+                throw new ArgumentNullException("mounts is a required property for RemoveMount201ResponseData and cannot be null");
             }
             this.Mounts = mounts;
             // to ensure "cargo" is required (not null)
             if (cargo == null)
             {
-                throw new ArgumentNullException("cargo is a required property for InstallMount201ResponseData and cannot be null");
+                throw new ArgumentNullException("cargo is a required property for RemoveMount201ResponseData and cannot be null");
             }
             this.Cargo = cargo;
             // to ensure "transaction" is required (not null)
             if (transaction == null)
             {
-                throw new ArgumentNullException("transaction is a required property for InstallMount201ResponseData and cannot be null");
+                throw new ArgumentNullException("transaction is a required property for RemoveMount201ResponseData and cannot be null");
             }
             this.Transaction = transaction;
         }
@@ -78,9 +78,9 @@ namespace SpaceTradersUnitySDK.Model
         public Agent Agent { get; set; }
 
         /// <summary>
-        /// List of installed mounts after the installation of the new mount.
+        /// List of installed mounts after the removal of the selected mount.
         /// </summary>
-        /// <value>List of installed mounts after the installation of the new mount.</value>
+        /// <value>List of installed mounts after the removal of the selected mount.</value>
         [DataMember(Name = "mounts", IsRequired = true, EmitDefaultValue = true)]
         public List<ShipMount> Mounts { get; set; }
 
@@ -103,7 +103,7 @@ namespace SpaceTradersUnitySDK.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class InstallMount201ResponseData {\n");
+            sb.Append("class RemoveMount201ResponseData {\n");
             sb.Append("  Agent: ").Append(Agent).Append("\n");
             sb.Append("  Mounts: ").Append(Mounts).Append("\n");
             sb.Append("  Cargo: ").Append(Cargo).Append("\n");
@@ -128,15 +128,15 @@ namespace SpaceTradersUnitySDK.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as InstallMount201ResponseData);
+            return this.Equals(input as RemoveMount201ResponseData);
         }
 
         /// <summary>
-        /// Returns true if InstallMount201ResponseData instances are equal
+        /// Returns true if RemoveMount201ResponseData instances are equal
         /// </summary>
-        /// <param name="input">Instance of InstallMount201ResponseData to be compared</param>
+        /// <param name="input">Instance of RemoveMount201ResponseData to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(InstallMount201ResponseData input)
+        public bool Equals(RemoveMount201ResponseData input)
         {
             if (input == null)
             {

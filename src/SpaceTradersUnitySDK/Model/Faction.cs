@@ -26,11 +26,17 @@ using OpenAPIDateConverter = SpaceTradersUnitySDK.Client.OpenAPIDateConverter;
 namespace SpaceTradersUnitySDK.Model
 {
     /// <summary>
-    /// Faction
+    /// Faction details.
     /// </summary>
     [DataContract(Name = "Faction")]
     public partial class Faction : IEquatable<Faction>
     {
+
+        /// <summary>
+        /// Gets or Sets Symbol
+        /// </summary>
+        [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
+        public FactionSymbols Symbol { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Faction" /> class.
         /// </summary>
@@ -40,18 +46,13 @@ namespace SpaceTradersUnitySDK.Model
         /// Initializes a new instance of the <see cref="Faction" /> class.
         /// </summary>
         /// <param name="symbol">symbol (required).</param>
-        /// <param name="name">name (required).</param>
-        /// <param name="description">description (required).</param>
-        /// <param name="headquarters">headquarters (required).</param>
-        /// <param name="traits">traits (required).</param>
+        /// <param name="name">Name of the faction. (required).</param>
+        /// <param name="description">Description of the faction. (required).</param>
+        /// <param name="headquarters">The waypoint in which the faction&#39;s HQ is located in. (required).</param>
+        /// <param name="traits">List of traits that define this faction. (required).</param>
         /// <param name="isRecruiting">Whether or not the faction is currently recruiting new agents. (required).</param>
-        public Faction(string symbol = default(string), string name = default(string), string description = default(string), string headquarters = default(string), List<FactionTrait> traits = default(List<FactionTrait>), bool isRecruiting = default(bool))
+        public Faction(FactionSymbols symbol = default(FactionSymbols), string name = default(string), string description = default(string), string headquarters = default(string), List<FactionTrait> traits = default(List<FactionTrait>), bool isRecruiting = default(bool))
         {
-            // to ensure "symbol" is required (not null)
-            if (symbol == null)
-            {
-                throw new ArgumentNullException("symbol is a required property for Faction and cannot be null");
-            }
             this.Symbol = symbol;
             // to ensure "name" is required (not null)
             if (name == null)
@@ -81,32 +82,30 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Gets or Sets Symbol
+        /// Name of the faction.
         /// </summary>
-        [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
-        public string Symbol { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Name
-        /// </summary>
+        /// <value>Name of the faction.</value>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Description
+        /// Description of the faction.
         /// </summary>
+        /// <value>Description of the faction.</value>
         [DataMember(Name = "description", IsRequired = true, EmitDefaultValue = true)]
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or Sets Headquarters
+        /// The waypoint in which the faction&#39;s HQ is located in.
         /// </summary>
+        /// <value>The waypoint in which the faction&#39;s HQ is located in.</value>
         [DataMember(Name = "headquarters", IsRequired = true, EmitDefaultValue = true)]
         public string Headquarters { get; set; }
 
         /// <summary>
-        /// Gets or Sets Traits
+        /// List of traits that define this faction.
         /// </summary>
+        /// <value>List of traits that define this faction.</value>
         [DataMember(Name = "traits", IsRequired = true, EmitDefaultValue = true)]
         public List<FactionTrait> Traits { get; set; }
 
@@ -168,8 +167,7 @@ namespace SpaceTradersUnitySDK.Model
             return 
                 (
                     this.Symbol == input.Symbol ||
-                    (this.Symbol != null &&
-                    this.Symbol.Equals(input.Symbol))
+                    this.Symbol.Equals(input.Symbol)
                 ) && 
                 (
                     this.Name == input.Name ||
@@ -207,10 +205,7 @@ namespace SpaceTradersUnitySDK.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Symbol != null)
-                {
-                    hashCode = (hashCode * 59) + this.Symbol.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Symbol.GetHashCode();
                 if (this.Name != null)
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();

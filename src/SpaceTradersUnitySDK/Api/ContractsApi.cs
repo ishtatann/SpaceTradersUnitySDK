@@ -31,10 +31,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Accept Contract
         /// </summary>
         /// <remarks>
-        /// Accept a contract.
+        /// Accept a contract by ID.   You can only accept contracts that were offered to you, were not accepted yet, and whose deadlines has not passed yet.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractId"></param>
+        /// <param name="contractId">The contract ID to accept.</param>
         /// <returns>AcceptContract200Response</returns>
         AcceptContract200Response AcceptContract(string contractId);
 
@@ -42,32 +42,32 @@ namespace SpaceTradersUnitySDK.Api
         /// Accept Contract
         /// </summary>
         /// <remarks>
-        /// Accept a contract.
+        /// Accept a contract by ID.   You can only accept contracts that were offered to you, were not accepted yet, and whose deadlines has not passed yet.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractId"></param>
+        /// <param name="contractId">The contract ID to accept.</param>
         /// <returns>ApiResponse of AcceptContract200Response</returns>
         ApiResponse<AcceptContract200Response> AcceptContractWithHttpInfo(string contractId);
         /// <summary>
-        /// Deliver Contract
+        /// Deliver Cargo to Contract
         /// </summary>
         /// <remarks>
-        /// Deliver cargo on a given contract.
+        /// Deliver cargo to a contract.  In order to use this API, a ship must be at the delivery location (denoted in the delivery terms as &#x60;destinationSymbol&#x60; of a contract) and must have a number of units of a good required by this contract in its cargo.  Cargo that was delivered will be removed from the ship&#39;s cargo.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractId">The ID of the contract</param>
+        /// <param name="contractId">The ID of the contract.</param>
         /// <param name="deliverContractRequest"> (optional)</param>
         /// <returns>DeliverContract200Response</returns>
         DeliverContract200Response DeliverContract(string contractId, DeliverContractRequest deliverContractRequest = default(DeliverContractRequest));
 
         /// <summary>
-        /// Deliver Contract
+        /// Deliver Cargo to Contract
         /// </summary>
         /// <remarks>
-        /// Deliver cargo on a given contract.
+        /// Deliver cargo to a contract.  In order to use this API, a ship must be at the delivery location (denoted in the delivery terms as &#x60;destinationSymbol&#x60; of a contract) and must have a number of units of a good required by this contract in its cargo.  Cargo that was delivered will be removed from the ship&#39;s cargo.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractId">The ID of the contract</param>
+        /// <param name="contractId">The ID of the contract.</param>
         /// <param name="deliverContractRequest"> (optional)</param>
         /// <returns>ApiResponse of DeliverContract200Response</returns>
         ApiResponse<DeliverContract200Response> DeliverContractWithHttpInfo(string contractId, DeliverContractRequest deliverContractRequest = default(DeliverContractRequest));
@@ -75,10 +75,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Fulfill Contract
         /// </summary>
         /// <remarks>
-        /// Fulfill a contract
+        /// Fulfill a contract. Can only be used on contracts that have all of their delivery terms fulfilled.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractId">The ID of the contract</param>
+        /// <param name="contractId">The ID of the contract to fulfill.</param>
         /// <returns>FulfillContract200Response</returns>
         FulfillContract200Response FulfillContract(string contractId);
 
@@ -86,10 +86,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Fulfill Contract
         /// </summary>
         /// <remarks>
-        /// Fulfill a contract
+        /// Fulfill a contract. Can only be used on contracts that have all of their delivery terms fulfilled.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractId">The ID of the contract</param>
+        /// <param name="contractId">The ID of the contract to fulfill.</param>
         /// <returns>ApiResponse of FulfillContract200Response</returns>
         ApiResponse<FulfillContract200Response> FulfillContractWithHttpInfo(string contractId);
         /// <summary>
@@ -117,25 +117,25 @@ namespace SpaceTradersUnitySDK.Api
         /// List Contracts
         /// </summary>
         /// <remarks>
-        /// List all of your contracts.
+        /// Return a paginated list of all your contracts.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <returns>GetContracts200Response</returns>
-        GetContracts200Response GetContracts(long? page = default(long?), long? limit = default(long?));
+        GetContracts200Response GetContracts(int? page = default(int?), int? limit = default(int?));
 
         /// <summary>
         /// List Contracts
         /// </summary>
         /// <remarks>
-        /// List all of your contracts.
+        /// Return a paginated list of all your contracts.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <returns>ApiResponse of GetContracts200Response</returns>
-        ApiResponse<GetContracts200Response> GetContractsWithHttpInfo(long? page = default(long?), long? limit = default(long?));
+        ApiResponse<GetContracts200Response> GetContractsWithHttpInfo(int? page = default(int?), int? limit = default(int?));
         #endregion Synchronous Operations
     }
 
@@ -149,10 +149,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Accept Contract
         /// </summary>
         /// <remarks>
-        /// Accept a contract.
+        /// Accept a contract by ID.   You can only accept contracts that were offered to you, were not accepted yet, and whose deadlines has not passed yet.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractId"></param>
+        /// <param name="contractId">The contract ID to accept.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AcceptContract200Response</returns>
         System.Threading.Tasks.Task<AcceptContract200Response> AcceptContractAsync(string contractId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -161,34 +161,34 @@ namespace SpaceTradersUnitySDK.Api
         /// Accept Contract
         /// </summary>
         /// <remarks>
-        /// Accept a contract.
+        /// Accept a contract by ID.   You can only accept contracts that were offered to you, were not accepted yet, and whose deadlines has not passed yet.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractId"></param>
+        /// <param name="contractId">The contract ID to accept.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AcceptContract200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<AcceptContract200Response>> AcceptContractWithHttpInfoAsync(string contractId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Deliver Contract
+        /// Deliver Cargo to Contract
         /// </summary>
         /// <remarks>
-        /// Deliver cargo on a given contract.
+        /// Deliver cargo to a contract.  In order to use this API, a ship must be at the delivery location (denoted in the delivery terms as &#x60;destinationSymbol&#x60; of a contract) and must have a number of units of a good required by this contract in its cargo.  Cargo that was delivered will be removed from the ship&#39;s cargo.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractId">The ID of the contract</param>
+        /// <param name="contractId">The ID of the contract.</param>
         /// <param name="deliverContractRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DeliverContract200Response</returns>
         System.Threading.Tasks.Task<DeliverContract200Response> DeliverContractAsync(string contractId, DeliverContractRequest deliverContractRequest = default(DeliverContractRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Deliver Contract
+        /// Deliver Cargo to Contract
         /// </summary>
         /// <remarks>
-        /// Deliver cargo on a given contract.
+        /// Deliver cargo to a contract.  In order to use this API, a ship must be at the delivery location (denoted in the delivery terms as &#x60;destinationSymbol&#x60; of a contract) and must have a number of units of a good required by this contract in its cargo.  Cargo that was delivered will be removed from the ship&#39;s cargo.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractId">The ID of the contract</param>
+        /// <param name="contractId">The ID of the contract.</param>
         /// <param name="deliverContractRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeliverContract200Response)</returns>
@@ -197,10 +197,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Fulfill Contract
         /// </summary>
         /// <remarks>
-        /// Fulfill a contract
+        /// Fulfill a contract. Can only be used on contracts that have all of their delivery terms fulfilled.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractId">The ID of the contract</param>
+        /// <param name="contractId">The ID of the contract to fulfill.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FulfillContract200Response</returns>
         System.Threading.Tasks.Task<FulfillContract200Response> FulfillContractAsync(string contractId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -209,10 +209,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Fulfill Contract
         /// </summary>
         /// <remarks>
-        /// Fulfill a contract
+        /// Fulfill a contract. Can only be used on contracts that have all of their delivery terms fulfilled.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractId">The ID of the contract</param>
+        /// <param name="contractId">The ID of the contract to fulfill.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FulfillContract200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<FulfillContract200Response>> FulfillContractWithHttpInfoAsync(string contractId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -243,27 +243,27 @@ namespace SpaceTradersUnitySDK.Api
         /// List Contracts
         /// </summary>
         /// <remarks>
-        /// List all of your contracts.
+        /// Return a paginated list of all your contracts.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetContracts200Response</returns>
-        System.Threading.Tasks.Task<GetContracts200Response> GetContractsAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<GetContracts200Response> GetContractsAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// List Contracts
         /// </summary>
         /// <remarks>
-        /// List all of your contracts.
+        /// Return a paginated list of all your contracts.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetContracts200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetContracts200Response>> GetContractsWithHttpInfoAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<GetContracts200Response>> GetContractsWithHttpInfoAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -409,10 +409,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Accept Contract Accept a contract.
+        /// Accept Contract Accept a contract by ID.   You can only accept contracts that were offered to you, were not accepted yet, and whose deadlines has not passed yet.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractId"></param>
+        /// <param name="contractId">The contract ID to accept.</param>
         /// <returns>AcceptContract200Response</returns>
         public AcceptContract200Response AcceptContract(string contractId)
         {
@@ -421,10 +421,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Accept Contract Accept a contract.
+        /// Accept Contract Accept a contract by ID.   You can only accept contracts that were offered to you, were not accepted yet, and whose deadlines has not passed yet.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractId"></param>
+        /// <param name="contractId">The contract ID to accept.</param>
         /// <returns>ApiResponse of AcceptContract200Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<AcceptContract200Response> AcceptContractWithHttpInfo(string contractId)
         {
@@ -470,10 +470,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Accept Contract Accept a contract.
+        /// Accept Contract Accept a contract by ID.   You can only accept contracts that were offered to you, were not accepted yet, and whose deadlines has not passed yet.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractId"></param>
+        /// <param name="contractId">The contract ID to accept.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AcceptContract200Response</returns>
         public async System.Threading.Tasks.Task<AcceptContract200Response> AcceptContractAsync(string contractId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -488,10 +488,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Accept Contract Accept a contract.
+        /// Accept Contract Accept a contract by ID.   You can only accept contracts that were offered to you, were not accepted yet, and whose deadlines has not passed yet.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractId"></param>
+        /// <param name="contractId">The contract ID to accept.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AcceptContract200Response)</returns>
         public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<AcceptContract200Response>> AcceptContractWithHttpInfoAsync(string contractId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -547,10 +547,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Deliver Contract Deliver cargo on a given contract.
+        /// Deliver Cargo to Contract Deliver cargo to a contract.  In order to use this API, a ship must be at the delivery location (denoted in the delivery terms as &#x60;destinationSymbol&#x60; of a contract) and must have a number of units of a good required by this contract in its cargo.  Cargo that was delivered will be removed from the ship&#39;s cargo.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractId">The ID of the contract</param>
+        /// <param name="contractId">The ID of the contract.</param>
         /// <param name="deliverContractRequest"> (optional)</param>
         /// <returns>DeliverContract200Response</returns>
         public DeliverContract200Response DeliverContract(string contractId, DeliverContractRequest deliverContractRequest = default(DeliverContractRequest))
@@ -560,10 +560,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Deliver Contract Deliver cargo on a given contract.
+        /// Deliver Cargo to Contract Deliver cargo to a contract.  In order to use this API, a ship must be at the delivery location (denoted in the delivery terms as &#x60;destinationSymbol&#x60; of a contract) and must have a number of units of a good required by this contract in its cargo.  Cargo that was delivered will be removed from the ship&#39;s cargo.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractId">The ID of the contract</param>
+        /// <param name="contractId">The ID of the contract.</param>
         /// <param name="deliverContractRequest"> (optional)</param>
         /// <returns>ApiResponse of DeliverContract200Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<DeliverContract200Response> DeliverContractWithHttpInfo(string contractId, DeliverContractRequest deliverContractRequest = default(DeliverContractRequest))
@@ -612,10 +612,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Deliver Contract Deliver cargo on a given contract.
+        /// Deliver Cargo to Contract Deliver cargo to a contract.  In order to use this API, a ship must be at the delivery location (denoted in the delivery terms as &#x60;destinationSymbol&#x60; of a contract) and must have a number of units of a good required by this contract in its cargo.  Cargo that was delivered will be removed from the ship&#39;s cargo.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractId">The ID of the contract</param>
+        /// <param name="contractId">The ID of the contract.</param>
         /// <param name="deliverContractRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DeliverContract200Response</returns>
@@ -631,10 +631,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Deliver Contract Deliver cargo on a given contract.
+        /// Deliver Cargo to Contract Deliver cargo to a contract.  In order to use this API, a ship must be at the delivery location (denoted in the delivery terms as &#x60;destinationSymbol&#x60; of a contract) and must have a number of units of a good required by this contract in its cargo.  Cargo that was delivered will be removed from the ship&#39;s cargo.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractId">The ID of the contract</param>
+        /// <param name="contractId">The ID of the contract.</param>
         /// <param name="deliverContractRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeliverContract200Response)</returns>
@@ -693,10 +693,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Fulfill Contract Fulfill a contract
+        /// Fulfill Contract Fulfill a contract. Can only be used on contracts that have all of their delivery terms fulfilled.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractId">The ID of the contract</param>
+        /// <param name="contractId">The ID of the contract to fulfill.</param>
         /// <returns>FulfillContract200Response</returns>
         public FulfillContract200Response FulfillContract(string contractId)
         {
@@ -705,10 +705,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Fulfill Contract Fulfill a contract
+        /// Fulfill Contract Fulfill a contract. Can only be used on contracts that have all of their delivery terms fulfilled.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractId">The ID of the contract</param>
+        /// <param name="contractId">The ID of the contract to fulfill.</param>
         /// <returns>ApiResponse of FulfillContract200Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<FulfillContract200Response> FulfillContractWithHttpInfo(string contractId)
         {
@@ -754,10 +754,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Fulfill Contract Fulfill a contract
+        /// Fulfill Contract Fulfill a contract. Can only be used on contracts that have all of their delivery terms fulfilled.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractId">The ID of the contract</param>
+        /// <param name="contractId">The ID of the contract to fulfill.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FulfillContract200Response</returns>
         public async System.Threading.Tasks.Task<FulfillContract200Response> FulfillContractAsync(string contractId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -772,10 +772,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Fulfill Contract Fulfill a contract
+        /// Fulfill Contract Fulfill a contract. Can only be used on contracts that have all of their delivery terms fulfilled.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="contractId">The ID of the contract</param>
+        /// <param name="contractId">The ID of the contract to fulfill.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FulfillContract200Response)</returns>
         public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<FulfillContract200Response>> FulfillContractWithHttpInfoAsync(string contractId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -969,26 +969,26 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// List Contracts List all of your contracts.
+        /// List Contracts Return a paginated list of all your contracts.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <returns>GetContracts200Response</returns>
-        public GetContracts200Response GetContracts(long? page = default(long?), long? limit = default(long?))
+        public GetContracts200Response GetContracts(int? page = default(int?), int? limit = default(int?))
         {
             SpaceTradersUnitySDK.Client.ApiResponse<GetContracts200Response> localVarResponse = GetContractsWithHttpInfo(page, limit);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List Contracts List all of your contracts.
+        /// List Contracts Return a paginated list of all your contracts.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <returns>ApiResponse of GetContracts200Response</returns>
-        public SpaceTradersUnitySDK.Client.ApiResponse<GetContracts200Response> GetContractsWithHttpInfo(long? page = default(long?), long? limit = default(long?))
+        public SpaceTradersUnitySDK.Client.ApiResponse<GetContracts200Response> GetContractsWithHttpInfo(int? page = default(int?), int? limit = default(int?))
         {
             SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
 
@@ -1035,14 +1035,14 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// List Contracts List all of your contracts.
+        /// List Contracts Return a paginated list of all your contracts.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetContracts200Response</returns>
-        public async System.Threading.Tasks.Task<GetContracts200Response> GetContractsAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<GetContracts200Response> GetContractsAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = GetContractsWithHttpInfoAsync(page, limit, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
@@ -1054,14 +1054,14 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// List Contracts List all of your contracts.
+        /// List Contracts Return a paginated list of all your contracts.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetContracts200Response)</returns>
-        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetContracts200Response>> GetContractsWithHttpInfoAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetContracts200Response>> GetContractsWithHttpInfoAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();

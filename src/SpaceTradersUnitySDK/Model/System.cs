@@ -45,13 +45,13 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="System" /> class.
         /// </summary>
-        /// <param name="symbol">symbol (required).</param>
-        /// <param name="sectorSymbol">sectorSymbol (required).</param>
+        /// <param name="symbol">The symbol of the system. (required).</param>
+        /// <param name="sectorSymbol">The symbol of the sector. (required).</param>
         /// <param name="type">type (required).</param>
-        /// <param name="x">x (required).</param>
-        /// <param name="y">y (required).</param>
-        /// <param name="waypoints">waypoints (required).</param>
-        /// <param name="factions">factions (required).</param>
+        /// <param name="x">Position in the universe in the x axis. (required).</param>
+        /// <param name="y">Position in the universe in the y axis. (required).</param>
+        /// <param name="waypoints">Waypoints in this system. (required).</param>
+        /// <param name="factions">Factions that control this system. (required).</param>
         public System(string symbol = default(string), string sectorSymbol = default(string), SystemType type = default(SystemType), int x = default(int), int y = default(int), List<SystemWaypoint> waypoints = default(List<SystemWaypoint>), List<SystemFaction> factions = default(List<SystemFaction>))
         {
             // to ensure "symbol" is required (not null)
@@ -84,38 +84,44 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Gets or Sets Symbol
+        /// The symbol of the system.
         /// </summary>
+        /// <value>The symbol of the system.</value>
         [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
         public string Symbol { get; set; }
 
         /// <summary>
-        /// Gets or Sets SectorSymbol
+        /// The symbol of the sector.
         /// </summary>
+        /// <value>The symbol of the sector.</value>
         [DataMember(Name = "sectorSymbol", IsRequired = true, EmitDefaultValue = true)]
         public string SectorSymbol { get; set; }
 
         /// <summary>
-        /// Gets or Sets X
+        /// Position in the universe in the x axis.
         /// </summary>
+        /// <value>Position in the universe in the x axis.</value>
         [DataMember(Name = "x", IsRequired = true, EmitDefaultValue = true)]
         public int X { get; set; }
 
         /// <summary>
-        /// Gets or Sets Y
+        /// Position in the universe in the y axis.
         /// </summary>
+        /// <value>Position in the universe in the y axis.</value>
         [DataMember(Name = "y", IsRequired = true, EmitDefaultValue = true)]
         public int Y { get; set; }
 
         /// <summary>
-        /// Gets or Sets Waypoints
+        /// Waypoints in this system.
         /// </summary>
+        /// <value>Waypoints in this system.</value>
         [DataMember(Name = "waypoints", IsRequired = true, EmitDefaultValue = true)]
         public List<SystemWaypoint> Waypoints { get; set; }
 
         /// <summary>
-        /// Gets or Sets Factions
+        /// Factions that control this system.
         /// </summary>
+        /// <value>Factions that control this system.</value>
         [DataMember(Name = "factions", IsRequired = true, EmitDefaultValue = true)]
         public List<SystemFaction> Factions { get; set; }
 

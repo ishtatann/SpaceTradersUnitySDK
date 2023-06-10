@@ -26,7 +26,7 @@ using OpenAPIDateConverter = SpaceTradersUnitySDK.Client.OpenAPIDateConverter;
 namespace SpaceTradersUnitySDK.Model
 {
     /// <summary>
-    /// ContractTerms
+    /// Terms of the contract needed to fulfill it.
     /// </summary>
     [DataContract(Name = "ContractTerms")]
     public partial class ContractTerms : IEquatable<ContractTerms>
@@ -41,7 +41,7 @@ namespace SpaceTradersUnitySDK.Model
         /// </summary>
         /// <param name="deadline">The deadline for the contract. (required).</param>
         /// <param name="payment">payment (required).</param>
-        /// <param name="deliver">deliver.</param>
+        /// <param name="deliver">The cargo that needs to be delivered to fulfill the contract..</param>
         public ContractTerms(DateTime deadline = default(DateTime), ContractPayment payment = default(ContractPayment), List<ContractDeliverGood> deliver = default(List<ContractDeliverGood>))
         {
             this.Deadline = deadline;
@@ -68,8 +68,9 @@ namespace SpaceTradersUnitySDK.Model
         public ContractPayment Payment { get; set; }
 
         /// <summary>
-        /// Gets or Sets Deliver
+        /// The cargo that needs to be delivered to fulfill the contract.
         /// </summary>
+        /// <value>The cargo that needs to be delivered to fulfill the contract.</value>
         [DataMember(Name = "deliver", EmitDefaultValue = false)]
         public List<ContractDeliverGood> Deliver { get; set; }
 

@@ -1,19 +1,19 @@
 # SpaceTradersUnitySDK.Model.Ship
-A ship
+Ship details.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | **string** | The globally unique identifier of the ship in the following format: &#x60;[AGENT_SYMBOL]_[HEX_ID]&#x60; | 
+**Symbol** | **string** | The globally unique identifier of the ship in the following format: &#x60;[AGENT_SYMBOL]-[HEX_ID]&#x60; | 
 **Registration** | [**ShipRegistration**](ShipRegistration.md) |  | 
 **Nav** | [**ShipNav**](ShipNav.md) |  | 
 **Crew** | [**ShipCrew**](ShipCrew.md) |  | 
 **Frame** | [**ShipFrame**](ShipFrame.md) |  | 
 **Reactor** | [**ShipReactor**](ShipReactor.md) |  | 
 **Engine** | [**ShipEngine**](ShipEngine.md) |  | 
-**Modules** | [**List&lt;ShipModule&gt;**](ShipModule.md) |  | 
-**Mounts** | [**List&lt;ShipMount&gt;**](ShipMount.md) |  | 
+**Modules** | [**List&lt;ShipModule&gt;**](ShipModule.md) | Modules installed in this ship. | 
+**Mounts** | [**List&lt;ShipMount&gt;**](ShipMount.md) | Mounts installed in this ship. | 
 **Cargo** | [**ShipCargo**](ShipCargo.md) |  | 
 **Fuel** | [**ShipFuel**](ShipFuel.md) |  | 
 

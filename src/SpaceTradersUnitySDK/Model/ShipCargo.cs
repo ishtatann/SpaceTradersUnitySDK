@@ -26,7 +26,7 @@ using OpenAPIDateConverter = SpaceTradersUnitySDK.Client.OpenAPIDateConverter;
 namespace SpaceTradersUnitySDK.Model
 {
     /// <summary>
-    /// ShipCargo
+    /// Ship cargo details.
     /// </summary>
     [DataContract(Name = "ShipCargo")]
     public partial class ShipCargo : IEquatable<ShipCargo>

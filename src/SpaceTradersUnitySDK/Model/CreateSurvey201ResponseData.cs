@@ -40,7 +40,7 @@ namespace SpaceTradersUnitySDK.Model
         /// Initializes a new instance of the <see cref="CreateSurvey201ResponseData" /> class.
         /// </summary>
         /// <param name="cooldown">cooldown (required).</param>
-        /// <param name="surveys">surveys (required).</param>
+        /// <param name="surveys">Surveys created by this action. (required).</param>
         public CreateSurvey201ResponseData(Cooldown cooldown = default(Cooldown), List<Survey> surveys = default(List<Survey>))
         {
             // to ensure "cooldown" is required (not null)
@@ -64,8 +64,9 @@ namespace SpaceTradersUnitySDK.Model
         public Cooldown Cooldown { get; set; }
 
         /// <summary>
-        /// Gets or Sets Surveys
+        /// Surveys created by this action.
         /// </summary>
+        /// <value>Surveys created by this action.</value>
         [DataMember(Name = "surveys", IsRequired = true, EmitDefaultValue = true)]
         public List<Survey> Surveys { get; set; }
 

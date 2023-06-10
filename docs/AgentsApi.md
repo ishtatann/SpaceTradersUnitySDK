@@ -4,13 +4,13 @@ All URIs are relative to *https://api.spacetraders.io/v2*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**GetMyAgent**](AgentsApi.md#getmyagent) | **GET** /my/agent | My Agent Details |
+| [**GetMyAgent**](AgentsApi.md#getmyagent) | **GET** /my/agent | Get Agent |
 
 <a id="getmyagent"></a>
 # **GetMyAgent**
 > GetMyAgent200Response GetMyAgent ()
 
-My Agent Details
+Get Agent
 
 Fetch your agent's details.
 
@@ -37,7 +37,7 @@ namespace Example
 
             try
             {
-                // My Agent Details
+                // Get Agent
                 GetMyAgent200Response result = apiInstance.GetMyAgent();
                 Debug.WriteLine(result);
             }
@@ -58,7 +58,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // My Agent Details
+    // Get Agent
     ApiResponse<GetMyAgent200Response> response = apiInstance.GetMyAgentWithHttpInfo();
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -91,7 +91,7 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK |  -  |
+| **200** | Successfully fetched agent details. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

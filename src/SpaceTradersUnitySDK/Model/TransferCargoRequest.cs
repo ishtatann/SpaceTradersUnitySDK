@@ -31,6 +31,12 @@ namespace SpaceTradersUnitySDK.Model
     [DataContract(Name = "Transfer_Cargo_Request")]
     public partial class TransferCargoRequest : IEquatable<TransferCargoRequest>
     {
+
+        /// <summary>
+        /// Gets or Sets TradeSymbol
+        /// </summary>
+        [DataMember(Name = "tradeSymbol", IsRequired = true, EmitDefaultValue = true)]
+        public TradeSymbol TradeSymbol { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferCargoRequest" /> class.
         /// </summary>
@@ -40,15 +46,10 @@ namespace SpaceTradersUnitySDK.Model
         /// Initializes a new instance of the <see cref="TransferCargoRequest" /> class.
         /// </summary>
         /// <param name="tradeSymbol">tradeSymbol (required).</param>
-        /// <param name="units">units (required).</param>
-        /// <param name="shipSymbol">shipSymbol (required).</param>
-        public TransferCargoRequest(string tradeSymbol = default(string), long units = default(long), string shipSymbol = default(string))
+        /// <param name="units">Amount of units to transfer. (required).</param>
+        /// <param name="shipSymbol">The symbol of the ship to transfer to. (required).</param>
+        public TransferCargoRequest(TradeSymbol tradeSymbol = default(TradeSymbol), int units = default(int), string shipSymbol = default(string))
         {
-            // to ensure "tradeSymbol" is required (not null)
-            if (tradeSymbol == null)
-            {
-                throw new ArgumentNullException("tradeSymbol is a required property for TransferCargoRequest and cannot be null");
-            }
             this.TradeSymbol = tradeSymbol;
             this.Units = units;
             // to ensure "shipSymbol" is required (not null)
@@ -60,20 +61,16 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Gets or Sets TradeSymbol
+        /// Amount of units to transfer.
         /// </summary>
-        [DataMember(Name = "tradeSymbol", IsRequired = true, EmitDefaultValue = true)]
-        public string TradeSymbol { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Units
-        /// </summary>
+        /// <value>Amount of units to transfer.</value>
         [DataMember(Name = "units", IsRequired = true, EmitDefaultValue = true)]
-        public long Units { get; set; }
+        public int Units { get; set; }
 
         /// <summary>
-        /// Gets or Sets ShipSymbol
+        /// The symbol of the ship to transfer to.
         /// </summary>
+        /// <value>The symbol of the ship to transfer to.</value>
         [DataMember(Name = "shipSymbol", IsRequired = true, EmitDefaultValue = true)]
         public string ShipSymbol { get; set; }
 
@@ -125,8 +122,7 @@ namespace SpaceTradersUnitySDK.Model
             return 
                 (
                     this.TradeSymbol == input.TradeSymbol ||
-                    (this.TradeSymbol != null &&
-                    this.TradeSymbol.Equals(input.TradeSymbol))
+                    this.TradeSymbol.Equals(input.TradeSymbol)
                 ) && 
                 (
                     this.Units == input.Units ||
@@ -148,10 +144,7 @@ namespace SpaceTradersUnitySDK.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.TradeSymbol != null)
-                {
-                    hashCode = (hashCode * 59) + this.TradeSymbol.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.TradeSymbol.GetHashCode();
                 hashCode = (hashCode * 59) + this.Units.GetHashCode();
                 if (this.ShipSymbol != null)
                 {

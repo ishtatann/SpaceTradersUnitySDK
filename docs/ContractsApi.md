@@ -5,7 +5,7 @@ All URIs are relative to *https://api.spacetraders.io/v2*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**AcceptContract**](ContractsApi.md#acceptcontract) | **POST** /my/contracts/{contractId}/accept | Accept Contract |
-| [**DeliverContract**](ContractsApi.md#delivercontract) | **POST** /my/contracts/{contractId}/deliver | Deliver Contract |
+| [**DeliverContract**](ContractsApi.md#delivercontract) | **POST** /my/contracts/{contractId}/deliver | Deliver Cargo to Contract |
 | [**FulfillContract**](ContractsApi.md#fulfillcontract) | **POST** /my/contracts/{contractId}/fulfill | Fulfill Contract |
 | [**GetContract**](ContractsApi.md#getcontract) | **GET** /my/contracts/{contractId} | Get Contract |
 | [**GetContracts**](ContractsApi.md#getcontracts) | **GET** /my/contracts | List Contracts |
@@ -16,7 +16,7 @@ All URIs are relative to *https://api.spacetraders.io/v2*
 
 Accept Contract
 
-Accept a contract.
+Accept a contract by ID.   You can only accept contracts that were offered to you, were not accepted yet, and whose deadlines has not passed yet.
 
 ### Example
 ```csharp
@@ -38,7 +38,7 @@ namespace Example
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ContractsApi(config);
-            var contractId = "contractId_example";  // string | 
+            var contractId = "contractId_example";  // string | The contract ID to accept.
 
             try
             {
@@ -81,7 +81,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **contractId** | **string** |  |  |
+| **contractId** | **string** | The contract ID to accept. |  |
 
 ### Return type
 
@@ -100,7 +100,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK |  -  |
+| **200** | Succesfully accepted contract. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -108,9 +108,9 @@ catch (ApiException e)
 # **DeliverContract**
 > DeliverContract200Response DeliverContract (string contractId, DeliverContractRequest deliverContractRequest = null)
 
-Deliver Contract
+Deliver Cargo to Contract
 
-Deliver cargo on a given contract.
+Deliver cargo to a contract.  In order to use this API, a ship must be at the delivery location (denoted in the delivery terms as `destinationSymbol` of a contract) and must have a number of units of a good required by this contract in its cargo.  Cargo that was delivered will be removed from the ship's cargo.
 
 ### Example
 ```csharp
@@ -132,12 +132,12 @@ namespace Example
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ContractsApi(config);
-            var contractId = "contractId_example";  // string | The ID of the contract
+            var contractId = "contractId_example";  // string | The ID of the contract.
             var deliverContractRequest = new DeliverContractRequest(); // DeliverContractRequest |  (optional) 
 
             try
             {
-                // Deliver Contract
+                // Deliver Cargo to Contract
                 DeliverContract200Response result = apiInstance.DeliverContract(contractId, deliverContractRequest);
                 Debug.WriteLine(result);
             }
@@ -158,7 +158,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Deliver Contract
+    // Deliver Cargo to Contract
     ApiResponse<DeliverContract200Response> response = apiInstance.DeliverContractWithHttpInfo(contractId, deliverContractRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -176,7 +176,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **contractId** | **string** | The ID of the contract |  |
+| **contractId** | **string** | The ID of the contract. |  |
 | **deliverContractRequest** | [**DeliverContractRequest**](DeliverContractRequest.md) |  | [optional]  |
 
 ### Return type
@@ -196,7 +196,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK |  -  |
+| **200** | Successfully delivered cargo to contract. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -206,7 +206,7 @@ catch (ApiException e)
 
 Fulfill Contract
 
-Fulfill a contract
+Fulfill a contract. Can only be used on contracts that have all of their delivery terms fulfilled.
 
 ### Example
 ```csharp
@@ -228,7 +228,7 @@ namespace Example
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ContractsApi(config);
-            var contractId = "contractId_example";  // string | The ID of the contract
+            var contractId = "contractId_example";  // string | The ID of the contract to fulfill.
 
             try
             {
@@ -271,7 +271,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **contractId** | **string** | The ID of the contract |  |
+| **contractId** | **string** | The ID of the contract to fulfill. |  |
 
 ### Return type
 
@@ -290,7 +290,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK |  -  |
+| **200** | Successfully fulfilled a contract. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -384,17 +384,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK |  -  |
+| **200** | Successfully fetched contract. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getcontracts"></a>
 # **GetContracts**
-> GetContracts200Response GetContracts (long? page = null, long? limit = null)
+> GetContracts200Response GetContracts (int? page = null, int? limit = null)
 
 List Contracts
 
-List all of your contracts.
+Return a paginated list of all your contracts.
 
 ### Example
 ```csharp
@@ -416,8 +416,8 @@ namespace Example
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ContractsApi(config);
-            var page = 789L;  // long? | What entry offset to request (optional) 
-            var limit = 789L;  // long? | How many entries to return per page (optional) 
+            var page = 1;  // int? | What entry offset to request (optional)  (default to 1)
+            var limit = 10;  // int? | How many entries to return per page (optional)  (default to 10)
 
             try
             {
@@ -460,8 +460,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **page** | **long?** | What entry offset to request | [optional]  |
-| **limit** | **long?** | How many entries to return per page | [optional]  |
+| **page** | **int?** | What entry offset to request | [optional] [default to 1] |
+| **limit** | **int?** | How many entries to return per page | [optional] [default to 10] |
 
 ### Return type
 
@@ -480,7 +480,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK |  -  |
+| **200** | Succesfully listed contracts. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

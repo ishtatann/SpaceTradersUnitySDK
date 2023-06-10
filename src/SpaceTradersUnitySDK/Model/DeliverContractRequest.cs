@@ -39,10 +39,10 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DeliverContractRequest" /> class.
         /// </summary>
-        /// <param name="shipSymbol">shipSymbol (required).</param>
-        /// <param name="tradeSymbol">tradeSymbol (required).</param>
-        /// <param name="units">units (required).</param>
-        public DeliverContractRequest(string shipSymbol = default(string), string tradeSymbol = default(string), long units = default(long))
+        /// <param name="shipSymbol">Symbol of a ship located in the destination to deliver a contract and that has a good to deliver in its cargo. (required).</param>
+        /// <param name="tradeSymbol">The symbol of the good to deliver. (required).</param>
+        /// <param name="units">Amount of units to deliver. (required).</param>
+        public DeliverContractRequest(string shipSymbol = default(string), string tradeSymbol = default(string), int units = default(int))
         {
             // to ensure "shipSymbol" is required (not null)
             if (shipSymbol == null)
@@ -60,22 +60,25 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Gets or Sets ShipSymbol
+        /// Symbol of a ship located in the destination to deliver a contract and that has a good to deliver in its cargo.
         /// </summary>
+        /// <value>Symbol of a ship located in the destination to deliver a contract and that has a good to deliver in its cargo.</value>
         [DataMember(Name = "shipSymbol", IsRequired = true, EmitDefaultValue = true)]
         public string ShipSymbol { get; set; }
 
         /// <summary>
-        /// Gets or Sets TradeSymbol
+        /// The symbol of the good to deliver.
         /// </summary>
+        /// <value>The symbol of the good to deliver.</value>
         [DataMember(Name = "tradeSymbol", IsRequired = true, EmitDefaultValue = true)]
         public string TradeSymbol { get; set; }
 
         /// <summary>
-        /// Gets or Sets Units
+        /// Amount of units to deliver.
         /// </summary>
+        /// <value>Amount of units to deliver.</value>
         [DataMember(Name = "units", IsRequired = true, EmitDefaultValue = true)]
-        public long Units { get; set; }
+        public int Units { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

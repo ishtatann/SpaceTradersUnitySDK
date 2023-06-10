@@ -1,4 +1,5 @@
 # SpaceTradersUnitySDK.Model.ShipType
+Type of ship
 
 ## Properties
 

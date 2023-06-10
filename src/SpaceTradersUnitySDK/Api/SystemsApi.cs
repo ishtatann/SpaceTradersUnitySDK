@@ -31,7 +31,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Jump Gate
         /// </summary>
         /// <remarks>
-        /// Get jump gate details for a waypoint.
+        /// Get jump gate details for a waypoint. Requires a waypoint of type &#x60;JUMP_GATE&#x60; to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -43,7 +43,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Jump Gate
         /// </summary>
         /// <remarks>
-        /// Get jump gate details for a waypoint.
+        /// Get jump gate details for a waypoint. Requires a waypoint of type &#x60;JUMP_GATE&#x60; to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -54,7 +54,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Market
         /// </summary>
         /// <remarks>
-        /// Retrieve imports, exports and exchange data from a marketplace. Imports can be sold, exports can be purchased, and exchange goods can be purchased or sold. Send a ship to the waypoint to access trade good prices and recent transactions.
+        /// Retrieve imports, exports and exchange data from a marketplace. Requires a waypoint that has the &#x60;Marketplace&#x60; trait to use.  Send a ship to the waypoint to access trade good prices and recent transactions. Refer to the [Market Overview page](https://docs.spacetraders.io/game-concepts/markets) to gain better a understanding of the market in the game.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -66,7 +66,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Market
         /// </summary>
         /// <remarks>
-        /// Retrieve imports, exports and exchange data from a marketplace. Imports can be sold, exports can be purchased, and exchange goods can be purchased or sold. Send a ship to the waypoint to access trade good prices and recent transactions.
+        /// Retrieve imports, exports and exchange data from a marketplace. Requires a waypoint that has the &#x60;Marketplace&#x60; trait to use.  Send a ship to the waypoint to access trade good prices and recent transactions. Refer to the [Market Overview page](https://docs.spacetraders.io/game-concepts/markets) to gain better a understanding of the market in the game.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -77,7 +77,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Shipyard
         /// </summary>
         /// <remarks>
-        /// Get the shipyard for a waypoint. Send a ship to the waypoint to access ships that are currently available for purchase and recent transactions.
+        /// Get the shipyard for a waypoint. Requires a waypoint that has the &#x60;Shipyard&#x60; trait to use. Send a ship to the waypoint to access data on ships that are currently available for purchase and recent transactions.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -89,7 +89,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Shipyard
         /// </summary>
         /// <remarks>
-        /// Get the shipyard for a waypoint. Send a ship to the waypoint to access ships that are currently available for purchase and recent transactions.
+        /// Get the shipyard for a waypoint. Requires a waypoint that has the &#x60;Shipyard&#x60; trait to use. Send a ship to the waypoint to access data on ships that are currently available for purchase and recent transactions.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -118,58 +118,58 @@ namespace SpaceTradersUnitySDK.Api
         /// <returns>ApiResponse of GetSystem200Response</returns>
         ApiResponse<GetSystem200Response> GetSystemWithHttpInfo(string systemSymbol);
         /// <summary>
-        /// List Waypoints
+        /// List Waypoints in System
         /// </summary>
         /// <remarks>
-        /// Fetch all of the waypoints for a given system. System must be charted or a ship must be present to return waypoint details.
+        /// Return a paginated list of all of the waypoints for a given system.  If a waypoint is uncharted, it will return the &#x60;Uncharted&#x60; trait instead of its actual traits.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <returns>GetSystemWaypoints200Response</returns>
-        GetSystemWaypoints200Response GetSystemWaypoints(string systemSymbol, long? page = default(long?), long? limit = default(long?));
+        GetSystemWaypoints200Response GetSystemWaypoints(string systemSymbol, int? page = default(int?), int? limit = default(int?));
 
         /// <summary>
-        /// List Waypoints
+        /// List Waypoints in System
         /// </summary>
         /// <remarks>
-        /// Fetch all of the waypoints for a given system. System must be charted or a ship must be present to return waypoint details.
+        /// Return a paginated list of all of the waypoints for a given system.  If a waypoint is uncharted, it will return the &#x60;Uncharted&#x60; trait instead of its actual traits.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <returns>ApiResponse of GetSystemWaypoints200Response</returns>
-        ApiResponse<GetSystemWaypoints200Response> GetSystemWaypointsWithHttpInfo(string systemSymbol, long? page = default(long?), long? limit = default(long?));
+        ApiResponse<GetSystemWaypoints200Response> GetSystemWaypointsWithHttpInfo(string systemSymbol, int? page = default(int?), int? limit = default(int?));
         /// <summary>
         /// List Systems
         /// </summary>
         /// <remarks>
-        /// Return a list of all systems.
+        /// Return a paginated list of all systems.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <returns>GetSystems200Response</returns>
-        GetSystems200Response GetSystems(long? page = default(long?), long? limit = default(long?));
+        GetSystems200Response GetSystems(int? page = default(int?), int? limit = default(int?));
 
         /// <summary>
         /// List Systems
         /// </summary>
         /// <remarks>
-        /// Return a list of all systems.
+        /// Return a paginated list of all systems.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <returns>ApiResponse of GetSystems200Response</returns>
-        ApiResponse<GetSystems200Response> GetSystemsWithHttpInfo(long? page = default(long?), long? limit = default(long?));
+        ApiResponse<GetSystems200Response> GetSystemsWithHttpInfo(int? page = default(int?), int? limit = default(int?));
         /// <summary>
         /// Get Waypoint
         /// </summary>
         /// <remarks>
-        /// View the details of a waypoint.
+        /// View the details of a waypoint.  If the waypoint is uncharted, it will return the &#39;Uncharted&#39; trait instead of its actual traits.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -181,7 +181,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Waypoint
         /// </summary>
         /// <remarks>
-        /// View the details of a waypoint.
+        /// View the details of a waypoint.  If the waypoint is uncharted, it will return the &#39;Uncharted&#39; trait instead of its actual traits.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -201,7 +201,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Jump Gate
         /// </summary>
         /// <remarks>
-        /// Get jump gate details for a waypoint.
+        /// Get jump gate details for a waypoint. Requires a waypoint of type &#x60;JUMP_GATE&#x60; to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -214,7 +214,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Jump Gate
         /// </summary>
         /// <remarks>
-        /// Get jump gate details for a waypoint.
+        /// Get jump gate details for a waypoint. Requires a waypoint of type &#x60;JUMP_GATE&#x60; to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -226,7 +226,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Market
         /// </summary>
         /// <remarks>
-        /// Retrieve imports, exports and exchange data from a marketplace. Imports can be sold, exports can be purchased, and exchange goods can be purchased or sold. Send a ship to the waypoint to access trade good prices and recent transactions.
+        /// Retrieve imports, exports and exchange data from a marketplace. Requires a waypoint that has the &#x60;Marketplace&#x60; trait to use.  Send a ship to the waypoint to access trade good prices and recent transactions. Refer to the [Market Overview page](https://docs.spacetraders.io/game-concepts/markets) to gain better a understanding of the market in the game.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -239,7 +239,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Market
         /// </summary>
         /// <remarks>
-        /// Retrieve imports, exports and exchange data from a marketplace. Imports can be sold, exports can be purchased, and exchange goods can be purchased or sold. Send a ship to the waypoint to access trade good prices and recent transactions.
+        /// Retrieve imports, exports and exchange data from a marketplace. Requires a waypoint that has the &#x60;Marketplace&#x60; trait to use.  Send a ship to the waypoint to access trade good prices and recent transactions. Refer to the [Market Overview page](https://docs.spacetraders.io/game-concepts/markets) to gain better a understanding of the market in the game.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -251,7 +251,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Shipyard
         /// </summary>
         /// <remarks>
-        /// Get the shipyard for a waypoint. Send a ship to the waypoint to access ships that are currently available for purchase and recent transactions.
+        /// Get the shipyard for a waypoint. Requires a waypoint that has the &#x60;Shipyard&#x60; trait to use. Send a ship to the waypoint to access data on ships that are currently available for purchase and recent transactions.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -264,7 +264,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Shipyard
         /// </summary>
         /// <remarks>
-        /// Get the shipyard for a waypoint. Send a ship to the waypoint to access ships that are currently available for purchase and recent transactions.
+        /// Get the shipyard for a waypoint. Requires a waypoint that has the &#x60;Shipyard&#x60; trait to use. Send a ship to the waypoint to access data on ships that are currently available for purchase and recent transactions.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -296,62 +296,62 @@ namespace SpaceTradersUnitySDK.Api
         /// <returns>Task of ApiResponse (GetSystem200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetSystem200Response>> GetSystemWithHttpInfoAsync(string systemSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// List Waypoints
+        /// List Waypoints in System
         /// </summary>
         /// <remarks>
-        /// Fetch all of the waypoints for a given system. System must be charted or a ship must be present to return waypoint details.
+        /// Return a paginated list of all of the waypoints for a given system.  If a waypoint is uncharted, it will return the &#x60;Uncharted&#x60; trait instead of its actual traits.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetSystemWaypoints200Response</returns>
-        System.Threading.Tasks.Task<GetSystemWaypoints200Response> GetSystemWaypointsAsync(string systemSymbol, long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<GetSystemWaypoints200Response> GetSystemWaypointsAsync(string systemSymbol, int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// List Waypoints
+        /// List Waypoints in System
         /// </summary>
         /// <remarks>
-        /// Fetch all of the waypoints for a given system. System must be charted or a ship must be present to return waypoint details.
+        /// Return a paginated list of all of the waypoints for a given system.  If a waypoint is uncharted, it will return the &#x60;Uncharted&#x60; trait instead of its actual traits.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetSystemWaypoints200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetSystemWaypoints200Response>> GetSystemWaypointsWithHttpInfoAsync(string systemSymbol, long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<GetSystemWaypoints200Response>> GetSystemWaypointsWithHttpInfoAsync(string systemSymbol, int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// List Systems
         /// </summary>
         /// <remarks>
-        /// Return a list of all systems.
+        /// Return a paginated list of all systems.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetSystems200Response</returns>
-        System.Threading.Tasks.Task<GetSystems200Response> GetSystemsAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<GetSystems200Response> GetSystemsAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// List Systems
         /// </summary>
         /// <remarks>
-        /// Return a list of all systems.
+        /// Return a paginated list of all systems.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetSystems200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetSystems200Response>> GetSystemsWithHttpInfoAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<GetSystems200Response>> GetSystemsWithHttpInfoAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Get Waypoint
         /// </summary>
         /// <remarks>
-        /// View the details of a waypoint.
+        /// View the details of a waypoint.  If the waypoint is uncharted, it will return the &#39;Uncharted&#39; trait instead of its actual traits.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -364,7 +364,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Waypoint
         /// </summary>
         /// <remarks>
-        /// View the details of a waypoint.
+        /// View the details of a waypoint.  If the waypoint is uncharted, it will return the &#39;Uncharted&#39; trait instead of its actual traits.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -517,7 +517,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Jump Gate Get jump gate details for a waypoint.
+        /// Get Jump Gate Get jump gate details for a waypoint. Requires a waypoint of type &#x60;JUMP_GATE&#x60; to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -530,7 +530,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Jump Gate Get jump gate details for a waypoint.
+        /// Get Jump Gate Get jump gate details for a waypoint. Requires a waypoint of type &#x60;JUMP_GATE&#x60; to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -585,7 +585,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Jump Gate Get jump gate details for a waypoint.
+        /// Get Jump Gate Get jump gate details for a waypoint. Requires a waypoint of type &#x60;JUMP_GATE&#x60; to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -604,7 +604,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Jump Gate Get jump gate details for a waypoint.
+        /// Get Jump Gate Get jump gate details for a waypoint. Requires a waypoint of type &#x60;JUMP_GATE&#x60; to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -669,7 +669,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Market Retrieve imports, exports and exchange data from a marketplace. Imports can be sold, exports can be purchased, and exchange goods can be purchased or sold. Send a ship to the waypoint to access trade good prices and recent transactions.
+        /// Get Market Retrieve imports, exports and exchange data from a marketplace. Requires a waypoint that has the &#x60;Marketplace&#x60; trait to use.  Send a ship to the waypoint to access trade good prices and recent transactions. Refer to the [Market Overview page](https://docs.spacetraders.io/game-concepts/markets) to gain better a understanding of the market in the game.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -682,7 +682,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Market Retrieve imports, exports and exchange data from a marketplace. Imports can be sold, exports can be purchased, and exchange goods can be purchased or sold. Send a ship to the waypoint to access trade good prices and recent transactions.
+        /// Get Market Retrieve imports, exports and exchange data from a marketplace. Requires a waypoint that has the &#x60;Marketplace&#x60; trait to use.  Send a ship to the waypoint to access trade good prices and recent transactions. Refer to the [Market Overview page](https://docs.spacetraders.io/game-concepts/markets) to gain better a understanding of the market in the game.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -737,7 +737,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Market Retrieve imports, exports and exchange data from a marketplace. Imports can be sold, exports can be purchased, and exchange goods can be purchased or sold. Send a ship to the waypoint to access trade good prices and recent transactions.
+        /// Get Market Retrieve imports, exports and exchange data from a marketplace. Requires a waypoint that has the &#x60;Marketplace&#x60; trait to use.  Send a ship to the waypoint to access trade good prices and recent transactions. Refer to the [Market Overview page](https://docs.spacetraders.io/game-concepts/markets) to gain better a understanding of the market in the game.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -756,7 +756,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Market Retrieve imports, exports and exchange data from a marketplace. Imports can be sold, exports can be purchased, and exchange goods can be purchased or sold. Send a ship to the waypoint to access trade good prices and recent transactions.
+        /// Get Market Retrieve imports, exports and exchange data from a marketplace. Requires a waypoint that has the &#x60;Marketplace&#x60; trait to use.  Send a ship to the waypoint to access trade good prices and recent transactions. Refer to the [Market Overview page](https://docs.spacetraders.io/game-concepts/markets) to gain better a understanding of the market in the game.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -821,7 +821,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Shipyard Get the shipyard for a waypoint. Send a ship to the waypoint to access ships that are currently available for purchase and recent transactions.
+        /// Get Shipyard Get the shipyard for a waypoint. Requires a waypoint that has the &#x60;Shipyard&#x60; trait to use. Send a ship to the waypoint to access data on ships that are currently available for purchase and recent transactions.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -834,7 +834,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Shipyard Get the shipyard for a waypoint. Send a ship to the waypoint to access ships that are currently available for purchase and recent transactions.
+        /// Get Shipyard Get the shipyard for a waypoint. Requires a waypoint that has the &#x60;Shipyard&#x60; trait to use. Send a ship to the waypoint to access data on ships that are currently available for purchase and recent transactions.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -889,7 +889,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Shipyard Get the shipyard for a waypoint. Send a ship to the waypoint to access ships that are currently available for purchase and recent transactions.
+        /// Get Shipyard Get the shipyard for a waypoint. Requires a waypoint that has the &#x60;Shipyard&#x60; trait to use. Send a ship to the waypoint to access data on ships that are currently available for purchase and recent transactions.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -908,7 +908,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Shipyard Get the shipyard for a waypoint. Send a ship to the waypoint to access ships that are currently available for purchase and recent transactions.
+        /// Get Shipyard Get the shipyard for a waypoint. Requires a waypoint that has the &#x60;Shipyard&#x60; trait to use. Send a ship to the waypoint to access data on ships that are currently available for purchase and recent transactions.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -1111,28 +1111,28 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// List Waypoints Fetch all of the waypoints for a given system. System must be charted or a ship must be present to return waypoint details.
+        /// List Waypoints in System Return a paginated list of all of the waypoints for a given system.  If a waypoint is uncharted, it will return the &#x60;Uncharted&#x60; trait instead of its actual traits.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <returns>GetSystemWaypoints200Response</returns>
-        public GetSystemWaypoints200Response GetSystemWaypoints(string systemSymbol, long? page = default(long?), long? limit = default(long?))
+        public GetSystemWaypoints200Response GetSystemWaypoints(string systemSymbol, int? page = default(int?), int? limit = default(int?))
         {
             SpaceTradersUnitySDK.Client.ApiResponse<GetSystemWaypoints200Response> localVarResponse = GetSystemWaypointsWithHttpInfo(systemSymbol, page, limit);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List Waypoints Fetch all of the waypoints for a given system. System must be charted or a ship must be present to return waypoint details.
+        /// List Waypoints in System Return a paginated list of all of the waypoints for a given system.  If a waypoint is uncharted, it will return the &#x60;Uncharted&#x60; trait instead of its actual traits.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <returns>ApiResponse of GetSystemWaypoints200Response</returns>
-        public SpaceTradersUnitySDK.Client.ApiResponse<GetSystemWaypoints200Response> GetSystemWaypointsWithHttpInfo(string systemSymbol, long? page = default(long?), long? limit = default(long?))
+        public SpaceTradersUnitySDK.Client.ApiResponse<GetSystemWaypoints200Response> GetSystemWaypointsWithHttpInfo(string systemSymbol, int? page = default(int?), int? limit = default(int?))
         {
             // verify the required parameter 'systemSymbol' is set
             if (systemSymbol == null)
@@ -1184,15 +1184,15 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// List Waypoints Fetch all of the waypoints for a given system. System must be charted or a ship must be present to return waypoint details.
+        /// List Waypoints in System Return a paginated list of all of the waypoints for a given system.  If a waypoint is uncharted, it will return the &#x60;Uncharted&#x60; trait instead of its actual traits.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetSystemWaypoints200Response</returns>
-        public async System.Threading.Tasks.Task<GetSystemWaypoints200Response> GetSystemWaypointsAsync(string systemSymbol, long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<GetSystemWaypoints200Response> GetSystemWaypointsAsync(string systemSymbol, int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = GetSystemWaypointsWithHttpInfoAsync(systemSymbol, page, limit, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
@@ -1204,15 +1204,15 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// List Waypoints Fetch all of the waypoints for a given system. System must be charted or a ship must be present to return waypoint details.
+        /// List Waypoints in System Return a paginated list of all of the waypoints for a given system.  If a waypoint is uncharted, it will return the &#x60;Uncharted&#x60; trait instead of its actual traits.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetSystemWaypoints200Response)</returns>
-        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetSystemWaypoints200Response>> GetSystemWaypointsWithHttpInfoAsync(string systemSymbol, long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetSystemWaypoints200Response>> GetSystemWaypointsWithHttpInfoAsync(string systemSymbol, int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'systemSymbol' is set
             if (systemSymbol == null)
@@ -1273,26 +1273,26 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// List Systems Return a list of all systems.
+        /// List Systems Return a paginated list of all systems.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <returns>GetSystems200Response</returns>
-        public GetSystems200Response GetSystems(long? page = default(long?), long? limit = default(long?))
+        public GetSystems200Response GetSystems(int? page = default(int?), int? limit = default(int?))
         {
             SpaceTradersUnitySDK.Client.ApiResponse<GetSystems200Response> localVarResponse = GetSystemsWithHttpInfo(page, limit);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List Systems Return a list of all systems.
+        /// List Systems Return a paginated list of all systems.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <returns>ApiResponse of GetSystems200Response</returns>
-        public SpaceTradersUnitySDK.Client.ApiResponse<GetSystems200Response> GetSystemsWithHttpInfo(long? page = default(long?), long? limit = default(long?))
+        public SpaceTradersUnitySDK.Client.ApiResponse<GetSystems200Response> GetSystemsWithHttpInfo(int? page = default(int?), int? limit = default(int?))
         {
             SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
 
@@ -1339,14 +1339,14 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// List Systems Return a list of all systems.
+        /// List Systems Return a paginated list of all systems.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetSystems200Response</returns>
-        public async System.Threading.Tasks.Task<GetSystems200Response> GetSystemsAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<GetSystems200Response> GetSystemsAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = GetSystemsWithHttpInfoAsync(page, limit, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
@@ -1358,14 +1358,14 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// List Systems Return a list of all systems.
+        /// List Systems Return a paginated list of all systems.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetSystems200Response)</returns>
-        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetSystems200Response>> GetSystemsWithHttpInfoAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetSystems200Response>> GetSystemsWithHttpInfoAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
@@ -1421,7 +1421,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Waypoint View the details of a waypoint.
+        /// Get Waypoint View the details of a waypoint.  If the waypoint is uncharted, it will return the &#39;Uncharted&#39; trait instead of its actual traits.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -1434,7 +1434,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Waypoint View the details of a waypoint.
+        /// Get Waypoint View the details of a waypoint.  If the waypoint is uncharted, it will return the &#39;Uncharted&#39; trait instead of its actual traits.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -1489,7 +1489,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Waypoint View the details of a waypoint.
+        /// Get Waypoint View the details of a waypoint.  If the waypoint is uncharted, it will return the &#39;Uncharted&#39; trait instead of its actual traits.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -1508,7 +1508,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Waypoint View the details of a waypoint.
+        /// Get Waypoint View the details of a waypoint.  If the waypoint is uncharted, it will return the &#39;Uncharted&#39; trait instead of its actual traits.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>

@@ -40,7 +40,7 @@ namespace SpaceTradersUnitySDK.Model
         /// Initializes a new instance of the <see cref="CreateShipWaypointScan201ResponseData" /> class.
         /// </summary>
         /// <param name="cooldown">cooldown (required).</param>
-        /// <param name="waypoints">waypoints (required).</param>
+        /// <param name="waypoints">List of scanned waypoints. (required).</param>
         public CreateShipWaypointScan201ResponseData(Cooldown cooldown = default(Cooldown), List<ScannedWaypoint> waypoints = default(List<ScannedWaypoint>))
         {
             // to ensure "cooldown" is required (not null)
@@ -64,8 +64,9 @@ namespace SpaceTradersUnitySDK.Model
         public Cooldown Cooldown { get; set; }
 
         /// <summary>
-        /// Gets or Sets Waypoints
+        /// List of scanned waypoints.
         /// </summary>
+        /// <value>List of scanned waypoints.</value>
         [DataMember(Name = "waypoints", IsRequired = true, EmitDefaultValue = true)]
         public List<ScannedWaypoint> Waypoints { get; set; }
 

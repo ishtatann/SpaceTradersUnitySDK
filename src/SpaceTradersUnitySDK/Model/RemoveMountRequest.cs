@@ -39,7 +39,7 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="RemoveMountRequest" /> class.
         /// </summary>
-        /// <param name="symbol">symbol (required).</param>
+        /// <param name="symbol">The symbol of the mount to remove. (required).</param>
         public RemoveMountRequest(string symbol = default(string))
         {
             // to ensure "symbol" is required (not null)
@@ -51,8 +51,9 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Gets or Sets Symbol
+        /// The symbol of the mount to remove.
         /// </summary>
+        /// <value>The symbol of the mount to remove.</value>
         [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
         public string Symbol { get; set; }
 

@@ -32,8 +32,9 @@ namespace SpaceTradersUnitySDK.Model
     public partial class ShipModule : IEquatable<ShipModule>
     {
         /// <summary>
-        /// Defines Symbol
+        /// The symbol of the module.
         /// </summary>
+        /// <value>The symbol of the module.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum SymbolEnum
         {
@@ -143,8 +144,9 @@ namespace SpaceTradersUnitySDK.Model
 
 
         /// <summary>
-        /// Gets or Sets Symbol
+        /// The symbol of the module.
         /// </summary>
+        /// <value>The symbol of the module.</value>
         [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
         public SymbolEnum Symbol { get; set; }
         /// <summary>
@@ -155,11 +157,11 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ShipModule" /> class.
         /// </summary>
-        /// <param name="symbol">symbol (required).</param>
-        /// <param name="capacity">capacity.</param>
-        /// <param name="range">range.</param>
-        /// <param name="name">name (required).</param>
-        /// <param name="description">description.</param>
+        /// <param name="symbol">The symbol of the module. (required).</param>
+        /// <param name="capacity">Modules that provide capacity, such as cargo hold or crew quarters will show this value to denote how much of a bonus the module grants..</param>
+        /// <param name="range">Modules that have a range will such as a sensor array show this value to denote how far can the module reach with its capabilities..</param>
+        /// <param name="name">Name of this module. (required).</param>
+        /// <param name="description">Description of this module. (required).</param>
         /// <param name="requirements">requirements (required).</param>
         public ShipModule(SymbolEnum symbol = default(SymbolEnum), int capacity = default(int), int range = default(int), string name = default(string), string description = default(string), ShipRequirements requirements = default(ShipRequirements))
         {
@@ -170,6 +172,12 @@ namespace SpaceTradersUnitySDK.Model
                 throw new ArgumentNullException("name is a required property for ShipModule and cannot be null");
             }
             this.Name = name;
+            // to ensure "description" is required (not null)
+            if (description == null)
+            {
+                throw new ArgumentNullException("description is a required property for ShipModule and cannot be null");
+            }
+            this.Description = description;
             // to ensure "requirements" is required (not null)
             if (requirements == null)
             {
@@ -178,31 +186,34 @@ namespace SpaceTradersUnitySDK.Model
             this.Requirements = requirements;
             this.Capacity = capacity;
             this.Range = range;
-            this.Description = description;
         }
 
         /// <summary>
-        /// Gets or Sets Capacity
+        /// Modules that provide capacity, such as cargo hold or crew quarters will show this value to denote how much of a bonus the module grants.
         /// </summary>
+        /// <value>Modules that provide capacity, such as cargo hold or crew quarters will show this value to denote how much of a bonus the module grants.</value>
         [DataMember(Name = "capacity", EmitDefaultValue = false)]
         public int Capacity { get; set; }
 
         /// <summary>
-        /// Gets or Sets Range
+        /// Modules that have a range will such as a sensor array show this value to denote how far can the module reach with its capabilities.
         /// </summary>
+        /// <value>Modules that have a range will such as a sensor array show this value to denote how far can the module reach with its capabilities.</value>
         [DataMember(Name = "range", EmitDefaultValue = false)]
         public int Range { get; set; }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Name of this module.
         /// </summary>
+        /// <value>Name of this module.</value>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Description
+        /// Description of this module.
         /// </summary>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
+        /// <value>Description of this module.</value>
+        [DataMember(Name = "description", IsRequired = true, EmitDefaultValue = true)]
         public string Description { get; set; }
 
         /// <summary>

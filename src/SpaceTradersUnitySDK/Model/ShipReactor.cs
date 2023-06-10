@@ -32,8 +32,9 @@ namespace SpaceTradersUnitySDK.Model
     public partial class ShipReactor : IEquatable<ShipReactor>
     {
         /// <summary>
-        /// Defines Symbol
+        /// Symbol of the reactor.
         /// </summary>
+        /// <value>Symbol of the reactor.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum SymbolEnum
         {
@@ -71,8 +72,9 @@ namespace SpaceTradersUnitySDK.Model
 
 
         /// <summary>
-        /// Gets or Sets Symbol
+        /// Symbol of the reactor.
         /// </summary>
+        /// <value>Symbol of the reactor.</value>
         [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
         public SymbolEnum Symbol { get; set; }
         /// <summary>
@@ -83,11 +85,11 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ShipReactor" /> class.
         /// </summary>
-        /// <param name="symbol">symbol (required).</param>
-        /// <param name="name">name (required).</param>
-        /// <param name="description">description (required).</param>
+        /// <param name="symbol">Symbol of the reactor. (required).</param>
+        /// <param name="name">Name of the reactor. (required).</param>
+        /// <param name="description">Description of the reactor. (required).</param>
         /// <param name="condition">Condition is a range of 0 to 100 where 0 is completely worn out and 100 is brand new..</param>
-        /// <param name="powerOutput">powerOutput (required).</param>
+        /// <param name="powerOutput">The amount of power provided by this reactor. The more power a reactor provides to the ship, the lower the cooldown it gets when using a module or mount that taxes the ship&#39;s power. (required).</param>
         /// <param name="requirements">requirements (required).</param>
         public ShipReactor(SymbolEnum symbol = default(SymbolEnum), string name = default(string), string description = default(string), int condition = default(int), int powerOutput = default(int), ShipRequirements requirements = default(ShipRequirements))
         {
@@ -115,14 +117,16 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Name of the reactor.
         /// </summary>
+        /// <value>Name of the reactor.</value>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Description
+        /// Description of the reactor.
         /// </summary>
+        /// <value>Description of the reactor.</value>
         [DataMember(Name = "description", IsRequired = true, EmitDefaultValue = true)]
         public string Description { get; set; }
 
@@ -134,8 +138,9 @@ namespace SpaceTradersUnitySDK.Model
         public int Condition { get; set; }
 
         /// <summary>
-        /// Gets or Sets PowerOutput
+        /// The amount of power provided by this reactor. The more power a reactor provides to the ship, the lower the cooldown it gets when using a module or mount that taxes the ship&#39;s power.
         /// </summary>
+        /// <value>The amount of power provided by this reactor. The more power a reactor provides to the ship, the lower the cooldown it gets when using a module or mount that taxes the ship&#39;s power.</value>
         [DataMember(Name = "powerOutput", IsRequired = true, EmitDefaultValue = true)]
         public int PowerOutput { get; set; }
 

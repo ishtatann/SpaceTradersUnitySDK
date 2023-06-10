@@ -1,4 +1,5 @@
 # SpaceTradersUnitySDK.Model.ShipCargo
+Ship cargo details.
 
 ## Properties
 

@@ -26,7 +26,7 @@ using OpenAPIDateConverter = SpaceTradersUnitySDK.Client.OpenAPIDateConverter;
 namespace SpaceTradersUnitySDK.Model
 {
     /// <summary>
-    /// ShipFuelConsumed
+    /// An object that only shows up when an action has consumed fuel in the process. Shows the fuel consumption data.
     /// </summary>
     [DataContract(Name = "ShipFuel_consumed")]
     public partial class ShipFuelConsumed : IEquatable<ShipFuelConsumed>

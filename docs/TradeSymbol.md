@@ -1,4 +1,5 @@
 # SpaceTradersUnitySDK.Model.TradeSymbol
+The good's symbol.
 
 ## Properties
 

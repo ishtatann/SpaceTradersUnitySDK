@@ -45,10 +45,10 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SystemWaypoint" /> class.
         /// </summary>
-        /// <param name="symbol">symbol (required).</param>
+        /// <param name="symbol">The symbol of the waypoint. (required).</param>
         /// <param name="type">type (required).</param>
-        /// <param name="x">x (required).</param>
-        /// <param name="y">y (required).</param>
+        /// <param name="x">Position in the universe in the x axis. (required).</param>
+        /// <param name="y">Position in the universe in the y axis. (required).</param>
         public SystemWaypoint(string symbol = default(string), WaypointType type = default(WaypointType), int x = default(int), int y = default(int))
         {
             // to ensure "symbol" is required (not null)
@@ -63,20 +63,23 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Gets or Sets Symbol
+        /// The symbol of the waypoint.
         /// </summary>
+        /// <value>The symbol of the waypoint.</value>
         [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
         public string Symbol { get; set; }
 
         /// <summary>
-        /// Gets or Sets X
+        /// Position in the universe in the x axis.
         /// </summary>
+        /// <value>Position in the universe in the x axis.</value>
         [DataMember(Name = "x", IsRequired = true, EmitDefaultValue = true)]
         public int X { get; set; }
 
         /// <summary>
-        /// Gets or Sets Y
+        /// Position in the universe in the y axis.
         /// </summary>
+        /// <value>Position in the universe in the y axis.</value>
         [DataMember(Name = "y", IsRequired = true, EmitDefaultValue = true)]
         public int Y { get; set; }
 

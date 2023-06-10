@@ -40,7 +40,7 @@ namespace SpaceTradersUnitySDK.Model
         /// Initializes a new instance of the <see cref="RemoveMount201Response" /> class.
         /// </summary>
         /// <param name="data">data (required).</param>
-        public RemoveMount201Response(InstallMount201ResponseData data = default(InstallMount201ResponseData))
+        public RemoveMount201Response(RemoveMount201ResponseData data = default(RemoveMount201ResponseData))
         {
             // to ensure "data" is required (not null)
             if (data == null)
@@ -54,7 +54,7 @@ namespace SpaceTradersUnitySDK.Model
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name = "data", IsRequired = true, EmitDefaultValue = true)]
-        public InstallMount201ResponseData Data { get; set; }
+        public RemoveMount201ResponseData Data { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

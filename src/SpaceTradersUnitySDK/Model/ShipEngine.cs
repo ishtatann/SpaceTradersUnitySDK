@@ -32,8 +32,9 @@ namespace SpaceTradersUnitySDK.Model
     public partial class ShipEngine : IEquatable<ShipEngine>
     {
         /// <summary>
-        /// Defines Symbol
+        /// The symbol of the engine.
         /// </summary>
+        /// <value>The symbol of the engine.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum SymbolEnum
         {
@@ -65,8 +66,9 @@ namespace SpaceTradersUnitySDK.Model
 
 
         /// <summary>
-        /// Gets or Sets Symbol
+        /// The symbol of the engine.
         /// </summary>
+        /// <value>The symbol of the engine.</value>
         [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
         public SymbolEnum Symbol { get; set; }
         /// <summary>
@@ -77,11 +79,11 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ShipEngine" /> class.
         /// </summary>
-        /// <param name="symbol">symbol (required).</param>
-        /// <param name="name">name (required).</param>
-        /// <param name="description">description (required).</param>
+        /// <param name="symbol">The symbol of the engine. (required).</param>
+        /// <param name="name">The name of the engine. (required).</param>
+        /// <param name="description">The description of the engine. (required).</param>
         /// <param name="condition">Condition is a range of 0 to 100 where 0 is completely worn out and 100 is brand new..</param>
-        /// <param name="speed">speed (required).</param>
+        /// <param name="speed">The speed stat of this engine. The higher the speed, the faster a ship can travel from one point to another. Reduces the time of arrival when navigating the ship. (required).</param>
         /// <param name="requirements">requirements (required).</param>
         public ShipEngine(SymbolEnum symbol = default(SymbolEnum), string name = default(string), string description = default(string), int condition = default(int), int speed = default(int), ShipRequirements requirements = default(ShipRequirements))
         {
@@ -109,14 +111,16 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// The name of the engine.
         /// </summary>
+        /// <value>The name of the engine.</value>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Description
+        /// The description of the engine.
         /// </summary>
+        /// <value>The description of the engine.</value>
         [DataMember(Name = "description", IsRequired = true, EmitDefaultValue = true)]
         public string Description { get; set; }
 
@@ -128,8 +132,9 @@ namespace SpaceTradersUnitySDK.Model
         public int Condition { get; set; }
 
         /// <summary>
-        /// Gets or Sets Speed
+        /// The speed stat of this engine. The higher the speed, the faster a ship can travel from one point to another. Reduces the time of arrival when navigating the ship.
         /// </summary>
+        /// <value>The speed stat of this engine. The higher the speed, the faster a ship can travel from one point to another. Reduces the time of arrival when navigating the ship.</value>
         [DataMember(Name = "speed", IsRequired = true, EmitDefaultValue = true)]
         public int Speed { get; set; }
 

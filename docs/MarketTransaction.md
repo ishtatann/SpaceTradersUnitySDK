@@ -1,4 +1,5 @@
 # SpaceTradersUnitySDK.Model.MarketTransaction
+Result of a transaction with a market.
 
 ## Properties
 

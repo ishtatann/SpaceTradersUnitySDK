@@ -26,11 +26,17 @@ using OpenAPIDateConverter = SpaceTradersUnitySDK.Client.OpenAPIDateConverter;
 namespace SpaceTradersUnitySDK.Model
 {
     /// <summary>
-    /// WaypointFaction
+    /// The faction that controls the waypoint.
     /// </summary>
     [DataContract(Name = "WaypointFaction")]
     public partial class WaypointFaction : IEquatable<WaypointFaction>
     {
+
+        /// <summary>
+        /// Gets or Sets Symbol
+        /// </summary>
+        [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
+        public FactionSymbols Symbol { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="WaypointFaction" /> class.
         /// </summary>
@@ -40,21 +46,10 @@ namespace SpaceTradersUnitySDK.Model
         /// Initializes a new instance of the <see cref="WaypointFaction" /> class.
         /// </summary>
         /// <param name="symbol">symbol (required).</param>
-        public WaypointFaction(string symbol = default(string))
+        public WaypointFaction(FactionSymbols symbol = default(FactionSymbols))
         {
-            // to ensure "symbol" is required (not null)
-            if (symbol == null)
-            {
-                throw new ArgumentNullException("symbol is a required property for WaypointFaction and cannot be null");
-            }
             this.Symbol = symbol;
         }
-
-        /// <summary>
-        /// Gets or Sets Symbol
-        /// </summary>
-        [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
-        public string Symbol { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,8 +97,7 @@ namespace SpaceTradersUnitySDK.Model
             return 
                 (
                     this.Symbol == input.Symbol ||
-                    (this.Symbol != null &&
-                    this.Symbol.Equals(input.Symbol))
+                    this.Symbol.Equals(input.Symbol)
                 );
         }
 
@@ -116,10 +110,7 @@ namespace SpaceTradersUnitySDK.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Symbol != null)
-                {
-                    hashCode = (hashCode * 59) + this.Symbol.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Symbol.GetHashCode();
                 return hashCode;
             }
         }

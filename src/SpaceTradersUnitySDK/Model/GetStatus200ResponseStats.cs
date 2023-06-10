@@ -39,11 +39,11 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="GetStatus200ResponseStats" /> class.
         /// </summary>
-        /// <param name="agents">agents (required).</param>
-        /// <param name="ships">ships (required).</param>
-        /// <param name="systems">systems (required).</param>
-        /// <param name="waypoints">waypoints (required).</param>
-        public GetStatus200ResponseStats(long agents = default(long), long ships = default(long), long systems = default(long), long waypoints = default(long))
+        /// <param name="agents">Number of registered agents in the game. (required).</param>
+        /// <param name="ships">Total number of ships in the game. (required).</param>
+        /// <param name="systems">Total number of systems in the game. (required).</param>
+        /// <param name="waypoints">Total number of waypoints in the game. (required).</param>
+        public GetStatus200ResponseStats(int agents = default(int), int ships = default(int), int systems = default(int), int waypoints = default(int))
         {
             this.Agents = agents;
             this.Ships = ships;
@@ -52,28 +52,32 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Gets or Sets Agents
+        /// Number of registered agents in the game.
         /// </summary>
+        /// <value>Number of registered agents in the game.</value>
         [DataMember(Name = "agents", IsRequired = true, EmitDefaultValue = true)]
-        public long Agents { get; set; }
+        public int Agents { get; set; }
 
         /// <summary>
-        /// Gets or Sets Ships
+        /// Total number of ships in the game.
         /// </summary>
+        /// <value>Total number of ships in the game.</value>
         [DataMember(Name = "ships", IsRequired = true, EmitDefaultValue = true)]
-        public long Ships { get; set; }
+        public int Ships { get; set; }
 
         /// <summary>
-        /// Gets or Sets Systems
+        /// Total number of systems in the game.
         /// </summary>
+        /// <value>Total number of systems in the game.</value>
         [DataMember(Name = "systems", IsRequired = true, EmitDefaultValue = true)]
-        public long Systems { get; set; }
+        public int Systems { get; set; }
 
         /// <summary>
-        /// Gets or Sets Waypoints
+        /// Total number of waypoints in the game.
         /// </summary>
+        /// <value>Total number of waypoints in the game.</value>
         [DataMember(Name = "waypoints", IsRequired = true, EmitDefaultValue = true)]
-        public long Waypoints { get; set; }
+        public int Waypoints { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

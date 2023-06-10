@@ -34,9 +34,9 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Chart" /> class.
         /// </summary>
-        /// <param name="waypointSymbol">waypointSymbol.</param>
-        /// <param name="submittedBy">submittedBy.</param>
-        /// <param name="submittedOn">submittedOn.</param>
+        /// <param name="waypointSymbol">The symbol of the waypoint..</param>
+        /// <param name="submittedBy">The agent that submitted the chart for this waypoint..</param>
+        /// <param name="submittedOn">The time the chart for this waypoint was submitted..</param>
         public Chart(string waypointSymbol = default(string), string submittedBy = default(string), DateTime submittedOn = default(DateTime))
         {
             this.WaypointSymbol = waypointSymbol;
@@ -45,20 +45,23 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Gets or Sets WaypointSymbol
+        /// The symbol of the waypoint.
         /// </summary>
+        /// <value>The symbol of the waypoint.</value>
         [DataMember(Name = "waypointSymbol", EmitDefaultValue = false)]
         public string WaypointSymbol { get; set; }
 
         /// <summary>
-        /// Gets or Sets SubmittedBy
+        /// The agent that submitted the chart for this waypoint.
         /// </summary>
+        /// <value>The agent that submitted the chart for this waypoint.</value>
         [DataMember(Name = "submittedBy", EmitDefaultValue = false)]
         public string SubmittedBy { get; set; }
 
         /// <summary>
-        /// Gets or Sets SubmittedOn
+        /// The time the chart for this waypoint was submitted.
         /// </summary>
+        /// <value>The time the chart for this waypoint was submitted.</value>
         [DataMember(Name = "submittedOn", EmitDefaultValue = false)]
         public DateTime SubmittedOn { get; set; }
 

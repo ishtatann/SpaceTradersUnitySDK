@@ -26,7 +26,7 @@ using OpenAPIDateConverter = SpaceTradersUnitySDK.Client.OpenAPIDateConverter;
 namespace SpaceTradersUnitySDK.Model
 {
     /// <summary>
-    /// TradeGood
+    /// A good that can be traded for other goods or currency.
     /// </summary>
     [DataContract(Name = "TradeGood")]
     public partial class TradeGood : IEquatable<TradeGood>
@@ -46,8 +46,8 @@ namespace SpaceTradersUnitySDK.Model
         /// Initializes a new instance of the <see cref="TradeGood" /> class.
         /// </summary>
         /// <param name="symbol">symbol (required).</param>
-        /// <param name="name">name (required).</param>
-        /// <param name="description">description (required).</param>
+        /// <param name="name">The name of the good. (required).</param>
+        /// <param name="description">The description of the good. (required).</param>
         public TradeGood(TradeSymbol symbol = default(TradeSymbol), string name = default(string), string description = default(string))
         {
             this.Symbol = symbol;
@@ -66,14 +66,16 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// The name of the good.
         /// </summary>
+        /// <value>The name of the good.</value>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Description
+        /// The description of the good.
         /// </summary>
+        /// <value>The description of the good.</value>
         [DataMember(Name = "description", IsRequired = true, EmitDefaultValue = true)]
         public string Description { get; set; }
 

@@ -26,14 +26,15 @@ using OpenAPIDateConverter = SpaceTradersUnitySDK.Client.OpenAPIDateConverter;
 namespace SpaceTradersUnitySDK.Model
 {
     /// <summary>
-    /// Contract
+    /// Contract details.
     /// </summary>
     [DataContract(Name = "Contract")]
     public partial class Contract : IEquatable<Contract>
     {
         /// <summary>
-        /// Defines Type
+        /// Type of contract.
         /// </summary>
+        /// <value>Type of contract.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -59,8 +60,9 @@ namespace SpaceTradersUnitySDK.Model
 
 
         /// <summary>
-        /// Gets or Sets Type
+        /// Type of contract.
         /// </summary>
+        /// <value>Type of contract.</value>
         [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
         public TypeEnum Type { get; set; }
         /// <summary>
@@ -71,9 +73,9 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Contract" /> class.
         /// </summary>
-        /// <param name="id">id (required).</param>
+        /// <param name="id">ID of the contract. (required).</param>
         /// <param name="factionSymbol">The symbol of the faction that this contract is for. (required).</param>
-        /// <param name="type">type (required).</param>
+        /// <param name="type">Type of contract. (required).</param>
         /// <param name="terms">terms (required).</param>
         /// <param name="accepted">Whether the contract has been accepted by the agent (required) (default to false).</param>
         /// <param name="fulfilled">Whether the contract has been fulfilled (required) (default to false).</param>
@@ -107,8 +109,9 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// ID of the contract.
         /// </summary>
+        /// <value>ID of the contract.</value>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
 

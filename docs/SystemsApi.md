@@ -8,7 +8,7 @@ All URIs are relative to *https://api.spacetraders.io/v2*
 | [**GetMarket**](SystemsApi.md#getmarket) | **GET** /systems/{systemSymbol}/waypoints/{waypointSymbol}/market | Get Market |
 | [**GetShipyard**](SystemsApi.md#getshipyard) | **GET** /systems/{systemSymbol}/waypoints/{waypointSymbol}/shipyard | Get Shipyard |
 | [**GetSystem**](SystemsApi.md#getsystem) | **GET** /systems/{systemSymbol} | Get System |
-| [**GetSystemWaypoints**](SystemsApi.md#getsystemwaypoints) | **GET** /systems/{systemSymbol}/waypoints | List Waypoints |
+| [**GetSystemWaypoints**](SystemsApi.md#getsystemwaypoints) | **GET** /systems/{systemSymbol}/waypoints | List Waypoints in System |
 | [**GetSystems**](SystemsApi.md#getsystems) | **GET** /systems | List Systems |
 | [**GetWaypoint**](SystemsApi.md#getwaypoint) | **GET** /systems/{systemSymbol}/waypoints/{waypointSymbol} | Get Waypoint |
 
@@ -18,7 +18,7 @@ All URIs are relative to *https://api.spacetraders.io/v2*
 
 Get Jump Gate
 
-Get jump gate details for a waypoint.
+Get jump gate details for a waypoint. Requires a waypoint of type `JUMP_GATE` to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
 
 ### Example
 ```csharp
@@ -104,7 +104,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK |  -  |
+| **200** | Successfully fetched jump gate. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -114,7 +114,7 @@ catch (ApiException e)
 
 Get Market
 
-Retrieve imports, exports and exchange data from a marketplace. Imports can be sold, exports can be purchased, and exchange goods can be purchased or sold. Send a ship to the waypoint to access trade good prices and recent transactions.
+Retrieve imports, exports and exchange data from a marketplace. Requires a waypoint that has the `Marketplace` trait to use.  Send a ship to the waypoint to access trade good prices and recent transactions. Refer to the [Market Overview page](https://docs.spacetraders.io/game-concepts/markets) to gain better a understanding of the market in the game.
 
 ### Example
 ```csharp
@@ -200,7 +200,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK |  -  |
+| **200** | Successfully fetched the market. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -210,7 +210,7 @@ catch (ApiException e)
 
 Get Shipyard
 
-Get the shipyard for a waypoint. Send a ship to the waypoint to access ships that are currently available for purchase and recent transactions.
+Get the shipyard for a waypoint. Requires a waypoint that has the `Shipyard` trait to use. Send a ship to the waypoint to access data on ships that are currently available for purchase and recent transactions.
 
 ### Example
 ```csharp
@@ -296,7 +296,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK |  -  |
+| **200** | Successfully fetched the shipyard. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -390,17 +390,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK |  -  |
+| **200** | Successfully fetched the system. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getsystemwaypoints"></a>
 # **GetSystemWaypoints**
-> GetSystemWaypoints200Response GetSystemWaypoints (string systemSymbol, long? page = null, long? limit = null)
+> GetSystemWaypoints200Response GetSystemWaypoints (string systemSymbol, int? page = null, int? limit = null)
 
-List Waypoints
+List Waypoints in System
 
-Fetch all of the waypoints for a given system. System must be charted or a ship must be present to return waypoint details.
+Return a paginated list of all of the waypoints for a given system.  If a waypoint is uncharted, it will return the `Uncharted` trait instead of its actual traits.
 
 ### Example
 ```csharp
@@ -423,12 +423,12 @@ namespace Example
 
             var apiInstance = new SystemsApi(config);
             var systemSymbol = "systemSymbol_example";  // string | The system symbol
-            var page = 789L;  // long? | What entry offset to request (optional) 
-            var limit = 789L;  // long? | How many entries to return per page (optional) 
+            var page = 1;  // int? | What entry offset to request (optional)  (default to 1)
+            var limit = 10;  // int? | How many entries to return per page (optional)  (default to 10)
 
             try
             {
-                // List Waypoints
+                // List Waypoints in System
                 GetSystemWaypoints200Response result = apiInstance.GetSystemWaypoints(systemSymbol, page, limit);
                 Debug.WriteLine(result);
             }
@@ -449,7 +449,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // List Waypoints
+    // List Waypoints in System
     ApiResponse<GetSystemWaypoints200Response> response = apiInstance.GetSystemWaypointsWithHttpInfo(systemSymbol, page, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -468,8 +468,8 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **systemSymbol** | **string** | The system symbol |  |
-| **page** | **long?** | What entry offset to request | [optional]  |
-| **limit** | **long?** | How many entries to return per page | [optional]  |
+| **page** | **int?** | What entry offset to request | [optional] [default to 1] |
+| **limit** | **int?** | How many entries to return per page | [optional] [default to 10] |
 
 ### Return type
 
@@ -488,17 +488,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK |  -  |
+| **200** | Successfully fetched all waypoints in the system. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getsystems"></a>
 # **GetSystems**
-> GetSystems200Response GetSystems (long? page = null, long? limit = null)
+> GetSystems200Response GetSystems (int? page = null, int? limit = null)
 
 List Systems
 
-Return a list of all systems.
+Return a paginated list of all systems.
 
 ### Example
 ```csharp
@@ -520,8 +520,8 @@ namespace Example
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new SystemsApi(config);
-            var page = 789L;  // long? | What entry offset to request (optional) 
-            var limit = 789L;  // long? | How many entries to return per page (optional) 
+            var page = 1;  // int? | What entry offset to request (optional)  (default to 1)
+            var limit = 10;  // int? | How many entries to return per page (optional)  (default to 10)
 
             try
             {
@@ -564,8 +564,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **page** | **long?** | What entry offset to request | [optional]  |
-| **limit** | **long?** | How many entries to return per page | [optional]  |
+| **page** | **int?** | What entry offset to request | [optional] [default to 1] |
+| **limit** | **int?** | How many entries to return per page | [optional] [default to 10] |
 
 ### Return type
 
@@ -584,7 +584,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK |  -  |
+| **200** | Successfully listed systems. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -594,7 +594,7 @@ catch (ApiException e)
 
 Get Waypoint
 
-View the details of a waypoint.
+View the details of a waypoint.  If the waypoint is uncharted, it will return the 'Uncharted' trait instead of its actual traits.
 
 ### Example
 ```csharp
@@ -680,7 +680,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK |  -  |
+| **200** | Successfully fetched waypoint. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

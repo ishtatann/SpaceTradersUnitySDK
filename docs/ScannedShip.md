@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Frame** | [**ScannedShipFrame**](ScannedShipFrame.md) |  | [optional] 
 **Reactor** | [**ScannedShipReactor**](ScannedShipReactor.md) |  | [optional] 
 **Engine** | [**ScannedShipEngine**](ScannedShipEngine.md) |  | 
-**Mounts** | [**List&lt;ScannedShipMountsInner&gt;**](ScannedShipMountsInner.md) |  | [optional] 
+**Mounts** | [**List&lt;ScannedShipMountsInner&gt;**](ScannedShipMountsInner.md) | List of mounts installed in the ship. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

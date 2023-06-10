@@ -83,7 +83,7 @@ namespace SpaceTradersUnitySDKExample
 
             try
             {
-                // My Agent Details
+                // Get Agent
                 GetMyAgent200Response result = await apiInstance.GetMyAgentAsync();
                 Debug.Log(result);
                 Debug.Log("Done!");
@@ -107,9 +107,9 @@ All URIs are relative to *https://api.spacetraders.io/v2*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AgentsApi* | [**GetMyAgent**](AgentsApi.md#getmyagent) | **GET** /my/agent | My Agent Details
+*AgentsApi* | [**GetMyAgent**](AgentsApi.md#getmyagent) | **GET** /my/agent | Get Agent
 *ContractsApi* | [**AcceptContract**](ContractsApi.md#acceptcontract) | **POST** /my/contracts/{contractId}/accept | Accept Contract
-*ContractsApi* | [**DeliverContract**](ContractsApi.md#delivercontract) | **POST** /my/contracts/{contractId}/deliver | Deliver Contract
+*ContractsApi* | [**DeliverContract**](ContractsApi.md#delivercontract) | **POST** /my/contracts/{contractId}/deliver | Deliver Cargo to Contract
 *ContractsApi* | [**FulfillContract**](ContractsApi.md#fulfillcontract) | **POST** /my/contracts/{contractId}/fulfill | Fulfill Contract
 *ContractsApi* | [**GetContract**](ContractsApi.md#getcontract) | **GET** /my/contracts/{contractId} | Get Contract
 *ContractsApi* | [**GetContracts**](ContractsApi.md#getcontracts) | **GET** /my/contracts | List Contracts
@@ -149,7 +149,7 @@ Class | Method | HTTP request | Description
 *SystemsApi* | [**GetMarket**](SystemsApi.md#getmarket) | **GET** /systems/{systemSymbol}/waypoints/{waypointSymbol}/market | Get Market
 *SystemsApi* | [**GetShipyard**](SystemsApi.md#getshipyard) | **GET** /systems/{systemSymbol}/waypoints/{waypointSymbol}/shipyard | Get Shipyard
 *SystemsApi* | [**GetSystem**](SystemsApi.md#getsystem) | **GET** /systems/{systemSymbol} | Get System
-*SystemsApi* | [**GetSystemWaypoints**](SystemsApi.md#getsystemwaypoints) | **GET** /systems/{systemSymbol}/waypoints | List Waypoints
+*SystemsApi* | [**GetSystemWaypoints**](SystemsApi.md#getsystemwaypoints) | **GET** /systems/{systemSymbol}/waypoints | List Waypoints in System
 *SystemsApi* | [**GetSystems**](SystemsApi.md#getsystems) | **GET** /systems | List Systems
 *SystemsApi* | [**GetWaypoint**](SystemsApi.md#getwaypoint) | **GET** /systems/{systemSymbol}/waypoints/{waypointSymbol} | Get Waypoint
 
@@ -187,6 +187,7 @@ Class | Method | HTTP request | Description
  - [Model.Extraction](Extraction.md)
  - [Model.ExtractionYield](ExtractionYield.md)
  - [Model.Faction](Faction.md)
+ - [Model.FactionSymbols](FactionSymbols.md)
  - [Model.FactionTrait](FactionTrait.md)
  - [Model.FulfillContract200Response](FulfillContract200Response.md)
  - [Model.GetContract200Response](GetContract200Response.md)
@@ -217,7 +218,6 @@ Class | Method | HTTP request | Description
  - [Model.GetWaypoint200Response](GetWaypoint200Response.md)
  - [Model.InstallMount201Response](InstallMount201Response.md)
  - [Model.InstallMount201ResponseData](InstallMount201ResponseData.md)
- - [Model.InstallMount201ResponseDataTransaction](InstallMount201ResponseDataTransaction.md)
  - [Model.InstallMountRequest](InstallMountRequest.md)
  - [Model.Jettison200Response](Jettison200Response.md)
  - [Model.Jettison200ResponseData](Jettison200ResponseData.md)
@@ -249,6 +249,7 @@ Class | Method | HTTP request | Description
  - [Model.Register201ResponseData](Register201ResponseData.md)
  - [Model.RegisterRequest](RegisterRequest.md)
  - [Model.RemoveMount201Response](RemoveMount201Response.md)
+ - [Model.RemoveMount201ResponseData](RemoveMount201ResponseData.md)
  - [Model.RemoveMountRequest](RemoveMountRequest.md)
  - [Model.ScannedShip](ScannedShip.md)
  - [Model.ScannedShipEngine](ScannedShipEngine.md)

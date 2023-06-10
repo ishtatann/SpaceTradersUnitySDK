@@ -32,8 +32,9 @@ namespace SpaceTradersUnitySDK.Model
     public partial class ShipRefineRequest : IEquatable<ShipRefineRequest>
     {
         /// <summary>
-        /// Defines Produce
+        /// The type of good to produce out of the refining process.
         /// </summary>
+        /// <value>The type of good to produce out of the refining process.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ProduceEnum
         {
@@ -95,8 +96,9 @@ namespace SpaceTradersUnitySDK.Model
 
 
         /// <summary>
-        /// Gets or Sets Produce
+        /// The type of good to produce out of the refining process.
         /// </summary>
+        /// <value>The type of good to produce out of the refining process.</value>
         [DataMember(Name = "produce", IsRequired = true, EmitDefaultValue = true)]
         public ProduceEnum Produce { get; set; }
         /// <summary>
@@ -107,7 +109,7 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ShipRefineRequest" /> class.
         /// </summary>
-        /// <param name="produce">produce (required).</param>
+        /// <param name="produce">The type of good to produce out of the refining process. (required).</param>
         public ShipRefineRequest(ProduceEnum produce = default(ProduceEnum))
         {
             this.Produce = produce;

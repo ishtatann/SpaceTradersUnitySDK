@@ -26,7 +26,7 @@ using OpenAPIDateConverter = SpaceTradersUnitySDK.Client.OpenAPIDateConverter;
 namespace SpaceTradersUnitySDK.Model
 {
     /// <summary>
-    /// A ship
+    /// Ship details.
     /// </summary>
     [DataContract(Name = "Ship")]
     public partial class Ship : IEquatable<Ship>
@@ -39,15 +39,15 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Ship" /> class.
         /// </summary>
-        /// <param name="symbol">The globally unique identifier of the ship in the following format: &#x60;[AGENT_SYMBOL]_[HEX_ID]&#x60; (required).</param>
+        /// <param name="symbol">The globally unique identifier of the ship in the following format: &#x60;[AGENT_SYMBOL]-[HEX_ID]&#x60; (required).</param>
         /// <param name="registration">registration (required).</param>
         /// <param name="nav">nav (required).</param>
         /// <param name="crew">crew (required).</param>
         /// <param name="frame">frame (required).</param>
         /// <param name="reactor">reactor (required).</param>
         /// <param name="engine">engine (required).</param>
-        /// <param name="modules">modules (required).</param>
-        /// <param name="mounts">mounts (required).</param>
+        /// <param name="modules">Modules installed in this ship. (required).</param>
+        /// <param name="mounts">Mounts installed in this ship. (required).</param>
         /// <param name="cargo">cargo (required).</param>
         /// <param name="fuel">fuel (required).</param>
         public Ship(string symbol = default(string), ShipRegistration registration = default(ShipRegistration), ShipNav nav = default(ShipNav), ShipCrew crew = default(ShipCrew), ShipFrame frame = default(ShipFrame), ShipReactor reactor = default(ShipReactor), ShipEngine engine = default(ShipEngine), List<ShipModule> modules = default(List<ShipModule>), List<ShipMount> mounts = default(List<ShipMount>), ShipCargo cargo = default(ShipCargo), ShipFuel fuel = default(ShipFuel))
@@ -121,9 +121,9 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// The globally unique identifier of the ship in the following format: &#x60;[AGENT_SYMBOL]_[HEX_ID]&#x60;
+        /// The globally unique identifier of the ship in the following format: &#x60;[AGENT_SYMBOL]-[HEX_ID]&#x60;
         /// </summary>
-        /// <value>The globally unique identifier of the ship in the following format: &#x60;[AGENT_SYMBOL]_[HEX_ID]&#x60;</value>
+        /// <value>The globally unique identifier of the ship in the following format: &#x60;[AGENT_SYMBOL]-[HEX_ID]&#x60;</value>
         [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
         public string Symbol { get; set; }
 
@@ -164,14 +164,16 @@ namespace SpaceTradersUnitySDK.Model
         public ShipEngine Engine { get; set; }
 
         /// <summary>
-        /// Gets or Sets Modules
+        /// Modules installed in this ship.
         /// </summary>
+        /// <value>Modules installed in this ship.</value>
         [DataMember(Name = "modules", IsRequired = true, EmitDefaultValue = true)]
         public List<ShipModule> Modules { get; set; }
 
         /// <summary>
-        /// Gets or Sets Mounts
+        /// Mounts installed in this ship.
         /// </summary>
+        /// <value>Mounts installed in this ship.</value>
         [DataMember(Name = "mounts", IsRequired = true, EmitDefaultValue = true)]
         public List<ShipMount> Mounts { get; set; }
 

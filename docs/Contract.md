@@ -1,12 +1,13 @@
 # SpaceTradersUnitySDK.Model.Contract
+Contract details.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
+**Id** | **string** | ID of the contract. | 
 **FactionSymbol** | **string** | The symbol of the faction that this contract is for. | 
-**Type** | **string** |  | 
+**Type** | **string** | Type of contract. | 
 **Terms** | [**ContractTerms**](ContractTerms.md) |  | 
 **Accepted** | **bool** | Whether the contract has been accepted by the agent | [default to false]
 **Fulfilled** | **bool** | Whether the contract has been fulfilled | [default to false]

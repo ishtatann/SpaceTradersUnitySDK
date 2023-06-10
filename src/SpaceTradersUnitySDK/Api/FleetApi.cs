@@ -31,10 +31,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Create Chart
         /// </summary>
         /// <remarks>
-        /// Command a ship to chart the current waypoint.  Waypoints in the universe are uncharted by default. These locations will not show up in the API until they have been charted by a ship.  Charting a location will record your agent as the one who created the chart.
+        /// Command a ship to chart the waypoint at its current location.  Most waypoints in the universe are uncharted by default. These waypoints have their traits hidden until they have been charted by a ship.  Charting a waypoint will record your agent as the one who created the chart, and all other agents would also be able to see the waypoint&#39;s traits.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>CreateChart201Response</returns>
         CreateChart201Response CreateChart(string shipSymbol);
 
@@ -42,20 +42,20 @@ namespace SpaceTradersUnitySDK.Api
         /// Create Chart
         /// </summary>
         /// <remarks>
-        /// Command a ship to chart the current waypoint.  Waypoints in the universe are uncharted by default. These locations will not show up in the API until they have been charted by a ship.  Charting a location will record your agent as the one who created the chart.
+        /// Command a ship to chart the waypoint at its current location.  Most waypoints in the universe are uncharted by default. These waypoints have their traits hidden until they have been charted by a ship.  Charting a waypoint will record your agent as the one who created the chart, and all other agents would also be able to see the waypoint&#39;s traits.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>ApiResponse of CreateChart201Response</returns>
         ApiResponse<CreateChart201Response> CreateChartWithHttpInfo(string shipSymbol);
         /// <summary>
         /// Scan Ships
         /// </summary>
         /// <remarks>
-        /// Activate your ship&#39;s sensor arrays to scan for ship information.
+        /// Scan for nearby ships, retrieving information for all ships in range.  Requires a ship to have the &#x60;Sensor Array&#x60; mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <returns>CreateShipShipScan201Response</returns>
         CreateShipShipScan201Response CreateShipShipScan(string shipSymbol);
 
@@ -63,20 +63,20 @@ namespace SpaceTradersUnitySDK.Api
         /// Scan Ships
         /// </summary>
         /// <remarks>
-        /// Activate your ship&#39;s sensor arrays to scan for ship information.
+        /// Scan for nearby ships, retrieving information for all ships in range.  Requires a ship to have the &#x60;Sensor Array&#x60; mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <returns>ApiResponse of CreateShipShipScan201Response</returns>
         ApiResponse<CreateShipShipScan201Response> CreateShipShipScanWithHttpInfo(string shipSymbol);
         /// <summary>
         /// Scan Systems
         /// </summary>
         /// <remarks>
-        /// Activate your ship&#39;s sensor arrays to scan for system information.
+        /// Scan for nearby systems, retrieving information on the systems&#39; distance from the ship and their waypoints. Requires a ship to have the &#x60;Sensor Array&#x60; mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <returns>CreateShipSystemScan201Response</returns>
         CreateShipSystemScan201Response CreateShipSystemScan(string shipSymbol);
 
@@ -84,20 +84,20 @@ namespace SpaceTradersUnitySDK.Api
         /// Scan Systems
         /// </summary>
         /// <remarks>
-        /// Activate your ship&#39;s sensor arrays to scan for system information.
+        /// Scan for nearby systems, retrieving information on the systems&#39; distance from the ship and their waypoints. Requires a ship to have the &#x60;Sensor Array&#x60; mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <returns>ApiResponse of CreateShipSystemScan201Response</returns>
         ApiResponse<CreateShipSystemScan201Response> CreateShipSystemScanWithHttpInfo(string shipSymbol);
         /// <summary>
         /// Scan Waypoints
         /// </summary>
         /// <remarks>
-        /// Activate your ship&#39;s sensor arrays to scan for waypoint information.
+        /// Scan for nearby waypoints, retrieving detailed information on each waypoint in range. Scanning uncharted waypoints will allow you to ignore their uncharted state and will list the waypoints&#39; traits.  Requires a ship to have the &#x60;Sensor Array&#x60; mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <returns>CreateShipWaypointScan201Response</returns>
         CreateShipWaypointScan201Response CreateShipWaypointScan(string shipSymbol);
 
@@ -105,20 +105,20 @@ namespace SpaceTradersUnitySDK.Api
         /// Scan Waypoints
         /// </summary>
         /// <remarks>
-        /// Activate your ship&#39;s sensor arrays to scan for waypoint information.
+        /// Scan for nearby waypoints, retrieving detailed information on each waypoint in range. Scanning uncharted waypoints will allow you to ignore their uncharted state and will list the waypoints&#39; traits.  Requires a ship to have the &#x60;Sensor Array&#x60; mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <returns>ApiResponse of CreateShipWaypointScan201Response</returns>
         ApiResponse<CreateShipWaypointScan201Response> CreateShipWaypointScanWithHttpInfo(string shipSymbol);
         /// <summary>
         /// Create Survey
         /// </summary>
         /// <remarks>
-        /// If you want to target specific yields for an extraction, you can survey a waypoint, such as an asteroid field, and send the survey in the body of the extract request. Each survey may have multiple deposits, and if a symbol shows up more than once, that indicates a higher chance of extracting that resource.  Your ship will enter a cooldown between consecutive survey requests. Surveys will eventually expire after a period of time. Multiple ships can use the same survey for extraction.
+        /// Create surveys on a waypoint that can be extracted such as asteroid fields. A survey focuses on specific types of deposits from the extracted location. When ships extract using this survey, they are guaranteed to procure a high amount of one of the goods in the survey.  In order to use a survey, send the entire survey details in the body of the extract request.  Each survey may have multiple deposits, and if a symbol shows up more than once, that indicates a higher chance of extracting that resource.  Your ship will enter a cooldown after surveying in which it is unable to perform certain actions. Surveys will eventually expire after a period of time or will be exhausted after being extracted several times based on the survey&#39;s size. Multiple ships can use the same survey for extraction.  A ship must have the &#x60;Surveyor&#x60; mount installed in order to use this function.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>CreateSurvey201Response</returns>
         CreateSurvey201Response CreateSurvey(string shipSymbol);
 
@@ -126,20 +126,20 @@ namespace SpaceTradersUnitySDK.Api
         /// Create Survey
         /// </summary>
         /// <remarks>
-        /// If you want to target specific yields for an extraction, you can survey a waypoint, such as an asteroid field, and send the survey in the body of the extract request. Each survey may have multiple deposits, and if a symbol shows up more than once, that indicates a higher chance of extracting that resource.  Your ship will enter a cooldown between consecutive survey requests. Surveys will eventually expire after a period of time. Multiple ships can use the same survey for extraction.
+        /// Create surveys on a waypoint that can be extracted such as asteroid fields. A survey focuses on specific types of deposits from the extracted location. When ships extract using this survey, they are guaranteed to procure a high amount of one of the goods in the survey.  In order to use a survey, send the entire survey details in the body of the extract request.  Each survey may have multiple deposits, and if a symbol shows up more than once, that indicates a higher chance of extracting that resource.  Your ship will enter a cooldown after surveying in which it is unable to perform certain actions. Surveys will eventually expire after a period of time or will be exhausted after being extracted several times based on the survey&#39;s size. Multiple ships can use the same survey for extraction.  A ship must have the &#x60;Surveyor&#x60; mount installed in order to use this function.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>ApiResponse of CreateSurvey201Response</returns>
         ApiResponse<CreateSurvey201Response> CreateSurveyWithHttpInfo(string shipSymbol);
         /// <summary>
         /// Dock Ship
         /// </summary>
         /// <remarks>
-        /// Attempt to dock your ship at it&#39;s current location. Docking will only succeed if the waypoint is a dockable location, and your ship is capable of docking at the time of the request.  The endpoint is idempotent - successive calls will succeed even if the ship is already docked.
+        /// Attempt to dock your ship at its current location. Docking will only succeed if your ship is capable of docking at the time of the request.  Docked ships can access elements in their current location, such as the market or a shipyard, but cannot do actions that require the ship to be above surface such as navigating or extracting.  The endpoint is idempotent - successive calls will succeed even if the ship is already docked.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>DockShip200Response</returns>
         DockShip200Response DockShip(string shipSymbol);
 
@@ -147,20 +147,20 @@ namespace SpaceTradersUnitySDK.Api
         /// Dock Ship
         /// </summary>
         /// <remarks>
-        /// Attempt to dock your ship at it&#39;s current location. Docking will only succeed if the waypoint is a dockable location, and your ship is capable of docking at the time of the request.  The endpoint is idempotent - successive calls will succeed even if the ship is already docked.
+        /// Attempt to dock your ship at its current location. Docking will only succeed if your ship is capable of docking at the time of the request.  Docked ships can access elements in their current location, such as the market or a shipyard, but cannot do actions that require the ship to be above surface such as navigating or extracting.  The endpoint is idempotent - successive calls will succeed even if the ship is already docked.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>ApiResponse of DockShip200Response</returns>
         ApiResponse<DockShip200Response> DockShipWithHttpInfo(string shipSymbol);
         /// <summary>
         /// Extract Resources
         /// </summary>
         /// <remarks>
-        /// Extract resources from the waypoint into your ship. Send an optional survey as the payload to target specific yields.
+        /// Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the &#x60;Gas Siphon&#x60; mount for gas-based goods or &#x60;Mining Laser&#x60; mount for ore-based goods.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="extractResourcesRequest"> (optional)</param>
         /// <returns>ExtractResources201Response</returns>
         ExtractResources201Response ExtractResources(string shipSymbol, ExtractResourcesRequest extractResourcesRequest = default(ExtractResourcesRequest));
@@ -169,10 +169,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Extract Resources
         /// </summary>
         /// <remarks>
-        /// Extract resources from the waypoint into your ship. Send an optional survey as the payload to target specific yields.
+        /// Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the &#x60;Gas Siphon&#x60; mount for gas-based goods or &#x60;Mining Laser&#x60; mount for ore-based goods.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="extractResourcesRequest"> (optional)</param>
         /// <returns>ApiResponse of ExtractResources201Response</returns>
         ApiResponse<ExtractResources201Response> ExtractResourcesWithHttpInfo(string shipSymbol, ExtractResourcesRequest extractResourcesRequest = default(ExtractResourcesRequest));
@@ -180,10 +180,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Mounts
         /// </summary>
         /// <remarks>
-        /// Get the mounts on a ship.
+        /// Get the mounts installed on a ship.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <returns>GetMounts200Response</returns>
         GetMounts200Response GetMounts(string shipSymbol);
 
@@ -191,20 +191,20 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Mounts
         /// </summary>
         /// <remarks>
-        /// Get the mounts on a ship.
+        /// Get the mounts installed on a ship.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <returns>ApiResponse of GetMounts200Response</returns>
         ApiResponse<GetMounts200Response> GetMountsWithHttpInfo(string shipSymbol);
         /// <summary>
         /// Get Ship
         /// </summary>
         /// <remarks>
-        /// Retrieve the details of your ship.
+        /// Retrieve the details of a ship under your agent&#39;s ownership.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>GetMyShip200Response</returns>
         GetMyShip200Response GetMyShip(string shipSymbol);
 
@@ -212,20 +212,20 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Ship
         /// </summary>
         /// <remarks>
-        /// Retrieve the details of your ship.
+        /// Retrieve the details of a ship under your agent&#39;s ownership.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>ApiResponse of GetMyShip200Response</returns>
         ApiResponse<GetMyShip200Response> GetMyShipWithHttpInfo(string shipSymbol);
         /// <summary>
         /// Get Ship Cargo
         /// </summary>
         /// <remarks>
-        /// Retrieve the cargo of your ship.
+        /// Retrieve the cargo of a ship under your agent&#39;s ownership.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>GetMyShipCargo200Response</returns>
         GetMyShipCargo200Response GetMyShipCargo(string shipSymbol);
 
@@ -233,35 +233,35 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Ship Cargo
         /// </summary>
         /// <remarks>
-        /// Retrieve the cargo of your ship.
+        /// Retrieve the cargo of a ship under your agent&#39;s ownership.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>ApiResponse of GetMyShipCargo200Response</returns>
         ApiResponse<GetMyShipCargo200Response> GetMyShipCargoWithHttpInfo(string shipSymbol);
         /// <summary>
         /// List Ships
         /// </summary>
         /// <remarks>
-        /// Retrieve all of your ships.
+        /// Return a paginated list of all of ships under your agent&#39;s ownership.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <returns>GetMyShips200Response</returns>
-        GetMyShips200Response GetMyShips(long? page = default(long?), long? limit = default(long?));
+        GetMyShips200Response GetMyShips(int? page = default(int?), int? limit = default(int?));
 
         /// <summary>
         /// List Ships
         /// </summary>
         /// <remarks>
-        /// Retrieve all of your ships.
+        /// Return a paginated list of all of ships under your agent&#39;s ownership.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <returns>ApiResponse of GetMyShips200Response</returns>
-        ApiResponse<GetMyShips200Response> GetMyShipsWithHttpInfo(long? page = default(long?), long? limit = default(long?));
+        ApiResponse<GetMyShips200Response> GetMyShipsWithHttpInfo(int? page = default(int?), int? limit = default(int?));
         /// <summary>
         /// Get Ship Cooldown
         /// </summary>
@@ -269,7 +269,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Retrieve the details of your ship&#39;s reactor cooldown. Some actions such as activating your jump drive, scanning, or extracting resources taxes your reactor and results in a cooldown.  Your ship cannot perform additional actions until your cooldown has expired. The duration of your cooldown is relative to the power consumption of the related modules or mounts for the action taken.  Response returns a 204 status code (no-content) when the ship has no cooldown.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>GetShipCooldown200Response</returns>
         GetShipCooldown200Response GetShipCooldown(string shipSymbol);
 
@@ -280,7 +280,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Retrieve the details of your ship&#39;s reactor cooldown. Some actions such as activating your jump drive, scanning, or extracting resources taxes your reactor and results in a cooldown.  Your ship cannot perform additional actions until your cooldown has expired. The duration of your cooldown is relative to the power consumption of the related modules or mounts for the action taken.  Response returns a 204 status code (no-content) when the ship has no cooldown.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>ApiResponse of GetShipCooldown200Response</returns>
         ApiResponse<GetShipCooldown200Response> GetShipCooldownWithHttpInfo(string shipSymbol);
         /// <summary>
@@ -290,7 +290,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get the current nav status of a ship.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <returns>GetShipNav200Response</returns>
         GetShipNav200Response GetShipNav(string shipSymbol);
 
@@ -301,17 +301,17 @@ namespace SpaceTradersUnitySDK.Api
         /// Get the current nav status of a ship.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <returns>ApiResponse of GetShipNav200Response</returns>
         ApiResponse<GetShipNav200Response> GetShipNavWithHttpInfo(string shipSymbol);
         /// <summary>
         /// Install Mount
         /// </summary>
         /// <remarks>
-        /// Install a mount on a ship.
+        /// Install a mount on a ship.  In order to install a mount, the ship must be docked and located in a waypoint that has a &#x60;Shipyard&#x60; trait. The ship also must have the mount to install in its cargo hold.  An installation fee will be deduced by the Shipyard for installing the mount on the ship. 
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="installMountRequest"> (optional)</param>
         /// <returns>InstallMount201Response</returns>
         InstallMount201Response InstallMount(string shipSymbol, InstallMountRequest installMountRequest = default(InstallMountRequest));
@@ -320,10 +320,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Install Mount
         /// </summary>
         /// <remarks>
-        /// Install a mount on a ship.
+        /// Install a mount on a ship.  In order to install a mount, the ship must be docked and located in a waypoint that has a &#x60;Shipyard&#x60; trait. The ship also must have the mount to install in its cargo hold.  An installation fee will be deduced by the Shipyard for installing the mount on the ship. 
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="installMountRequest"> (optional)</param>
         /// <returns>ApiResponse of InstallMount201Response</returns>
         ApiResponse<InstallMount201Response> InstallMountWithHttpInfo(string shipSymbol, InstallMountRequest installMountRequest = default(InstallMountRequest));
@@ -334,7 +334,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Jettison cargo from your ship&#39;s cargo hold.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="jettisonRequest"> (optional)</param>
         /// <returns>Jettison200Response</returns>
         Jettison200Response Jettison(string shipSymbol, JettisonRequest jettisonRequest = default(JettisonRequest));
@@ -346,7 +346,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Jettison cargo from your ship&#39;s cargo hold.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="jettisonRequest"> (optional)</param>
         /// <returns>ApiResponse of Jettison200Response</returns>
         ApiResponse<Jettison200Response> JettisonWithHttpInfo(string shipSymbol, JettisonRequest jettisonRequest = default(JettisonRequest));
@@ -354,10 +354,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Jump Ship
         /// </summary>
         /// <remarks>
-        /// Jump your ship instantly to a target system. When used while in orbit or docked to a jump gate waypoint, any ship can use this command. When used elsewhere, jumping requires a jump drive unit and consumes a unit of antimatter (which needs to be in your cargo).
+        /// Jump your ship instantly to a target system. The ship must be in orbit to use this function. When used while in orbit of a Jump Gate waypoint, any ship can use this command, jumping to the target system&#39;s Jump Gate waypoint.  When used elsewhere, jumping requires the ship to have a &#x60;Jump Drive&#x60; module installed and consumes a unit of antimatter from the ship&#39;s cargo. The command will fail if there is no antimatter to consume. When jumping via the &#x60;Jump Drive&#x60; module, the ship ends up at its largest source of energy in the system, such as a gas planet or a jump gate.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="jumpShipRequest"> (optional)</param>
         /// <returns>JumpShip200Response</returns>
         JumpShip200Response JumpShip(string shipSymbol, JumpShipRequest jumpShipRequest = default(JumpShipRequest));
@@ -366,10 +366,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Jump Ship
         /// </summary>
         /// <remarks>
-        /// Jump your ship instantly to a target system. When used while in orbit or docked to a jump gate waypoint, any ship can use this command. When used elsewhere, jumping requires a jump drive unit and consumes a unit of antimatter (which needs to be in your cargo).
+        /// Jump your ship instantly to a target system. The ship must be in orbit to use this function. When used while in orbit of a Jump Gate waypoint, any ship can use this command, jumping to the target system&#39;s Jump Gate waypoint.  When used elsewhere, jumping requires the ship to have a &#x60;Jump Drive&#x60; module installed and consumes a unit of antimatter from the ship&#39;s cargo. The command will fail if there is no antimatter to consume. When jumping via the &#x60;Jump Drive&#x60; module, the ship ends up at its largest source of energy in the system, such as a gas planet or a jump gate.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="jumpShipRequest"> (optional)</param>
         /// <returns>ApiResponse of JumpShip200Response</returns>
         ApiResponse<JumpShip200Response> JumpShipWithHttpInfo(string shipSymbol, JumpShipRequest jumpShipRequest = default(JumpShipRequest));
@@ -377,10 +377,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Navigate Ship
         /// </summary>
         /// <remarks>
-        /// Navigate to a target destination. The destination must be located within the same system as the ship. Navigating will consume the necessary fuel and supplies from the ship&#39;s manifest, and will pay out crew wages from the agent&#39;s account.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it&#39;s destination.  To travel between systems, see the ship&#39;s warp or jump actions.
+        /// Navigate to a target destination. The ship must be in orbit to use this function. The destination waypoint must be within the same system as the ship&#39;s current location. Navigating will consume the necessary fuel from the ship&#39;s manifest based on the distance to the target waypoint.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it&#39;s destination.  To travel between systems, see the ship&#39;s Warp or Jump actions.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="navigateShipRequest"> (optional)</param>
         /// <returns>NavigateShip200Response</returns>
         NavigateShip200Response NavigateShip(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest));
@@ -389,18 +389,21 @@ namespace SpaceTradersUnitySDK.Api
         /// Navigate Ship
         /// </summary>
         /// <remarks>
-        /// Navigate to a target destination. The destination must be located within the same system as the ship. Navigating will consume the necessary fuel and supplies from the ship&#39;s manifest, and will pay out crew wages from the agent&#39;s account.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it&#39;s destination.  To travel between systems, see the ship&#39;s warp or jump actions.
+        /// Navigate to a target destination. The ship must be in orbit to use this function. The destination waypoint must be within the same system as the ship&#39;s current location. Navigating will consume the necessary fuel from the ship&#39;s manifest based on the distance to the target waypoint.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it&#39;s destination.  To travel between systems, see the ship&#39;s Warp or Jump actions.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="navigateShipRequest"> (optional)</param>
         /// <returns>ApiResponse of NavigateShip200Response</returns>
         ApiResponse<NavigateShip200Response> NavigateShipWithHttpInfo(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest));
         /// <summary>
         /// Negotiate Contract
         /// </summary>
+        /// <remarks>
+        /// Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at a faction&#39;s HQ waypoint to negotiate a contract with that faction.
+        /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="body"> (optional)</param>
         /// <returns>NegotiateContract200Response</returns>
         NegotiateContract200Response NegotiateContract(string shipSymbol, Object body = default(Object));
@@ -409,10 +412,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Negotiate Contract
         /// </summary>
         /// <remarks>
-        /// 
+        /// Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at a faction&#39;s HQ waypoint to negotiate a contract with that faction.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="body"> (optional)</param>
         /// <returns>ApiResponse of NegotiateContract200Response</returns>
         ApiResponse<NegotiateContract200Response> NegotiateContractWithHttpInfo(string shipSymbol, Object body = default(Object));
@@ -420,10 +423,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Orbit Ship
         /// </summary>
         /// <remarks>
-        /// Attempt to move your ship into orbit at it&#39;s current location. The request will only succeed if your ship is capable of moving into orbit at the time of the request.  The endpoint is idempotent - successive calls will succeed even if the ship is already in orbit.
+        /// Attempt to move your ship into orbit at its current location. The request will only succeed if your ship is capable of moving into orbit at the time of the request.  Orbiting ships are able to do actions that require the ship to be above surface such as navigating or extracting, but cannot access elements in their current waypoint, such as the market or a shipyard.  The endpoint is idempotent - successive calls will succeed even if the ship is already in orbit.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>OrbitShip200Response</returns>
         OrbitShip200Response OrbitShip(string shipSymbol);
 
@@ -431,20 +434,20 @@ namespace SpaceTradersUnitySDK.Api
         /// Orbit Ship
         /// </summary>
         /// <remarks>
-        /// Attempt to move your ship into orbit at it&#39;s current location. The request will only succeed if your ship is capable of moving into orbit at the time of the request.  The endpoint is idempotent - successive calls will succeed even if the ship is already in orbit.
+        /// Attempt to move your ship into orbit at its current location. The request will only succeed if your ship is capable of moving into orbit at the time of the request.  Orbiting ships are able to do actions that require the ship to be above surface such as navigating or extracting, but cannot access elements in their current waypoint, such as the market or a shipyard.  The endpoint is idempotent - successive calls will succeed even if the ship is already in orbit.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>ApiResponse of OrbitShip200Response</returns>
         ApiResponse<OrbitShip200Response> OrbitShipWithHttpInfo(string shipSymbol);
         /// <summary>
         /// Patch Ship Nav
         /// </summary>
         /// <remarks>
-        /// Update the nav data of a ship, such as the flight mode.
+        /// Update the nav configuration of a ship.  Currently only supports configuring the Flight Mode of the ship, which affects its speed and fuel consumption.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="patchShipNavRequest"> (optional)</param>
         /// <returns>GetShipNav200Response</returns>
         GetShipNav200Response PatchShipNav(string shipSymbol, PatchShipNavRequest patchShipNavRequest = default(PatchShipNavRequest));
@@ -453,10 +456,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Patch Ship Nav
         /// </summary>
         /// <remarks>
-        /// Update the nav data of a ship, such as the flight mode.
+        /// Update the nav configuration of a ship.  Currently only supports configuring the Flight Mode of the ship, which affects its speed and fuel consumption.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="patchShipNavRequest"> (optional)</param>
         /// <returns>ApiResponse of GetShipNav200Response</returns>
         ApiResponse<GetShipNav200Response> PatchShipNavWithHttpInfo(string shipSymbol, PatchShipNavRequest patchShipNavRequest = default(PatchShipNavRequest));
@@ -464,10 +467,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Purchase Cargo
         /// </summary>
         /// <remarks>
-        /// Purchase cargo.
+        /// Purchase cargo from a market.  The ship must be docked in a waypoint that has &#x60;Marketplace&#x60; trait, and the market must be selling a good to be able to purchase it.  The maximum amount of units of a good that can be purchased in each transaction are denoted by the &#x60;tradeVolume&#x60; value of the good, which can be viewed by using the Get Market action.  Purchased goods are added to the ship&#39;s cargo hold.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="purchaseCargoRequest"> (optional)</param>
         /// <returns>PurchaseCargo201Response</returns>
         PurchaseCargo201Response PurchaseCargo(string shipSymbol, PurchaseCargoRequest purchaseCargoRequest = default(PurchaseCargoRequest));
@@ -476,10 +479,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Purchase Cargo
         /// </summary>
         /// <remarks>
-        /// Purchase cargo.
+        /// Purchase cargo from a market.  The ship must be docked in a waypoint that has &#x60;Marketplace&#x60; trait, and the market must be selling a good to be able to purchase it.  The maximum amount of units of a good that can be purchased in each transaction are denoted by the &#x60;tradeVolume&#x60; value of the good, which can be viewed by using the Get Market action.  Purchased goods are added to the ship&#39;s cargo hold.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="purchaseCargoRequest"> (optional)</param>
         /// <returns>ApiResponse of PurchaseCargo201Response</returns>
         ApiResponse<PurchaseCargo201Response> PurchaseCargoWithHttpInfo(string shipSymbol, PurchaseCargoRequest purchaseCargoRequest = default(PurchaseCargoRequest));
@@ -487,7 +490,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Purchase Ship
         /// </summary>
         /// <remarks>
-        /// Purchase a ship
+        /// Purchase a ship from a Shipyard. In order to use this function, a ship under your agent&#39;s ownership must be in a waypoint that has the &#x60;Shipyard&#x60; trait, and the Shipyard must sell the type of the desired ship.  Shipyards typically offer ship types, which are predefined templates of ships that have dedicated roles. A template comes with a preset of an engine, a reactor, and a frame. It may also include a few modules and mounts.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="purchaseShipRequest"> (optional)</param>
@@ -498,7 +501,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Purchase Ship
         /// </summary>
         /// <remarks>
-        /// Purchase a ship
+        /// Purchase a ship from a Shipyard. In order to use this function, a ship under your agent&#39;s ownership must be in a waypoint that has the &#x60;Shipyard&#x60; trait, and the Shipyard must sell the type of the desired ship.  Shipyards typically offer ship types, which are predefined templates of ships that have dedicated roles. A template comes with a preset of an engine, a reactor, and a frame. It may also include a few modules and mounts.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="purchaseShipRequest"> (optional)</param>
@@ -508,10 +511,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Refuel Ship
         /// </summary>
         /// <remarks>
-        /// Refuel your ship from the local market.
+        /// Refuel your ship by buying fuel from the local market.  Requires the ship to be docked in a waypoint that has the &#x60;Marketplace&#x60; trait, and the market must be selling fuel in order to refuel.  Each fuel bought from the market replenishes 100 units in your ship&#39;s fuel.  Ships will always be refuel to their frame&#39;s maximum fuel capacity when using this action.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <returns>RefuelShip200Response</returns>
         RefuelShip200Response RefuelShip(string shipSymbol);
 
@@ -519,20 +522,20 @@ namespace SpaceTradersUnitySDK.Api
         /// Refuel Ship
         /// </summary>
         /// <remarks>
-        /// Refuel your ship from the local market.
+        /// Refuel your ship by buying fuel from the local market.  Requires the ship to be docked in a waypoint that has the &#x60;Marketplace&#x60; trait, and the market must be selling fuel in order to refuel.  Each fuel bought from the market replenishes 100 units in your ship&#39;s fuel.  Ships will always be refuel to their frame&#39;s maximum fuel capacity when using this action.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <returns>ApiResponse of RefuelShip200Response</returns>
         ApiResponse<RefuelShip200Response> RefuelShipWithHttpInfo(string shipSymbol);
         /// <summary>
         /// Remove Mount
         /// </summary>
         /// <remarks>
-        /// Remove a mount from a ship.
+        /// Remove a mount from a ship.  The ship must be docked in a waypoint that has the &#x60;Shipyard&#x60; trait, and must have the desired mount that it wish to remove installed.  A removal fee will be deduced from the agent by the Shipyard.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="removeMountRequest"> (optional)</param>
         /// <returns>RemoveMount201Response</returns>
         RemoveMount201Response RemoveMount(string shipSymbol, RemoveMountRequest removeMountRequest = default(RemoveMountRequest));
@@ -541,10 +544,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Remove Mount
         /// </summary>
         /// <remarks>
-        /// Remove a mount from a ship.
+        /// Remove a mount from a ship.  The ship must be docked in a waypoint that has the &#x60;Shipyard&#x60; trait, and must have the desired mount that it wish to remove installed.  A removal fee will be deduced from the agent by the Shipyard.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="removeMountRequest"> (optional)</param>
         /// <returns>ApiResponse of RemoveMount201Response</returns>
         ApiResponse<RemoveMount201Response> RemoveMountWithHttpInfo(string shipSymbol, RemoveMountRequest removeMountRequest = default(RemoveMountRequest));
@@ -552,10 +555,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Sell Cargo
         /// </summary>
         /// <remarks>
-        /// Sell cargo.
+        /// Sell cargo in your ship to a market that trades this cargo. The ship must be docked in a waypoint that has the &#x60;Marketplace&#x60; trait in order to use this function.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">Symbol of a ship.</param>
         /// <param name="sellCargoRequest"> (optional)</param>
         /// <returns>SellCargo201Response</returns>
         SellCargo201Response SellCargo(string shipSymbol, SellCargoRequest sellCargoRequest = default(SellCargoRequest));
@@ -564,10 +567,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Sell Cargo
         /// </summary>
         /// <remarks>
-        /// Sell cargo.
+        /// Sell cargo in your ship to a market that trades this cargo. The ship must be docked in a waypoint that has the &#x60;Marketplace&#x60; trait in order to use this function.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">Symbol of a ship.</param>
         /// <param name="sellCargoRequest"> (optional)</param>
         /// <returns>ApiResponse of SellCargo201Response</returns>
         ApiResponse<SellCargo201Response> SellCargoWithHttpInfo(string shipSymbol, SellCargoRequest sellCargoRequest = default(SellCargoRequest));
@@ -575,10 +578,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Ship Refine
         /// </summary>
         /// <remarks>
-        /// Attempt to refine the raw materials on your ship. The request will only succeed if your ship is capable of refining at the time of the request.
+        /// Attempt to refine the raw materials on your ship. The request will only succeed if your ship is capable of refining at the time of the request. In order to be able to refine, a ship must have goods that can be refined and have installed a &#x60;Refinery&#x60; module that can refine it.  When refining, 30 basic goods will be converted into 10 processed goods.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="shipRefineRequest"> (optional)</param>
         /// <returns>ShipRefine200Response</returns>
         ShipRefine200Response ShipRefine(string shipSymbol, ShipRefineRequest shipRefineRequest = default(ShipRefineRequest));
@@ -587,10 +590,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Ship Refine
         /// </summary>
         /// <remarks>
-        /// Attempt to refine the raw materials on your ship. The request will only succeed if your ship is capable of refining at the time of the request.
+        /// Attempt to refine the raw materials on your ship. The request will only succeed if your ship is capable of refining at the time of the request. In order to be able to refine, a ship must have goods that can be refined and have installed a &#x60;Refinery&#x60; module that can refine it.  When refining, 30 basic goods will be converted into 10 processed goods.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="shipRefineRequest"> (optional)</param>
         /// <returns>ApiResponse of ShipRefine200Response</returns>
         ApiResponse<ShipRefine200Response> ShipRefineWithHttpInfo(string shipSymbol, ShipRefineRequest shipRefineRequest = default(ShipRefineRequest));
@@ -598,10 +601,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Transfer Cargo
         /// </summary>
         /// <remarks>
-        /// Transfer cargo between ships.
+        /// Transfer cargo between ships.  The receiving ship must be in the same waypoint as the transferring ship, and it must able to hold the additional cargo after the transfer is complete. Both ships also must be in the same state, either both are docked or both are orbiting.  The response body&#39;s cargo shows the cargo of the transferring ship after the transfer is complete.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The transferring ship&#39;s symbol.</param>
         /// <param name="transferCargoRequest"> (optional)</param>
         /// <returns>TransferCargo200Response</returns>
         TransferCargo200Response TransferCargo(string shipSymbol, TransferCargoRequest transferCargoRequest = default(TransferCargoRequest));
@@ -610,10 +613,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Transfer Cargo
         /// </summary>
         /// <remarks>
-        /// Transfer cargo between ships.
+        /// Transfer cargo between ships.  The receiving ship must be in the same waypoint as the transferring ship, and it must able to hold the additional cargo after the transfer is complete. Both ships also must be in the same state, either both are docked or both are orbiting.  The response body&#39;s cargo shows the cargo of the transferring ship after the transfer is complete.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The transferring ship&#39;s symbol.</param>
         /// <param name="transferCargoRequest"> (optional)</param>
         /// <returns>ApiResponse of TransferCargo200Response</returns>
         ApiResponse<TransferCargo200Response> TransferCargoWithHttpInfo(string shipSymbol, TransferCargoRequest transferCargoRequest = default(TransferCargoRequest));
@@ -621,10 +624,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Warp Ship
         /// </summary>
         /// <remarks>
-        /// Warp your ship to a target destination in another system. Warping will consume the necessary fuel and supplies from the ship&#39;s manifest, and will pay out crew wages from the agent&#39;s account.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it&#39;s destination.
+        /// Warp your ship to a target destination in another system. The ship must be in orbit to use this function and must have the &#x60;Warp Drive&#x60; module installed. Warping will consume the necessary fuel from the ship&#39;s manifest.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at its destination.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="navigateShipRequest"> (optional)</param>
         /// <returns>NavigateShip200Response</returns>
         NavigateShip200Response WarpShip(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest));
@@ -633,10 +636,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Warp Ship
         /// </summary>
         /// <remarks>
-        /// Warp your ship to a target destination in another system. Warping will consume the necessary fuel and supplies from the ship&#39;s manifest, and will pay out crew wages from the agent&#39;s account.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it&#39;s destination.
+        /// Warp your ship to a target destination in another system. The ship must be in orbit to use this function and must have the &#x60;Warp Drive&#x60; module installed. Warping will consume the necessary fuel from the ship&#39;s manifest.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at its destination.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="navigateShipRequest"> (optional)</param>
         /// <returns>ApiResponse of NavigateShip200Response</returns>
         ApiResponse<NavigateShip200Response> WarpShipWithHttpInfo(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest));
@@ -653,10 +656,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Create Chart
         /// </summary>
         /// <remarks>
-        /// Command a ship to chart the current waypoint.  Waypoints in the universe are uncharted by default. These locations will not show up in the API until they have been charted by a ship.  Charting a location will record your agent as the one who created the chart.
+        /// Command a ship to chart the waypoint at its current location.  Most waypoints in the universe are uncharted by default. These waypoints have their traits hidden until they have been charted by a ship.  Charting a waypoint will record your agent as the one who created the chart, and all other agents would also be able to see the waypoint&#39;s traits.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateChart201Response</returns>
         System.Threading.Tasks.Task<CreateChart201Response> CreateChartAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -665,10 +668,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Create Chart
         /// </summary>
         /// <remarks>
-        /// Command a ship to chart the current waypoint.  Waypoints in the universe are uncharted by default. These locations will not show up in the API until they have been charted by a ship.  Charting a location will record your agent as the one who created the chart.
+        /// Command a ship to chart the waypoint at its current location.  Most waypoints in the universe are uncharted by default. These waypoints have their traits hidden until they have been charted by a ship.  Charting a waypoint will record your agent as the one who created the chart, and all other agents would also be able to see the waypoint&#39;s traits.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateChart201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateChart201Response>> CreateChartWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -676,10 +679,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Scan Ships
         /// </summary>
         /// <remarks>
-        /// Activate your ship&#39;s sensor arrays to scan for ship information.
+        /// Scan for nearby ships, retrieving information for all ships in range.  Requires a ship to have the &#x60;Sensor Array&#x60; mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateShipShipScan201Response</returns>
         System.Threading.Tasks.Task<CreateShipShipScan201Response> CreateShipShipScanAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -688,10 +691,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Scan Ships
         /// </summary>
         /// <remarks>
-        /// Activate your ship&#39;s sensor arrays to scan for ship information.
+        /// Scan for nearby ships, retrieving information for all ships in range.  Requires a ship to have the &#x60;Sensor Array&#x60; mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateShipShipScan201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateShipShipScan201Response>> CreateShipShipScanWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -699,10 +702,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Scan Systems
         /// </summary>
         /// <remarks>
-        /// Activate your ship&#39;s sensor arrays to scan for system information.
+        /// Scan for nearby systems, retrieving information on the systems&#39; distance from the ship and their waypoints. Requires a ship to have the &#x60;Sensor Array&#x60; mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateShipSystemScan201Response</returns>
         System.Threading.Tasks.Task<CreateShipSystemScan201Response> CreateShipSystemScanAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -711,10 +714,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Scan Systems
         /// </summary>
         /// <remarks>
-        /// Activate your ship&#39;s sensor arrays to scan for system information.
+        /// Scan for nearby systems, retrieving information on the systems&#39; distance from the ship and their waypoints. Requires a ship to have the &#x60;Sensor Array&#x60; mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateShipSystemScan201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateShipSystemScan201Response>> CreateShipSystemScanWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -722,10 +725,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Scan Waypoints
         /// </summary>
         /// <remarks>
-        /// Activate your ship&#39;s sensor arrays to scan for waypoint information.
+        /// Scan for nearby waypoints, retrieving detailed information on each waypoint in range. Scanning uncharted waypoints will allow you to ignore their uncharted state and will list the waypoints&#39; traits.  Requires a ship to have the &#x60;Sensor Array&#x60; mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateShipWaypointScan201Response</returns>
         System.Threading.Tasks.Task<CreateShipWaypointScan201Response> CreateShipWaypointScanAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -734,10 +737,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Scan Waypoints
         /// </summary>
         /// <remarks>
-        /// Activate your ship&#39;s sensor arrays to scan for waypoint information.
+        /// Scan for nearby waypoints, retrieving detailed information on each waypoint in range. Scanning uncharted waypoints will allow you to ignore their uncharted state and will list the waypoints&#39; traits.  Requires a ship to have the &#x60;Sensor Array&#x60; mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateShipWaypointScan201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateShipWaypointScan201Response>> CreateShipWaypointScanWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -745,10 +748,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Create Survey
         /// </summary>
         /// <remarks>
-        /// If you want to target specific yields for an extraction, you can survey a waypoint, such as an asteroid field, and send the survey in the body of the extract request. Each survey may have multiple deposits, and if a symbol shows up more than once, that indicates a higher chance of extracting that resource.  Your ship will enter a cooldown between consecutive survey requests. Surveys will eventually expire after a period of time. Multiple ships can use the same survey for extraction.
+        /// Create surveys on a waypoint that can be extracted such as asteroid fields. A survey focuses on specific types of deposits from the extracted location. When ships extract using this survey, they are guaranteed to procure a high amount of one of the goods in the survey.  In order to use a survey, send the entire survey details in the body of the extract request.  Each survey may have multiple deposits, and if a symbol shows up more than once, that indicates a higher chance of extracting that resource.  Your ship will enter a cooldown after surveying in which it is unable to perform certain actions. Surveys will eventually expire after a period of time or will be exhausted after being extracted several times based on the survey&#39;s size. Multiple ships can use the same survey for extraction.  A ship must have the &#x60;Surveyor&#x60; mount installed in order to use this function.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateSurvey201Response</returns>
         System.Threading.Tasks.Task<CreateSurvey201Response> CreateSurveyAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -757,10 +760,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Create Survey
         /// </summary>
         /// <remarks>
-        /// If you want to target specific yields for an extraction, you can survey a waypoint, such as an asteroid field, and send the survey in the body of the extract request. Each survey may have multiple deposits, and if a symbol shows up more than once, that indicates a higher chance of extracting that resource.  Your ship will enter a cooldown between consecutive survey requests. Surveys will eventually expire after a period of time. Multiple ships can use the same survey for extraction.
+        /// Create surveys on a waypoint that can be extracted such as asteroid fields. A survey focuses on specific types of deposits from the extracted location. When ships extract using this survey, they are guaranteed to procure a high amount of one of the goods in the survey.  In order to use a survey, send the entire survey details in the body of the extract request.  Each survey may have multiple deposits, and if a symbol shows up more than once, that indicates a higher chance of extracting that resource.  Your ship will enter a cooldown after surveying in which it is unable to perform certain actions. Surveys will eventually expire after a period of time or will be exhausted after being extracted several times based on the survey&#39;s size. Multiple ships can use the same survey for extraction.  A ship must have the &#x60;Surveyor&#x60; mount installed in order to use this function.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateSurvey201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateSurvey201Response>> CreateSurveyWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -768,10 +771,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Dock Ship
         /// </summary>
         /// <remarks>
-        /// Attempt to dock your ship at it&#39;s current location. Docking will only succeed if the waypoint is a dockable location, and your ship is capable of docking at the time of the request.  The endpoint is idempotent - successive calls will succeed even if the ship is already docked.
+        /// Attempt to dock your ship at its current location. Docking will only succeed if your ship is capable of docking at the time of the request.  Docked ships can access elements in their current location, such as the market or a shipyard, but cannot do actions that require the ship to be above surface such as navigating or extracting.  The endpoint is idempotent - successive calls will succeed even if the ship is already docked.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DockShip200Response</returns>
         System.Threading.Tasks.Task<DockShip200Response> DockShipAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -780,10 +783,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Dock Ship
         /// </summary>
         /// <remarks>
-        /// Attempt to dock your ship at it&#39;s current location. Docking will only succeed if the waypoint is a dockable location, and your ship is capable of docking at the time of the request.  The endpoint is idempotent - successive calls will succeed even if the ship is already docked.
+        /// Attempt to dock your ship at its current location. Docking will only succeed if your ship is capable of docking at the time of the request.  Docked ships can access elements in their current location, such as the market or a shipyard, but cannot do actions that require the ship to be above surface such as navigating or extracting.  The endpoint is idempotent - successive calls will succeed even if the ship is already docked.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DockShip200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<DockShip200Response>> DockShipWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -791,10 +794,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Extract Resources
         /// </summary>
         /// <remarks>
-        /// Extract resources from the waypoint into your ship. Send an optional survey as the payload to target specific yields.
+        /// Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the &#x60;Gas Siphon&#x60; mount for gas-based goods or &#x60;Mining Laser&#x60; mount for ore-based goods.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="extractResourcesRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ExtractResources201Response</returns>
@@ -804,10 +807,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Extract Resources
         /// </summary>
         /// <remarks>
-        /// Extract resources from the waypoint into your ship. Send an optional survey as the payload to target specific yields.
+        /// Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the &#x60;Gas Siphon&#x60; mount for gas-based goods or &#x60;Mining Laser&#x60; mount for ore-based goods.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="extractResourcesRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ExtractResources201Response)</returns>
@@ -816,10 +819,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Mounts
         /// </summary>
         /// <remarks>
-        /// Get the mounts on a ship.
+        /// Get the mounts installed on a ship.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetMounts200Response</returns>
         System.Threading.Tasks.Task<GetMounts200Response> GetMountsAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -828,10 +831,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Mounts
         /// </summary>
         /// <remarks>
-        /// Get the mounts on a ship.
+        /// Get the mounts installed on a ship.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetMounts200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetMounts200Response>> GetMountsWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -839,10 +842,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Ship
         /// </summary>
         /// <remarks>
-        /// Retrieve the details of your ship.
+        /// Retrieve the details of a ship under your agent&#39;s ownership.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetMyShip200Response</returns>
         System.Threading.Tasks.Task<GetMyShip200Response> GetMyShipAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -851,10 +854,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Ship
         /// </summary>
         /// <remarks>
-        /// Retrieve the details of your ship.
+        /// Retrieve the details of a ship under your agent&#39;s ownership.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetMyShip200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetMyShip200Response>> GetMyShipWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -862,10 +865,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Ship Cargo
         /// </summary>
         /// <remarks>
-        /// Retrieve the cargo of your ship.
+        /// Retrieve the cargo of a ship under your agent&#39;s ownership.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetMyShipCargo200Response</returns>
         System.Threading.Tasks.Task<GetMyShipCargo200Response> GetMyShipCargoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -874,10 +877,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Ship Cargo
         /// </summary>
         /// <remarks>
-        /// Retrieve the cargo of your ship.
+        /// Retrieve the cargo of a ship under your agent&#39;s ownership.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetMyShipCargo200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetMyShipCargo200Response>> GetMyShipCargoWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -885,27 +888,27 @@ namespace SpaceTradersUnitySDK.Api
         /// List Ships
         /// </summary>
         /// <remarks>
-        /// Retrieve all of your ships.
+        /// Return a paginated list of all of ships under your agent&#39;s ownership.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetMyShips200Response</returns>
-        System.Threading.Tasks.Task<GetMyShips200Response> GetMyShipsAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<GetMyShips200Response> GetMyShipsAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// List Ships
         /// </summary>
         /// <remarks>
-        /// Retrieve all of your ships.
+        /// Return a paginated list of all of ships under your agent&#39;s ownership.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetMyShips200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetMyShips200Response>> GetMyShipsWithHttpInfoAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<GetMyShips200Response>> GetMyShipsWithHttpInfoAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Get Ship Cooldown
         /// </summary>
@@ -913,7 +916,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Retrieve the details of your ship&#39;s reactor cooldown. Some actions such as activating your jump drive, scanning, or extracting resources taxes your reactor and results in a cooldown.  Your ship cannot perform additional actions until your cooldown has expired. The duration of your cooldown is relative to the power consumption of the related modules or mounts for the action taken.  Response returns a 204 status code (no-content) when the ship has no cooldown.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetShipCooldown200Response</returns>
         System.Threading.Tasks.Task<GetShipCooldown200Response> GetShipCooldownAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -925,7 +928,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Retrieve the details of your ship&#39;s reactor cooldown. Some actions such as activating your jump drive, scanning, or extracting resources taxes your reactor and results in a cooldown.  Your ship cannot perform additional actions until your cooldown has expired. The duration of your cooldown is relative to the power consumption of the related modules or mounts for the action taken.  Response returns a 204 status code (no-content) when the ship has no cooldown.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetShipCooldown200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetShipCooldown200Response>> GetShipCooldownWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -936,7 +939,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get the current nav status of a ship.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetShipNav200Response</returns>
         System.Threading.Tasks.Task<GetShipNav200Response> GetShipNavAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -948,7 +951,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get the current nav status of a ship.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetShipNav200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetShipNav200Response>> GetShipNavWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -956,10 +959,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Install Mount
         /// </summary>
         /// <remarks>
-        /// Install a mount on a ship.
+        /// Install a mount on a ship.  In order to install a mount, the ship must be docked and located in a waypoint that has a &#x60;Shipyard&#x60; trait. The ship also must have the mount to install in its cargo hold.  An installation fee will be deduced by the Shipyard for installing the mount on the ship. 
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="installMountRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of InstallMount201Response</returns>
@@ -969,10 +972,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Install Mount
         /// </summary>
         /// <remarks>
-        /// Install a mount on a ship.
+        /// Install a mount on a ship.  In order to install a mount, the ship must be docked and located in a waypoint that has a &#x60;Shipyard&#x60; trait. The ship also must have the mount to install in its cargo hold.  An installation fee will be deduced by the Shipyard for installing the mount on the ship. 
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="installMountRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (InstallMount201Response)</returns>
@@ -984,7 +987,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Jettison cargo from your ship&#39;s cargo hold.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="jettisonRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Jettison200Response</returns>
@@ -997,7 +1000,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Jettison cargo from your ship&#39;s cargo hold.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="jettisonRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Jettison200Response)</returns>
@@ -1006,10 +1009,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Jump Ship
         /// </summary>
         /// <remarks>
-        /// Jump your ship instantly to a target system. When used while in orbit or docked to a jump gate waypoint, any ship can use this command. When used elsewhere, jumping requires a jump drive unit and consumes a unit of antimatter (which needs to be in your cargo).
+        /// Jump your ship instantly to a target system. The ship must be in orbit to use this function. When used while in orbit of a Jump Gate waypoint, any ship can use this command, jumping to the target system&#39;s Jump Gate waypoint.  When used elsewhere, jumping requires the ship to have a &#x60;Jump Drive&#x60; module installed and consumes a unit of antimatter from the ship&#39;s cargo. The command will fail if there is no antimatter to consume. When jumping via the &#x60;Jump Drive&#x60; module, the ship ends up at its largest source of energy in the system, such as a gas planet or a jump gate.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="jumpShipRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of JumpShip200Response</returns>
@@ -1019,10 +1022,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Jump Ship
         /// </summary>
         /// <remarks>
-        /// Jump your ship instantly to a target system. When used while in orbit or docked to a jump gate waypoint, any ship can use this command. When used elsewhere, jumping requires a jump drive unit and consumes a unit of antimatter (which needs to be in your cargo).
+        /// Jump your ship instantly to a target system. The ship must be in orbit to use this function. When used while in orbit of a Jump Gate waypoint, any ship can use this command, jumping to the target system&#39;s Jump Gate waypoint.  When used elsewhere, jumping requires the ship to have a &#x60;Jump Drive&#x60; module installed and consumes a unit of antimatter from the ship&#39;s cargo. The command will fail if there is no antimatter to consume. When jumping via the &#x60;Jump Drive&#x60; module, the ship ends up at its largest source of energy in the system, such as a gas planet or a jump gate.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="jumpShipRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (JumpShip200Response)</returns>
@@ -1031,10 +1034,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Navigate Ship
         /// </summary>
         /// <remarks>
-        /// Navigate to a target destination. The destination must be located within the same system as the ship. Navigating will consume the necessary fuel and supplies from the ship&#39;s manifest, and will pay out crew wages from the agent&#39;s account.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it&#39;s destination.  To travel between systems, see the ship&#39;s warp or jump actions.
+        /// Navigate to a target destination. The ship must be in orbit to use this function. The destination waypoint must be within the same system as the ship&#39;s current location. Navigating will consume the necessary fuel from the ship&#39;s manifest based on the distance to the target waypoint.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it&#39;s destination.  To travel between systems, see the ship&#39;s Warp or Jump actions.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="navigateShipRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NavigateShip200Response</returns>
@@ -1044,10 +1047,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Navigate Ship
         /// </summary>
         /// <remarks>
-        /// Navigate to a target destination. The destination must be located within the same system as the ship. Navigating will consume the necessary fuel and supplies from the ship&#39;s manifest, and will pay out crew wages from the agent&#39;s account.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it&#39;s destination.  To travel between systems, see the ship&#39;s warp or jump actions.
+        /// Navigate to a target destination. The ship must be in orbit to use this function. The destination waypoint must be within the same system as the ship&#39;s current location. Navigating will consume the necessary fuel from the ship&#39;s manifest based on the distance to the target waypoint.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it&#39;s destination.  To travel between systems, see the ship&#39;s Warp or Jump actions.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="navigateShipRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NavigateShip200Response)</returns>
@@ -1056,10 +1059,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Negotiate Contract
         /// </summary>
         /// <remarks>
-        /// 
+        /// Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at a faction&#39;s HQ waypoint to negotiate a contract with that faction.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="body"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NegotiateContract200Response</returns>
@@ -1069,10 +1072,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Negotiate Contract
         /// </summary>
         /// <remarks>
-        /// 
+        /// Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at a faction&#39;s HQ waypoint to negotiate a contract with that faction.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="body"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NegotiateContract200Response)</returns>
@@ -1081,10 +1084,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Orbit Ship
         /// </summary>
         /// <remarks>
-        /// Attempt to move your ship into orbit at it&#39;s current location. The request will only succeed if your ship is capable of moving into orbit at the time of the request.  The endpoint is idempotent - successive calls will succeed even if the ship is already in orbit.
+        /// Attempt to move your ship into orbit at its current location. The request will only succeed if your ship is capable of moving into orbit at the time of the request.  Orbiting ships are able to do actions that require the ship to be above surface such as navigating or extracting, but cannot access elements in their current waypoint, such as the market or a shipyard.  The endpoint is idempotent - successive calls will succeed even if the ship is already in orbit.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of OrbitShip200Response</returns>
         System.Threading.Tasks.Task<OrbitShip200Response> OrbitShipAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1093,10 +1096,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Orbit Ship
         /// </summary>
         /// <remarks>
-        /// Attempt to move your ship into orbit at it&#39;s current location. The request will only succeed if your ship is capable of moving into orbit at the time of the request.  The endpoint is idempotent - successive calls will succeed even if the ship is already in orbit.
+        /// Attempt to move your ship into orbit at its current location. The request will only succeed if your ship is capable of moving into orbit at the time of the request.  Orbiting ships are able to do actions that require the ship to be above surface such as navigating or extracting, but cannot access elements in their current waypoint, such as the market or a shipyard.  The endpoint is idempotent - successive calls will succeed even if the ship is already in orbit.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (OrbitShip200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<OrbitShip200Response>> OrbitShipWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1104,10 +1107,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Patch Ship Nav
         /// </summary>
         /// <remarks>
-        /// Update the nav data of a ship, such as the flight mode.
+        /// Update the nav configuration of a ship.  Currently only supports configuring the Flight Mode of the ship, which affects its speed and fuel consumption.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="patchShipNavRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetShipNav200Response</returns>
@@ -1117,10 +1120,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Patch Ship Nav
         /// </summary>
         /// <remarks>
-        /// Update the nav data of a ship, such as the flight mode.
+        /// Update the nav configuration of a ship.  Currently only supports configuring the Flight Mode of the ship, which affects its speed and fuel consumption.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="patchShipNavRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetShipNav200Response)</returns>
@@ -1129,10 +1132,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Purchase Cargo
         /// </summary>
         /// <remarks>
-        /// Purchase cargo.
+        /// Purchase cargo from a market.  The ship must be docked in a waypoint that has &#x60;Marketplace&#x60; trait, and the market must be selling a good to be able to purchase it.  The maximum amount of units of a good that can be purchased in each transaction are denoted by the &#x60;tradeVolume&#x60; value of the good, which can be viewed by using the Get Market action.  Purchased goods are added to the ship&#39;s cargo hold.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="purchaseCargoRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PurchaseCargo201Response</returns>
@@ -1142,10 +1145,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Purchase Cargo
         /// </summary>
         /// <remarks>
-        /// Purchase cargo.
+        /// Purchase cargo from a market.  The ship must be docked in a waypoint that has &#x60;Marketplace&#x60; trait, and the market must be selling a good to be able to purchase it.  The maximum amount of units of a good that can be purchased in each transaction are denoted by the &#x60;tradeVolume&#x60; value of the good, which can be viewed by using the Get Market action.  Purchased goods are added to the ship&#39;s cargo hold.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="purchaseCargoRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PurchaseCargo201Response)</returns>
@@ -1154,7 +1157,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Purchase Ship
         /// </summary>
         /// <remarks>
-        /// Purchase a ship
+        /// Purchase a ship from a Shipyard. In order to use this function, a ship under your agent&#39;s ownership must be in a waypoint that has the &#x60;Shipyard&#x60; trait, and the Shipyard must sell the type of the desired ship.  Shipyards typically offer ship types, which are predefined templates of ships that have dedicated roles. A template comes with a preset of an engine, a reactor, and a frame. It may also include a few modules and mounts.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="purchaseShipRequest"> (optional)</param>
@@ -1166,7 +1169,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Purchase Ship
         /// </summary>
         /// <remarks>
-        /// Purchase a ship
+        /// Purchase a ship from a Shipyard. In order to use this function, a ship under your agent&#39;s ownership must be in a waypoint that has the &#x60;Shipyard&#x60; trait, and the Shipyard must sell the type of the desired ship.  Shipyards typically offer ship types, which are predefined templates of ships that have dedicated roles. A template comes with a preset of an engine, a reactor, and a frame. It may also include a few modules and mounts.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="purchaseShipRequest"> (optional)</param>
@@ -1177,10 +1180,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Refuel Ship
         /// </summary>
         /// <remarks>
-        /// Refuel your ship from the local market.
+        /// Refuel your ship by buying fuel from the local market.  Requires the ship to be docked in a waypoint that has the &#x60;Marketplace&#x60; trait, and the market must be selling fuel in order to refuel.  Each fuel bought from the market replenishes 100 units in your ship&#39;s fuel.  Ships will always be refuel to their frame&#39;s maximum fuel capacity when using this action.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of RefuelShip200Response</returns>
         System.Threading.Tasks.Task<RefuelShip200Response> RefuelShipAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1189,10 +1192,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Refuel Ship
         /// </summary>
         /// <remarks>
-        /// Refuel your ship from the local market.
+        /// Refuel your ship by buying fuel from the local market.  Requires the ship to be docked in a waypoint that has the &#x60;Marketplace&#x60; trait, and the market must be selling fuel in order to refuel.  Each fuel bought from the market replenishes 100 units in your ship&#39;s fuel.  Ships will always be refuel to their frame&#39;s maximum fuel capacity when using this action.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RefuelShip200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<RefuelShip200Response>> RefuelShipWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1200,10 +1203,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Remove Mount
         /// </summary>
         /// <remarks>
-        /// Remove a mount from a ship.
+        /// Remove a mount from a ship.  The ship must be docked in a waypoint that has the &#x60;Shipyard&#x60; trait, and must have the desired mount that it wish to remove installed.  A removal fee will be deduced from the agent by the Shipyard.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="removeMountRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of RemoveMount201Response</returns>
@@ -1213,10 +1216,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Remove Mount
         /// </summary>
         /// <remarks>
-        /// Remove a mount from a ship.
+        /// Remove a mount from a ship.  The ship must be docked in a waypoint that has the &#x60;Shipyard&#x60; trait, and must have the desired mount that it wish to remove installed.  A removal fee will be deduced from the agent by the Shipyard.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="removeMountRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RemoveMount201Response)</returns>
@@ -1225,10 +1228,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Sell Cargo
         /// </summary>
         /// <remarks>
-        /// Sell cargo.
+        /// Sell cargo in your ship to a market that trades this cargo. The ship must be docked in a waypoint that has the &#x60;Marketplace&#x60; trait in order to use this function.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">Symbol of a ship.</param>
         /// <param name="sellCargoRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SellCargo201Response</returns>
@@ -1238,10 +1241,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Sell Cargo
         /// </summary>
         /// <remarks>
-        /// Sell cargo.
+        /// Sell cargo in your ship to a market that trades this cargo. The ship must be docked in a waypoint that has the &#x60;Marketplace&#x60; trait in order to use this function.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">Symbol of a ship.</param>
         /// <param name="sellCargoRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SellCargo201Response)</returns>
@@ -1250,10 +1253,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Ship Refine
         /// </summary>
         /// <remarks>
-        /// Attempt to refine the raw materials on your ship. The request will only succeed if your ship is capable of refining at the time of the request.
+        /// Attempt to refine the raw materials on your ship. The request will only succeed if your ship is capable of refining at the time of the request. In order to be able to refine, a ship must have goods that can be refined and have installed a &#x60;Refinery&#x60; module that can refine it.  When refining, 30 basic goods will be converted into 10 processed goods.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="shipRefineRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ShipRefine200Response</returns>
@@ -1263,10 +1266,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Ship Refine
         /// </summary>
         /// <remarks>
-        /// Attempt to refine the raw materials on your ship. The request will only succeed if your ship is capable of refining at the time of the request.
+        /// Attempt to refine the raw materials on your ship. The request will only succeed if your ship is capable of refining at the time of the request. In order to be able to refine, a ship must have goods that can be refined and have installed a &#x60;Refinery&#x60; module that can refine it.  When refining, 30 basic goods will be converted into 10 processed goods.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="shipRefineRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ShipRefine200Response)</returns>
@@ -1275,10 +1278,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Transfer Cargo
         /// </summary>
         /// <remarks>
-        /// Transfer cargo between ships.
+        /// Transfer cargo between ships.  The receiving ship must be in the same waypoint as the transferring ship, and it must able to hold the additional cargo after the transfer is complete. Both ships also must be in the same state, either both are docked or both are orbiting.  The response body&#39;s cargo shows the cargo of the transferring ship after the transfer is complete.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The transferring ship&#39;s symbol.</param>
         /// <param name="transferCargoRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransferCargo200Response</returns>
@@ -1288,10 +1291,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Transfer Cargo
         /// </summary>
         /// <remarks>
-        /// Transfer cargo between ships.
+        /// Transfer cargo between ships.  The receiving ship must be in the same waypoint as the transferring ship, and it must able to hold the additional cargo after the transfer is complete. Both ships also must be in the same state, either both are docked or both are orbiting.  The response body&#39;s cargo shows the cargo of the transferring ship after the transfer is complete.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The transferring ship&#39;s symbol.</param>
         /// <param name="transferCargoRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransferCargo200Response)</returns>
@@ -1300,10 +1303,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Warp Ship
         /// </summary>
         /// <remarks>
-        /// Warp your ship to a target destination in another system. Warping will consume the necessary fuel and supplies from the ship&#39;s manifest, and will pay out crew wages from the agent&#39;s account.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it&#39;s destination.
+        /// Warp your ship to a target destination in another system. The ship must be in orbit to use this function and must have the &#x60;Warp Drive&#x60; module installed. Warping will consume the necessary fuel from the ship&#39;s manifest.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at its destination.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="navigateShipRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NavigateShip200Response</returns>
@@ -1313,10 +1316,10 @@ namespace SpaceTradersUnitySDK.Api
         /// Warp Ship
         /// </summary>
         /// <remarks>
-        /// Warp your ship to a target destination in another system. Warping will consume the necessary fuel and supplies from the ship&#39;s manifest, and will pay out crew wages from the agent&#39;s account.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it&#39;s destination.
+        /// Warp your ship to a target destination in another system. The ship must be in orbit to use this function and must have the &#x60;Warp Drive&#x60; module installed. Warping will consume the necessary fuel from the ship&#39;s manifest.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at its destination.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="navigateShipRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NavigateShip200Response)</returns>
@@ -1466,10 +1469,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Create Chart Command a ship to chart the current waypoint.  Waypoints in the universe are uncharted by default. These locations will not show up in the API until they have been charted by a ship.  Charting a location will record your agent as the one who created the chart.
+        /// Create Chart Command a ship to chart the waypoint at its current location.  Most waypoints in the universe are uncharted by default. These waypoints have their traits hidden until they have been charted by a ship.  Charting a waypoint will record your agent as the one who created the chart, and all other agents would also be able to see the waypoint&#39;s traits.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>CreateChart201Response</returns>
         public CreateChart201Response CreateChart(string shipSymbol)
         {
@@ -1478,10 +1481,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Create Chart Command a ship to chart the current waypoint.  Waypoints in the universe are uncharted by default. These locations will not show up in the API until they have been charted by a ship.  Charting a location will record your agent as the one who created the chart.
+        /// Create Chart Command a ship to chart the waypoint at its current location.  Most waypoints in the universe are uncharted by default. These waypoints have their traits hidden until they have been charted by a ship.  Charting a waypoint will record your agent as the one who created the chart, and all other agents would also be able to see the waypoint&#39;s traits.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>ApiResponse of CreateChart201Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<CreateChart201Response> CreateChartWithHttpInfo(string shipSymbol)
         {
@@ -1527,10 +1530,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Create Chart Command a ship to chart the current waypoint.  Waypoints in the universe are uncharted by default. These locations will not show up in the API until they have been charted by a ship.  Charting a location will record your agent as the one who created the chart.
+        /// Create Chart Command a ship to chart the waypoint at its current location.  Most waypoints in the universe are uncharted by default. These waypoints have their traits hidden until they have been charted by a ship.  Charting a waypoint will record your agent as the one who created the chart, and all other agents would also be able to see the waypoint&#39;s traits.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateChart201Response</returns>
         public async System.Threading.Tasks.Task<CreateChart201Response> CreateChartAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1545,10 +1548,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Create Chart Command a ship to chart the current waypoint.  Waypoints in the universe are uncharted by default. These locations will not show up in the API until they have been charted by a ship.  Charting a location will record your agent as the one who created the chart.
+        /// Create Chart Command a ship to chart the waypoint at its current location.  Most waypoints in the universe are uncharted by default. These waypoints have their traits hidden until they have been charted by a ship.  Charting a waypoint will record your agent as the one who created the chart, and all other agents would also be able to see the waypoint&#39;s traits.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateChart201Response)</returns>
         public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<CreateChart201Response>> CreateChartWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1604,10 +1607,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Scan Ships Activate your ship&#39;s sensor arrays to scan for ship information.
+        /// Scan Ships Scan for nearby ships, retrieving information for all ships in range.  Requires a ship to have the &#x60;Sensor Array&#x60; mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <returns>CreateShipShipScan201Response</returns>
         public CreateShipShipScan201Response CreateShipShipScan(string shipSymbol)
         {
@@ -1616,10 +1619,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Scan Ships Activate your ship&#39;s sensor arrays to scan for ship information.
+        /// Scan Ships Scan for nearby ships, retrieving information for all ships in range.  Requires a ship to have the &#x60;Sensor Array&#x60; mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <returns>ApiResponse of CreateShipShipScan201Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<CreateShipShipScan201Response> CreateShipShipScanWithHttpInfo(string shipSymbol)
         {
@@ -1665,10 +1668,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Scan Ships Activate your ship&#39;s sensor arrays to scan for ship information.
+        /// Scan Ships Scan for nearby ships, retrieving information for all ships in range.  Requires a ship to have the &#x60;Sensor Array&#x60; mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateShipShipScan201Response</returns>
         public async System.Threading.Tasks.Task<CreateShipShipScan201Response> CreateShipShipScanAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1683,10 +1686,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Scan Ships Activate your ship&#39;s sensor arrays to scan for ship information.
+        /// Scan Ships Scan for nearby ships, retrieving information for all ships in range.  Requires a ship to have the &#x60;Sensor Array&#x60; mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateShipShipScan201Response)</returns>
         public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<CreateShipShipScan201Response>> CreateShipShipScanWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1742,10 +1745,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Scan Systems Activate your ship&#39;s sensor arrays to scan for system information.
+        /// Scan Systems Scan for nearby systems, retrieving information on the systems&#39; distance from the ship and their waypoints. Requires a ship to have the &#x60;Sensor Array&#x60; mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <returns>CreateShipSystemScan201Response</returns>
         public CreateShipSystemScan201Response CreateShipSystemScan(string shipSymbol)
         {
@@ -1754,10 +1757,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Scan Systems Activate your ship&#39;s sensor arrays to scan for system information.
+        /// Scan Systems Scan for nearby systems, retrieving information on the systems&#39; distance from the ship and their waypoints. Requires a ship to have the &#x60;Sensor Array&#x60; mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <returns>ApiResponse of CreateShipSystemScan201Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<CreateShipSystemScan201Response> CreateShipSystemScanWithHttpInfo(string shipSymbol)
         {
@@ -1803,10 +1806,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Scan Systems Activate your ship&#39;s sensor arrays to scan for system information.
+        /// Scan Systems Scan for nearby systems, retrieving information on the systems&#39; distance from the ship and their waypoints. Requires a ship to have the &#x60;Sensor Array&#x60; mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateShipSystemScan201Response</returns>
         public async System.Threading.Tasks.Task<CreateShipSystemScan201Response> CreateShipSystemScanAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1821,10 +1824,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Scan Systems Activate your ship&#39;s sensor arrays to scan for system information.
+        /// Scan Systems Scan for nearby systems, retrieving information on the systems&#39; distance from the ship and their waypoints. Requires a ship to have the &#x60;Sensor Array&#x60; mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateShipSystemScan201Response)</returns>
         public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<CreateShipSystemScan201Response>> CreateShipSystemScanWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1880,10 +1883,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Scan Waypoints Activate your ship&#39;s sensor arrays to scan for waypoint information.
+        /// Scan Waypoints Scan for nearby waypoints, retrieving detailed information on each waypoint in range. Scanning uncharted waypoints will allow you to ignore their uncharted state and will list the waypoints&#39; traits.  Requires a ship to have the &#x60;Sensor Array&#x60; mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <returns>CreateShipWaypointScan201Response</returns>
         public CreateShipWaypointScan201Response CreateShipWaypointScan(string shipSymbol)
         {
@@ -1892,10 +1895,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Scan Waypoints Activate your ship&#39;s sensor arrays to scan for waypoint information.
+        /// Scan Waypoints Scan for nearby waypoints, retrieving detailed information on each waypoint in range. Scanning uncharted waypoints will allow you to ignore their uncharted state and will list the waypoints&#39; traits.  Requires a ship to have the &#x60;Sensor Array&#x60; mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <returns>ApiResponse of CreateShipWaypointScan201Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<CreateShipWaypointScan201Response> CreateShipWaypointScanWithHttpInfo(string shipSymbol)
         {
@@ -1941,10 +1944,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Scan Waypoints Activate your ship&#39;s sensor arrays to scan for waypoint information.
+        /// Scan Waypoints Scan for nearby waypoints, retrieving detailed information on each waypoint in range. Scanning uncharted waypoints will allow you to ignore their uncharted state and will list the waypoints&#39; traits.  Requires a ship to have the &#x60;Sensor Array&#x60; mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateShipWaypointScan201Response</returns>
         public async System.Threading.Tasks.Task<CreateShipWaypointScan201Response> CreateShipWaypointScanAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1959,10 +1962,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Scan Waypoints Activate your ship&#39;s sensor arrays to scan for waypoint information.
+        /// Scan Waypoints Scan for nearby waypoints, retrieving detailed information on each waypoint in range. Scanning uncharted waypoints will allow you to ignore their uncharted state and will list the waypoints&#39; traits.  Requires a ship to have the &#x60;Sensor Array&#x60; mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateShipWaypointScan201Response)</returns>
         public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<CreateShipWaypointScan201Response>> CreateShipWaypointScanWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2018,10 +2021,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Create Survey If you want to target specific yields for an extraction, you can survey a waypoint, such as an asteroid field, and send the survey in the body of the extract request. Each survey may have multiple deposits, and if a symbol shows up more than once, that indicates a higher chance of extracting that resource.  Your ship will enter a cooldown between consecutive survey requests. Surveys will eventually expire after a period of time. Multiple ships can use the same survey for extraction.
+        /// Create Survey Create surveys on a waypoint that can be extracted such as asteroid fields. A survey focuses on specific types of deposits from the extracted location. When ships extract using this survey, they are guaranteed to procure a high amount of one of the goods in the survey.  In order to use a survey, send the entire survey details in the body of the extract request.  Each survey may have multiple deposits, and if a symbol shows up more than once, that indicates a higher chance of extracting that resource.  Your ship will enter a cooldown after surveying in which it is unable to perform certain actions. Surveys will eventually expire after a period of time or will be exhausted after being extracted several times based on the survey&#39;s size. Multiple ships can use the same survey for extraction.  A ship must have the &#x60;Surveyor&#x60; mount installed in order to use this function.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>CreateSurvey201Response</returns>
         public CreateSurvey201Response CreateSurvey(string shipSymbol)
         {
@@ -2030,10 +2033,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Create Survey If you want to target specific yields for an extraction, you can survey a waypoint, such as an asteroid field, and send the survey in the body of the extract request. Each survey may have multiple deposits, and if a symbol shows up more than once, that indicates a higher chance of extracting that resource.  Your ship will enter a cooldown between consecutive survey requests. Surveys will eventually expire after a period of time. Multiple ships can use the same survey for extraction.
+        /// Create Survey Create surveys on a waypoint that can be extracted such as asteroid fields. A survey focuses on specific types of deposits from the extracted location. When ships extract using this survey, they are guaranteed to procure a high amount of one of the goods in the survey.  In order to use a survey, send the entire survey details in the body of the extract request.  Each survey may have multiple deposits, and if a symbol shows up more than once, that indicates a higher chance of extracting that resource.  Your ship will enter a cooldown after surveying in which it is unable to perform certain actions. Surveys will eventually expire after a period of time or will be exhausted after being extracted several times based on the survey&#39;s size. Multiple ships can use the same survey for extraction.  A ship must have the &#x60;Surveyor&#x60; mount installed in order to use this function.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>ApiResponse of CreateSurvey201Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<CreateSurvey201Response> CreateSurveyWithHttpInfo(string shipSymbol)
         {
@@ -2079,10 +2082,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Create Survey If you want to target specific yields for an extraction, you can survey a waypoint, such as an asteroid field, and send the survey in the body of the extract request. Each survey may have multiple deposits, and if a symbol shows up more than once, that indicates a higher chance of extracting that resource.  Your ship will enter a cooldown between consecutive survey requests. Surveys will eventually expire after a period of time. Multiple ships can use the same survey for extraction.
+        /// Create Survey Create surveys on a waypoint that can be extracted such as asteroid fields. A survey focuses on specific types of deposits from the extracted location. When ships extract using this survey, they are guaranteed to procure a high amount of one of the goods in the survey.  In order to use a survey, send the entire survey details in the body of the extract request.  Each survey may have multiple deposits, and if a symbol shows up more than once, that indicates a higher chance of extracting that resource.  Your ship will enter a cooldown after surveying in which it is unable to perform certain actions. Surveys will eventually expire after a period of time or will be exhausted after being extracted several times based on the survey&#39;s size. Multiple ships can use the same survey for extraction.  A ship must have the &#x60;Surveyor&#x60; mount installed in order to use this function.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateSurvey201Response</returns>
         public async System.Threading.Tasks.Task<CreateSurvey201Response> CreateSurveyAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2097,10 +2100,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Create Survey If you want to target specific yields for an extraction, you can survey a waypoint, such as an asteroid field, and send the survey in the body of the extract request. Each survey may have multiple deposits, and if a symbol shows up more than once, that indicates a higher chance of extracting that resource.  Your ship will enter a cooldown between consecutive survey requests. Surveys will eventually expire after a period of time. Multiple ships can use the same survey for extraction.
+        /// Create Survey Create surveys on a waypoint that can be extracted such as asteroid fields. A survey focuses on specific types of deposits from the extracted location. When ships extract using this survey, they are guaranteed to procure a high amount of one of the goods in the survey.  In order to use a survey, send the entire survey details in the body of the extract request.  Each survey may have multiple deposits, and if a symbol shows up more than once, that indicates a higher chance of extracting that resource.  Your ship will enter a cooldown after surveying in which it is unable to perform certain actions. Surveys will eventually expire after a period of time or will be exhausted after being extracted several times based on the survey&#39;s size. Multiple ships can use the same survey for extraction.  A ship must have the &#x60;Surveyor&#x60; mount installed in order to use this function.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateSurvey201Response)</returns>
         public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<CreateSurvey201Response>> CreateSurveyWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2156,10 +2159,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Dock Ship Attempt to dock your ship at it&#39;s current location. Docking will only succeed if the waypoint is a dockable location, and your ship is capable of docking at the time of the request.  The endpoint is idempotent - successive calls will succeed even if the ship is already docked.
+        /// Dock Ship Attempt to dock your ship at its current location. Docking will only succeed if your ship is capable of docking at the time of the request.  Docked ships can access elements in their current location, such as the market or a shipyard, but cannot do actions that require the ship to be above surface such as navigating or extracting.  The endpoint is idempotent - successive calls will succeed even if the ship is already docked.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>DockShip200Response</returns>
         public DockShip200Response DockShip(string shipSymbol)
         {
@@ -2168,10 +2171,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Dock Ship Attempt to dock your ship at it&#39;s current location. Docking will only succeed if the waypoint is a dockable location, and your ship is capable of docking at the time of the request.  The endpoint is idempotent - successive calls will succeed even if the ship is already docked.
+        /// Dock Ship Attempt to dock your ship at its current location. Docking will only succeed if your ship is capable of docking at the time of the request.  Docked ships can access elements in their current location, such as the market or a shipyard, but cannot do actions that require the ship to be above surface such as navigating or extracting.  The endpoint is idempotent - successive calls will succeed even if the ship is already docked.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>ApiResponse of DockShip200Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<DockShip200Response> DockShipWithHttpInfo(string shipSymbol)
         {
@@ -2217,10 +2220,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Dock Ship Attempt to dock your ship at it&#39;s current location. Docking will only succeed if the waypoint is a dockable location, and your ship is capable of docking at the time of the request.  The endpoint is idempotent - successive calls will succeed even if the ship is already docked.
+        /// Dock Ship Attempt to dock your ship at its current location. Docking will only succeed if your ship is capable of docking at the time of the request.  Docked ships can access elements in their current location, such as the market or a shipyard, but cannot do actions that require the ship to be above surface such as navigating or extracting.  The endpoint is idempotent - successive calls will succeed even if the ship is already docked.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DockShip200Response</returns>
         public async System.Threading.Tasks.Task<DockShip200Response> DockShipAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2235,10 +2238,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Dock Ship Attempt to dock your ship at it&#39;s current location. Docking will only succeed if the waypoint is a dockable location, and your ship is capable of docking at the time of the request.  The endpoint is idempotent - successive calls will succeed even if the ship is already docked.
+        /// Dock Ship Attempt to dock your ship at its current location. Docking will only succeed if your ship is capable of docking at the time of the request.  Docked ships can access elements in their current location, such as the market or a shipyard, but cannot do actions that require the ship to be above surface such as navigating or extracting.  The endpoint is idempotent - successive calls will succeed even if the ship is already docked.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DockShip200Response)</returns>
         public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<DockShip200Response>> DockShipWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2294,10 +2297,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Extract Resources Extract resources from the waypoint into your ship. Send an optional survey as the payload to target specific yields.
+        /// Extract Resources Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the &#x60;Gas Siphon&#x60; mount for gas-based goods or &#x60;Mining Laser&#x60; mount for ore-based goods.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="extractResourcesRequest"> (optional)</param>
         /// <returns>ExtractResources201Response</returns>
         public ExtractResources201Response ExtractResources(string shipSymbol, ExtractResourcesRequest extractResourcesRequest = default(ExtractResourcesRequest))
@@ -2307,10 +2310,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Extract Resources Extract resources from the waypoint into your ship. Send an optional survey as the payload to target specific yields.
+        /// Extract Resources Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the &#x60;Gas Siphon&#x60; mount for gas-based goods or &#x60;Mining Laser&#x60; mount for ore-based goods.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="extractResourcesRequest"> (optional)</param>
         /// <returns>ApiResponse of ExtractResources201Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<ExtractResources201Response> ExtractResourcesWithHttpInfo(string shipSymbol, ExtractResourcesRequest extractResourcesRequest = default(ExtractResourcesRequest))
@@ -2359,10 +2362,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Extract Resources Extract resources from the waypoint into your ship. Send an optional survey as the payload to target specific yields.
+        /// Extract Resources Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the &#x60;Gas Siphon&#x60; mount for gas-based goods or &#x60;Mining Laser&#x60; mount for ore-based goods.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="extractResourcesRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ExtractResources201Response</returns>
@@ -2378,10 +2381,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Extract Resources Extract resources from the waypoint into your ship. Send an optional survey as the payload to target specific yields.
+        /// Extract Resources Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the &#x60;Gas Siphon&#x60; mount for gas-based goods or &#x60;Mining Laser&#x60; mount for ore-based goods.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="extractResourcesRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ExtractResources201Response)</returns>
@@ -2440,10 +2443,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Mounts Get the mounts on a ship.
+        /// Get Mounts Get the mounts installed on a ship.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <returns>GetMounts200Response</returns>
         public GetMounts200Response GetMounts(string shipSymbol)
         {
@@ -2452,10 +2455,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Mounts Get the mounts on a ship.
+        /// Get Mounts Get the mounts installed on a ship.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <returns>ApiResponse of GetMounts200Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<GetMounts200Response> GetMountsWithHttpInfo(string shipSymbol)
         {
@@ -2501,10 +2504,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Mounts Get the mounts on a ship.
+        /// Get Mounts Get the mounts installed on a ship.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetMounts200Response</returns>
         public async System.Threading.Tasks.Task<GetMounts200Response> GetMountsAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2519,10 +2522,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Mounts Get the mounts on a ship.
+        /// Get Mounts Get the mounts installed on a ship.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetMounts200Response)</returns>
         public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetMounts200Response>> GetMountsWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2578,10 +2581,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Ship Retrieve the details of your ship.
+        /// Get Ship Retrieve the details of a ship under your agent&#39;s ownership.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>GetMyShip200Response</returns>
         public GetMyShip200Response GetMyShip(string shipSymbol)
         {
@@ -2590,10 +2593,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Ship Retrieve the details of your ship.
+        /// Get Ship Retrieve the details of a ship under your agent&#39;s ownership.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>ApiResponse of GetMyShip200Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<GetMyShip200Response> GetMyShipWithHttpInfo(string shipSymbol)
         {
@@ -2639,10 +2642,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Ship Retrieve the details of your ship.
+        /// Get Ship Retrieve the details of a ship under your agent&#39;s ownership.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetMyShip200Response</returns>
         public async System.Threading.Tasks.Task<GetMyShip200Response> GetMyShipAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2657,10 +2660,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Ship Retrieve the details of your ship.
+        /// Get Ship Retrieve the details of a ship under your agent&#39;s ownership.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetMyShip200Response)</returns>
         public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetMyShip200Response>> GetMyShipWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2716,10 +2719,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Ship Cargo Retrieve the cargo of your ship.
+        /// Get Ship Cargo Retrieve the cargo of a ship under your agent&#39;s ownership.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>GetMyShipCargo200Response</returns>
         public GetMyShipCargo200Response GetMyShipCargo(string shipSymbol)
         {
@@ -2728,10 +2731,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Ship Cargo Retrieve the cargo of your ship.
+        /// Get Ship Cargo Retrieve the cargo of a ship under your agent&#39;s ownership.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>ApiResponse of GetMyShipCargo200Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<GetMyShipCargo200Response> GetMyShipCargoWithHttpInfo(string shipSymbol)
         {
@@ -2777,10 +2780,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Ship Cargo Retrieve the cargo of your ship.
+        /// Get Ship Cargo Retrieve the cargo of a ship under your agent&#39;s ownership.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetMyShipCargo200Response</returns>
         public async System.Threading.Tasks.Task<GetMyShipCargo200Response> GetMyShipCargoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2795,10 +2798,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Ship Cargo Retrieve the cargo of your ship.
+        /// Get Ship Cargo Retrieve the cargo of a ship under your agent&#39;s ownership.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetMyShipCargo200Response)</returns>
         public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetMyShipCargo200Response>> GetMyShipCargoWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -2854,26 +2857,26 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// List Ships Retrieve all of your ships.
+        /// List Ships Return a paginated list of all of ships under your agent&#39;s ownership.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <returns>GetMyShips200Response</returns>
-        public GetMyShips200Response GetMyShips(long? page = default(long?), long? limit = default(long?))
+        public GetMyShips200Response GetMyShips(int? page = default(int?), int? limit = default(int?))
         {
             SpaceTradersUnitySDK.Client.ApiResponse<GetMyShips200Response> localVarResponse = GetMyShipsWithHttpInfo(page, limit);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List Ships Retrieve all of your ships.
+        /// List Ships Return a paginated list of all of ships under your agent&#39;s ownership.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <returns>ApiResponse of GetMyShips200Response</returns>
-        public SpaceTradersUnitySDK.Client.ApiResponse<GetMyShips200Response> GetMyShipsWithHttpInfo(long? page = default(long?), long? limit = default(long?))
+        public SpaceTradersUnitySDK.Client.ApiResponse<GetMyShips200Response> GetMyShipsWithHttpInfo(int? page = default(int?), int? limit = default(int?))
         {
             SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
 
@@ -2920,14 +2923,14 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// List Ships Retrieve all of your ships.
+        /// List Ships Return a paginated list of all of ships under your agent&#39;s ownership.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetMyShips200Response</returns>
-        public async System.Threading.Tasks.Task<GetMyShips200Response> GetMyShipsAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<GetMyShips200Response> GetMyShipsAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = GetMyShipsWithHttpInfoAsync(page, limit, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
@@ -2939,14 +2942,14 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// List Ships Retrieve all of your ships.
+        /// List Ships Return a paginated list of all of ships under your agent&#39;s ownership.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetMyShips200Response)</returns>
-        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetMyShips200Response>> GetMyShipsWithHttpInfoAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetMyShips200Response>> GetMyShipsWithHttpInfoAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
@@ -3005,7 +3008,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Ship Cooldown Retrieve the details of your ship&#39;s reactor cooldown. Some actions such as activating your jump drive, scanning, or extracting resources taxes your reactor and results in a cooldown.  Your ship cannot perform additional actions until your cooldown has expired. The duration of your cooldown is relative to the power consumption of the related modules or mounts for the action taken.  Response returns a 204 status code (no-content) when the ship has no cooldown.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>GetShipCooldown200Response</returns>
         public GetShipCooldown200Response GetShipCooldown(string shipSymbol)
         {
@@ -3017,7 +3020,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Ship Cooldown Retrieve the details of your ship&#39;s reactor cooldown. Some actions such as activating your jump drive, scanning, or extracting resources taxes your reactor and results in a cooldown.  Your ship cannot perform additional actions until your cooldown has expired. The duration of your cooldown is relative to the power consumption of the related modules or mounts for the action taken.  Response returns a 204 status code (no-content) when the ship has no cooldown.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>ApiResponse of GetShipCooldown200Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<GetShipCooldown200Response> GetShipCooldownWithHttpInfo(string shipSymbol)
         {
@@ -3066,7 +3069,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Ship Cooldown Retrieve the details of your ship&#39;s reactor cooldown. Some actions such as activating your jump drive, scanning, or extracting resources taxes your reactor and results in a cooldown.  Your ship cannot perform additional actions until your cooldown has expired. The duration of your cooldown is relative to the power consumption of the related modules or mounts for the action taken.  Response returns a 204 status code (no-content) when the ship has no cooldown.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetShipCooldown200Response</returns>
         public async System.Threading.Tasks.Task<GetShipCooldown200Response> GetShipCooldownAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3084,7 +3087,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Ship Cooldown Retrieve the details of your ship&#39;s reactor cooldown. Some actions such as activating your jump drive, scanning, or extracting resources taxes your reactor and results in a cooldown.  Your ship cannot perform additional actions until your cooldown has expired. The duration of your cooldown is relative to the power consumption of the related modules or mounts for the action taken.  Response returns a 204 status code (no-content) when the ship has no cooldown.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetShipCooldown200Response)</returns>
         public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetShipCooldown200Response>> GetShipCooldownWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3143,7 +3146,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Ship Nav Get the current nav status of a ship.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <returns>GetShipNav200Response</returns>
         public GetShipNav200Response GetShipNav(string shipSymbol)
         {
@@ -3155,7 +3158,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Ship Nav Get the current nav status of a ship.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <returns>ApiResponse of GetShipNav200Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<GetShipNav200Response> GetShipNavWithHttpInfo(string shipSymbol)
         {
@@ -3204,7 +3207,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Ship Nav Get the current nav status of a ship.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetShipNav200Response</returns>
         public async System.Threading.Tasks.Task<GetShipNav200Response> GetShipNavAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3222,7 +3225,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Ship Nav Get the current nav status of a ship.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetShipNav200Response)</returns>
         public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetShipNav200Response>> GetShipNavWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -3278,10 +3281,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Install Mount Install a mount on a ship.
+        /// Install Mount Install a mount on a ship.  In order to install a mount, the ship must be docked and located in a waypoint that has a &#x60;Shipyard&#x60; trait. The ship also must have the mount to install in its cargo hold.  An installation fee will be deduced by the Shipyard for installing the mount on the ship. 
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="installMountRequest"> (optional)</param>
         /// <returns>InstallMount201Response</returns>
         public InstallMount201Response InstallMount(string shipSymbol, InstallMountRequest installMountRequest = default(InstallMountRequest))
@@ -3291,10 +3294,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Install Mount Install a mount on a ship.
+        /// Install Mount Install a mount on a ship.  In order to install a mount, the ship must be docked and located in a waypoint that has a &#x60;Shipyard&#x60; trait. The ship also must have the mount to install in its cargo hold.  An installation fee will be deduced by the Shipyard for installing the mount on the ship. 
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="installMountRequest"> (optional)</param>
         /// <returns>ApiResponse of InstallMount201Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<InstallMount201Response> InstallMountWithHttpInfo(string shipSymbol, InstallMountRequest installMountRequest = default(InstallMountRequest))
@@ -3343,10 +3346,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Install Mount Install a mount on a ship.
+        /// Install Mount Install a mount on a ship.  In order to install a mount, the ship must be docked and located in a waypoint that has a &#x60;Shipyard&#x60; trait. The ship also must have the mount to install in its cargo hold.  An installation fee will be deduced by the Shipyard for installing the mount on the ship. 
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="installMountRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of InstallMount201Response</returns>
@@ -3362,10 +3365,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Install Mount Install a mount on a ship.
+        /// Install Mount Install a mount on a ship.  In order to install a mount, the ship must be docked and located in a waypoint that has a &#x60;Shipyard&#x60; trait. The ship also must have the mount to install in its cargo hold.  An installation fee will be deduced by the Shipyard for installing the mount on the ship. 
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="installMountRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (InstallMount201Response)</returns>
@@ -3427,7 +3430,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Jettison Cargo Jettison cargo from your ship&#39;s cargo hold.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="jettisonRequest"> (optional)</param>
         /// <returns>Jettison200Response</returns>
         public Jettison200Response Jettison(string shipSymbol, JettisonRequest jettisonRequest = default(JettisonRequest))
@@ -3440,7 +3443,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Jettison Cargo Jettison cargo from your ship&#39;s cargo hold.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="jettisonRequest"> (optional)</param>
         /// <returns>ApiResponse of Jettison200Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<Jettison200Response> JettisonWithHttpInfo(string shipSymbol, JettisonRequest jettisonRequest = default(JettisonRequest))
@@ -3492,7 +3495,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Jettison Cargo Jettison cargo from your ship&#39;s cargo hold.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="jettisonRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Jettison200Response</returns>
@@ -3511,7 +3514,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Jettison Cargo Jettison cargo from your ship&#39;s cargo hold.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="jettisonRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Jettison200Response)</returns>
@@ -3570,10 +3573,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Jump Ship Jump your ship instantly to a target system. When used while in orbit or docked to a jump gate waypoint, any ship can use this command. When used elsewhere, jumping requires a jump drive unit and consumes a unit of antimatter (which needs to be in your cargo).
+        /// Jump Ship Jump your ship instantly to a target system. The ship must be in orbit to use this function. When used while in orbit of a Jump Gate waypoint, any ship can use this command, jumping to the target system&#39;s Jump Gate waypoint.  When used elsewhere, jumping requires the ship to have a &#x60;Jump Drive&#x60; module installed and consumes a unit of antimatter from the ship&#39;s cargo. The command will fail if there is no antimatter to consume. When jumping via the &#x60;Jump Drive&#x60; module, the ship ends up at its largest source of energy in the system, such as a gas planet or a jump gate.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="jumpShipRequest"> (optional)</param>
         /// <returns>JumpShip200Response</returns>
         public JumpShip200Response JumpShip(string shipSymbol, JumpShipRequest jumpShipRequest = default(JumpShipRequest))
@@ -3583,10 +3586,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Jump Ship Jump your ship instantly to a target system. When used while in orbit or docked to a jump gate waypoint, any ship can use this command. When used elsewhere, jumping requires a jump drive unit and consumes a unit of antimatter (which needs to be in your cargo).
+        /// Jump Ship Jump your ship instantly to a target system. The ship must be in orbit to use this function. When used while in orbit of a Jump Gate waypoint, any ship can use this command, jumping to the target system&#39;s Jump Gate waypoint.  When used elsewhere, jumping requires the ship to have a &#x60;Jump Drive&#x60; module installed and consumes a unit of antimatter from the ship&#39;s cargo. The command will fail if there is no antimatter to consume. When jumping via the &#x60;Jump Drive&#x60; module, the ship ends up at its largest source of energy in the system, such as a gas planet or a jump gate.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="jumpShipRequest"> (optional)</param>
         /// <returns>ApiResponse of JumpShip200Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<JumpShip200Response> JumpShipWithHttpInfo(string shipSymbol, JumpShipRequest jumpShipRequest = default(JumpShipRequest))
@@ -3635,10 +3638,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Jump Ship Jump your ship instantly to a target system. When used while in orbit or docked to a jump gate waypoint, any ship can use this command. When used elsewhere, jumping requires a jump drive unit and consumes a unit of antimatter (which needs to be in your cargo).
+        /// Jump Ship Jump your ship instantly to a target system. The ship must be in orbit to use this function. When used while in orbit of a Jump Gate waypoint, any ship can use this command, jumping to the target system&#39;s Jump Gate waypoint.  When used elsewhere, jumping requires the ship to have a &#x60;Jump Drive&#x60; module installed and consumes a unit of antimatter from the ship&#39;s cargo. The command will fail if there is no antimatter to consume. When jumping via the &#x60;Jump Drive&#x60; module, the ship ends up at its largest source of energy in the system, such as a gas planet or a jump gate.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="jumpShipRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of JumpShip200Response</returns>
@@ -3654,10 +3657,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Jump Ship Jump your ship instantly to a target system. When used while in orbit or docked to a jump gate waypoint, any ship can use this command. When used elsewhere, jumping requires a jump drive unit and consumes a unit of antimatter (which needs to be in your cargo).
+        /// Jump Ship Jump your ship instantly to a target system. The ship must be in orbit to use this function. When used while in orbit of a Jump Gate waypoint, any ship can use this command, jumping to the target system&#39;s Jump Gate waypoint.  When used elsewhere, jumping requires the ship to have a &#x60;Jump Drive&#x60; module installed and consumes a unit of antimatter from the ship&#39;s cargo. The command will fail if there is no antimatter to consume. When jumping via the &#x60;Jump Drive&#x60; module, the ship ends up at its largest source of energy in the system, such as a gas planet or a jump gate.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="jumpShipRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (JumpShip200Response)</returns>
@@ -3716,10 +3719,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Navigate Ship Navigate to a target destination. The destination must be located within the same system as the ship. Navigating will consume the necessary fuel and supplies from the ship&#39;s manifest, and will pay out crew wages from the agent&#39;s account.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it&#39;s destination.  To travel between systems, see the ship&#39;s warp or jump actions.
+        /// Navigate Ship Navigate to a target destination. The ship must be in orbit to use this function. The destination waypoint must be within the same system as the ship&#39;s current location. Navigating will consume the necessary fuel from the ship&#39;s manifest based on the distance to the target waypoint.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it&#39;s destination.  To travel between systems, see the ship&#39;s Warp or Jump actions.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="navigateShipRequest"> (optional)</param>
         /// <returns>NavigateShip200Response</returns>
         public NavigateShip200Response NavigateShip(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest))
@@ -3729,10 +3732,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Navigate Ship Navigate to a target destination. The destination must be located within the same system as the ship. Navigating will consume the necessary fuel and supplies from the ship&#39;s manifest, and will pay out crew wages from the agent&#39;s account.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it&#39;s destination.  To travel between systems, see the ship&#39;s warp or jump actions.
+        /// Navigate Ship Navigate to a target destination. The ship must be in orbit to use this function. The destination waypoint must be within the same system as the ship&#39;s current location. Navigating will consume the necessary fuel from the ship&#39;s manifest based on the distance to the target waypoint.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it&#39;s destination.  To travel between systems, see the ship&#39;s Warp or Jump actions.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="navigateShipRequest"> (optional)</param>
         /// <returns>ApiResponse of NavigateShip200Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<NavigateShip200Response> NavigateShipWithHttpInfo(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest))
@@ -3781,10 +3784,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Navigate Ship Navigate to a target destination. The destination must be located within the same system as the ship. Navigating will consume the necessary fuel and supplies from the ship&#39;s manifest, and will pay out crew wages from the agent&#39;s account.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it&#39;s destination.  To travel between systems, see the ship&#39;s warp or jump actions.
+        /// Navigate Ship Navigate to a target destination. The ship must be in orbit to use this function. The destination waypoint must be within the same system as the ship&#39;s current location. Navigating will consume the necessary fuel from the ship&#39;s manifest based on the distance to the target waypoint.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it&#39;s destination.  To travel between systems, see the ship&#39;s Warp or Jump actions.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="navigateShipRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NavigateShip200Response</returns>
@@ -3800,10 +3803,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Navigate Ship Navigate to a target destination. The destination must be located within the same system as the ship. Navigating will consume the necessary fuel and supplies from the ship&#39;s manifest, and will pay out crew wages from the agent&#39;s account.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it&#39;s destination.  To travel between systems, see the ship&#39;s warp or jump actions.
+        /// Navigate Ship Navigate to a target destination. The ship must be in orbit to use this function. The destination waypoint must be within the same system as the ship&#39;s current location. Navigating will consume the necessary fuel from the ship&#39;s manifest based on the distance to the target waypoint.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it&#39;s destination.  To travel between systems, see the ship&#39;s Warp or Jump actions.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="navigateShipRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NavigateShip200Response)</returns>
@@ -3862,10 +3865,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Negotiate Contract 
+        /// Negotiate Contract Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at a faction&#39;s HQ waypoint to negotiate a contract with that faction.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="body"> (optional)</param>
         /// <returns>NegotiateContract200Response</returns>
         public NegotiateContract200Response NegotiateContract(string shipSymbol, Object body = default(Object))
@@ -3875,10 +3878,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Negotiate Contract 
+        /// Negotiate Contract Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at a faction&#39;s HQ waypoint to negotiate a contract with that faction.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="body"> (optional)</param>
         /// <returns>ApiResponse of NegotiateContract200Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<NegotiateContract200Response> NegotiateContractWithHttpInfo(string shipSymbol, Object body = default(Object))
@@ -3927,10 +3930,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Negotiate Contract 
+        /// Negotiate Contract Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at a faction&#39;s HQ waypoint to negotiate a contract with that faction.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="body"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NegotiateContract200Response</returns>
@@ -3946,10 +3949,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Negotiate Contract 
+        /// Negotiate Contract Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at a faction&#39;s HQ waypoint to negotiate a contract with that faction.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="body"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NegotiateContract200Response)</returns>
@@ -4008,10 +4011,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Orbit Ship Attempt to move your ship into orbit at it&#39;s current location. The request will only succeed if your ship is capable of moving into orbit at the time of the request.  The endpoint is idempotent - successive calls will succeed even if the ship is already in orbit.
+        /// Orbit Ship Attempt to move your ship into orbit at its current location. The request will only succeed if your ship is capable of moving into orbit at the time of the request.  Orbiting ships are able to do actions that require the ship to be above surface such as navigating or extracting, but cannot access elements in their current waypoint, such as the market or a shipyard.  The endpoint is idempotent - successive calls will succeed even if the ship is already in orbit.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>OrbitShip200Response</returns>
         public OrbitShip200Response OrbitShip(string shipSymbol)
         {
@@ -4020,10 +4023,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Orbit Ship Attempt to move your ship into orbit at it&#39;s current location. The request will only succeed if your ship is capable of moving into orbit at the time of the request.  The endpoint is idempotent - successive calls will succeed even if the ship is already in orbit.
+        /// Orbit Ship Attempt to move your ship into orbit at its current location. The request will only succeed if your ship is capable of moving into orbit at the time of the request.  Orbiting ships are able to do actions that require the ship to be above surface such as navigating or extracting, but cannot access elements in their current waypoint, such as the market or a shipyard.  The endpoint is idempotent - successive calls will succeed even if the ship is already in orbit.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <returns>ApiResponse of OrbitShip200Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<OrbitShip200Response> OrbitShipWithHttpInfo(string shipSymbol)
         {
@@ -4069,10 +4072,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Orbit Ship Attempt to move your ship into orbit at it&#39;s current location. The request will only succeed if your ship is capable of moving into orbit at the time of the request.  The endpoint is idempotent - successive calls will succeed even if the ship is already in orbit.
+        /// Orbit Ship Attempt to move your ship into orbit at its current location. The request will only succeed if your ship is capable of moving into orbit at the time of the request.  Orbiting ships are able to do actions that require the ship to be above surface such as navigating or extracting, but cannot access elements in their current waypoint, such as the market or a shipyard.  The endpoint is idempotent - successive calls will succeed even if the ship is already in orbit.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of OrbitShip200Response</returns>
         public async System.Threading.Tasks.Task<OrbitShip200Response> OrbitShipAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4087,10 +4090,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Orbit Ship Attempt to move your ship into orbit at it&#39;s current location. The request will only succeed if your ship is capable of moving into orbit at the time of the request.  The endpoint is idempotent - successive calls will succeed even if the ship is already in orbit.
+        /// Orbit Ship Attempt to move your ship into orbit at its current location. The request will only succeed if your ship is capable of moving into orbit at the time of the request.  Orbiting ships are able to do actions that require the ship to be above surface such as navigating or extracting, but cannot access elements in their current waypoint, such as the market or a shipyard.  The endpoint is idempotent - successive calls will succeed even if the ship is already in orbit.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (OrbitShip200Response)</returns>
         public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<OrbitShip200Response>> OrbitShipWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4146,10 +4149,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Patch Ship Nav Update the nav data of a ship, such as the flight mode.
+        /// Patch Ship Nav Update the nav configuration of a ship.  Currently only supports configuring the Flight Mode of the ship, which affects its speed and fuel consumption.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="patchShipNavRequest"> (optional)</param>
         /// <returns>GetShipNav200Response</returns>
         public GetShipNav200Response PatchShipNav(string shipSymbol, PatchShipNavRequest patchShipNavRequest = default(PatchShipNavRequest))
@@ -4159,10 +4162,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Patch Ship Nav Update the nav data of a ship, such as the flight mode.
+        /// Patch Ship Nav Update the nav configuration of a ship.  Currently only supports configuring the Flight Mode of the ship, which affects its speed and fuel consumption.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="patchShipNavRequest"> (optional)</param>
         /// <returns>ApiResponse of GetShipNav200Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<GetShipNav200Response> PatchShipNavWithHttpInfo(string shipSymbol, PatchShipNavRequest patchShipNavRequest = default(PatchShipNavRequest))
@@ -4211,10 +4214,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Patch Ship Nav Update the nav data of a ship, such as the flight mode.
+        /// Patch Ship Nav Update the nav configuration of a ship.  Currently only supports configuring the Flight Mode of the ship, which affects its speed and fuel consumption.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="patchShipNavRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetShipNav200Response</returns>
@@ -4230,10 +4233,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Patch Ship Nav Update the nav data of a ship, such as the flight mode.
+        /// Patch Ship Nav Update the nav configuration of a ship.  Currently only supports configuring the Flight Mode of the ship, which affects its speed and fuel consumption.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The ship symbol</param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="patchShipNavRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetShipNav200Response)</returns>
@@ -4292,10 +4295,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Purchase Cargo Purchase cargo.
+        /// Purchase Cargo Purchase cargo from a market.  The ship must be docked in a waypoint that has &#x60;Marketplace&#x60; trait, and the market must be selling a good to be able to purchase it.  The maximum amount of units of a good that can be purchased in each transaction are denoted by the &#x60;tradeVolume&#x60; value of the good, which can be viewed by using the Get Market action.  Purchased goods are added to the ship&#39;s cargo hold.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="purchaseCargoRequest"> (optional)</param>
         /// <returns>PurchaseCargo201Response</returns>
         public PurchaseCargo201Response PurchaseCargo(string shipSymbol, PurchaseCargoRequest purchaseCargoRequest = default(PurchaseCargoRequest))
@@ -4305,10 +4308,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Purchase Cargo Purchase cargo.
+        /// Purchase Cargo Purchase cargo from a market.  The ship must be docked in a waypoint that has &#x60;Marketplace&#x60; trait, and the market must be selling a good to be able to purchase it.  The maximum amount of units of a good that can be purchased in each transaction are denoted by the &#x60;tradeVolume&#x60; value of the good, which can be viewed by using the Get Market action.  Purchased goods are added to the ship&#39;s cargo hold.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="purchaseCargoRequest"> (optional)</param>
         /// <returns>ApiResponse of PurchaseCargo201Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<PurchaseCargo201Response> PurchaseCargoWithHttpInfo(string shipSymbol, PurchaseCargoRequest purchaseCargoRequest = default(PurchaseCargoRequest))
@@ -4357,10 +4360,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Purchase Cargo Purchase cargo.
+        /// Purchase Cargo Purchase cargo from a market.  The ship must be docked in a waypoint that has &#x60;Marketplace&#x60; trait, and the market must be selling a good to be able to purchase it.  The maximum amount of units of a good that can be purchased in each transaction are denoted by the &#x60;tradeVolume&#x60; value of the good, which can be viewed by using the Get Market action.  Purchased goods are added to the ship&#39;s cargo hold.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="purchaseCargoRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PurchaseCargo201Response</returns>
@@ -4376,10 +4379,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Purchase Cargo Purchase cargo.
+        /// Purchase Cargo Purchase cargo from a market.  The ship must be docked in a waypoint that has &#x60;Marketplace&#x60; trait, and the market must be selling a good to be able to purchase it.  The maximum amount of units of a good that can be purchased in each transaction are denoted by the &#x60;tradeVolume&#x60; value of the good, which can be viewed by using the Get Market action.  Purchased goods are added to the ship&#39;s cargo hold.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="purchaseCargoRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PurchaseCargo201Response)</returns>
@@ -4438,7 +4441,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Purchase Ship Purchase a ship
+        /// Purchase Ship Purchase a ship from a Shipyard. In order to use this function, a ship under your agent&#39;s ownership must be in a waypoint that has the &#x60;Shipyard&#x60; trait, and the Shipyard must sell the type of the desired ship.  Shipyards typically offer ship types, which are predefined templates of ships that have dedicated roles. A template comes with a preset of an engine, a reactor, and a frame. It may also include a few modules and mounts.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="purchaseShipRequest"> (optional)</param>
@@ -4450,7 +4453,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Purchase Ship Purchase a ship
+        /// Purchase Ship Purchase a ship from a Shipyard. In order to use this function, a ship under your agent&#39;s ownership must be in a waypoint that has the &#x60;Shipyard&#x60; trait, and the Shipyard must sell the type of the desired ship.  Shipyards typically offer ship types, which are predefined templates of ships that have dedicated roles. A template comes with a preset of an engine, a reactor, and a frame. It may also include a few modules and mounts.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="purchaseShipRequest"> (optional)</param>
@@ -4496,7 +4499,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Purchase Ship Purchase a ship
+        /// Purchase Ship Purchase a ship from a Shipyard. In order to use this function, a ship under your agent&#39;s ownership must be in a waypoint that has the &#x60;Shipyard&#x60; trait, and the Shipyard must sell the type of the desired ship.  Shipyards typically offer ship types, which are predefined templates of ships that have dedicated roles. A template comes with a preset of an engine, a reactor, and a frame. It may also include a few modules and mounts.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="purchaseShipRequest"> (optional)</param>
@@ -4514,7 +4517,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Purchase Ship Purchase a ship
+        /// Purchase Ship Purchase a ship from a Shipyard. In order to use this function, a ship under your agent&#39;s ownership must be in a waypoint that has the &#x60;Shipyard&#x60; trait, and the Shipyard must sell the type of the desired ship.  Shipyards typically offer ship types, which are predefined templates of ships that have dedicated roles. A template comes with a preset of an engine, a reactor, and a frame. It may also include a few modules and mounts.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="purchaseShipRequest"> (optional)</param>
@@ -4570,10 +4573,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Refuel Ship Refuel your ship from the local market.
+        /// Refuel Ship Refuel your ship by buying fuel from the local market.  Requires the ship to be docked in a waypoint that has the &#x60;Marketplace&#x60; trait, and the market must be selling fuel in order to refuel.  Each fuel bought from the market replenishes 100 units in your ship&#39;s fuel.  Ships will always be refuel to their frame&#39;s maximum fuel capacity when using this action.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <returns>RefuelShip200Response</returns>
         public RefuelShip200Response RefuelShip(string shipSymbol)
         {
@@ -4582,10 +4585,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Refuel Ship Refuel your ship from the local market.
+        /// Refuel Ship Refuel your ship by buying fuel from the local market.  Requires the ship to be docked in a waypoint that has the &#x60;Marketplace&#x60; trait, and the market must be selling fuel in order to refuel.  Each fuel bought from the market replenishes 100 units in your ship&#39;s fuel.  Ships will always be refuel to their frame&#39;s maximum fuel capacity when using this action.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <returns>ApiResponse of RefuelShip200Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<RefuelShip200Response> RefuelShipWithHttpInfo(string shipSymbol)
         {
@@ -4631,10 +4634,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Refuel Ship Refuel your ship from the local market.
+        /// Refuel Ship Refuel your ship by buying fuel from the local market.  Requires the ship to be docked in a waypoint that has the &#x60;Marketplace&#x60; trait, and the market must be selling fuel in order to refuel.  Each fuel bought from the market replenishes 100 units in your ship&#39;s fuel.  Ships will always be refuel to their frame&#39;s maximum fuel capacity when using this action.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of RefuelShip200Response</returns>
         public async System.Threading.Tasks.Task<RefuelShip200Response> RefuelShipAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4649,10 +4652,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Refuel Ship Refuel your ship from the local market.
+        /// Refuel Ship Refuel your ship by buying fuel from the local market.  Requires the ship to be docked in a waypoint that has the &#x60;Marketplace&#x60; trait, and the market must be selling fuel in order to refuel.  Each fuel bought from the market replenishes 100 units in your ship&#39;s fuel.  Ships will always be refuel to their frame&#39;s maximum fuel capacity when using this action.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RefuelShip200Response)</returns>
         public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<RefuelShip200Response>> RefuelShipWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -4708,10 +4711,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Remove Mount Remove a mount from a ship.
+        /// Remove Mount Remove a mount from a ship.  The ship must be docked in a waypoint that has the &#x60;Shipyard&#x60; trait, and must have the desired mount that it wish to remove installed.  A removal fee will be deduced from the agent by the Shipyard.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="removeMountRequest"> (optional)</param>
         /// <returns>RemoveMount201Response</returns>
         public RemoveMount201Response RemoveMount(string shipSymbol, RemoveMountRequest removeMountRequest = default(RemoveMountRequest))
@@ -4721,10 +4724,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Remove Mount Remove a mount from a ship.
+        /// Remove Mount Remove a mount from a ship.  The ship must be docked in a waypoint that has the &#x60;Shipyard&#x60; trait, and must have the desired mount that it wish to remove installed.  A removal fee will be deduced from the agent by the Shipyard.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="removeMountRequest"> (optional)</param>
         /// <returns>ApiResponse of RemoveMount201Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<RemoveMount201Response> RemoveMountWithHttpInfo(string shipSymbol, RemoveMountRequest removeMountRequest = default(RemoveMountRequest))
@@ -4773,10 +4776,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Remove Mount Remove a mount from a ship.
+        /// Remove Mount Remove a mount from a ship.  The ship must be docked in a waypoint that has the &#x60;Shipyard&#x60; trait, and must have the desired mount that it wish to remove installed.  A removal fee will be deduced from the agent by the Shipyard.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="removeMountRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of RemoveMount201Response</returns>
@@ -4792,10 +4795,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Remove Mount Remove a mount from a ship.
+        /// Remove Mount Remove a mount from a ship.  The ship must be docked in a waypoint that has the &#x60;Shipyard&#x60; trait, and must have the desired mount that it wish to remove installed.  A removal fee will be deduced from the agent by the Shipyard.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship&#39;s symbol.</param>
         /// <param name="removeMountRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RemoveMount201Response)</returns>
@@ -4854,10 +4857,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Sell Cargo Sell cargo.
+        /// Sell Cargo Sell cargo in your ship to a market that trades this cargo. The ship must be docked in a waypoint that has the &#x60;Marketplace&#x60; trait in order to use this function.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">Symbol of a ship.</param>
         /// <param name="sellCargoRequest"> (optional)</param>
         /// <returns>SellCargo201Response</returns>
         public SellCargo201Response SellCargo(string shipSymbol, SellCargoRequest sellCargoRequest = default(SellCargoRequest))
@@ -4867,10 +4870,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Sell Cargo Sell cargo.
+        /// Sell Cargo Sell cargo in your ship to a market that trades this cargo. The ship must be docked in a waypoint that has the &#x60;Marketplace&#x60; trait in order to use this function.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">Symbol of a ship.</param>
         /// <param name="sellCargoRequest"> (optional)</param>
         /// <returns>ApiResponse of SellCargo201Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<SellCargo201Response> SellCargoWithHttpInfo(string shipSymbol, SellCargoRequest sellCargoRequest = default(SellCargoRequest))
@@ -4919,10 +4922,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Sell Cargo Sell cargo.
+        /// Sell Cargo Sell cargo in your ship to a market that trades this cargo. The ship must be docked in a waypoint that has the &#x60;Marketplace&#x60; trait in order to use this function.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">Symbol of a ship.</param>
         /// <param name="sellCargoRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SellCargo201Response</returns>
@@ -4938,10 +4941,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Sell Cargo Sell cargo.
+        /// Sell Cargo Sell cargo in your ship to a market that trades this cargo. The ship must be docked in a waypoint that has the &#x60;Marketplace&#x60; trait in order to use this function.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">Symbol of a ship.</param>
         /// <param name="sellCargoRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SellCargo201Response)</returns>
@@ -5000,10 +5003,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Ship Refine Attempt to refine the raw materials on your ship. The request will only succeed if your ship is capable of refining at the time of the request.
+        /// Ship Refine Attempt to refine the raw materials on your ship. The request will only succeed if your ship is capable of refining at the time of the request. In order to be able to refine, a ship must have goods that can be refined and have installed a &#x60;Refinery&#x60; module that can refine it.  When refining, 30 basic goods will be converted into 10 processed goods.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="shipRefineRequest"> (optional)</param>
         /// <returns>ShipRefine200Response</returns>
         public ShipRefine200Response ShipRefine(string shipSymbol, ShipRefineRequest shipRefineRequest = default(ShipRefineRequest))
@@ -5013,10 +5016,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Ship Refine Attempt to refine the raw materials on your ship. The request will only succeed if your ship is capable of refining at the time of the request.
+        /// Ship Refine Attempt to refine the raw materials on your ship. The request will only succeed if your ship is capable of refining at the time of the request. In order to be able to refine, a ship must have goods that can be refined and have installed a &#x60;Refinery&#x60; module that can refine it.  When refining, 30 basic goods will be converted into 10 processed goods.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="shipRefineRequest"> (optional)</param>
         /// <returns>ApiResponse of ShipRefine200Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<ShipRefine200Response> ShipRefineWithHttpInfo(string shipSymbol, ShipRefineRequest shipRefineRequest = default(ShipRefineRequest))
@@ -5065,10 +5068,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Ship Refine Attempt to refine the raw materials on your ship. The request will only succeed if your ship is capable of refining at the time of the request.
+        /// Ship Refine Attempt to refine the raw materials on your ship. The request will only succeed if your ship is capable of refining at the time of the request. In order to be able to refine, a ship must have goods that can be refined and have installed a &#x60;Refinery&#x60; module that can refine it.  When refining, 30 basic goods will be converted into 10 processed goods.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="shipRefineRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ShipRefine200Response</returns>
@@ -5084,10 +5087,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Ship Refine Attempt to refine the raw materials on your ship. The request will only succeed if your ship is capable of refining at the time of the request.
+        /// Ship Refine Attempt to refine the raw materials on your ship. The request will only succeed if your ship is capable of refining at the time of the request. In order to be able to refine, a ship must have goods that can be refined and have installed a &#x60;Refinery&#x60; module that can refine it.  When refining, 30 basic goods will be converted into 10 processed goods.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol">The symbol of the ship</param>
+        /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="shipRefineRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ShipRefine200Response)</returns>
@@ -5146,10 +5149,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Transfer Cargo Transfer cargo between ships.
+        /// Transfer Cargo Transfer cargo between ships.  The receiving ship must be in the same waypoint as the transferring ship, and it must able to hold the additional cargo after the transfer is complete. Both ships also must be in the same state, either both are docked or both are orbiting.  The response body&#39;s cargo shows the cargo of the transferring ship after the transfer is complete.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The transferring ship&#39;s symbol.</param>
         /// <param name="transferCargoRequest"> (optional)</param>
         /// <returns>TransferCargo200Response</returns>
         public TransferCargo200Response TransferCargo(string shipSymbol, TransferCargoRequest transferCargoRequest = default(TransferCargoRequest))
@@ -5159,10 +5162,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Transfer Cargo Transfer cargo between ships.
+        /// Transfer Cargo Transfer cargo between ships.  The receiving ship must be in the same waypoint as the transferring ship, and it must able to hold the additional cargo after the transfer is complete. Both ships also must be in the same state, either both are docked or both are orbiting.  The response body&#39;s cargo shows the cargo of the transferring ship after the transfer is complete.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The transferring ship&#39;s symbol.</param>
         /// <param name="transferCargoRequest"> (optional)</param>
         /// <returns>ApiResponse of TransferCargo200Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<TransferCargo200Response> TransferCargoWithHttpInfo(string shipSymbol, TransferCargoRequest transferCargoRequest = default(TransferCargoRequest))
@@ -5211,10 +5214,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Transfer Cargo Transfer cargo between ships.
+        /// Transfer Cargo Transfer cargo between ships.  The receiving ship must be in the same waypoint as the transferring ship, and it must able to hold the additional cargo after the transfer is complete. Both ships also must be in the same state, either both are docked or both are orbiting.  The response body&#39;s cargo shows the cargo of the transferring ship after the transfer is complete.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The transferring ship&#39;s symbol.</param>
         /// <param name="transferCargoRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransferCargo200Response</returns>
@@ -5230,10 +5233,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Transfer Cargo Transfer cargo between ships.
+        /// Transfer Cargo Transfer cargo between ships.  The receiving ship must be in the same waypoint as the transferring ship, and it must able to hold the additional cargo after the transfer is complete. Both ships also must be in the same state, either both are docked or both are orbiting.  The response body&#39;s cargo shows the cargo of the transferring ship after the transfer is complete.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The transferring ship&#39;s symbol.</param>
         /// <param name="transferCargoRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransferCargo200Response)</returns>
@@ -5292,10 +5295,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Warp Ship Warp your ship to a target destination in another system. Warping will consume the necessary fuel and supplies from the ship&#39;s manifest, and will pay out crew wages from the agent&#39;s account.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it&#39;s destination.
+        /// Warp Ship Warp your ship to a target destination in another system. The ship must be in orbit to use this function and must have the &#x60;Warp Drive&#x60; module installed. Warping will consume the necessary fuel from the ship&#39;s manifest.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at its destination.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="navigateShipRequest"> (optional)</param>
         /// <returns>NavigateShip200Response</returns>
         public NavigateShip200Response WarpShip(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest))
@@ -5305,10 +5308,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Warp Ship Warp your ship to a target destination in another system. Warping will consume the necessary fuel and supplies from the ship&#39;s manifest, and will pay out crew wages from the agent&#39;s account.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it&#39;s destination.
+        /// Warp Ship Warp your ship to a target destination in another system. The ship must be in orbit to use this function and must have the &#x60;Warp Drive&#x60; module installed. Warping will consume the necessary fuel from the ship&#39;s manifest.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at its destination.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="navigateShipRequest"> (optional)</param>
         /// <returns>ApiResponse of NavigateShip200Response</returns>
         public SpaceTradersUnitySDK.Client.ApiResponse<NavigateShip200Response> WarpShipWithHttpInfo(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest))
@@ -5357,10 +5360,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Warp Ship Warp your ship to a target destination in another system. Warping will consume the necessary fuel and supplies from the ship&#39;s manifest, and will pay out crew wages from the agent&#39;s account.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it&#39;s destination.
+        /// Warp Ship Warp your ship to a target destination in another system. The ship must be in orbit to use this function and must have the &#x60;Warp Drive&#x60; module installed. Warping will consume the necessary fuel from the ship&#39;s manifest.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at its destination.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="navigateShipRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NavigateShip200Response</returns>
@@ -5376,10 +5379,10 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Warp Ship Warp your ship to a target destination in another system. Warping will consume the necessary fuel and supplies from the ship&#39;s manifest, and will pay out crew wages from the agent&#39;s account.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it&#39;s destination.
+        /// Warp Ship Warp your ship to a target destination in another system. The ship must be in orbit to use this function and must have the &#x60;Warp Drive&#x60; module installed. Warping will consume the necessary fuel from the ship&#39;s manifest.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at its destination.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipSymbol"></param>
+        /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="navigateShipRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NavigateShip200Response)</returns>

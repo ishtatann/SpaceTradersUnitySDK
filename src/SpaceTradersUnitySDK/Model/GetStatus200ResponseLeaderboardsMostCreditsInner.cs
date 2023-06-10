@@ -39,8 +39,8 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="GetStatus200ResponseLeaderboardsMostCreditsInner" /> class.
         /// </summary>
-        /// <param name="agentSymbol">agentSymbol (required).</param>
-        /// <param name="credits">credits (required).</param>
+        /// <param name="agentSymbol">Symbol of the agent. (required).</param>
+        /// <param name="credits">Amount of credits. (required).</param>
         public GetStatus200ResponseLeaderboardsMostCreditsInner(string agentSymbol = default(string), long credits = default(long))
         {
             // to ensure "agentSymbol" is required (not null)
@@ -53,14 +53,16 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Gets or Sets AgentSymbol
+        /// Symbol of the agent.
         /// </summary>
+        /// <value>Symbol of the agent.</value>
         [DataMember(Name = "agentSymbol", IsRequired = true, EmitDefaultValue = true)]
         public string AgentSymbol { get; set; }
 
         /// <summary>
-        /// Gets or Sets Credits
+        /// Amount of credits.
         /// </summary>
+        /// <value>Amount of credits.</value>
         [DataMember(Name = "credits", IsRequired = true, EmitDefaultValue = true)]
         public long Credits { get; set; }
 

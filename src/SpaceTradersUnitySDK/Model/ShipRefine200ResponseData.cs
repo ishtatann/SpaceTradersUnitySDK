@@ -41,8 +41,8 @@ namespace SpaceTradersUnitySDK.Model
         /// </summary>
         /// <param name="cargo">cargo (required).</param>
         /// <param name="cooldown">cooldown (required).</param>
-        /// <param name="produced">produced (required).</param>
-        /// <param name="consumed">consumed (required).</param>
+        /// <param name="produced">Goods that were produced by this refining process. (required).</param>
+        /// <param name="consumed">Goods that were consumed during this refining process. (required).</param>
         public ShipRefine200ResponseData(ShipCargo cargo = default(ShipCargo), Cooldown cooldown = default(Cooldown), List<ShipRefine200ResponseDataProducedInner> produced = default(List<ShipRefine200ResponseDataProducedInner>), List<ShipRefine200ResponseDataProducedInner> consumed = default(List<ShipRefine200ResponseDataProducedInner>))
         {
             // to ensure "cargo" is required (not null)
@@ -84,14 +84,16 @@ namespace SpaceTradersUnitySDK.Model
         public Cooldown Cooldown { get; set; }
 
         /// <summary>
-        /// Gets or Sets Produced
+        /// Goods that were produced by this refining process.
         /// </summary>
+        /// <value>Goods that were produced by this refining process.</value>
         [DataMember(Name = "produced", IsRequired = true, EmitDefaultValue = true)]
         public List<ShipRefine200ResponseDataProducedInner> Produced { get; set; }
 
         /// <summary>
-        /// Gets or Sets Consumed
+        /// Goods that were consumed during this refining process.
         /// </summary>
+        /// <value>Goods that were consumed during this refining process.</value>
         [DataMember(Name = "consumed", IsRequired = true, EmitDefaultValue = true)]
         public List<ShipRefine200ResponseDataProducedInner> Consumed { get; set; }
 

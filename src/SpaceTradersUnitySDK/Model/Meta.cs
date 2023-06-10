@@ -26,7 +26,7 @@ using OpenAPIDateConverter = SpaceTradersUnitySDK.Client.OpenAPIDateConverter;
 namespace SpaceTradersUnitySDK.Model
 {
     /// <summary>
-    /// Meta
+    /// Meta details for pagination.
     /// </summary>
     [DataContract(Name = "Meta")]
     public partial class Meta : IEquatable<Meta>
@@ -39,10 +39,10 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Meta" /> class.
         /// </summary>
-        /// <param name="total">total (required).</param>
-        /// <param name="page">page (required).</param>
-        /// <param name="limit">limit (required).</param>
-        public Meta(int total = default(int), int page = default(int), int limit = default(int))
+        /// <param name="total">Shows the total amount of items of this kind that exist. (required).</param>
+        /// <param name="page">A page denotes an amount of items, offset from the first item. Each page holds an amount of items equal to the &#x60;limit&#x60;. (required) (default to 1).</param>
+        /// <param name="limit">The amount of items in each page. Limits how many items can be fetched at once. (required) (default to 10).</param>
+        public Meta(int total = default(int), int page = 1, int limit = 10)
         {
             this.Total = total;
             this.Page = page;
@@ -50,20 +50,23 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Gets or Sets Total
+        /// Shows the total amount of items of this kind that exist.
         /// </summary>
+        /// <value>Shows the total amount of items of this kind that exist.</value>
         [DataMember(Name = "total", IsRequired = true, EmitDefaultValue = true)]
         public int Total { get; set; }
 
         /// <summary>
-        /// Gets or Sets Page
+        /// A page denotes an amount of items, offset from the first item. Each page holds an amount of items equal to the &#x60;limit&#x60;.
         /// </summary>
+        /// <value>A page denotes an amount of items, offset from the first item. Each page holds an amount of items equal to the &#x60;limit&#x60;.</value>
         [DataMember(Name = "page", IsRequired = true, EmitDefaultValue = true)]
         public int Page { get; set; }
 
         /// <summary>
-        /// Gets or Sets Limit
+        /// The amount of items in each page. Limits how many items can be fetched at once.
         /// </summary>
+        /// <value>The amount of items in each page. Limits how many items can be fetched at once.</value>
         [DataMember(Name = "limit", IsRequired = true, EmitDefaultValue = true)]
         public int Limit { get; set; }
 

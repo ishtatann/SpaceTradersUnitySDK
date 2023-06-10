@@ -28,7 +28,7 @@ namespace SpaceTradersUnitySDK.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// My Agent Details
+        /// Get Agent
         /// </summary>
         /// <remarks>
         /// Fetch your agent&#39;s details.
@@ -38,7 +38,7 @@ namespace SpaceTradersUnitySDK.Api
         GetMyAgent200Response GetMyAgent();
 
         /// <summary>
-        /// My Agent Details
+        /// Get Agent
         /// </summary>
         /// <remarks>
         /// Fetch your agent&#39;s details.
@@ -56,7 +56,7 @@ namespace SpaceTradersUnitySDK.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// My Agent Details
+        /// Get Agent
         /// </summary>
         /// <remarks>
         /// Fetch your agent&#39;s details.
@@ -67,7 +67,7 @@ namespace SpaceTradersUnitySDK.Api
         System.Threading.Tasks.Task<GetMyAgent200Response> GetMyAgentAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// My Agent Details
+        /// Get Agent
         /// </summary>
         /// <remarks>
         /// Fetch your agent&#39;s details.
@@ -221,7 +221,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// My Agent Details Fetch your agent&#39;s details.
+        /// Get Agent Fetch your agent&#39;s details.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>GetMyAgent200Response</returns>
@@ -232,7 +232,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// My Agent Details Fetch your agent&#39;s details.
+        /// Get Agent Fetch your agent&#39;s details.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of GetMyAgent200Response</returns>
@@ -275,7 +275,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// My Agent Details Fetch your agent&#39;s details.
+        /// Get Agent Fetch your agent&#39;s details.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -292,7 +292,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// My Agent Details Fetch your agent&#39;s details.
+        /// Get Agent Fetch your agent&#39;s details.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>

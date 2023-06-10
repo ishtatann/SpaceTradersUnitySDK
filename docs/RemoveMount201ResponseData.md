@@ -1,11 +1,11 @@
-# SpaceTradersUnitySDK.Model.InstallMount201ResponseData
+# SpaceTradersUnitySDK.Model.RemoveMount201ResponseData
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Agent** | [**Agent**](Agent.md) |  | 
-**Mounts** | [**List&lt;ShipMount&gt;**](ShipMount.md) | List of installed mounts after the installation of the new mount. | 
+**Mounts** | [**List&lt;ShipMount&gt;**](ShipMount.md) | List of installed mounts after the removal of the selected mount. | 
 **Cargo** | [**ShipCargo**](ShipCargo.md) |  | 
 **Transaction** | [**ShipyardTransaction**](ShipyardTransaction.md) |  | 
 

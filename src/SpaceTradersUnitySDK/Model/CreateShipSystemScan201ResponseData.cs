@@ -40,7 +40,7 @@ namespace SpaceTradersUnitySDK.Model
         /// Initializes a new instance of the <see cref="CreateShipSystemScan201ResponseData" /> class.
         /// </summary>
         /// <param name="cooldown">cooldown (required).</param>
-        /// <param name="systems">systems (required).</param>
+        /// <param name="systems">List of scanned systems. (required).</param>
         public CreateShipSystemScan201ResponseData(Cooldown cooldown = default(Cooldown), List<ScannedSystem> systems = default(List<ScannedSystem>))
         {
             // to ensure "cooldown" is required (not null)
@@ -64,8 +64,9 @@ namespace SpaceTradersUnitySDK.Model
         public Cooldown Cooldown { get; set; }
 
         /// <summary>
-        /// Gets or Sets Systems
+        /// List of scanned systems.
         /// </summary>
+        /// <value>List of scanned systems.</value>
         [DataMember(Name = "systems", IsRequired = true, EmitDefaultValue = true)]
         public List<ScannedSystem> Systems { get; set; }
 

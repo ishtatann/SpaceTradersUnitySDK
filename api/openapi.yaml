@@ -31,20 +31,22 @@ servers:
 security:
 - AgentToken: []
 tags:
-- description: Factions
-  name: factions
-- description: Fleet
-  name: fleet
-- description: Contracts
-  name: contracts
-- description: Systems
-  name: systems
 - description: Agents
-  name: agents
+  name: Agents
+- description: Contracts
+  name: Contracts
+- description: Factions
+  name: Factions
+- description: Fleet
+  name: Fleet
+- description: Systems
+  name: Systems
 paths:
   /:
     get:
-      description: Return the status of the game server.
+      description: |-
+        Return the status of the game server.
+        This also includes a few global elements, such as announcements, server reset dates and leaderboards.
       operationId: get-status
       responses:
         "200":
@@ -52,28 +54,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/get_status_200_response'
-          description: OK
-      security: []
+          description: Fetched status successfully.
+      security:
+      - {}
+      - AgentToken: []
       summary: Get Status
       tags: []
   /register:
     post:
-      description: |-
-        Creates a new agent and ties it to a temporary Account.
-
-        The agent symbol is a 3-14 character string that will represent your agent. This symbol will prefix the symbol of every ship you own. Agent symbols will be cast to all uppercase characters.
-
-        A new agent will be granted an authorization token, a contract with their starting faction, a command ship with a jump drive, and one hundred thousand credits.
-
-        > #### Keep your token safe and secure
-        >
-        > Save your token during the alpha phase. There is no way to regenerate this token without starting a new agent. In the future you will be able to generate and manage your tokens from the SpaceTraders website.
-
-        You can accept your contract using the `/my/contracts/{contractId}/accept` endpoint. You will want to navigate your command ship to a nearby asteroid field and execute the `/my/ships/{shipSymbol}/extract` endpoint to mine various types of ores and minerals.
-
-        Return to the contract destination and execute the `/my/ships/{shipSymbol}/deliver` endpoint to deposit goods into the contract.
-
-        When your contract is fulfilled, you can call `/my/contracts/{contractId}/fulfill` to retrieve payment.
+      description: "Creates a new agent and ties it to an account. \nThe agent symbol\
+        \ must consist of a 3-14 character string, and will be used to represent your\
+        \ agent. This symbol will prefix the symbol of every ship you own. Agent symbols\
+        \ will be cast to all uppercase characters.\n\nThis new agent will be tied\
+        \ to a starting faction of your choice, which determines your starting location,\
+        \ and will be granted an authorization token, a contract with their starting\
+        \ faction, a command ship that can fly across space with advanced capabilities,\
+        \ a small probe ship that can be used for reconnaissance, and 150,000 credits.\n\
+        \n> #### Keep your token safe and secure\n>\n> Save your token during the\
+        \ alpha phase. There is no way to regenerate this token without starting a\
+        \ new agent. In the future you will be able to generate and manage your tokens\
+        \ from the SpaceTraders website.\n\nIf you are new to SpaceTraders, It is\
+        \ recommended to register with the COSMIC faction, a faction that is well\
+        \ connected to the rest of the universe. After registering, you should try\
+        \ our interactive [quickstart guide](https://docs.spacetraders.io/quickstart/new-game)\
+        \ which will walk you through basic API requests in just a few minutes."
       operationId: register
       requestBody:
         content:
@@ -87,13 +91,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/register_201_response'
-          description: OK
-      security: []
+          description: Succesfully registered.
+      security:
+      - {}
+      - AgentToken: []
       summary: Register New Agent
       tags: []
   /systems:
     get:
-      description: Return a list of all systems.
+      description: Return a paginated list of all systems.
       operationId: get-systems
       parameters:
       - description: What entry offset to request
@@ -102,7 +108,7 @@ paths:
         name: page
         required: false
         schema:
-          format: int64
+          default: 1
           minimum: 1
           type: integer
         style: form
@@ -112,7 +118,7 @@ paths:
         name: limit
         required: false
         schema:
-          format: int64
+          default: 10
           maximum: 20
           minimum: 1
           type: integer
@@ -123,13 +129,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/get_systems_200_response'
-          description: OK
+          description: Successfully listed systems.
       security:
       - {}
       - AgentToken: []
       summary: List Systems
       tags:
-      - systems
+      - Systems
   /systems/{systemSymbol}:
     get:
       description: Get the details of a system.
@@ -150,17 +156,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/get_system_200_response'
-          description: OK
+          description: Successfully fetched the system.
       security:
       - {}
       - AgentToken: []
       summary: Get System
       tags:
-      - systems
+      - Systems
   /systems/{systemSymbol}/waypoints:
     get:
-      description: Fetch all of the waypoints for a given system. System must be charted
-        or a ship must be present to return waypoint details.
+      description: |-
+        Return a paginated list of all of the waypoints for a given system.
+
+        If a waypoint is uncharted, it will return the `Uncharted` trait instead of its actual traits.
       operationId: get-system-waypoints
       parameters:
       - description: The system symbol
@@ -177,7 +185,7 @@ paths:
         name: page
         required: false
         schema:
-          format: int64
+          default: 1
           minimum: 1
           type: integer
         style: form
@@ -187,7 +195,7 @@ paths:
         name: limit
         required: false
         schema:
-          format: int64
+          default: 10
           maximum: 20
           minimum: 1
           type: integer
@@ -198,16 +206,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/get_system_waypoints_200_response'
-          description: OK
+          description: Successfully fetched all waypoints in the system.
       security:
       - {}
       - AgentToken: []
-      summary: List Waypoints
+      summary: List Waypoints in System
       tags:
-      - systems
+      - Systems
   /systems/{systemSymbol}/waypoints/{waypointSymbol}:
     get:
-      description: View the details of a waypoint.
+      description: |-
+        View the details of a waypoint.
+
+        If the waypoint is uncharted, it will return the 'Uncharted' trait instead of its actual traits.
       operationId: get-waypoint
       parameters:
       - description: The system symbol
@@ -232,19 +243,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/get_waypoint_200_response'
-          description: OK
+          description: Successfully fetched waypoint.
       security:
       - {}
       - AgentToken: []
       summary: Get Waypoint
       tags:
-      - systems
+      - Systems
   /systems/{systemSymbol}/waypoints/{waypointSymbol}/market:
     get:
-      description: "Retrieve imports, exports and exchange data from a marketplace.\
-        \ Imports can be sold, exports can be purchased, and exchange goods can be\
-        \ purchased or sold. Send a ship to the waypoint to access trade good prices\
-        \ and recent transactions."
+      description: |-
+        Retrieve imports, exports and exchange data from a marketplace. Requires a waypoint that has the `Marketplace` trait to use.
+
+        Send a ship to the waypoint to access trade good prices and recent transactions. Refer to the [Market Overview page](https://docs.spacetraders.io/game-concepts/markets) to gain better a understanding of the market in the game.
       operationId: get-market
       parameters:
       - description: The system symbol
@@ -269,17 +280,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/get_market_200_response'
-          description: OK
+          description: Successfully fetched the market.
       security:
       - {}
       - AgentToken: []
       summary: Get Market
       tags:
-      - systems
+      - Systems
   /systems/{systemSymbol}/waypoints/{waypointSymbol}/shipyard:
     get:
-      description: Get the shipyard for a waypoint. Send a ship to the waypoint to
-        access ships that are currently available for purchase and recent transactions.
+      description: Get the shipyard for a waypoint. Requires a waypoint that has the
+        `Shipyard` trait to use. Send a ship to the waypoint to access data on ships
+        that are currently available for purchase and recent transactions.
       operationId: get-shipyard
       parameters:
       - description: The system symbol
@@ -304,16 +316,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/get_shipyard_200_response'
-          description: OK
+          description: Successfully fetched the shipyard.
       security:
       - {}
       - AgentToken: []
       summary: Get Shipyard
       tags:
-      - systems
+      - Systems
   /systems/{systemSymbol}/waypoints/{waypointSymbol}/jump-gate:
     get:
-      description: Get jump gate details for a waypoint.
+      description: |-
+        Get jump gate details for a waypoint. Requires a waypoint of type `JUMP_GATE` to use.
+
+        The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
       operationId: get-jump-gate
       parameters:
       - description: The system symbol
@@ -338,16 +353,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/get_jump_gate_200_response'
-          description: OK
+          description: Successfully fetched jump gate.
       security:
       - {}
       - AgentToken: []
       summary: Get Jump Gate
       tags:
-      - systems
+      - Systems
   /factions:
     get:
-      description: List all discovered factions in the game.
+      description: Return a paginated list of all the factions in the game.
       operationId: get-factions
       parameters:
       - description: What entry offset to request
@@ -356,7 +371,7 @@ paths:
         name: page
         required: false
         schema:
-          format: int64
+          default: 1
           minimum: 1
           type: integer
         style: form
@@ -366,7 +381,7 @@ paths:
         name: limit
         required: false
         schema:
-          format: int64
+          default: 10
           maximum: 20
           minimum: 1
           type: integer
@@ -377,10 +392,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/get_factions_200_response'
-          description: ""
+          description: Succesfully fetched factions.
+      security:
+      - {}
+      - AgentToken: []
       summary: List Factions
       tags:
-      - factions
+      - Factions
   /factions/{factionSymbol}:
     get:
       description: View the details of a faction.
@@ -392,7 +410,7 @@ paths:
         name: factionSymbol
         required: true
         schema:
-          default: CGR
+          example: COSMIC
           type: string
         style: simple
       responses:
@@ -401,10 +419,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/get_faction_200_response'
-          description: OK
+          description: Successfully fetched a faction.
       summary: Get Faction
       tags:
-      - factions
+      - Factions
   /my/agent:
     get:
       description: Fetch your agent's details.
@@ -415,15 +433,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/get_my_agent_200_response'
-          description: OK
+          description: Successfully fetched agent details.
       security:
       - AgentToken: []
-      summary: My Agent Details
+      summary: Get Agent
       tags:
-      - agents
+      - Agents
   /my/contracts:
     get:
-      description: List all of your contracts.
+      description: Return a paginated list of all your contracts.
       operationId: get-contracts
       parameters:
       - description: What entry offset to request
@@ -432,7 +450,7 @@ paths:
         name: page
         required: false
         schema:
-          format: int64
+          default: 1
           minimum: 1
           type: integer
         style: form
@@ -442,7 +460,7 @@ paths:
         name: limit
         required: false
         schema:
-          format: int64
+          default: 10
           maximum: 20
           minimum: 1
           type: integer
@@ -453,12 +471,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/get_contracts_200_response'
-          description: OK
+          description: Succesfully listed contracts.
       security:
       - AgentToken: []
       summary: List Contracts
       tags:
-      - contracts
+      - Contracts
   /my/contracts/{contractId}:
     get:
       description: Get the details of a contract by ID.
@@ -478,18 +496,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/get_contract_200_response'
-          description: OK
+          description: Successfully fetched contract.
       security:
       - AgentToken: []
       summary: Get Contract
       tags:
-      - contracts
+      - Contracts
   /my/contracts/{contractId}/accept:
     post:
-      description: Accept a contract.
+      description: "Accept a contract by ID. \n\nYou can only accept contracts that\
+        \ were offered to you, were not accepted yet, and whose deadlines has not\
+        \ passed yet."
       operationId: accept-contract
       parameters:
-      - explode: false
+      - description: The contract ID to accept.
+        explode: false
         in: path
         name: contractId
         required: true
@@ -502,18 +523,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/accept_contract_200_response'
-          description: OK
+          description: Succesfully accepted contract.
       security:
       - AgentToken: []
       summary: Accept Contract
       tags:
-      - contracts
+      - Contracts
   /my/contracts/{contractId}/deliver:
     post:
-      description: Deliver cargo on a given contract.
+      description: |-
+        Deliver cargo to a contract.
+
+        In order to use this API, a ship must be at the delivery location (denoted in the delivery terms as `destinationSymbol` of a contract) and must have a number of units of a good required by this contract in its cargo.
+
+        Cargo that was delivered will be removed from the ship's cargo.
       operationId: deliver-contract
       parameters:
-      - description: The ID of the contract
+      - description: The ID of the contract.
         explode: false
         in: path
         name: contractId
@@ -526,24 +552,26 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/deliver_contract_request'
+        description: ""
       responses:
         "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/deliver_contract_200_response'
-          description: OK
+          description: Successfully delivered cargo to contract.
       security:
       - AgentToken: []
-      summary: Deliver Contract
+      summary: Deliver Cargo to Contract
       tags:
-      - contracts
+      - Contracts
   /my/contracts/{contractId}/fulfill:
     post:
-      description: Fulfill a contract
+      description: Fulfill a contract. Can only be used on contracts that have all
+        of their delivery terms fulfilled.
       operationId: fulfill-contract
       parameters:
-      - description: The ID of the contract
+      - description: The ID of the contract to fulfill.
         explode: false
         in: path
         name: contractId
@@ -557,15 +585,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/fulfill_contract_200_response'
-          description: OK
+          description: Successfully fulfilled a contract.
       security:
       - AgentToken: []
       summary: Fulfill Contract
       tags:
-      - contracts
+      - Contracts
   /my/ships:
     get:
-      description: Retrieve all of your ships.
+      description: Return a paginated list of all of ships under your agent's ownership.
       operationId: get-my-ships
       parameters:
       - description: What entry offset to request
@@ -574,7 +602,7 @@ paths:
         name: page
         required: false
         schema:
-          format: int64
+          default: 1
           minimum: 1
           type: integer
         style: form
@@ -584,7 +612,7 @@ paths:
         name: limit
         required: false
         schema:
-          format: int64
+          default: 10
           maximum: 20
           minimum: 1
           type: integer
@@ -595,14 +623,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/get_my_ships_200_response'
-          description: OK
+          description: Succesfully listed ships.
       security:
       - AgentToken: []
       summary: List Ships
       tags:
-      - fleet
+      - Fleet
     post:
-      description: Purchase a ship
+      description: |-
+        Purchase a ship from a Shipyard. In order to use this function, a ship under your agent's ownership must be in a waypoint that has the `Shipyard` trait, and the Shipyard must sell the type of the desired ship.
+
+        Shipyards typically offer ship types, which are predefined templates of ships that have dedicated roles. A template comes with a preset of an engine, a reactor, and a frame. It may also include a few modules and mounts.
       operationId: purchase-ship
       requestBody:
         content:
@@ -615,18 +646,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/purchase_ship_201_response'
-          description: Created
+          description: Purchased ship successfully.
       security:
       - AgentToken: []
       summary: Purchase Ship
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}:
     get:
-      description: Retrieve the details of your ship.
+      description: Retrieve the details of a ship under your agent's ownership.
       operationId: get-my-ship
       parameters:
-      - explode: false
+      - description: The symbol of the ship.
+        explode: false
         in: path
         name: shipSymbol
         required: true
@@ -639,18 +671,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/get_my_ship_200_response'
-          description: OK
+          description: Successfully fetched ship.
       security:
       - AgentToken: []
       summary: Get Ship
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}/cargo:
     get:
-      description: Retrieve the cargo of your ship.
+      description: Retrieve the cargo of a ship under your agent's ownership.
       operationId: get-my-ship-cargo
       parameters:
-      - description: The symbol of the ship
+      - description: The symbol of the ship.
         explode: false
         in: path
         name: shipSymbol
@@ -664,21 +696,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/get_my_ship_cargo_200_response'
-          description: OK
+          description: Successfully fetched ship's cargo.
       security:
       - AgentToken: []
       summary: Get Ship Cargo
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}/orbit:
     post:
       description: |-
-        Attempt to move your ship into orbit at it's current location. The request will only succeed if your ship is capable of moving into orbit at the time of the request.
+        Attempt to move your ship into orbit at its current location. The request will only succeed if your ship is capable of moving into orbit at the time of the request.
+
+        Orbiting ships are able to do actions that require the ship to be above surface such as navigating or extracting, but cannot access elements in their current waypoint, such as the market or a shipyard.
 
         The endpoint is idempotent - successive calls will succeed even if the ship is already in orbit.
       operationId: orbit-ship
       parameters:
-      - description: The symbol of the ship
+      - description: The symbol of the ship.
         explode: false
         in: path
         name: shipSymbol
@@ -692,20 +726,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Orbit_Ship_200_Response'
-          description: The ship has successfully moved into orbit at it's current
-            location.
+          description: The ship has successfully moved into orbit at its current location.
       security:
       - AgentToken: []
       summary: Orbit Ship
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}/refine:
     post:
-      description: Attempt to refine the raw materials on your ship. The request will
-        only succeed if your ship is capable of refining at the time of the request.
+      description: |-
+        Attempt to refine the raw materials on your ship. The request will only succeed if your ship is capable of refining at the time of the request. In order to be able to refine, a ship must have goods that can be refined and have installed a `Refinery` module that can refine it.
+
+        When refining, 30 basic goods will be converted into 10 processed goods.
       operationId: ship-refine
       parameters:
-      - description: The symbol of the ship
+      - description: The symbol of the ship.
         explode: false
         in: path
         name: shipSymbol
@@ -724,23 +759,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Ship_Refine_200_Response'
-          description: The ship has successfully started refining.
+          description: The ship has successfully refined goods.
       security:
       - AgentToken: []
       summary: Ship Refine
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}/chart:
     post:
       description: |-
-        Command a ship to chart the current waypoint.
+        Command a ship to chart the waypoint at its current location.
 
-        Waypoints in the universe are uncharted by default. These locations will not show up in the API until they have been charted by a ship.
+        Most waypoints in the universe are uncharted by default. These waypoints have their traits hidden until they have been charted by a ship.
 
-        Charting a location will record your agent as the one who created the chart.
+        Charting a waypoint will record your agent as the one who created the chart, and all other agents would also be able to see the waypoint's traits.
       operationId: create-chart
       parameters:
-      - description: The symbol of the ship
+      - description: The symbol of the ship.
         explode: false
         in: path
         name: shipSymbol
@@ -759,7 +794,7 @@ paths:
       - AgentToken: []
       summary: Create Chart
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}/cooldown:
     get:
       description: |-
@@ -770,7 +805,8 @@ paths:
         Response returns a 204 status code (no-content) when the ship has no cooldown.
       operationId: get-ship-cooldown
       parameters:
-      - explode: false
+      - description: The symbol of the ship.
+        explode: false
         in: path
         name: shipSymbol
         required: true
@@ -783,23 +819,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/get_ship_cooldown_200_response'
-          description: OK
+          description: Succesfully fetched ship's cooldown.
         "204":
-          description: No cooldown
+          description: No cooldown.
       security:
       - AgentToken: []
       summary: Get Ship Cooldown
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}/dock:
     post:
       description: |-
-        Attempt to dock your ship at it's current location. Docking will only succeed if the waypoint is a dockable location, and your ship is capable of docking at the time of the request.
+        Attempt to dock your ship at its current location. Docking will only succeed if your ship is capable of docking at the time of the request.
+
+        Docked ships can access elements in their current location, such as the market or a shipyard, but cannot do actions that require the ship to be above surface such as navigating or extracting.
 
         The endpoint is idempotent - successive calls will succeed even if the ship is already docked.
       operationId: dock-ship
       parameters:
-      - description: The symbol of the ship
+      - description: The symbol of the ship.
         explode: false
         in: path
         name: shipSymbol
@@ -813,21 +851,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Dock_Ship_200_Response'
-          description: The ship has successfully docked at it's current location.
+          description: The ship has successfully docked at its current location.
       security:
       - AgentToken: []
       summary: Dock Ship
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}/survey:
     post:
       description: |-
-        If you want to target specific yields for an extraction, you can survey a waypoint, such as an asteroid field, and send the survey in the body of the extract request. Each survey may have multiple deposits, and if a symbol shows up more than once, that indicates a higher chance of extracting that resource.
+        Create surveys on a waypoint that can be extracted such as asteroid fields. A survey focuses on specific types of deposits from the extracted location. When ships extract using this survey, they are guaranteed to procure a high amount of one of the goods in the survey.
 
-        Your ship will enter a cooldown between consecutive survey requests. Surveys will eventually expire after a period of time. Multiple ships can use the same survey for extraction.
+        In order to use a survey, send the entire survey details in the body of the extract request.
+
+        Each survey may have multiple deposits, and if a symbol shows up more than once, that indicates a higher chance of extracting that resource.
+
+        Your ship will enter a cooldown after surveying in which it is unable to perform certain actions. Surveys will eventually expire after a period of time or will be exhausted after being extracted several times based on the survey's size. Multiple ships can use the same survey for extraction.
+
+        A ship must have the `Surveyor` mount installed in order to use this function.
       operationId: create-survey
       parameters:
-      - description: The symbol of the ship
+      - description: The symbol of the ship.
         explode: false
         in: path
         name: shipSymbol
@@ -841,19 +885,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/create_survey_201_response'
-          description: Created
+          description: Surveys has been created.
       security:
       - AgentToken: []
       summary: Create Survey
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}/extract:
     post:
-      description: Extract resources from the waypoint into your ship. Send an optional
-        survey as the payload to target specific yields.
+      description: |-
+        Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.
+
+        The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the `Gas Siphon` mount for gas-based goods or `Mining Laser` mount for ore-based goods.
       operationId: extract-resources
       parameters:
-      - description: The ship symbol
+      - description: The ship symbol.
         explode: false
         in: path
         name: shipSymbol
@@ -872,18 +918,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/extract_resources_201_response'
-          description: Created
+          description: Extracted successfully.
       security:
       - AgentToken: []
       summary: Extract Resources
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}/jettison:
     post:
       description: Jettison cargo from your ship's cargo hold.
       operationId: jettison
       parameters:
-      - explode: false
+      - description: The ship symbol.
+        explode: false
         in: path
         name: shipSymbol
         required: true
@@ -901,21 +948,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/jettison_200_response'
-          description: OK
+          description: Jettison successful.
       security:
       - AgentToken: []
       summary: Jettison Cargo
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}/jump:
     post:
-      description: "Jump your ship instantly to a target system. When used while in\
-        \ orbit or docked to a jump gate waypoint, any ship can use this command.\
-        \ When used elsewhere, jumping requires a jump drive unit and consumes a unit\
-        \ of antimatter (which needs to be in your cargo)."
+      description: |-
+        Jump your ship instantly to a target system. The ship must be in orbit to use this function. When used while in orbit of a Jump Gate waypoint, any ship can use this command, jumping to the target system's Jump Gate waypoint.
+
+        When used elsewhere, jumping requires the ship to have a `Jump Drive` module installed and consumes a unit of antimatter from the ship's cargo. The command will fail if there is no antimatter to consume. When jumping via the `Jump Drive` module, the ship ends up at its largest source of energy in the system, such as a gas planet or a jump gate.
       operationId: jump-ship
       parameters:
-      - explode: false
+      - description: The ship symbol.
+        explode: false
         in: path
         name: shipSymbol
         required: true
@@ -933,23 +981,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/jump_ship_200_response'
-          description: OK
+          description: Jump successful.
       security:
       - AgentToken: []
       summary: Jump Ship
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}/navigate:
     post:
       description: |-
-        Navigate to a target destination. The destination must be located within the same system as the ship. Navigating will consume the necessary fuel and supplies from the ship's manifest, and will pay out crew wages from the agent's account.
+        Navigate to a target destination. The ship must be in orbit to use this function. The destination waypoint must be within the same system as the ship's current location. Navigating will consume the necessary fuel from the ship's manifest based on the distance to the target waypoint.
 
         The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it's destination.
 
-        To travel between systems, see the ship's warp or jump actions.
+        To travel between systems, see the ship's Warp or Jump actions.
       operationId: navigate-ship
       parameters:
-      - description: The ship symbol
+      - description: The ship symbol.
         explode: false
         in: path
         name: shipSymbol
@@ -969,20 +1017,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/navigate_ship_200_response'
-          description: "The successful transit information including the route details\
-            \ and changes to ship fuel, supplies, and crew wages paid. The route includes\
-            \ the expected time of arrival."
+          description: The successful transit information including the route details
+            and changes to ship fuel. The route includes the expected time of arrival.
       security:
       - AgentToken: []
       summary: Navigate Ship
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}/nav:
     get:
       description: Get the current nav status of a ship.
       operationId: get-ship-nav
       parameters:
-      - description: The ship symbol
+      - description: The ship symbol.
         explode: false
         in: path
         name: shipSymbol
@@ -1001,12 +1048,15 @@ paths:
       - AgentToken: []
       summary: Get Ship Nav
       tags:
-      - fleet
+      - Fleet
     patch:
-      description: "Update the nav data of a ship, such as the flight mode."
+      description: |-
+        Update the nav configuration of a ship.
+
+        Currently only supports configuring the Flight Mode of the ship, which affects its speed and fuel consumption.
       operationId: patch-ship-nav
       parameters:
-      - description: The ship symbol
+      - description: The ship symbol.
         explode: false
         in: path
         name: shipSymbol
@@ -1025,21 +1075,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/get_ship_nav_200_response'
-          description: The updated nav status of the ship.
+          description: The updated nav data of the ship.
       security:
       - AgentToken: []
       summary: Patch Ship Nav
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}/warp:
     post:
       description: |-
-        Warp your ship to a target destination in another system. Warping will consume the necessary fuel and supplies from the ship's manifest, and will pay out crew wages from the agent's account.
+        Warp your ship to a target destination in another system. The ship must be in orbit to use this function and must have the `Warp Drive` module installed. Warping will consume the necessary fuel from the ship's manifest.
 
-        The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it's destination.
+        The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at its destination.
       operationId: warp-ship
       parameters:
-      - explode: false
+      - description: The ship symbol.
+        explode: false
         in: path
         name: shipSymbol
         required: true
@@ -1058,20 +1109,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/navigate_ship_200_response'
-          description: "The successful transit information including the route details\
-            \ and changes to ship fuel, supplies, and crew wages paid. The route includes\
-            \ the expected time of arrival."
+          description: The successful transit information including the route details
+            and changes to ship fuel. The route includes the expected time of arrival.
       security:
       - AgentToken: []
       summary: Warp Ship
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}/sell:
     post:
-      description: Sell cargo.
+      description: Sell cargo in your ship to a market that trades this cargo. The
+        ship must be docked in a waypoint that has the `Marketplace` trait in order
+        to use this function.
       operationId: sell-cargo
       parameters:
-      - explode: false
+      - description: Symbol of a ship.
+        explode: false
         in: path
         name: shipSymbol
         required: true
@@ -1089,18 +1142,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Sell_Cargo_201_Response'
-          description: Created
+          description: Cargo was successfully sold.
       security:
       - AgentToken: []
       summary: Sell Cargo
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}/scan/systems:
     post:
-      description: Activate your ship's sensor arrays to scan for system information.
+      description: |-
+        Scan for nearby systems, retrieving information on the systems' distance from the ship and their waypoints. Requires a ship to have the `Sensor Array` mount installed to use.
+
+        The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
       operationId: create-ship-system-scan
       parameters:
-      - explode: false
+      - description: The ship symbol.
+        explode: false
         in: path
         name: shipSymbol
         required: true
@@ -1113,18 +1170,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/create_ship_system_scan_201_response'
-          description: Created
+          description: Successfully scanned for nearby systems.
       security:
       - AgentToken: []
       summary: Scan Systems
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}/scan/waypoints:
     post:
-      description: Activate your ship's sensor arrays to scan for waypoint information.
+      description: |-
+        Scan for nearby waypoints, retrieving detailed information on each waypoint in range. Scanning uncharted waypoints will allow you to ignore their uncharted state and will list the waypoints' traits.
+
+        Requires a ship to have the `Sensor Array` mount installed to use.
+
+        The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
       operationId: create-ship-waypoint-scan
       parameters:
-      - explode: false
+      - description: The ship symbol.
+        explode: false
         in: path
         name: shipSymbol
         required: true
@@ -1137,18 +1200,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/create_ship_waypoint_scan_201_response'
-          description: Created
+          description: Successfully scanned for nearby waypoints.
       security:
       - AgentToken: []
       summary: Scan Waypoints
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}/scan/ships:
     post:
-      description: Activate your ship's sensor arrays to scan for ship information.
+      description: |-
+        Scan for nearby ships, retrieving information for all ships in range.
+
+        Requires a ship to have the `Sensor Array` mount installed to use.
+
+        The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
       operationId: create-ship-ship-scan
       parameters:
-      - explode: false
+      - description: The ship symbol.
+        explode: false
         in: path
         name: shipSymbol
         required: true
@@ -1161,18 +1230,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/create_ship_ship_scan_201_response'
-          description: Created
+          description: Successfully scanned for nearby ships.
       security:
       - AgentToken: []
       summary: Scan Ships
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}/refuel:
     post:
-      description: Refuel your ship from the local market.
+      description: |-
+        Refuel your ship by buying fuel from the local market.
+
+        Requires the ship to be docked in a waypoint that has the `Marketplace` trait, and the market must be selling fuel in order to refuel.
+
+        Each fuel bought from the market replenishes 100 units in your ship's fuel.
+
+        Ships will always be refuel to their frame's maximum fuel capacity when using this action.
       operationId: refuel-ship
       parameters:
-      - explode: false
+      - description: The ship symbol.
+        explode: false
         in: path
         name: shipSymbol
         required: true
@@ -1185,18 +1262,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/refuel_ship_200_response'
-          description: OK
+          description: Refueled successfully.
       security:
       - AgentToken: []
       summary: Refuel Ship
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}/purchase:
     post:
-      description: Purchase cargo.
+      description: |-
+        Purchase cargo from a market.
+
+        The ship must be docked in a waypoint that has `Marketplace` trait, and the market must be selling a good to be able to purchase it.
+
+        The maximum amount of units of a good that can be purchased in each transaction are denoted by the `tradeVolume` value of the good, which can be viewed by using the Get Market action.
+
+        Purchased goods are added to the ship's cargo hold.
       operationId: purchase-cargo
       parameters:
-      - explode: false
+      - description: The ship's symbol.
+        explode: false
         in: path
         name: shipSymbol
         required: true
@@ -1214,18 +1299,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Purchase_Cargo_201_Response'
-          description: Created
+          description: Purchased goods successfully.
       security:
       - AgentToken: []
       summary: Purchase Cargo
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}/transfer:
     post:
-      description: Transfer cargo between ships.
+      description: |-
+        Transfer cargo between ships.
+
+        The receiving ship must be in the same waypoint as the transferring ship, and it must able to hold the additional cargo after the transfer is complete. Both ships also must be in the same state, either both are docked or both are orbiting.
+
+        The response body's cargo shows the cargo of the transferring ship after the transfer is complete.
       operationId: transfer-cargo
       parameters:
-      - explode: false
+      - description: The transferring ship's symbol.
+        explode: false
         in: path
         name: shipSymbol
         required: true
@@ -1243,18 +1334,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Transfer_Cargo_200_Response'
-          description: Created
+          description: Transfer successful.
       security:
       - AgentToken: []
       summary: Transfer Cargo
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}/negotiate/contract:
     post:
-      description: ""
+      description: "Negotiate a new contract with the HQ.\n\nIn order to negotiate\
+        \ a new contract, an agent must not have ongoing or offered contracts over\
+        \ the allowed maximum amount. Currently the maximum contracts an agent can\
+        \ have at a time is 1.\n\nOnce a contract is negotiated, it is added to the\
+        \ list of contracts offered to the agent, which the agent can then accept.\
+        \ \n\nThe ship must be present at a faction's HQ waypoint to negotiate a contract\
+        \ with that faction."
       operationId: negotiateContract
       parameters:
-      - explode: false
+      - description: The ship's symbol.
+        explode: false
         in: path
         name: shipSymbol
         required: true
@@ -1271,18 +1369,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Negotiate_Contract_200_Response'
-          description: Created
+          description: Successfully negotiated a new contract.
       security:
       - AgentToken: []
       summary: Negotiate Contract
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}/mounts:
     get:
-      description: Get the mounts on a ship.
+      description: Get the mounts installed on a ship.
       operationId: get-mounts
       parameters:
-      - explode: false
+      - description: The ship's symbol.
+        explode: false
         in: path
         name: shipSymbol
         required: true
@@ -1295,18 +1394,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Get_Mounts_200_Response'
-          description: OK
+          description: Got installed mounts.
       security:
       - AgentToken: []
       summary: Get Mounts
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}/mounts/install:
     post:
-      description: Install a mount on a ship.
+      description: "Install a mount on a ship.\n\nIn order to install a mount, the\
+        \ ship must be docked and located in a waypoint that has a `Shipyard` trait.\
+        \ The ship also must have the mount to install in its cargo hold.\n\nAn installation\
+        \ fee will be deduced by the Shipyard for installing the mount on the ship. "
       operationId: install-mount
       parameters:
-      - explode: false
+      - description: The ship's symbol.
+        explode: false
         in: path
         name: shipSymbol
         required: true
@@ -1324,18 +1427,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Install_Mount_201_Response'
-          description: Created
+          description: Successfully installed the mount.
       security:
       - AgentToken: []
       summary: Install Mount
       tags:
-      - fleet
+      - Fleet
   /my/ships/{shipSymbol}/mounts/remove:
     post:
-      description: Remove a mount from a ship.
+      description: |-
+        Remove a mount from a ship.
+
+        The ship must be docked in a waypoint that has the `Shipyard` trait, and must have the desired mount that it wish to remove installed.
+
+        A removal fee will be deduced from the agent by the Shipyard.
       operationId: remove-mount
       parameters:
-      - explode: false
+      - description: The ship's symbol.
+        explode: false
         in: path
         name: shipSymbol
         required: true
@@ -1353,17 +1462,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Remove_Mount_201_Response'
-          description: Created
+          description: Successfully removed the mount.
       security:
       - AgentToken: []
       summary: Remove Mount
       tags:
-      - fleet
+      - Fleet
 components:
   requestBodies: {}
   schemas:
+    FactionSymbols:
+      description: Faction symbol.
+      enum:
+      - COSMIC
+      - VOID
+      - GALACTIC
+      - QUANTUM
+      - DOMINION
+      - ASTRO
+      - CORSAIRS
+      - OBSIDIAN
+      - AEGIS
+      - UNITED
+      - SOLITARY
+      - COBALT
+      - OMEGA
+      - ECHO
+      - LORDS
+      - CULT
+      - ANCIENTS
+      - SHADOW
+      - ETHEREAL
+      minLength: 1
+      type: string
     Agent:
-      description: ""
+      description: Agent details.
       example:
         accountId: accountId
         symbol: symbol
@@ -1372,9 +1505,11 @@ components:
         startingFaction: startingFaction
       properties:
         accountId:
+          description: Account ID that is tied to this agent.
           minLength: 1
           type: string
         symbol:
+          description: Symbol of the agent.
           minLength: 1
           type: string
         headquarters:
@@ -1398,7 +1533,7 @@ components:
       - symbol
       type: object
     Contract:
-      description: ""
+      description: Contract details.
       example:
         terms:
           deliver:
@@ -1423,6 +1558,7 @@ components:
         deadlineToAccept: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
+          description: ID of the contract.
           minLength: 1
           type: string
         factionSymbol:
@@ -1430,6 +1566,7 @@ components:
           minLength: 1
           type: string
         type:
+          description: Type of contract.
           enum:
           - PROCUREMENT
           - TRANSPORT
@@ -1465,10 +1602,10 @@ components:
       - type
       type: object
     Faction:
-      description: ""
+      description: Faction details.
       example:
         isRecruiting: true
-        symbol: symbol
+        symbol: null
         headquarters: headquarters
         traits:
         - symbol: BUREAUCRATIC
@@ -1481,18 +1618,21 @@ components:
         description: description
       properties:
         symbol:
-          minLength: 1
-          type: string
+          $ref: '#/components/schemas/FactionSymbols'
         name:
+          description: Name of the faction.
           minLength: 1
           type: string
         description:
+          description: Description of the faction.
           minLength: 1
           type: string
         headquarters:
+          description: The waypoint in which the faction's HQ is located in.
           minLength: 1
           type: string
         traits:
+          description: List of traits that define this faction.
           items:
             $ref: '#/components/schemas/FactionTrait'
           type: array
@@ -1508,7 +1648,7 @@ components:
       - traits
       type: object
     Ship:
-      description: A ship
+      description: Ship details.
       example:
         symbol: symbol
         nav:
@@ -1637,7 +1777,7 @@ components:
       properties:
         symbol:
           description: "The globally unique identifier of the ship in the following\
-            \ format: `[AGENT_SYMBOL]_[HEX_ID]`"
+            \ format: `[AGENT_SYMBOL]-[HEX_ID]`"
           type: string
         registration:
           $ref: '#/components/schemas/ShipRegistration'
@@ -1652,10 +1792,12 @@ components:
         engine:
           $ref: '#/components/schemas/ShipEngine'
         modules:
+          description: Modules installed in this ship.
           items:
             $ref: '#/components/schemas/ShipModule'
           type: array
         mounts:
+          description: Mounts installed in this ship.
           items:
             $ref: '#/components/schemas/ShipMount'
           type: array
@@ -1677,7 +1819,6 @@ components:
       - symbol
       type: object
     System:
-      description: ""
       example:
         symbol: symbol
         sectorSymbol: sectorSymbol
@@ -1698,22 +1839,28 @@ components:
         - symbol: symbol
       properties:
         symbol:
+          description: The symbol of the system.
           minLength: 1
           type: string
         sectorSymbol:
+          description: The symbol of the sector.
           minLength: 1
           type: string
         type:
           $ref: '#/components/schemas/SystemType'
         x:
+          description: Position in the universe in the x axis.
           type: integer
         "y":
+          description: Position in the universe in the y axis.
           type: integer
         waypoints:
+          description: Waypoints in this system.
           items:
             $ref: '#/components/schemas/SystemWaypoint'
           type: array
         factions:
+          description: Factions that control this system.
           items:
             $ref: '#/components/schemas/SystemFaction'
           type: array
@@ -1727,17 +1874,28 @@ components:
       - "y"
       type: object
     Meta:
-      description: ""
+      description: Meta details for pagination.
       example:
-        total: 5
-        limit: 7
-        page: 2
+        total: 0
+        limit: 14
+        page: 1
       properties:
         total:
+          description: Shows the total amount of items of this kind that exist.
+          minimum: 0
           type: integer
         page:
+          default: 1
+          description: "A page denotes an amount of items, offset from the first item.\
+            \ Each page holds an amount of items equal to the `limit`."
+          minimum: 1
           type: integer
         limit:
+          default: 10
+          description: The amount of items in each page. Limits how many items can
+            be fetched at once.
+          maximum: 20
+          minimum: 1
           type: integer
       required:
       - limit
@@ -1763,7 +1921,7 @@ components:
           description: description
         systemSymbol: systemSymbol
         faction:
-          symbol: symbol
+          symbol: null
         x: 0
         "y": 6
         type: null
@@ -1776,18 +1934,23 @@ components:
         - symbol: symbol
       properties:
         symbol:
+          description: Symbol fo the waypoint.
           minLength: 1
           type: string
         type:
           $ref: '#/components/schemas/WaypointType'
         systemSymbol:
+          description: The symbol of the system this waypoint belongs to.
           minLength: 1
           type: string
         x:
+          description: Position in the universe in the x axis.
           type: integer
         "y":
+          description: Position in the universe in the Y axis.
           type: integer
         orbitals:
+          description: Waypoints that orbit this waypoint.
           items:
             $ref: '#/components/schemas/WaypointOrbital'
           type: array
@@ -2140,6 +2303,7 @@ components:
       - jumpRange
       type: object
     ShipCargo:
+      description: Ship cargo details.
       example:
         units: 0
         inventory:
@@ -2172,7 +2336,7 @@ components:
       - units
       type: object
     ShipType:
-      description: ""
+      description: Type of ship
       enum:
       - SHIP_PROBE
       - SHIP_MINING_DRONE
@@ -2186,6 +2350,7 @@ components:
       - SHIP_REFINING_FREIGHTER
       type: string
     ShipyardTransaction:
+      description: Results of a transaction with a shipyard.
       example:
         waypointSymbol: waypointSymbol
         price: 0
@@ -2197,7 +2362,7 @@ components:
           description: The symbol of the waypoint where the transaction took place.
           type: string
         shipSymbol:
-          description: The symbol of the ship that was purchased.
+          description: The symbol of the ship that was the subject of the transaction.
           type: string
         price:
           description: The price of the transaction.
@@ -2299,10 +2464,13 @@ components:
         submittedOn: 2000-01-23T04:56:07.000+00:00
       properties:
         waypointSymbol:
+          description: The symbol of the waypoint.
           type: string
         submittedBy:
+          description: The agent that submitted the chart for this waypoint.
           type: string
         submittedOn:
+          description: The time the chart for this waypoint was submitted.
           format: date-time
           type: string
       type: object
@@ -2354,14 +2522,15 @@ components:
       - symbol
       type: object
     Extraction:
-      description: ""
+      description: Extraction details.
       example:
         yield:
-          symbol: symbol
+          symbol: null
           units: 0
         shipSymbol: shipSymbol
       properties:
         shipSymbol:
+          description: Symbol of the ship that executed the extraction.
           minLength: 1
           type: string
         yield:
@@ -2370,6 +2539,120 @@ components:
       - shipSymbol
       - yield
       type: object
+    TradeSymbol:
+      description: The good's symbol.
+      enum:
+      - PRECIOUS_STONES
+      - QUARTZ_SAND
+      - SILICON_CRYSTALS
+      - AMMONIA_ICE
+      - LIQUID_HYDROGEN
+      - LIQUID_NITROGEN
+      - ICE_WATER
+      - EXOTIC_MATTER
+      - ADVANCED_CIRCUITRY
+      - GRAVITON_EMITTERS
+      - IRON
+      - IRON_ORE
+      - COPPER
+      - COPPER_ORE
+      - ALUMINUM
+      - ALUMINUM_ORE
+      - SILVER
+      - SILVER_ORE
+      - GOLD
+      - GOLD_ORE
+      - PLATINUM
+      - PLATINUM_ORE
+      - DIAMONDS
+      - URANITE
+      - URANITE_ORE
+      - MERITIUM
+      - MERITIUM_ORE
+      - HYDROCARBON
+      - ANTIMATTER
+      - FERTILIZERS
+      - FABRICS
+      - FOOD
+      - JEWELRY
+      - MACHINERY
+      - FIREARMS
+      - ASSAULT_RIFLES
+      - MILITARY_EQUIPMENT
+      - EXPLOSIVES
+      - LAB_INSTRUMENTS
+      - AMMUNITION
+      - ELECTRONICS
+      - SHIP_PLATING
+      - EQUIPMENT
+      - FUEL
+      - MEDICINE
+      - DRUGS
+      - CLOTHING
+      - MICROPROCESSORS
+      - PLASTICS
+      - POLYNUCLEOTIDES
+      - BIOCOMPOSITES
+      - NANOBOTS
+      - AI_MAINFRAMES
+      - QUANTUM_DRIVES
+      - ROBOTIC_DRONES
+      - CYBER_IMPLANTS
+      - GENE_THERAPEUTICS
+      - NEURAL_CHIPS
+      - MOOD_REGULATORS
+      - VIRAL_AGENTS
+      - MICRO_FUSION_GENERATORS
+      - SUPERGRAINS
+      - LASER_RIFLES
+      - HOLOGRAPHICS
+      - SHIP_SALVAGE
+      - RELIC_TECH
+      - NOVEL_LIFEFORMS
+      - BOTANICAL_SPECIMENS
+      - CULTURAL_ARTIFACTS
+      - REACTOR_SOLAR_I
+      - REACTOR_FUSION_I
+      - REACTOR_FISSION_I
+      - REACTOR_CHEMICAL_I
+      - REACTOR_ANTIMATTER_I
+      - ENGINE_IMPULSE_DRIVE_I
+      - ENGINE_ION_DRIVE_I
+      - ENGINE_ION_DRIVE_II
+      - ENGINE_HYPER_DRIVE_I
+      - MODULE_MINERAL_PROCESSOR_I
+      - MODULE_CARGO_HOLD_I
+      - MODULE_CREW_QUARTERS_I
+      - MODULE_ENVOY_QUARTERS_I
+      - MODULE_PASSENGER_CABIN_I
+      - MODULE_MICRO_REFINERY_I
+      - MODULE_ORE_REFINERY_I
+      - MODULE_FUEL_REFINERY_I
+      - MODULE_SCIENCE_LAB_I
+      - MODULE_JUMP_DRIVE_I
+      - MODULE_JUMP_DRIVE_II
+      - MODULE_JUMP_DRIVE_III
+      - MODULE_WARP_DRIVE_I
+      - MODULE_WARP_DRIVE_II
+      - MODULE_WARP_DRIVE_III
+      - MODULE_SHIELD_GENERATOR_I
+      - MODULE_SHIELD_GENERATOR_II
+      - MOUNT_GAS_SIPHON_I
+      - MOUNT_GAS_SIPHON_II
+      - MOUNT_GAS_SIPHON_III
+      - MOUNT_SURVEYOR_I
+      - MOUNT_SURVEYOR_II
+      - MOUNT_SURVEYOR_III
+      - MOUNT_SENSOR_ARRAY_I
+      - MOUNT_SENSOR_ARRAY_II
+      - MOUNT_SENSOR_ARRAY_III
+      - MOUNT_MINING_LASER_I
+      - MOUNT_MINING_LASER_II
+      - MOUNT_MINING_LASER_III
+      - MOUNT_LASER_CANNON_I
+      - MOUNT_MISSILE_LAUNCHER_I
+      - MOUNT_TURRET_I
+      type: string
     ShipFuel:
       description: Details of the ship's fuel tanks including how much fuel was consumed
         during the last transit or action.
@@ -2404,6 +2687,7 @@ components:
       - BURN
       type: string
     MarketTransaction:
+      description: Result of a transaction with a market.
       example:
         tradeSymbol: tradeSymbol
         totalPrice: 0
@@ -2456,7 +2740,7 @@ components:
       - waypointSymbol
       type: object
     ScannedSystem:
-      description: ""
+      description: Details of a system was that scanned.
       example:
         symbol: symbol
         distance: 1
@@ -2466,18 +2750,23 @@ components:
         type: null
       properties:
         symbol:
+          description: Symbol of the system.
           minLength: 1
           type: string
         sectorSymbol:
+          description: Symbol of the system's sector.
           minLength: 1
           type: string
         type:
           $ref: '#/components/schemas/SystemType'
         x:
+          description: Position in the universe in the x axis.
           type: integer
         "y":
+          description: Position in the universe in the y axis.
           type: integer
         distance:
+          description: The system's distance from the scanning ship.
           type: integer
       required:
       - distance
@@ -2488,8 +2777,7 @@ components:
       - "y"
       type: object
     ScannedWaypoint:
-      description: "A waypoint is a location that ships can travel to such as a Planet,\
-        \ Moon or Space Station."
+      description: A waypoint that was scanned by a ship.
       example:
         symbol: symbol
         traits:
@@ -2501,7 +2789,7 @@ components:
           description: description
         systemSymbol: systemSymbol
         faction:
-          symbol: symbol
+          symbol: null
         x: 0
         "y": 6
         type: null
@@ -2514,18 +2802,23 @@ components:
         - symbol: symbol
       properties:
         symbol:
+          description: Symbol of the waypoint.
           minLength: 1
           type: string
         type:
           $ref: '#/components/schemas/WaypointType'
         systemSymbol:
+          description: Symbol of the system.
           minLength: 1
           type: string
         x:
+          description: Position in the universe in the x axis.
           type: integer
         "y":
+          description: Position in the universe in the y axis.
           type: integer
         orbitals:
+          description: List of waypoints that orbit this waypoint.
           items:
             $ref: '#/components/schemas/WaypointOrbital'
           type: array
@@ -2600,6 +2893,7 @@ components:
         engine:
           $ref: '#/components/schemas/ScannedShip_engine'
         mounts:
+          description: List of mounts installed in the ship.
           items:
             $ref: '#/components/schemas/ScannedShip_mounts_inner'
           type: array
@@ -2625,6 +2919,7 @@ components:
         - QUARTZ_SAND
       properties:
         symbol:
+          description: Symbo of this mount.
           enum:
           - MOUNT_GAS_SIPHON_I
           - MOUNT_GAS_SIPHON_II
@@ -2643,13 +2938,19 @@ components:
           - MOUNT_TURRET_I
           type: string
         name:
+          description: Name of this mount.
           type: string
         description:
+          description: Description of this mount.
           type: string
         strength:
+          description: "Mounts that have this value, such as mining lasers, denote\
+            \ how powerful this mount's capabilities are."
           minimum: 0
           type: integer
         deposits:
+          description: Mounts that have this value denote what goods can be produced
+            from using the mount.
           items:
             enum:
             - QUARTZ_SAND
@@ -2676,6 +2977,7 @@ components:
       - symbol
       type: object
     ContractTerms:
+      description: Terms of the contract needed to fulfill it.
       example:
         deliver:
         - tradeSymbol: tradeSymbol
@@ -2698,6 +3000,7 @@ components:
         payment:
           $ref: '#/components/schemas/ContractPayment'
         deliver:
+          description: The cargo that needs to be delivered to fulfill the contract.
           items:
             $ref: '#/components/schemas/ContractDeliverGood'
           type: array
@@ -2874,6 +3177,7 @@ components:
         mountingPoints: 0
       properties:
         symbol:
+          description: Symbol of the frame.
           enum:
           - FRAME_PROBE
           - FRAME_DRONE
@@ -2892,8 +3196,10 @@ components:
           - FRAME_CARRIER
           type: string
         name:
+          description: Name of the frame.
           type: string
         description:
+          description: Description of the frame.
           type: string
         condition:
           description: Condition is a range of 0 to 100 where 0 is completely worn
@@ -2902,12 +3208,20 @@ components:
           minimum: 0
           type: integer
         moduleSlots:
+          description: "The amount of slots that can be dedicated to modules installed\
+            \ in the ship. Each installed module take up a number of slots, and once\
+            \ there are no more slots, no new modules can be installed."
           minimum: 0
           type: integer
         mountingPoints:
+          description: "The amount of slots that can be dedicated to mounts installed\
+            \ in the ship. Each installed mount takes up a number of points, and once\
+            \ there are no more points remaining, no new mounts can be installed."
           minimum: 0
           type: integer
         fuelCapacity:
+          description: "The maximum amount of fuel that can be stored in this ship.\
+            \ When refueling, the ship will be refueled to this amount."
           minimum: 0
           type: integer
         requirements:
@@ -2936,6 +3250,7 @@ components:
         powerOutput: 1
       properties:
         symbol:
+          description: Symbol of the reactor.
           enum:
           - REACTOR_SOLAR_I
           - REACTOR_FUSION_I
@@ -2944,8 +3259,10 @@ components:
           - REACTOR_ANTIMATTER_I
           type: string
         name:
+          description: Name of the reactor.
           type: string
         description:
+          description: Description of the reactor.
           type: string
         condition:
           description: Condition is a range of 0 to 100 where 0 is completely worn
@@ -2954,6 +3271,9 @@ components:
           minimum: 0
           type: integer
         powerOutput:
+          description: "The amount of power provided by this reactor. The more power\
+            \ a reactor provides to the ship, the lower the cooldown it gets when\
+            \ using a module or mount that taxes the ship's power."
           minimum: 1
           type: integer
         requirements:
@@ -2979,6 +3299,7 @@ components:
         speed: 1
       properties:
         symbol:
+          description: The symbol of the engine.
           enum:
           - ENGINE_IMPULSE_DRIVE_I
           - ENGINE_ION_DRIVE_I
@@ -2986,8 +3307,10 @@ components:
           - ENGINE_HYPER_DRIVE_I
           type: string
         name:
+          description: The name of the engine.
           type: string
         description:
+          description: The description of the engine.
           type: string
         condition:
           description: Condition is a range of 0 to 100 where 0 is completely worn
@@ -2996,6 +3319,9 @@ components:
           minimum: 0
           type: integer
         speed:
+          description: "The speed stat of this engine. The higher the speed, the faster\
+            \ a ship can travel from one point to another. Reduces the time of arrival\
+            \ when navigating the ship."
           minimum: 1
           type: integer
         requirements:
@@ -3022,6 +3348,7 @@ components:
         capacity: 0
       properties:
         symbol:
+          description: The symbol of the module.
           enum:
           - MODULE_MINERAL_PROCESSOR_I
           - MODULE_CARGO_HOLD_I
@@ -3042,18 +3369,26 @@ components:
           - MODULE_SHIELD_GENERATOR_II
           type: string
         capacity:
+          description: "Modules that provide capacity, such as cargo hold or crew\
+            \ quarters will show this value to denote how much of a bonus the module\
+            \ grants."
           minimum: 0
           type: integer
         range:
+          description: Modules that have a range will such as a sensor array show
+            this value to denote how far can the module reach with its capabilities.
           minimum: 0
           type: integer
         name:
+          description: Name of this module.
           type: string
         description:
+          description: Description of this module.
           type: string
         requirements:
           $ref: '#/components/schemas/ShipRequirements'
       required:
+      - description
       - name
       - requirements
       - symbol
@@ -3080,12 +3415,15 @@ components:
         type: null
       properties:
         symbol:
+          description: The symbol of the waypoint.
           type: string
         type:
           $ref: '#/components/schemas/WaypointType'
         x:
+          description: Position in the universe in the x axis.
           type: integer
         "y":
+          description: Position in the universe in the y axis.
           type: integer
       required:
       - symbol
@@ -3098,6 +3436,7 @@ components:
         symbol: symbol
       properties:
         symbol:
+          description: The symbol of the faction.
           minLength: 1
           type: string
       required:
@@ -3122,18 +3461,19 @@ components:
         symbol: symbol
       properties:
         symbol:
+          description: The symbol of the orbiting waypoint.
           minLength: 1
           type: string
       required:
       - symbol
       type: object
     WaypointFaction:
+      description: The faction that controls the waypoint.
       example:
-        symbol: symbol
+        symbol: null
       properties:
         symbol:
-          minLength: 1
-          type: string
+          $ref: '#/components/schemas/FactionSymbols'
       required:
       - symbol
       type: object
@@ -3218,6 +3558,7 @@ components:
       - symbol
       type: object
     TradeGood:
+      description: A good that can be traded for other goods or currency.
       example:
         symbol: null
         name: name
@@ -3226,8 +3567,10 @@ components:
         symbol:
           $ref: '#/components/schemas/TradeSymbol'
         name:
+          description: The name of the good.
           type: string
         description:
+          description: The description of the good.
           type: string
       required:
       - description
@@ -3388,7 +3731,6 @@ components:
       - reactor
       type: object
     ConnectedSystem:
-      description: ""
       example:
         symbol: symbol
         distance: 5
@@ -3399,9 +3741,11 @@ components:
         type: null
       properties:
         symbol:
+          description: The symbol of the system.
           minLength: 1
           type: string
         sectorSymbol:
+          description: The sector of this system.
           minLength: 1
           type: string
         type:
@@ -3411,10 +3755,13 @@ components:
             in the system.
           type: string
         x:
+          description: Position in the universe in the x axis.
           type: integer
         "y":
+          description: Position in the universe in the y axis.
           type: integer
         distance:
+          description: The distance of this system to the connected Jump Gate.
           type: integer
       required:
       - distance
@@ -3508,13 +3855,13 @@ components:
       - symbol
       type: object
     ExtractionYield:
+      description: A yield from the extraction operation.
       example:
-        symbol: symbol
+        symbol: null
         units: 0
       properties:
         symbol:
-          minLength: 1
-          type: string
+          $ref: '#/components/schemas/TradeSymbol'
         units:
           description: The number of units extracted that were placed into the ship's
             cargo hold.
@@ -3608,119 +3955,6 @@ components:
       maximum: 100
       minimum: 0
       type: integer
-    TradeSymbol:
-      enum:
-      - PRECIOUS_STONES
-      - QUARTZ_SAND
-      - SILICON_CRYSTALS
-      - AMMONIA_ICE
-      - LIQUID_HYDROGEN
-      - LIQUID_NITROGEN
-      - ICE_WATER
-      - EXOTIC_MATTER
-      - ADVANCED_CIRCUITRY
-      - GRAVITON_EMITTERS
-      - IRON
-      - IRON_ORE
-      - COPPER
-      - COPPER_ORE
-      - ALUMINUM
-      - ALUMINUM_ORE
-      - SILVER
-      - SILVER_ORE
-      - GOLD
-      - GOLD_ORE
-      - PLATINUM
-      - PLATINUM_ORE
-      - DIAMONDS
-      - URANITE
-      - URANITE_ORE
-      - MERITIUM
-      - MERITIUM_ORE
-      - HYDROCARBON
-      - ANTIMATTER
-      - FERTILIZERS
-      - FABRICS
-      - FOOD
-      - JEWELRY
-      - MACHINERY
-      - FIREARMS
-      - ASSAULT_RIFLES
-      - MILITARY_EQUIPMENT
-      - EXPLOSIVES
-      - LAB_INSTRUMENTS
-      - AMMUNITION
-      - ELECTRONICS
-      - SHIP_PLATING
-      - EQUIPMENT
-      - FUEL
-      - MEDICINE
-      - DRUGS
-      - CLOTHING
-      - MICROPROCESSORS
-      - PLASTICS
-      - POLYNUCLEOTIDES
-      - BIOCOMPOSITES
-      - NANOBOTS
-      - AI_MAINFRAMES
-      - QUANTUM_DRIVES
-      - ROBOTIC_DRONES
-      - CYBER_IMPLANTS
-      - GENE_THERAPEUTICS
-      - NEURAL_CHIPS
-      - MOOD_REGULATORS
-      - VIRAL_AGENTS
-      - MICRO_FUSION_GENERATORS
-      - SUPERGRAINS
-      - LASER_RIFLES
-      - HOLOGRAPHICS
-      - SHIP_SALVAGE
-      - RELIC_TECH
-      - NOVEL_LIFEFORMS
-      - BOTANICAL_SPECIMENS
-      - CULTURAL_ARTIFACTS
-      - REACTOR_SOLAR_I
-      - REACTOR_FUSION_I
-      - REACTOR_FISSION_I
-      - REACTOR_CHEMICAL_I
-      - REACTOR_ANTIMATTER_I
-      - ENGINE_IMPULSE_DRIVE_I
-      - ENGINE_ION_DRIVE_I
-      - ENGINE_ION_DRIVE_II
-      - ENGINE_HYPER_DRIVE_I
-      - MODULE_MINERAL_PROCESSOR_I
-      - MODULE_CARGO_HOLD_I
-      - MODULE_CREW_QUARTERS_I
-      - MODULE_ENVOY_QUARTERS_I
-      - MODULE_PASSENGER_CABIN_I
-      - MODULE_MICRO_REFINERY_I
-      - MODULE_ORE_REFINERY_I
-      - MODULE_FUEL_REFINERY_I
-      - MODULE_SCIENCE_LAB_I
-      - MODULE_JUMP_DRIVE_I
-      - MODULE_JUMP_DRIVE_II
-      - MODULE_JUMP_DRIVE_III
-      - MODULE_WARP_DRIVE_I
-      - MODULE_WARP_DRIVE_II
-      - MODULE_WARP_DRIVE_III
-      - MODULE_SHIELD_GENERATOR_I
-      - MODULE_SHIELD_GENERATOR_II
-      - MOUNT_GAS_SIPHON_I
-      - MOUNT_GAS_SIPHON_II
-      - MOUNT_GAS_SIPHON_III
-      - MOUNT_SURVEYOR_I
-      - MOUNT_SURVEYOR_II
-      - MOUNT_SURVEYOR_III
-      - MOUNT_SENSOR_ARRAY_I
-      - MOUNT_SENSOR_ARRAY_II
-      - MOUNT_SENSOR_ARRAY_III
-      - MOUNT_MINING_LASER_I
-      - MOUNT_MINING_LASER_II
-      - MOUNT_MINING_LASER_III
-      - MOUNT_LASER_CANNON_I
-      - MOUNT_MISSILE_LAUNCHER_I
-      - MOUNT_TURRET_I
-      type: string
     ShipNavRouteWaypoint:
       description: The destination or departure of a ships nav route.
       example:
@@ -3731,16 +3965,20 @@ components:
         type: null
       properties:
         symbol:
+          description: The symbol of the waypoint.
           minLength: 1
           type: string
         type:
           $ref: '#/components/schemas/WaypointType'
         systemSymbol:
+          description: The symbol of the system the waypoint is in.
           minLength: 1
           type: string
         x:
+          description: Position in the universe in the x axis.
           type: integer
         "y":
+          description: Position in the universe in the y axis.
           type: integer
       required:
       - symbol
@@ -3757,16 +3995,16 @@ components:
         agents: 0
       properties:
         agents:
-          format: int64
+          description: Number of registered agents in the game.
           type: integer
         ships:
-          format: int64
+          description: Total number of ships in the game.
           type: integer
         systems:
-          format: int64
+          description: Total number of systems in the game.
           type: integer
         waypoints:
-          format: int64
+          description: Total number of waypoints in the game.
           type: integer
       required:
       - agents
@@ -3780,8 +4018,10 @@ components:
         agentSymbol: agentSymbol
       properties:
         agentSymbol:
+          description: Symbol of the agent.
           type: string
         credits:
+          description: Amount of credits.
           format: int64
           type: integer
       required:
@@ -3794,9 +4034,10 @@ components:
         agentSymbol: agentSymbol
       properties:
         agentSymbol:
+          description: Symbol of the agent.
           type: string
         chartCount:
-          format: int64
+          description: Amount of charts done by the agent.
           type: integer
       required:
       - agentSymbol
@@ -3816,10 +4057,12 @@ components:
           agentSymbol: agentSymbol
       properties:
         mostCredits:
+          description: Top agents with the most credits.
           items:
             $ref: '#/components/schemas/get_status_200_response_leaderboards_mostCredits_inner'
           type: array
         mostSubmittedCharts:
+          description: Top agents with the most charted submitted.
           items:
             $ref: '#/components/schemas/get_status_200_response_leaderboards_mostSubmittedCharts_inner'
           type: array
@@ -3869,7 +4112,6 @@ components:
       - url
       type: object
     get_status_200_response:
-      description: OK
       example:
         serverResets:
           next: next
@@ -3944,10 +4186,10 @@ components:
     register_request:
       properties:
         faction:
-          description: The faction you choose determines your headquarters.
-          example: COSMIC
+          $ref: '#/components/schemas/FactionSymbols'
         symbol:
-          description: How other agents will see your ships and information.
+          description: "Your desired agent symbol. This will be a unique name used\
+            \ to represent your agent, and will be the prefix for your ships."
           example: BADGER
           maxLength: 14
           minLength: 3
@@ -3992,7 +4234,7 @@ components:
           deadlineToAccept: 2000-01-23T04:56:07.000+00:00
         faction:
           isRecruiting: true
-          symbol: symbol
+          symbol: null
           headquarters: headquarters
           traits:
           - symbol: BUREAUCRATIC
@@ -4181,7 +4423,7 @@ components:
             deadlineToAccept: 2000-01-23T04:56:07.000+00:00
           faction:
             isRecruiting: true
-            symbol: symbol
+            symbol: null
             headquarters: headquarters
             traits:
             - symbol: BUREAUCRATIC
@@ -4363,9 +4605,9 @@ components:
           - symbol: symbol
           - symbol: symbol
         meta:
-          total: 5
-          limit: 7
-          page: 2
+          total: 0
+          limit: 14
+          page: 1
       properties:
         data:
           items:
@@ -4418,7 +4660,7 @@ components:
             description: description
           systemSymbol: systemSymbol
           faction:
-            symbol: symbol
+            symbol: null
           x: 0
           "y": 6
           type: null
@@ -4439,7 +4681,7 @@ components:
             description: description
           systemSymbol: systemSymbol
           faction:
-            symbol: symbol
+            symbol: null
           x: 0
           "y": 6
           type: null
@@ -4451,9 +4693,9 @@ components:
           - symbol: symbol
           - symbol: symbol
         meta:
-          total: 5
-          limit: 7
-          page: 2
+          total: 0
+          limit: 14
+          page: 1
       properties:
         data:
           items:
@@ -4479,7 +4721,7 @@ components:
             description: description
           systemSymbol: systemSymbol
           faction:
-            symbol: symbol
+            symbol: null
           x: 0
           "y": 6
           type: null
@@ -4768,7 +5010,7 @@ components:
       example:
         data:
         - isRecruiting: true
-          symbol: symbol
+          symbol: null
           headquarters: headquarters
           traits:
           - symbol: BUREAUCRATIC
@@ -4780,7 +5022,7 @@ components:
           name: name
           description: description
         - isRecruiting: true
-          symbol: symbol
+          symbol: null
           headquarters: headquarters
           traits:
           - symbol: BUREAUCRATIC
@@ -4792,9 +5034,9 @@ components:
           name: name
           description: description
         meta:
-          total: 5
-          limit: 7
-          page: 2
+          total: 0
+          limit: 14
+          page: 1
       properties:
         data:
           items:
@@ -4810,7 +5052,7 @@ components:
       example:
         data:
           isRecruiting: true
-          symbol: symbol
+          symbol: null
           headquarters: headquarters
           traits:
           - symbol: BUREAUCRATIC
@@ -4888,9 +5130,9 @@ components:
           type: PROCUREMENT
           deadlineToAccept: 2000-01-23T04:56:07.000+00:00
         meta:
-          total: 5
-          limit: 7
-          page: 2
+          total: 0
+          limit: 14
+          page: 1
       properties:
         data:
           items:
@@ -5011,11 +5253,14 @@ components:
     deliver_contract_request:
       properties:
         shipSymbol:
+          description: Symbol of a ship located in the destination to deliver a contract
+            and that has a good to deliver in its cargo.
           type: string
         tradeSymbol:
+          description: The symbol of the good to deliver.
           type: string
         units:
-          format: int64
+          description: Amount of units to deliver.
           type: integer
       required:
       - shipSymbol
@@ -5402,9 +5647,9 @@ components:
             description: description
             mountingPoints: 0
         meta:
-          total: 5
-          limit: 7
-          page: 2
+          total: 0
+          limit: 14
+          page: 1
       properties:
         data:
           items:
@@ -5942,6 +6187,7 @@ components:
     ship_refine_request:
       properties:
         produce:
+          description: The type of good to produce out of the refining process.
           enum:
           - IRON
           - COPPER
@@ -5962,9 +6208,10 @@ components:
         units: 1
       properties:
         tradeSymbol:
+          description: Symbol of the good.
           type: string
         units:
-          format: int64
+          description: Amount of units of the good.
           type: integer
       type: object
     Ship_Refine_200_Response_data:
@@ -6002,10 +6249,12 @@ components:
         cooldown:
           $ref: '#/components/schemas/Cooldown'
         produced:
+          description: Goods that were produced by this refining process.
           items:
             $ref: '#/components/schemas/Ship_Refine_200_Response_data_produced_inner'
           type: array
         consumed:
+          description: Goods that were consumed during this refining process.
           items:
             $ref: '#/components/schemas/Ship_Refine_200_Response_data_produced_inner'
           type: array
@@ -6016,7 +6265,6 @@ components:
       - produced
       type: object
     Ship_Refine_200_Response:
-      description: ""
       example:
         data:
           consumed:
@@ -6066,7 +6314,7 @@ components:
             description: description
           systemSymbol: systemSymbol
           faction:
-            symbol: symbol
+            symbol: null
           x: 0
           "y": 6
           type: null
@@ -6104,7 +6352,7 @@ components:
               description: description
             systemSymbol: systemSymbol
             faction:
-              symbol: symbol
+              symbol: null
             x: 0
             "y": 6
             type: null
@@ -6196,6 +6444,7 @@ components:
         cooldown:
           $ref: '#/components/schemas/Cooldown'
         surveys:
+          description: Surveys created by this action.
           items:
             $ref: '#/components/schemas/Survey'
           type: array
@@ -6246,7 +6495,7 @@ components:
           expiration: 2000-01-23T04:56:07.000+00:00
         extraction:
           yield:
-            symbol: symbol
+            symbol: null
             units: 0
           shipSymbol: shipSymbol
         cargo:
@@ -6284,7 +6533,7 @@ components:
             expiration: 2000-01-23T04:56:07.000+00:00
           extraction:
             yield:
-              symbol: symbol
+              symbol: null
               units: 0
             shipSymbol: shipSymbol
           cargo:
@@ -6308,9 +6557,9 @@ components:
     jettison_request:
       properties:
         symbol:
-          type: string
+          $ref: '#/components/schemas/TradeSymbol'
         units:
-          format: int64
+          description: Amount of units to jettison of this good.
           minimum: 1
           type: integer
       required:
@@ -6401,7 +6650,7 @@ components:
           $ref: '#/components/schemas/ShipNav'
       required:
       - cooldown
-      - route
+      - nav
       type: object
     jump_ship_200_response:
       description: ""
@@ -6555,13 +6804,13 @@ components:
       type: object
     SellCargoRequest:
       example:
-        symbol: symbol
+        symbol: null
         units: 0
       properties:
         symbol:
-          type: string
+          $ref: '#/components/schemas/TradeSymbol'
         units:
-          format: int64
+          description: Amounts of units to sell of the selected good.
           type: integer
       required:
       - symbol
@@ -6671,6 +6920,7 @@ components:
         cooldown:
           $ref: '#/components/schemas/Cooldown'
         systems:
+          description: List of scanned systems.
           items:
             $ref: '#/components/schemas/ScannedSystem'
           type: array
@@ -6679,7 +6929,6 @@ components:
       - systems
       type: object
     create_ship_system_scan_201_response:
-      description: ""
       example:
         data:
           systems:
@@ -6724,7 +6973,7 @@ components:
             description: description
           systemSymbol: systemSymbol
           faction:
-            symbol: symbol
+            symbol: null
           x: 0
           "y": 6
           type: null
@@ -6745,7 +6994,7 @@ components:
             description: description
           systemSymbol: systemSymbol
           faction:
-            symbol: symbol
+            symbol: null
           x: 0
           "y": 6
           type: null
@@ -6760,6 +7009,7 @@ components:
         cooldown:
           $ref: '#/components/schemas/Cooldown'
         waypoints:
+          description: List of scanned waypoints.
           items:
             $ref: '#/components/schemas/ScannedWaypoint'
           type: array
@@ -6768,7 +7018,6 @@ components:
       - waypoints
       type: object
     create_ship_waypoint_scan_201_response:
-      description: ""
       example:
         data:
           cooldown:
@@ -6787,7 +7036,7 @@ components:
               description: description
             systemSymbol: systemSymbol
             faction:
-              symbol: symbol
+              symbol: null
             x: 0
             "y": 6
             type: null
@@ -6808,7 +7057,7 @@ components:
               description: description
             systemSymbol: systemSymbol
             faction:
-              symbol: symbol
+              symbol: null
             x: 0
             "y": 6
             type: null
@@ -6905,6 +7154,7 @@ components:
         cooldown:
           $ref: '#/components/schemas/Cooldown'
         ships:
+          description: List of scanned ships.
           items:
             $ref: '#/components/schemas/ScannedShip'
           type: array
@@ -6913,7 +7163,6 @@ components:
       - ships
       type: object
     create_ship_ship_scan_201_response:
-      description: ""
       example:
         data:
           ships:
@@ -7065,9 +7314,9 @@ components:
     Purchase_Cargo_Request:
       properties:
         symbol:
-          type: string
+          $ref: '#/components/schemas/TradeSymbol'
         units:
-          format: int64
+          description: Amounts of units to purchase.
           type: integer
       required:
       - symbol
@@ -7115,11 +7364,12 @@ components:
     Transfer_Cargo_Request:
       properties:
         tradeSymbol:
-          type: string
+          $ref: '#/components/schemas/TradeSymbol'
         units:
-          format: int64
+          description: Amount of units to transfer.
           type: integer
         shipSymbol:
+          description: The symbol of the ship to transfer to.
           type: string
       required:
       - shipSymbol
@@ -7128,7 +7378,6 @@ components:
       title: Transfer Cargo Request
       type: object
     Transfer_Cargo_200_Response:
-      description: ""
       example:
         data:
           cargo:
@@ -7256,22 +7505,6 @@ components:
       - symbol
       title: Install Mount Request
       type: object
-    Install_Mount_201_Response_data_transaction:
-      example:
-        totalPrice: 0
-        timestamp: 2000-01-23T04:56:07.000+00:00
-      properties:
-        totalPrice:
-          description: The total price of the transaction.
-          minimum: 0
-          type: integer
-        timestamp:
-          description: The timestamp of the transaction.
-          format: date-time
-          type: string
-      required:
-      - timestamp
-      - totalPrice
     Install_Mount_201_Response_data:
       example:
         agent:
@@ -7316,19 +7549,24 @@ components:
             units: 1
           capacity: 0
         transaction:
-          totalPrice: 0
+          waypointSymbol: waypointSymbol
+          price: 0
+          shipSymbol: shipSymbol
+          agentSymbol: agentSymbol
           timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         agent:
           $ref: '#/components/schemas/Agent'
         mounts:
+          description: List of installed mounts after the installation of the new
+            mount.
           items:
             $ref: '#/components/schemas/ShipMount'
           type: array
         cargo:
           $ref: '#/components/schemas/ShipCargo'
         transaction:
-          $ref: '#/components/schemas/Install_Mount_201_Response_data_transaction'
+          $ref: '#/components/schemas/ShipyardTransaction'
       required:
       - agent
       - cargo
@@ -7336,7 +7574,6 @@ components:
       - transaction
       type: object
     Install_Mount_201_Response:
-      description: ""
       example:
         data:
           agent:
@@ -7381,7 +7618,10 @@ components:
               units: 1
             capacity: 0
           transaction:
-            totalPrice: 0
+            waypointSymbol: waypointSymbol
+            price: 0
+            shipSymbol: shipSymbol
+            agentSymbol: agentSymbol
             timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
@@ -7393,13 +7633,81 @@ components:
     Remove_Mount_Request:
       properties:
         symbol:
+          description: The symbol of the mount to remove.
           type: string
       required:
       - symbol
       title: Remove Mount Request
       type: object
+    Remove_Mount_201_Response_data:
+      example:
+        agent:
+          accountId: accountId
+          symbol: symbol
+          headquarters: headquarters
+          credits: 0
+          startingFaction: startingFaction
+        mounts:
+        - symbol: MOUNT_GAS_SIPHON_I
+          requirements:
+            slots: 4
+            power: 7
+            crew: 1
+          strength: 0
+          name: name
+          description: description
+          deposits:
+          - QUARTZ_SAND
+          - QUARTZ_SAND
+        - symbol: MOUNT_GAS_SIPHON_I
+          requirements:
+            slots: 4
+            power: 7
+            crew: 1
+          strength: 0
+          name: name
+          description: description
+          deposits:
+          - QUARTZ_SAND
+          - QUARTZ_SAND
+        cargo:
+          units: 0
+          inventory:
+          - symbol: symbol
+            name: name
+            description: description
+            units: 1
+          - symbol: symbol
+            name: name
+            description: description
+            units: 1
+          capacity: 0
+        transaction:
+          waypointSymbol: waypointSymbol
+          price: 0
+          shipSymbol: shipSymbol
+          agentSymbol: agentSymbol
+          timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        agent:
+          $ref: '#/components/schemas/Agent'
+        mounts:
+          description: List of installed mounts after the removal of the selected
+            mount.
+          items:
+            $ref: '#/components/schemas/ShipMount'
+          type: array
+        cargo:
+          $ref: '#/components/schemas/ShipCargo'
+        transaction:
+          $ref: '#/components/schemas/ShipyardTransaction'
+      required:
+      - agent
+      - cargo
+      - mounts
+      - transaction
+      type: object
     Remove_Mount_201_Response:
-      description: ""
       example:
         data:
           agent:
@@ -7444,11 +7752,14 @@ components:
               units: 1
             capacity: 0
           transaction:
-            totalPrice: 0
+            waypointSymbol: waypointSymbol
+            price: 0
+            shipSymbol: shipSymbol
+            agentSymbol: agentSymbol
             timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
-          $ref: '#/components/schemas/Install_Mount_201_Response_data'
+          $ref: '#/components/schemas/Remove_Mount_201_Response_data'
       required:
       - data
       title: Remove Mount 201 Response
@@ -7461,6 +7772,8 @@ components:
           $ref: '#/components/schemas/ShipType'
       type: object
     ShipFuel_consumed:
+      description: An object that only shows up when an action has consumed fuel in
+        the process. Shows the fuel consumption data.
       example:
         amount: 0
         timestamp: 2000-01-23T04:56:07.000+00:00
@@ -7483,6 +7796,7 @@ components:
         symbol: symbol
       properties:
         symbol:
+          description: The symbol of the frame.
           type: string
       required:
       - symbol
@@ -7493,6 +7807,7 @@ components:
         symbol: symbol
       properties:
         symbol:
+          description: The symbol of the reactor.
           type: string
       required:
       - symbol
@@ -7503,6 +7818,7 @@ components:
         symbol: symbol
       properties:
         symbol:
+          description: The symbol of the engine.
           type: string
       required:
       - symbol
@@ -7513,6 +7829,7 @@ components:
         symbol: symbol
       properties:
         symbol:
+          description: The symbol of the mount.
           type: string
       required:
       - symbol

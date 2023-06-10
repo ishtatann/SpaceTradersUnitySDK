@@ -32,8 +32,9 @@ namespace SpaceTradersUnitySDK.Model
     public partial class ShipFrame : IEquatable<ShipFrame>
     {
         /// <summary>
-        /// Defines Symbol
+        /// Symbol of the frame.
         /// </summary>
+        /// <value>Symbol of the frame.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum SymbolEnum
         {
@@ -131,8 +132,9 @@ namespace SpaceTradersUnitySDK.Model
 
 
         /// <summary>
-        /// Gets or Sets Symbol
+        /// Symbol of the frame.
         /// </summary>
+        /// <value>Symbol of the frame.</value>
         [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
         public SymbolEnum Symbol { get; set; }
         /// <summary>
@@ -143,13 +145,13 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ShipFrame" /> class.
         /// </summary>
-        /// <param name="symbol">symbol (required).</param>
-        /// <param name="name">name (required).</param>
-        /// <param name="description">description (required).</param>
+        /// <param name="symbol">Symbol of the frame. (required).</param>
+        /// <param name="name">Name of the frame. (required).</param>
+        /// <param name="description">Description of the frame. (required).</param>
         /// <param name="condition">Condition is a range of 0 to 100 where 0 is completely worn out and 100 is brand new..</param>
-        /// <param name="moduleSlots">moduleSlots (required).</param>
-        /// <param name="mountingPoints">mountingPoints (required).</param>
-        /// <param name="fuelCapacity">fuelCapacity (required).</param>
+        /// <param name="moduleSlots">The amount of slots that can be dedicated to modules installed in the ship. Each installed module take up a number of slots, and once there are no more slots, no new modules can be installed. (required).</param>
+        /// <param name="mountingPoints">The amount of slots that can be dedicated to mounts installed in the ship. Each installed mount takes up a number of points, and once there are no more points remaining, no new mounts can be installed. (required).</param>
+        /// <param name="fuelCapacity">The maximum amount of fuel that can be stored in this ship. When refueling, the ship will be refueled to this amount. (required).</param>
         /// <param name="requirements">requirements (required).</param>
         public ShipFrame(SymbolEnum symbol = default(SymbolEnum), string name = default(string), string description = default(string), int condition = default(int), int moduleSlots = default(int), int mountingPoints = default(int), int fuelCapacity = default(int), ShipRequirements requirements = default(ShipRequirements))
         {
@@ -179,14 +181,16 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Name of the frame.
         /// </summary>
+        /// <value>Name of the frame.</value>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Description
+        /// Description of the frame.
         /// </summary>
+        /// <value>Description of the frame.</value>
         [DataMember(Name = "description", IsRequired = true, EmitDefaultValue = true)]
         public string Description { get; set; }
 
@@ -198,20 +202,23 @@ namespace SpaceTradersUnitySDK.Model
         public int Condition { get; set; }
 
         /// <summary>
-        /// Gets or Sets ModuleSlots
+        /// The amount of slots that can be dedicated to modules installed in the ship. Each installed module take up a number of slots, and once there are no more slots, no new modules can be installed.
         /// </summary>
+        /// <value>The amount of slots that can be dedicated to modules installed in the ship. Each installed module take up a number of slots, and once there are no more slots, no new modules can be installed.</value>
         [DataMember(Name = "moduleSlots", IsRequired = true, EmitDefaultValue = true)]
         public int ModuleSlots { get; set; }
 
         /// <summary>
-        /// Gets or Sets MountingPoints
+        /// The amount of slots that can be dedicated to mounts installed in the ship. Each installed mount takes up a number of points, and once there are no more points remaining, no new mounts can be installed.
         /// </summary>
+        /// <value>The amount of slots that can be dedicated to mounts installed in the ship. Each installed mount takes up a number of points, and once there are no more points remaining, no new mounts can be installed.</value>
         [DataMember(Name = "mountingPoints", IsRequired = true, EmitDefaultValue = true)]
         public int MountingPoints { get; set; }
 
         /// <summary>
-        /// Gets or Sets FuelCapacity
+        /// The maximum amount of fuel that can be stored in this ship. When refueling, the ship will be refueled to this amount.
         /// </summary>
+        /// <value>The maximum amount of fuel that can be stored in this ship. When refueling, the ship will be refueled to this amount.</value>
         [DataMember(Name = "fuelCapacity", IsRequired = true, EmitDefaultValue = true)]
         public int FuelCapacity { get; set; }
 

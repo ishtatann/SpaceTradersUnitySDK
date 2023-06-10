@@ -26,7 +26,7 @@ using OpenAPIDateConverter = SpaceTradersUnitySDK.Client.OpenAPIDateConverter;
 namespace SpaceTradersUnitySDK.Model
 {
     /// <summary>
-    /// OK
+    /// GetStatus200Response
     /// </summary>
     [DataContract(Name = "get_status_200_response")]
     public partial class GetStatus200Response : IEquatable<GetStatus200Response>

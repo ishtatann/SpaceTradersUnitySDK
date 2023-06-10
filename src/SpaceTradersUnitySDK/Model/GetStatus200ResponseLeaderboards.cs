@@ -39,8 +39,8 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="GetStatus200ResponseLeaderboards" /> class.
         /// </summary>
-        /// <param name="mostCredits">mostCredits (required).</param>
-        /// <param name="mostSubmittedCharts">mostSubmittedCharts (required).</param>
+        /// <param name="mostCredits">Top agents with the most credits. (required).</param>
+        /// <param name="mostSubmittedCharts">Top agents with the most charted submitted. (required).</param>
         public GetStatus200ResponseLeaderboards(List<GetStatus200ResponseLeaderboardsMostCreditsInner> mostCredits = default(List<GetStatus200ResponseLeaderboardsMostCreditsInner>), List<GetStatus200ResponseLeaderboardsMostSubmittedChartsInner> mostSubmittedCharts = default(List<GetStatus200ResponseLeaderboardsMostSubmittedChartsInner>))
         {
             // to ensure "mostCredits" is required (not null)
@@ -58,14 +58,16 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Gets or Sets MostCredits
+        /// Top agents with the most credits.
         /// </summary>
+        /// <value>Top agents with the most credits.</value>
         [DataMember(Name = "mostCredits", IsRequired = true, EmitDefaultValue = true)]
         public List<GetStatus200ResponseLeaderboardsMostCreditsInner> MostCredits { get; set; }
 
         /// <summary>
-        /// Gets or Sets MostSubmittedCharts
+        /// Top agents with the most charted submitted.
         /// </summary>
+        /// <value>Top agents with the most charted submitted.</value>
         [DataMember(Name = "mostSubmittedCharts", IsRequired = true, EmitDefaultValue = true)]
         public List<GetStatus200ResponseLeaderboardsMostSubmittedChartsInner> MostSubmittedCharts { get; set; }
 

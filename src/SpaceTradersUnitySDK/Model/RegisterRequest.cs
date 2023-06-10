@@ -31,6 +31,12 @@ namespace SpaceTradersUnitySDK.Model
     [DataContract(Name = "register_request")]
     public partial class RegisterRequest : IEquatable<RegisterRequest>
     {
+
+        /// <summary>
+        /// Gets or Sets Faction
+        /// </summary>
+        [DataMember(Name = "faction", IsRequired = true, EmitDefaultValue = true)]
+        public FactionSymbols Faction { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="RegisterRequest" /> class.
         /// </summary>
@@ -39,16 +45,11 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="RegisterRequest" /> class.
         /// </summary>
-        /// <param name="faction">The faction you choose determines your headquarters. (required).</param>
-        /// <param name="symbol">How other agents will see your ships and information. (required).</param>
+        /// <param name="faction">faction (required).</param>
+        /// <param name="symbol">Your desired agent symbol. This will be a unique name used to represent your agent, and will be the prefix for your ships. (required).</param>
         /// <param name="email">Your email address. This is used if you reserved your call sign between resets..</param>
-        public RegisterRequest(Object faction = default(Object), string symbol = default(string), string email = default(string))
+        public RegisterRequest(FactionSymbols faction = default(FactionSymbols), string symbol = default(string), string email = default(string))
         {
-            // to ensure "faction" is required (not null)
-            if (faction == null)
-            {
-                throw new ArgumentNullException("faction is a required property for RegisterRequest and cannot be null");
-            }
             this.Faction = faction;
             // to ensure "symbol" is required (not null)
             if (symbol == null)
@@ -60,16 +61,9 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// The faction you choose determines your headquarters.
+        /// Your desired agent symbol. This will be a unique name used to represent your agent, and will be the prefix for your ships.
         /// </summary>
-        /// <value>The faction you choose determines your headquarters.</value>
-        [DataMember(Name = "faction", IsRequired = true, EmitDefaultValue = true)]
-        public Object Faction { get; set; }
-
-        /// <summary>
-        /// How other agents will see your ships and information.
-        /// </summary>
-        /// <value>How other agents will see your ships and information.</value>
+        /// <value>Your desired agent symbol. This will be a unique name used to represent your agent, and will be the prefix for your ships.</value>
         /// <example>&quot;BADGER&quot;</example>
         [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
         public string Symbol { get; set; }
@@ -129,8 +123,7 @@ namespace SpaceTradersUnitySDK.Model
             return 
                 (
                     this.Faction == input.Faction ||
-                    (this.Faction != null &&
-                    this.Faction.Equals(input.Faction))
+                    this.Faction.Equals(input.Faction)
                 ) && 
                 (
                     this.Symbol == input.Symbol ||
@@ -153,10 +146,7 @@ namespace SpaceTradersUnitySDK.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Faction != null)
-                {
-                    hashCode = (hashCode * 59) + this.Faction.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Faction.GetHashCode();
                 if (this.Symbol != null)
                 {
                     hashCode = (hashCode * 59) + this.Symbol.GetHashCode();

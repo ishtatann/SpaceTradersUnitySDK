@@ -26,7 +26,7 @@ using OpenAPIDateConverter = SpaceTradersUnitySDK.Client.OpenAPIDateConverter;
 namespace SpaceTradersUnitySDK.Model
 {
     /// <summary>
-    /// Agent
+    /// Agent details.
     /// </summary>
     [DataContract(Name = "Agent")]
     public partial class Agent : IEquatable<Agent>
@@ -39,8 +39,8 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Agent" /> class.
         /// </summary>
-        /// <param name="accountId">accountId (required).</param>
-        /// <param name="symbol">symbol (required).</param>
+        /// <param name="accountId">Account ID that is tied to this agent. (required).</param>
+        /// <param name="symbol">Symbol of the agent. (required).</param>
         /// <param name="headquarters">The headquarters of the agent. (required).</param>
         /// <param name="credits">The number of credits the agent has available. Credits can be negative if funds have been overdrawn. (required).</param>
         /// <param name="startingFaction">The faction the agent started with. (required).</param>
@@ -74,14 +74,16 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Gets or Sets AccountId
+        /// Account ID that is tied to this agent.
         /// </summary>
+        /// <value>Account ID that is tied to this agent.</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Symbol
+        /// Symbol of the agent.
         /// </summary>
+        /// <value>Symbol of the agent.</value>
         [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
         public string Symbol { get; set; }
 

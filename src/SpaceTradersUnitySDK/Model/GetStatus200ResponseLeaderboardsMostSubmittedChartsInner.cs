@@ -39,9 +39,9 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="GetStatus200ResponseLeaderboardsMostSubmittedChartsInner" /> class.
         /// </summary>
-        /// <param name="agentSymbol">agentSymbol (required).</param>
-        /// <param name="chartCount">chartCount (required).</param>
-        public GetStatus200ResponseLeaderboardsMostSubmittedChartsInner(string agentSymbol = default(string), long chartCount = default(long))
+        /// <param name="agentSymbol">Symbol of the agent. (required).</param>
+        /// <param name="chartCount">Amount of charts done by the agent. (required).</param>
+        public GetStatus200ResponseLeaderboardsMostSubmittedChartsInner(string agentSymbol = default(string), int chartCount = default(int))
         {
             // to ensure "agentSymbol" is required (not null)
             if (agentSymbol == null)
@@ -53,16 +53,18 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Gets or Sets AgentSymbol
+        /// Symbol of the agent.
         /// </summary>
+        /// <value>Symbol of the agent.</value>
         [DataMember(Name = "agentSymbol", IsRequired = true, EmitDefaultValue = true)]
         public string AgentSymbol { get; set; }
 
         /// <summary>
-        /// Gets or Sets ChartCount
+        /// Amount of charts done by the agent.
         /// </summary>
+        /// <value>Amount of charts done by the agent.</value>
         [DataMember(Name = "chartCount", IsRequired = true, EmitDefaultValue = true)]
-        public long ChartCount { get; set; }
+        public int ChartCount { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

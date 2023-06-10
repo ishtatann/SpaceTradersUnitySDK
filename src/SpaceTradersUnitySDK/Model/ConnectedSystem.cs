@@ -45,13 +45,13 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectedSystem" /> class.
         /// </summary>
-        /// <param name="symbol">symbol (required).</param>
-        /// <param name="sectorSymbol">sectorSymbol (required).</param>
+        /// <param name="symbol">The symbol of the system. (required).</param>
+        /// <param name="sectorSymbol">The sector of this system. (required).</param>
         /// <param name="type">type (required).</param>
         /// <param name="factionSymbol">The symbol of the faction that owns the connected jump gate in the system..</param>
-        /// <param name="x">x (required).</param>
-        /// <param name="y">y (required).</param>
-        /// <param name="distance">distance (required).</param>
+        /// <param name="x">Position in the universe in the x axis. (required).</param>
+        /// <param name="y">Position in the universe in the y axis. (required).</param>
+        /// <param name="distance">The distance of this system to the connected Jump Gate. (required).</param>
         public ConnectedSystem(string symbol = default(string), string sectorSymbol = default(string), SystemType type = default(SystemType), string factionSymbol = default(string), int x = default(int), int y = default(int), int distance = default(int))
         {
             // to ensure "symbol" is required (not null)
@@ -74,14 +74,16 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Gets or Sets Symbol
+        /// The symbol of the system.
         /// </summary>
+        /// <value>The symbol of the system.</value>
         [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
         public string Symbol { get; set; }
 
         /// <summary>
-        /// Gets or Sets SectorSymbol
+        /// The sector of this system.
         /// </summary>
+        /// <value>The sector of this system.</value>
         [DataMember(Name = "sectorSymbol", IsRequired = true, EmitDefaultValue = true)]
         public string SectorSymbol { get; set; }
 
@@ -93,20 +95,23 @@ namespace SpaceTradersUnitySDK.Model
         public string FactionSymbol { get; set; }
 
         /// <summary>
-        /// Gets or Sets X
+        /// Position in the universe in the x axis.
         /// </summary>
+        /// <value>Position in the universe in the x axis.</value>
         [DataMember(Name = "x", IsRequired = true, EmitDefaultValue = true)]
         public int X { get; set; }
 
         /// <summary>
-        /// Gets or Sets Y
+        /// Position in the universe in the y axis.
         /// </summary>
+        /// <value>Position in the universe in the y axis.</value>
         [DataMember(Name = "y", IsRequired = true, EmitDefaultValue = true)]
         public int Y { get; set; }
 
         /// <summary>
-        /// Gets or Sets Distance
+        /// The distance of this system to the connected Jump Gate.
         /// </summary>
+        /// <value>The distance of this system to the connected Jump Gate.</value>
         [DataMember(Name = "distance", IsRequired = true, EmitDefaultValue = true)]
         public int Distance { get; set; }
 

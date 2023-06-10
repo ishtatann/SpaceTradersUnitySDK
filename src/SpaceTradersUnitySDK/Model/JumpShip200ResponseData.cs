@@ -40,7 +40,7 @@ namespace SpaceTradersUnitySDK.Model
         /// Initializes a new instance of the <see cref="JumpShip200ResponseData" /> class.
         /// </summary>
         /// <param name="cooldown">cooldown (required).</param>
-        /// <param name="nav">nav.</param>
+        /// <param name="nav">nav (required).</param>
         public JumpShip200ResponseData(Cooldown cooldown = default(Cooldown), ShipNav nav = default(ShipNav))
         {
             // to ensure "cooldown" is required (not null)
@@ -49,6 +49,11 @@ namespace SpaceTradersUnitySDK.Model
                 throw new ArgumentNullException("cooldown is a required property for JumpShip200ResponseData and cannot be null");
             }
             this.Cooldown = cooldown;
+            // to ensure "nav" is required (not null)
+            if (nav == null)
+            {
+                throw new ArgumentNullException("nav is a required property for JumpShip200ResponseData and cannot be null");
+            }
             this.Nav = nav;
         }
 
@@ -61,7 +66,7 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Gets or Sets Nav
         /// </summary>
-        [DataMember(Name = "nav", EmitDefaultValue = false)]
+        [DataMember(Name = "nav", IsRequired = true, EmitDefaultValue = true)]
         public ShipNav Nav { get; set; }
 
         /// <summary>

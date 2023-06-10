@@ -1,5 +1,4 @@
 # SpaceTradersUnitySDK.Model.GetStatus200Response
-OK
 
 ## Properties
 

@@ -1,4 +1,5 @@
 # SpaceTradersUnitySDK.Model.ShipFuelConsumed
+An object that only shows up when an action has consumed fuel in the process. Shows the fuel consumption data.
 
 ## Properties
 

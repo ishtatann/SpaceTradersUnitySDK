@@ -26,8 +26,9 @@ using OpenAPIDateConverter = SpaceTradersUnitySDK.Client.OpenAPIDateConverter;
 namespace SpaceTradersUnitySDK.Model
 {
     /// <summary>
-    /// Defines TradeSymbol
+    /// The good&#39;s symbol.
     /// </summary>
+    /// <value>The good&#39;s symbol.</value>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum TradeSymbol
     {

@@ -39,7 +39,7 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SystemFaction" /> class.
         /// </summary>
-        /// <param name="symbol">symbol (required).</param>
+        /// <param name="symbol">The symbol of the faction. (required).</param>
         public SystemFaction(string symbol = default(string))
         {
             // to ensure "symbol" is required (not null)
@@ -51,8 +51,9 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Gets or Sets Symbol
+        /// The symbol of the faction.
         /// </summary>
+        /// <value>The symbol of the faction.</value>
         [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
         public string Symbol { get; set; }
 

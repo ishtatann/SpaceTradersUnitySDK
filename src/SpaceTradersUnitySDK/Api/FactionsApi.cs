@@ -52,25 +52,25 @@ namespace SpaceTradersUnitySDK.Api
         /// List Factions
         /// </summary>
         /// <remarks>
-        /// List all discovered factions in the game.
+        /// Return a paginated list of all the factions in the game.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <returns>GetFactions200Response</returns>
-        GetFactions200Response GetFactions(long? page = default(long?), long? limit = default(long?));
+        GetFactions200Response GetFactions(int? page = default(int?), int? limit = default(int?));
 
         /// <summary>
         /// List Factions
         /// </summary>
         /// <remarks>
-        /// List all discovered factions in the game.
+        /// Return a paginated list of all the factions in the game.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <returns>ApiResponse of GetFactions200Response</returns>
-        ApiResponse<GetFactions200Response> GetFactionsWithHttpInfo(long? page = default(long?), long? limit = default(long?));
+        ApiResponse<GetFactions200Response> GetFactionsWithHttpInfo(int? page = default(int?), int? limit = default(int?));
         #endregion Synchronous Operations
     }
 
@@ -107,27 +107,27 @@ namespace SpaceTradersUnitySDK.Api
         /// List Factions
         /// </summary>
         /// <remarks>
-        /// List all discovered factions in the game.
+        /// Return a paginated list of all the factions in the game.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetFactions200Response</returns>
-        System.Threading.Tasks.Task<GetFactions200Response> GetFactionsAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<GetFactions200Response> GetFactionsAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// List Factions
         /// </summary>
         /// <remarks>
-        /// List all discovered factions in the game.
+        /// Return a paginated list of all the factions in the game.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetFactions200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetFactions200Response>> GetFactionsWithHttpInfoAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<GetFactions200Response>> GetFactionsWithHttpInfoAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -411,26 +411,26 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// List Factions List all discovered factions in the game.
+        /// List Factions Return a paginated list of all the factions in the game.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <returns>GetFactions200Response</returns>
-        public GetFactions200Response GetFactions(long? page = default(long?), long? limit = default(long?))
+        public GetFactions200Response GetFactions(int? page = default(int?), int? limit = default(int?))
         {
             SpaceTradersUnitySDK.Client.ApiResponse<GetFactions200Response> localVarResponse = GetFactionsWithHttpInfo(page, limit);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List Factions List all discovered factions in the game.
+        /// List Factions Return a paginated list of all the factions in the game.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <returns>ApiResponse of GetFactions200Response</returns>
-        public SpaceTradersUnitySDK.Client.ApiResponse<GetFactions200Response> GetFactionsWithHttpInfo(long? page = default(long?), long? limit = default(long?))
+        public SpaceTradersUnitySDK.Client.ApiResponse<GetFactions200Response> GetFactionsWithHttpInfo(int? page = default(int?), int? limit = default(int?))
         {
             SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
 
@@ -477,14 +477,14 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// List Factions List all discovered factions in the game.
+        /// List Factions Return a paginated list of all the factions in the game.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetFactions200Response</returns>
-        public async System.Threading.Tasks.Task<GetFactions200Response> GetFactionsAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<GetFactions200Response> GetFactionsAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = GetFactionsWithHttpInfoAsync(page, limit, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
@@ -496,14 +496,14 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// List Factions List all discovered factions in the game.
+        /// List Factions Return a paginated list of all the factions in the game.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="page">What entry offset to request (optional)</param>
-        /// <param name="limit">How many entries to return per page (optional)</param>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetFactions200Response)</returns>
-        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetFactions200Response>> GetFactionsWithHttpInfoAsync(long? page = default(long?), long? limit = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetFactions200Response>> GetFactionsWithHttpInfoAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();

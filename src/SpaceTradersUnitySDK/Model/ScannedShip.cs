@@ -45,7 +45,7 @@ namespace SpaceTradersUnitySDK.Model
         /// <param name="frame">frame.</param>
         /// <param name="reactor">reactor.</param>
         /// <param name="engine">engine (required).</param>
-        /// <param name="mounts">mounts.</param>
+        /// <param name="mounts">List of mounts installed in the ship..</param>
         public ScannedShip(string symbol = default(string), ShipRegistration registration = default(ShipRegistration), ShipNav nav = default(ShipNav), ScannedShipFrame frame = default(ScannedShipFrame), ScannedShipReactor reactor = default(ScannedShipReactor), ScannedShipEngine engine = default(ScannedShipEngine), List<ScannedShipMountsInner> mounts = default(List<ScannedShipMountsInner>))
         {
             // to ensure "symbol" is required (not null)
@@ -115,8 +115,9 @@ namespace SpaceTradersUnitySDK.Model
         public ScannedShipEngine Engine { get; set; }
 
         /// <summary>
-        /// Gets or Sets Mounts
+        /// List of mounts installed in the ship.
         /// </summary>
+        /// <value>List of mounts installed in the ship.</value>
         [DataMember(Name = "mounts", EmitDefaultValue = false)]
         public List<ScannedShipMountsInner> Mounts { get; set; }
 
