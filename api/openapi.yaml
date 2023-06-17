@@ -1359,10 +1359,6 @@ paths:
         schema:
           type: string
         style: simple
-      requestBody:
-        content:
-          application/json:
-            schema: {}
       responses:
         "201":
           content:
@@ -1472,7 +1468,7 @@ components:
   requestBodies: {}
   schemas:
     FactionSymbols:
-      description: Faction symbol.
+      description: The symbol of the faction.
       enum:
       - COSMIC
       - VOID
@@ -1835,8 +1831,8 @@ components:
           "y": 5
           type: null
         factions:
-        - symbol: symbol
-        - symbol: symbol
+        - symbol: null
+        - symbol: null
       properties:
         symbol:
           description: The symbol of the system.
@@ -2375,12 +2371,6 @@ components:
           description: The timestamp of the transaction.
           format: date-time
           type: string
-      required:
-      - agentSymbol
-      - price
-      - shipSymbol
-      - timestamp
-      - waypointSymbol
       type: object
     ShipNav:
       description: The navigation information of the ship.
@@ -3433,12 +3423,10 @@ components:
       type: object
     SystemFaction:
       example:
-        symbol: symbol
+        symbol: null
       properties:
         symbol:
-          description: The symbol of the faction.
-          minLength: 1
-          type: string
+          $ref: '#/components/schemas/FactionSymbols'
       required:
       - symbol
       type: object
@@ -4585,8 +4573,8 @@ components:
             "y": 5
             type: null
           factions:
-          - symbol: symbol
-          - symbol: symbol
+          - symbol: null
+          - symbol: null
         - symbol: symbol
           sectorSymbol: sectorSymbol
           x: 0
@@ -4602,8 +4590,8 @@ components:
             "y": 5
             type: null
           factions:
-          - symbol: symbol
-          - symbol: symbol
+          - symbol: null
+          - symbol: null
         meta:
           total: 0
           limit: 14
@@ -4638,8 +4626,8 @@ components:
             "y": 5
             type: null
           factions:
-          - symbol: symbol
-          - symbol: symbol
+          - symbol: null
+          - symbol: null
       properties:
         data:
           $ref: '#/components/schemas/System'

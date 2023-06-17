@@ -26,9 +26,9 @@ using OpenAPIDateConverter = SpaceTradersUnitySDK.Client.OpenAPIDateConverter;
 namespace SpaceTradersUnitySDK.Model
 {
     /// <summary>
-    /// Faction symbol.
+    /// The symbol of the faction.
     /// </summary>
-    /// <value>Faction symbol.</value>
+    /// <value>The symbol of the faction.</value>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum FactionSymbols
     {

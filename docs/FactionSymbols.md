@@ -1,5 +1,5 @@
 # SpaceTradersUnitySDK.Model.FactionSymbols
-Faction symbol.
+The symbol of the faction.
 
 ## Properties
 

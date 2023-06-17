@@ -1646,7 +1646,7 @@ catch (ApiException e)
 
 <a id="negotiatecontract"></a>
 # **NegotiateContract**
-> NegotiateContract200Response NegotiateContract (string shipSymbol, Object body = null)
+> NegotiateContract200Response NegotiateContract (string shipSymbol)
 
 Negotiate Contract
 
@@ -1673,12 +1673,11 @@ namespace Example
 
             var apiInstance = new FleetApi(config);
             var shipSymbol = "shipSymbol_example";  // string | The ship's symbol.
-            var body = null;  // Object |  (optional) 
 
             try
             {
                 // Negotiate Contract
-                NegotiateContract200Response result = apiInstance.NegotiateContract(shipSymbol, body);
+                NegotiateContract200Response result = apiInstance.NegotiateContract(shipSymbol);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1699,7 +1698,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Negotiate Contract
-    ApiResponse<NegotiateContract200Response> response = apiInstance.NegotiateContractWithHttpInfo(shipSymbol, body);
+    ApiResponse<NegotiateContract200Response> response = apiInstance.NegotiateContractWithHttpInfo(shipSymbol);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1717,7 +1716,6 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **shipSymbol** | **string** | The ship&#39;s symbol. |  |
-| **body** | **Object** |  | [optional]  |
 
 ### Return type
 
@@ -1729,7 +1727,7 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 

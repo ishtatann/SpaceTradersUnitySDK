@@ -31,6 +31,12 @@ namespace SpaceTradersUnitySDK.Model
     [DataContract(Name = "SystemFaction")]
     public partial class SystemFaction : IEquatable<SystemFaction>
     {
+
+        /// <summary>
+        /// Gets or Sets Symbol
+        /// </summary>
+        [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
+        public FactionSymbols Symbol { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="SystemFaction" /> class.
         /// </summary>
@@ -39,23 +45,11 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SystemFaction" /> class.
         /// </summary>
-        /// <param name="symbol">The symbol of the faction. (required).</param>
-        public SystemFaction(string symbol = default(string))
+        /// <param name="symbol">symbol (required).</param>
+        public SystemFaction(FactionSymbols symbol = default(FactionSymbols))
         {
-            // to ensure "symbol" is required (not null)
-            if (symbol == null)
-            {
-                throw new ArgumentNullException("symbol is a required property for SystemFaction and cannot be null");
-            }
             this.Symbol = symbol;
         }
-
-        /// <summary>
-        /// The symbol of the faction.
-        /// </summary>
-        /// <value>The symbol of the faction.</value>
-        [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
-        public string Symbol { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -103,8 +97,7 @@ namespace SpaceTradersUnitySDK.Model
             return 
                 (
                     this.Symbol == input.Symbol ||
-                    (this.Symbol != null &&
-                    this.Symbol.Equals(input.Symbol))
+                    this.Symbol.Equals(input.Symbol)
                 );
         }
 
@@ -117,10 +110,7 @@ namespace SpaceTradersUnitySDK.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Symbol != null)
-                {
-                    hashCode = (hashCode * 59) + this.Symbol.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Symbol.GetHashCode();
                 return hashCode;
             }
         }
