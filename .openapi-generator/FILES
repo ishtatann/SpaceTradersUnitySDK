@@ -94,6 +94,7 @@ docs/PurchaseShip201ResponseData.md
 docs/PurchaseShipRequest.md
 docs/RefuelShip200Response.md
 docs/RefuelShip200ResponseData.md
+docs/RefuelShipRequest.md
 docs/Register201Response.md
 docs/Register201ResponseData.md
 docs/RegisterRequest.md
@@ -118,6 +119,7 @@ docs/ShipEngine.md
 docs/ShipFrame.md
 docs/ShipFuel.md
 docs/ShipFuelConsumed.md
+docs/ShipModificationTransaction.md
 docs/ShipModule.md
 docs/ShipMount.md
 docs/ShipNav.md
@@ -126,9 +128,9 @@ docs/ShipNavRoute.md
 docs/ShipNavRouteWaypoint.md
 docs/ShipNavStatus.md
 docs/ShipReactor.md
-docs/ShipRefine200Response.md
-docs/ShipRefine200ResponseData.md
-docs/ShipRefine200ResponseDataProducedInner.md
+docs/ShipRefine201Response.md
+docs/ShipRefine201ResponseData.md
+docs/ShipRefine201ResponseDataProducedInner.md
 docs/ShipRefineRequest.md
 docs/ShipRegistration.md
 docs/ShipRequirements.md
@@ -155,6 +157,11 @@ docs/WaypointOrbital.md
 docs/WaypointTrait.md
 docs/WaypointType.md
 git_push.sh
+src/SpaceTradersUnitySDK.Test/Model/RefuelShipRequestTests.cs
+src/SpaceTradersUnitySDK.Test/Model/ShipModificationTransactionTests.cs
+src/SpaceTradersUnitySDK.Test/Model/ShipRefine201ResponseDataProducedInnerTests.cs
+src/SpaceTradersUnitySDK.Test/Model/ShipRefine201ResponseDataTests.cs
+src/SpaceTradersUnitySDK.Test/Model/ShipRefine201ResponseTests.cs
 src/SpaceTradersUnitySDK.Test/SpaceTradersUnitySDK.Test.asmdef
 src/SpaceTradersUnitySDK/Api/AgentsApi.cs
 src/SpaceTradersUnitySDK/Api/ContractsApi.cs
@@ -268,6 +275,7 @@ src/SpaceTradersUnitySDK/Model/PurchaseShip201ResponseData.cs
 src/SpaceTradersUnitySDK/Model/PurchaseShipRequest.cs
 src/SpaceTradersUnitySDK/Model/RefuelShip200Response.cs
 src/SpaceTradersUnitySDK/Model/RefuelShip200ResponseData.cs
+src/SpaceTradersUnitySDK/Model/RefuelShipRequest.cs
 src/SpaceTradersUnitySDK/Model/Register201Response.cs
 src/SpaceTradersUnitySDK/Model/Register201ResponseData.cs
 src/SpaceTradersUnitySDK/Model/RegisterRequest.cs
@@ -292,6 +300,7 @@ src/SpaceTradersUnitySDK/Model/ShipEngine.cs
 src/SpaceTradersUnitySDK/Model/ShipFrame.cs
 src/SpaceTradersUnitySDK/Model/ShipFuel.cs
 src/SpaceTradersUnitySDK/Model/ShipFuelConsumed.cs
+src/SpaceTradersUnitySDK/Model/ShipModificationTransaction.cs
 src/SpaceTradersUnitySDK/Model/ShipModule.cs
 src/SpaceTradersUnitySDK/Model/ShipMount.cs
 src/SpaceTradersUnitySDK/Model/ShipNav.cs
@@ -300,9 +309,9 @@ src/SpaceTradersUnitySDK/Model/ShipNavRoute.cs
 src/SpaceTradersUnitySDK/Model/ShipNavRouteWaypoint.cs
 src/SpaceTradersUnitySDK/Model/ShipNavStatus.cs
 src/SpaceTradersUnitySDK/Model/ShipReactor.cs
-src/SpaceTradersUnitySDK/Model/ShipRefine200Response.cs
-src/SpaceTradersUnitySDK/Model/ShipRefine200ResponseData.cs
-src/SpaceTradersUnitySDK/Model/ShipRefine200ResponseDataProducedInner.cs
+src/SpaceTradersUnitySDK/Model/ShipRefine201Response.cs
+src/SpaceTradersUnitySDK/Model/ShipRefine201ResponseData.cs
+src/SpaceTradersUnitySDK/Model/ShipRefine201ResponseDataProducedInner.cs
 src/SpaceTradersUnitySDK/Model/ShipRefineRequest.cs
 src/SpaceTradersUnitySDK/Model/ShipRegistration.cs
 src/SpaceTradersUnitySDK/Model/ShipRequirements.cs

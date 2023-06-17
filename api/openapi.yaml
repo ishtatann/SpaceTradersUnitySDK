@@ -754,11 +754,11 @@ paths:
             schema:
               $ref: '#/components/schemas/ship_refine_request'
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Ship_Refine_200_Response'
+                $ref: '#/components/schemas/Ship_Refine_201_Response'
           description: The ship has successfully refined goods.
       security:
       - AgentToken: []
@@ -1256,6 +1256,11 @@ paths:
         schema:
           type: string
         style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/refuel_ship_request'
       responses:
         "200":
           content:
@@ -2371,6 +2376,12 @@ components:
           description: The timestamp of the transaction.
           format: date-time
           type: string
+      required:
+      - agentSymbol
+      - price
+      - shipSymbol
+      - timestamp
+      - waypointSymbol
       type: object
     ShipNav:
       description: The navigation information of the ship.
@@ -2965,6 +2976,40 @@ components:
       - name
       - requirements
       - symbol
+      type: object
+    ShipModificationTransaction:
+      description: "Result of a transaction for a ship modification, such as installing\
+        \ a mount or a module."
+      example:
+        tradeSymbol: tradeSymbol
+        totalPrice: 0
+        waypointSymbol: waypointSymbol
+        shipSymbol: shipSymbol
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        waypointSymbol:
+          description: The symbol of the waypoint where the transaction took place.
+          type: string
+        shipSymbol:
+          description: The symbol of the ship that made the transaction.
+          type: string
+        tradeSymbol:
+          description: The symbol of the trade good.
+          type: string
+        totalPrice:
+          description: The total price of the transaction.
+          minimum: 0
+          type: integer
+        timestamp:
+          description: The timestamp of the transaction.
+          format: date-time
+          type: string
+      required:
+      - shipSymbol
+      - timestamp
+      - totalPrice
+      - tradeSymbol
+      - waypointSymbol
       type: object
     ContractTerms:
       description: Terms of the contract needed to fulfill it.
@@ -6190,7 +6235,7 @@ components:
       required:
       - produce
       type: object
-    Ship_Refine_200_Response_data_produced_inner:
+    Ship_Refine_201_Response_data_produced_inner:
       example:
         tradeSymbol: tradeSymbol
         units: 1
@@ -6202,7 +6247,7 @@ components:
           description: Amount of units of the good.
           type: integer
       type: object
-    Ship_Refine_200_Response_data:
+    Ship_Refine_201_Response_data:
       example:
         consumed:
         - tradeSymbol: tradeSymbol
@@ -6239,12 +6284,12 @@ components:
         produced:
           description: Goods that were produced by this refining process.
           items:
-            $ref: '#/components/schemas/Ship_Refine_200_Response_data_produced_inner'
+            $ref: '#/components/schemas/Ship_Refine_201_Response_data_produced_inner'
           type: array
         consumed:
           description: Goods that were consumed during this refining process.
           items:
-            $ref: '#/components/schemas/Ship_Refine_200_Response_data_produced_inner'
+            $ref: '#/components/schemas/Ship_Refine_201_Response_data_produced_inner'
           type: array
       required:
       - cargo
@@ -6252,7 +6297,7 @@ components:
       - cooldown
       - produced
       type: object
-    Ship_Refine_200_Response:
+    Ship_Refine_201_Response:
       example:
         data:
           consumed:
@@ -6284,10 +6329,10 @@ components:
             units: 1
       properties:
         data:
-          $ref: '#/components/schemas/Ship_Refine_200_Response_data'
+          $ref: '#/components/schemas/Ship_Refine_201_Response_data'
       required:
       - data
-      title: Ship Refine 200 Response
+      title: Ship Refine 201 Response
       type: object
     create_chart_201_response_data:
       example:
@@ -7233,6 +7278,18 @@ components:
       required:
       - data
       type: object
+    refuel_ship_request:
+      properties:
+        units:
+          description: "The amount of fuel to fill in the ship's tanks. When not specified,\
+            \ the ship will be refueled to its maximum fuel capacity. If the amount\
+            \ specified is greater than the ship's remaining capacity, the ship will\
+            \ only be refueled to its maximum fuel capacity. The amount specified\
+            \ is not in market units but in ship fuel units."
+          example: 100
+          minimum: 1
+          type: integer
+      type: object
     refuel_ship_200_response_data:
       example:
         agent:
@@ -7537,10 +7594,10 @@ components:
             units: 1
           capacity: 0
         transaction:
+          tradeSymbol: tradeSymbol
+          totalPrice: 0
           waypointSymbol: waypointSymbol
-          price: 0
           shipSymbol: shipSymbol
-          agentSymbol: agentSymbol
           timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         agent:
@@ -7554,7 +7611,7 @@ components:
         cargo:
           $ref: '#/components/schemas/ShipCargo'
         transaction:
-          $ref: '#/components/schemas/ShipyardTransaction'
+          $ref: '#/components/schemas/ShipModificationTransaction'
       required:
       - agent
       - cargo
@@ -7606,10 +7663,10 @@ components:
               units: 1
             capacity: 0
           transaction:
+            tradeSymbol: tradeSymbol
+            totalPrice: 0
             waypointSymbol: waypointSymbol
-            price: 0
             shipSymbol: shipSymbol
-            agentSymbol: agentSymbol
             timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
@@ -7671,10 +7728,10 @@ components:
             units: 1
           capacity: 0
         transaction:
+          tradeSymbol: tradeSymbol
+          totalPrice: 0
           waypointSymbol: waypointSymbol
-          price: 0
           shipSymbol: shipSymbol
-          agentSymbol: agentSymbol
           timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         agent:
@@ -7688,7 +7745,7 @@ components:
         cargo:
           $ref: '#/components/schemas/ShipCargo'
         transaction:
-          $ref: '#/components/schemas/ShipyardTransaction'
+          $ref: '#/components/schemas/ShipModificationTransaction'
       required:
       - agent
       - cargo
@@ -7740,10 +7797,10 @@ components:
               units: 1
             capacity: 0
           transaction:
+            tradeSymbol: tradeSymbol
+            totalPrice: 0
             waypointSymbol: waypointSymbol
-            price: 0
             shipSymbol: shipSymbol
-            agentSymbol: agentSymbol
             timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         data:

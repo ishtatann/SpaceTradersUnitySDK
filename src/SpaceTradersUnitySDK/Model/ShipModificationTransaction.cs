@@ -26,45 +26,45 @@ using OpenAPIDateConverter = SpaceTradersUnitySDK.Client.OpenAPIDateConverter;
 namespace SpaceTradersUnitySDK.Model
 {
     /// <summary>
-    /// Results of a transaction with a shipyard.
+    /// Result of a transaction for a ship modification, such as installing a mount or a module.
     /// </summary>
-    [DataContract(Name = "ShipyardTransaction")]
-    public partial class ShipyardTransaction : IEquatable<ShipyardTransaction>
+    [DataContract(Name = "ShipModificationTransaction")]
+    public partial class ShipModificationTransaction : IEquatable<ShipModificationTransaction>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ShipyardTransaction" /> class.
+        /// Initializes a new instance of the <see cref="ShipModificationTransaction" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected ShipyardTransaction() { }
+        protected ShipModificationTransaction() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="ShipyardTransaction" /> class.
+        /// Initializes a new instance of the <see cref="ShipModificationTransaction" /> class.
         /// </summary>
         /// <param name="waypointSymbol">The symbol of the waypoint where the transaction took place. (required).</param>
-        /// <param name="shipSymbol">The symbol of the ship that was the subject of the transaction. (required).</param>
-        /// <param name="price">The price of the transaction. (required).</param>
-        /// <param name="agentSymbol">The symbol of the agent that made the transaction. (required).</param>
+        /// <param name="shipSymbol">The symbol of the ship that made the transaction. (required).</param>
+        /// <param name="tradeSymbol">The symbol of the trade good. (required).</param>
+        /// <param name="totalPrice">The total price of the transaction. (required).</param>
         /// <param name="timestamp">The timestamp of the transaction. (required).</param>
-        public ShipyardTransaction(string waypointSymbol = default(string), string shipSymbol = default(string), int price = default(int), string agentSymbol = default(string), DateTime timestamp = default(DateTime))
+        public ShipModificationTransaction(string waypointSymbol = default(string), string shipSymbol = default(string), string tradeSymbol = default(string), int totalPrice = default(int), DateTime timestamp = default(DateTime))
         {
             // to ensure "waypointSymbol" is required (not null)
             if (waypointSymbol == null)
             {
-                throw new ArgumentNullException("waypointSymbol is a required property for ShipyardTransaction and cannot be null");
+                throw new ArgumentNullException("waypointSymbol is a required property for ShipModificationTransaction and cannot be null");
             }
             this.WaypointSymbol = waypointSymbol;
             // to ensure "shipSymbol" is required (not null)
             if (shipSymbol == null)
             {
-                throw new ArgumentNullException("shipSymbol is a required property for ShipyardTransaction and cannot be null");
+                throw new ArgumentNullException("shipSymbol is a required property for ShipModificationTransaction and cannot be null");
             }
             this.ShipSymbol = shipSymbol;
-            this.Price = price;
-            // to ensure "agentSymbol" is required (not null)
-            if (agentSymbol == null)
+            // to ensure "tradeSymbol" is required (not null)
+            if (tradeSymbol == null)
             {
-                throw new ArgumentNullException("agentSymbol is a required property for ShipyardTransaction and cannot be null");
+                throw new ArgumentNullException("tradeSymbol is a required property for ShipModificationTransaction and cannot be null");
             }
-            this.AgentSymbol = agentSymbol;
+            this.TradeSymbol = tradeSymbol;
+            this.TotalPrice = totalPrice;
             this.Timestamp = timestamp;
         }
 
@@ -76,25 +76,25 @@ namespace SpaceTradersUnitySDK.Model
         public string WaypointSymbol { get; set; }
 
         /// <summary>
-        /// The symbol of the ship that was the subject of the transaction.
+        /// The symbol of the ship that made the transaction.
         /// </summary>
-        /// <value>The symbol of the ship that was the subject of the transaction.</value>
+        /// <value>The symbol of the ship that made the transaction.</value>
         [DataMember(Name = "shipSymbol", IsRequired = true, EmitDefaultValue = true)]
         public string ShipSymbol { get; set; }
 
         /// <summary>
-        /// The price of the transaction.
+        /// The symbol of the trade good.
         /// </summary>
-        /// <value>The price of the transaction.</value>
-        [DataMember(Name = "price", IsRequired = true, EmitDefaultValue = true)]
-        public int Price { get; set; }
+        /// <value>The symbol of the trade good.</value>
+        [DataMember(Name = "tradeSymbol", IsRequired = true, EmitDefaultValue = true)]
+        public string TradeSymbol { get; set; }
 
         /// <summary>
-        /// The symbol of the agent that made the transaction.
+        /// The total price of the transaction.
         /// </summary>
-        /// <value>The symbol of the agent that made the transaction.</value>
-        [DataMember(Name = "agentSymbol", IsRequired = true, EmitDefaultValue = true)]
-        public string AgentSymbol { get; set; }
+        /// <value>The total price of the transaction.</value>
+        [DataMember(Name = "totalPrice", IsRequired = true, EmitDefaultValue = true)]
+        public int TotalPrice { get; set; }
 
         /// <summary>
         /// The timestamp of the transaction.
@@ -110,11 +110,11 @@ namespace SpaceTradersUnitySDK.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ShipyardTransaction {\n");
+            sb.Append("class ShipModificationTransaction {\n");
             sb.Append("  WaypointSymbol: ").Append(WaypointSymbol).Append("\n");
             sb.Append("  ShipSymbol: ").Append(ShipSymbol).Append("\n");
-            sb.Append("  Price: ").Append(Price).Append("\n");
-            sb.Append("  AgentSymbol: ").Append(AgentSymbol).Append("\n");
+            sb.Append("  TradeSymbol: ").Append(TradeSymbol).Append("\n");
+            sb.Append("  TotalPrice: ").Append(TotalPrice).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -136,15 +136,15 @@ namespace SpaceTradersUnitySDK.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ShipyardTransaction);
+            return this.Equals(input as ShipModificationTransaction);
         }
 
         /// <summary>
-        /// Returns true if ShipyardTransaction instances are equal
+        /// Returns true if ShipModificationTransaction instances are equal
         /// </summary>
-        /// <param name="input">Instance of ShipyardTransaction to be compared</param>
+        /// <param name="input">Instance of ShipModificationTransaction to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ShipyardTransaction input)
+        public bool Equals(ShipModificationTransaction input)
         {
             if (input == null)
             {
@@ -162,13 +162,13 @@ namespace SpaceTradersUnitySDK.Model
                     this.ShipSymbol.Equals(input.ShipSymbol))
                 ) && 
                 (
-                    this.Price == input.Price ||
-                    this.Price.Equals(input.Price)
+                    this.TradeSymbol == input.TradeSymbol ||
+                    (this.TradeSymbol != null &&
+                    this.TradeSymbol.Equals(input.TradeSymbol))
                 ) && 
                 (
-                    this.AgentSymbol == input.AgentSymbol ||
-                    (this.AgentSymbol != null &&
-                    this.AgentSymbol.Equals(input.AgentSymbol))
+                    this.TotalPrice == input.TotalPrice ||
+                    this.TotalPrice.Equals(input.TotalPrice)
                 ) && 
                 (
                     this.Timestamp == input.Timestamp ||
@@ -194,11 +194,11 @@ namespace SpaceTradersUnitySDK.Model
                 {
                     hashCode = (hashCode * 59) + this.ShipSymbol.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Price.GetHashCode();
-                if (this.AgentSymbol != null)
+                if (this.TradeSymbol != null)
                 {
-                    hashCode = (hashCode * 59) + this.AgentSymbol.GetHashCode();
+                    hashCode = (hashCode * 59) + this.TradeSymbol.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.TotalPrice.GetHashCode();
                 if (this.Timestamp != null)
                 {
                     hashCode = (hashCode * 59) + this.Timestamp.GetHashCode();

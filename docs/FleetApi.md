@@ -2120,7 +2120,7 @@ catch (ApiException e)
 
 <a id="refuelship"></a>
 # **RefuelShip**
-> RefuelShip200Response RefuelShip (string shipSymbol)
+> RefuelShip200Response RefuelShip (string shipSymbol, RefuelShipRequest refuelShipRequest = null)
 
 Refuel Ship
 
@@ -2147,11 +2147,12 @@ namespace Example
 
             var apiInstance = new FleetApi(config);
             var shipSymbol = "shipSymbol_example";  // string | The ship symbol.
+            var refuelShipRequest = new RefuelShipRequest(); // RefuelShipRequest |  (optional) 
 
             try
             {
                 // Refuel Ship
-                RefuelShip200Response result = apiInstance.RefuelShip(shipSymbol);
+                RefuelShip200Response result = apiInstance.RefuelShip(shipSymbol, refuelShipRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2172,7 +2173,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Refuel Ship
-    ApiResponse<RefuelShip200Response> response = apiInstance.RefuelShipWithHttpInfo(shipSymbol);
+    ApiResponse<RefuelShip200Response> response = apiInstance.RefuelShipWithHttpInfo(shipSymbol, refuelShipRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2190,6 +2191,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **shipSymbol** | **string** | The ship symbol. |  |
+| **refuelShipRequest** | [**RefuelShipRequest**](RefuelShipRequest.md) |  | [optional]  |
 
 ### Return type
 
@@ -2201,7 +2203,7 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 
@@ -2406,7 +2408,7 @@ catch (ApiException e)
 
 <a id="shiprefine"></a>
 # **ShipRefine**
-> ShipRefine200Response ShipRefine (string shipSymbol, ShipRefineRequest shipRefineRequest = null)
+> ShipRefine201Response ShipRefine (string shipSymbol, ShipRefineRequest shipRefineRequest = null)
 
 Ship Refine
 
@@ -2438,7 +2440,7 @@ namespace Example
             try
             {
                 // Ship Refine
-                ShipRefine200Response result = apiInstance.ShipRefine(shipSymbol, shipRefineRequest);
+                ShipRefine201Response result = apiInstance.ShipRefine(shipSymbol, shipRefineRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2459,7 +2461,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Ship Refine
-    ApiResponse<ShipRefine200Response> response = apiInstance.ShipRefineWithHttpInfo(shipSymbol, shipRefineRequest);
+    ApiResponse<ShipRefine201Response> response = apiInstance.ShipRefineWithHttpInfo(shipSymbol, shipRefineRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2481,7 +2483,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**ShipRefine200Response**](ShipRefine200Response.md)
+[**ShipRefine201Response**](ShipRefine201Response.md)
 
 ### Authorization
 
@@ -2496,7 +2498,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The ship has successfully refined goods. |  -  |
+| **201** | The ship has successfully refined goods. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

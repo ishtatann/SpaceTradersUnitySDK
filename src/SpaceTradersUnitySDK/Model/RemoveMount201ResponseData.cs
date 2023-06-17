@@ -43,7 +43,7 @@ namespace SpaceTradersUnitySDK.Model
         /// <param name="mounts">List of installed mounts after the removal of the selected mount. (required).</param>
         /// <param name="cargo">cargo (required).</param>
         /// <param name="transaction">transaction (required).</param>
-        public RemoveMount201ResponseData(Agent agent = default(Agent), List<ShipMount> mounts = default(List<ShipMount>), ShipCargo cargo = default(ShipCargo), ShipyardTransaction transaction = default(ShipyardTransaction))
+        public RemoveMount201ResponseData(Agent agent = default(Agent), List<ShipMount> mounts = default(List<ShipMount>), ShipCargo cargo = default(ShipCargo), ShipModificationTransaction transaction = default(ShipModificationTransaction))
         {
             // to ensure "agent" is required (not null)
             if (agent == null)
@@ -94,7 +94,7 @@ namespace SpaceTradersUnitySDK.Model
         /// Gets or Sets Transaction
         /// </summary>
         [DataMember(Name = "transaction", IsRequired = true, EmitDefaultValue = true)]
-        public ShipyardTransaction Transaction { get; set; }
+        public ShipModificationTransaction Transaction { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

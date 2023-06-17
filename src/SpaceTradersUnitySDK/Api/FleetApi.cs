@@ -513,8 +513,9 @@ namespace SpaceTradersUnitySDK.Api
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="refuelShipRequest"> (optional)</param>
         /// <returns>RefuelShip200Response</returns>
-        RefuelShip200Response RefuelShip(string shipSymbol);
+        RefuelShip200Response RefuelShip(string shipSymbol, RefuelShipRequest refuelShipRequest = default(RefuelShipRequest));
 
         /// <summary>
         /// Refuel Ship
@@ -524,8 +525,9 @@ namespace SpaceTradersUnitySDK.Api
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="refuelShipRequest"> (optional)</param>
         /// <returns>ApiResponse of RefuelShip200Response</returns>
-        ApiResponse<RefuelShip200Response> RefuelShipWithHttpInfo(string shipSymbol);
+        ApiResponse<RefuelShip200Response> RefuelShipWithHttpInfo(string shipSymbol, RefuelShipRequest refuelShipRequest = default(RefuelShipRequest));
         /// <summary>
         /// Remove Mount
         /// </summary>
@@ -581,8 +583,8 @@ namespace SpaceTradersUnitySDK.Api
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="shipRefineRequest"> (optional)</param>
-        /// <returns>ShipRefine200Response</returns>
-        ShipRefine200Response ShipRefine(string shipSymbol, ShipRefineRequest shipRefineRequest = default(ShipRefineRequest));
+        /// <returns>ShipRefine201Response</returns>
+        ShipRefine201Response ShipRefine(string shipSymbol, ShipRefineRequest shipRefineRequest = default(ShipRefineRequest));
 
         /// <summary>
         /// Ship Refine
@@ -593,8 +595,8 @@ namespace SpaceTradersUnitySDK.Api
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="shipRefineRequest"> (optional)</param>
-        /// <returns>ApiResponse of ShipRefine200Response</returns>
-        ApiResponse<ShipRefine200Response> ShipRefineWithHttpInfo(string shipSymbol, ShipRefineRequest shipRefineRequest = default(ShipRefineRequest));
+        /// <returns>ApiResponse of ShipRefine201Response</returns>
+        ApiResponse<ShipRefine201Response> ShipRefineWithHttpInfo(string shipSymbol, ShipRefineRequest shipRefineRequest = default(ShipRefineRequest));
         /// <summary>
         /// Transfer Cargo
         /// </summary>
@@ -1180,9 +1182,10 @@ namespace SpaceTradersUnitySDK.Api
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="refuelShipRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of RefuelShip200Response</returns>
-        System.Threading.Tasks.Task<RefuelShip200Response> RefuelShipAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<RefuelShip200Response> RefuelShipAsync(string shipSymbol, RefuelShipRequest refuelShipRequest = default(RefuelShipRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Refuel Ship
@@ -1192,9 +1195,10 @@ namespace SpaceTradersUnitySDK.Api
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="refuelShipRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RefuelShip200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<RefuelShip200Response>> RefuelShipWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<RefuelShip200Response>> RefuelShipWithHttpInfoAsync(string shipSymbol, RefuelShipRequest refuelShipRequest = default(RefuelShipRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Remove Mount
         /// </summary>
@@ -1255,8 +1259,8 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="shipRefineRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ShipRefine200Response</returns>
-        System.Threading.Tasks.Task<ShipRefine200Response> ShipRefineAsync(string shipSymbol, ShipRefineRequest shipRefineRequest = default(ShipRefineRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ShipRefine201Response</returns>
+        System.Threading.Tasks.Task<ShipRefine201Response> ShipRefineAsync(string shipSymbol, ShipRefineRequest shipRefineRequest = default(ShipRefineRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Ship Refine
@@ -1268,8 +1272,8 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="shipRefineRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (ShipRefine200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ShipRefine200Response>> ShipRefineWithHttpInfoAsync(string shipSymbol, ShipRefineRequest shipRefineRequest = default(ShipRefineRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (ShipRefine201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ShipRefine201Response>> ShipRefineWithHttpInfoAsync(string shipSymbol, ShipRefineRequest shipRefineRequest = default(ShipRefineRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Transfer Cargo
         /// </summary>
@@ -4565,10 +4569,11 @@ namespace SpaceTradersUnitySDK.Api
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="refuelShipRequest"> (optional)</param>
         /// <returns>RefuelShip200Response</returns>
-        public RefuelShip200Response RefuelShip(string shipSymbol)
+        public RefuelShip200Response RefuelShip(string shipSymbol, RefuelShipRequest refuelShipRequest = default(RefuelShipRequest))
         {
-            SpaceTradersUnitySDK.Client.ApiResponse<RefuelShip200Response> localVarResponse = RefuelShipWithHttpInfo(shipSymbol);
+            SpaceTradersUnitySDK.Client.ApiResponse<RefuelShip200Response> localVarResponse = RefuelShipWithHttpInfo(shipSymbol, refuelShipRequest);
             return localVarResponse.Data;
         }
 
@@ -4577,8 +4582,9 @@ namespace SpaceTradersUnitySDK.Api
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="refuelShipRequest"> (optional)</param>
         /// <returns>ApiResponse of RefuelShip200Response</returns>
-        public SpaceTradersUnitySDK.Client.ApiResponse<RefuelShip200Response> RefuelShipWithHttpInfo(string shipSymbol)
+        public SpaceTradersUnitySDK.Client.ApiResponse<RefuelShip200Response> RefuelShipWithHttpInfo(string shipSymbol, RefuelShipRequest refuelShipRequest = default(RefuelShipRequest))
         {
             // verify the required parameter 'shipSymbol' is set
             if (shipSymbol == null)
@@ -4587,6 +4593,7 @@ namespace SpaceTradersUnitySDK.Api
             SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
+                "application/json"
             };
 
             // to determine the Accept header
@@ -4601,6 +4608,7 @@ namespace SpaceTradersUnitySDK.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("shipSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(shipSymbol)); // path parameter
+            localVarRequestOptions.Data = refuelShipRequest;
 
             // authentication (AgentToken) required
             // bearer authentication required
@@ -4626,11 +4634,12 @@ namespace SpaceTradersUnitySDK.Api
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="refuelShipRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of RefuelShip200Response</returns>
-        public async System.Threading.Tasks.Task<RefuelShip200Response> RefuelShipAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<RefuelShip200Response> RefuelShipAsync(string shipSymbol, RefuelShipRequest refuelShipRequest = default(RefuelShipRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = RefuelShipWithHttpInfoAsync(shipSymbol, cancellationToken);
+            var task = RefuelShipWithHttpInfoAsync(shipSymbol, refuelShipRequest, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             SpaceTradersUnitySDK.Client.ApiResponse<RefuelShip200Response> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -4644,9 +4653,10 @@ namespace SpaceTradersUnitySDK.Api
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="refuelShipRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RefuelShip200Response)</returns>
-        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<RefuelShip200Response>> RefuelShipWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<RefuelShip200Response>> RefuelShipWithHttpInfoAsync(string shipSymbol, RefuelShipRequest refuelShipRequest = default(RefuelShipRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'shipSymbol' is set
             if (shipSymbol == null)
@@ -4656,6 +4666,7 @@ namespace SpaceTradersUnitySDK.Api
             SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
+                "application/json"
             };
 
             // to determine the Accept header
@@ -4671,6 +4682,7 @@ namespace SpaceTradersUnitySDK.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("shipSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(shipSymbol)); // path parameter
+            localVarRequestOptions.Data = refuelShipRequest;
 
             // authentication (AgentToken) required
             // bearer authentication required
@@ -4996,10 +5008,10 @@ namespace SpaceTradersUnitySDK.Api
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="shipRefineRequest"> (optional)</param>
-        /// <returns>ShipRefine200Response</returns>
-        public ShipRefine200Response ShipRefine(string shipSymbol, ShipRefineRequest shipRefineRequest = default(ShipRefineRequest))
+        /// <returns>ShipRefine201Response</returns>
+        public ShipRefine201Response ShipRefine(string shipSymbol, ShipRefineRequest shipRefineRequest = default(ShipRefineRequest))
         {
-            SpaceTradersUnitySDK.Client.ApiResponse<ShipRefine200Response> localVarResponse = ShipRefineWithHttpInfo(shipSymbol, shipRefineRequest);
+            SpaceTradersUnitySDK.Client.ApiResponse<ShipRefine201Response> localVarResponse = ShipRefineWithHttpInfo(shipSymbol, shipRefineRequest);
             return localVarResponse.Data;
         }
 
@@ -5009,8 +5021,8 @@ namespace SpaceTradersUnitySDK.Api
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="shipRefineRequest"> (optional)</param>
-        /// <returns>ApiResponse of ShipRefine200Response</returns>
-        public SpaceTradersUnitySDK.Client.ApiResponse<ShipRefine200Response> ShipRefineWithHttpInfo(string shipSymbol, ShipRefineRequest shipRefineRequest = default(ShipRefineRequest))
+        /// <returns>ApiResponse of ShipRefine201Response</returns>
+        public SpaceTradersUnitySDK.Client.ApiResponse<ShipRefine201Response> ShipRefineWithHttpInfo(string shipSymbol, ShipRefineRequest shipRefineRequest = default(ShipRefineRequest))
         {
             // verify the required parameter 'shipSymbol' is set
             if (shipSymbol == null)
@@ -5044,7 +5056,7 @@ namespace SpaceTradersUnitySDK.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<ShipRefine200Response>("/my/ships/{shipSymbol}/refine", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<ShipRefine201Response>("/my/ships/{shipSymbol}/refine", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -5062,14 +5074,14 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="shipRefineRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ShipRefine200Response</returns>
-        public async System.Threading.Tasks.Task<ShipRefine200Response> ShipRefineAsync(string shipSymbol, ShipRefineRequest shipRefineRequest = default(ShipRefineRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ShipRefine201Response</returns>
+        public async System.Threading.Tasks.Task<ShipRefine201Response> ShipRefineAsync(string shipSymbol, ShipRefineRequest shipRefineRequest = default(ShipRefineRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = ShipRefineWithHttpInfoAsync(shipSymbol, shipRefineRequest, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            SpaceTradersUnitySDK.Client.ApiResponse<ShipRefine200Response> localVarResponse = await task.ConfigureAwait(false);
+            SpaceTradersUnitySDK.Client.ApiResponse<ShipRefine201Response> localVarResponse = await task.ConfigureAwait(false);
 #else
-            SpaceTradersUnitySDK.Client.ApiResponse<ShipRefine200Response> localVarResponse = await task;
+            SpaceTradersUnitySDK.Client.ApiResponse<ShipRefine201Response> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
@@ -5081,8 +5093,8 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="shipSymbol">The symbol of the ship.</param>
         /// <param name="shipRefineRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (ShipRefine200Response)</returns>
-        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<ShipRefine200Response>> ShipRefineWithHttpInfoAsync(string shipSymbol, ShipRefineRequest shipRefineRequest = default(ShipRefineRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ShipRefine201Response)</returns>
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<ShipRefine201Response>> ShipRefineWithHttpInfoAsync(string shipSymbol, ShipRefineRequest shipRefineRequest = default(ShipRefineRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'shipSymbol' is set
             if (shipSymbol == null)
@@ -5119,7 +5131,7 @@ namespace SpaceTradersUnitySDK.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.PostAsync<ShipRefine200Response>("/my/ships/{shipSymbol}/refine", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.PostAsync<ShipRefine201Response>("/my/ships/{shipSymbol}/refine", localVarRequestOptions, this.Configuration, cancellationToken);
 
 #if UNITY_EDITOR || !UNITY_WEBGL
             var localVarResponse = await task.ConfigureAwait(false);
