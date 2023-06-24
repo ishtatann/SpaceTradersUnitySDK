@@ -427,12 +427,6 @@ namespace SpaceTradersUnitySDK.Api
 
             localVarRequestOptions.Data = registerRequest;
 
-            // authentication (AgentToken) required
-            // bearer authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<Register201Response>("/register", localVarRequestOptions, this.Configuration);
@@ -494,12 +488,6 @@ namespace SpaceTradersUnitySDK.Api
 
             localVarRequestOptions.Data = registerRequest;
 
-            // authentication (AgentToken) required
-            // bearer authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-            }
 
             // make the HTTP request
 

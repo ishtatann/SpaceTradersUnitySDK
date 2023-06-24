@@ -92,9 +92,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/register_201_response'
           description: Succesfully registered.
-      security:
-      - {}
-      - AgentToken: []
+      security: []
       summary: Register New Agent
       tags: []
   /systems:
@@ -2505,7 +2503,6 @@ components:
           description: "The date and time when the survey expires. After this date\
             \ and time, the survey will no longer be available for extraction."
           format: date-time
-          minimum: 0
           type: string
         size:
           description: The size of the deposit. This value indicates how much can
@@ -4187,7 +4184,7 @@ components:
           description: The current version of the API.
           type: string
         resetDate:
-          description: The date and time when the game server was last reset.
+          description: The date when the game server was last reset.
           type: string
         description:
           type: string
@@ -6246,6 +6243,9 @@ components:
         units:
           description: Amount of units of the good.
           type: integer
+      required:
+      - tradeSymbol
+      - units
       type: object
     Ship_Refine_201_Response_data:
       example:

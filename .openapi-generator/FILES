@@ -157,11 +157,6 @@ docs/WaypointOrbital.md
 docs/WaypointTrait.md
 docs/WaypointType.md
 git_push.sh
-src/SpaceTradersUnitySDK.Test/Model/RefuelShipRequestTests.cs
-src/SpaceTradersUnitySDK.Test/Model/ShipModificationTransactionTests.cs
-src/SpaceTradersUnitySDK.Test/Model/ShipRefine201ResponseDataProducedInnerTests.cs
-src/SpaceTradersUnitySDK.Test/Model/ShipRefine201ResponseDataTests.cs
-src/SpaceTradersUnitySDK.Test/Model/ShipRefine201ResponseTests.cs
 src/SpaceTradersUnitySDK.Test/SpaceTradersUnitySDK.Test.asmdef
 src/SpaceTradersUnitySDK/Api/AgentsApi.cs
 src/SpaceTradersUnitySDK/Api/ContractsApi.cs

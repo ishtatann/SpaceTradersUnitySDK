@@ -120,9 +120,6 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "https://api.spacetraders.io/v2";
-            // Configure Bearer token for authorization: AgentToken
-            config.AccessToken = "YOUR_BEARER_TOKEN";
-
             var apiInstance = new DefaultApi(config);
             var registerRequest = new RegisterRequest(); // RegisterRequest |  (optional) 
 
@@ -175,7 +172,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[AgentToken](../README.md#AgentToken)
+No authorization required
 
 ### HTTP request headers
 

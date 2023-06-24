@@ -34,10 +34,20 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ShipRefine201ResponseDataProducedInner" /> class.
         /// </summary>
-        /// <param name="tradeSymbol">Symbol of the good..</param>
-        /// <param name="units">Amount of units of the good..</param>
+        [JsonConstructorAttribute]
+        protected ShipRefine201ResponseDataProducedInner() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ShipRefine201ResponseDataProducedInner" /> class.
+        /// </summary>
+        /// <param name="tradeSymbol">Symbol of the good. (required).</param>
+        /// <param name="units">Amount of units of the good. (required).</param>
         public ShipRefine201ResponseDataProducedInner(string tradeSymbol = default(string), int units = default(int))
         {
+            // to ensure "tradeSymbol" is required (not null)
+            if (tradeSymbol == null)
+            {
+                throw new ArgumentNullException("tradeSymbol is a required property for ShipRefine201ResponseDataProducedInner and cannot be null");
+            }
             this.TradeSymbol = tradeSymbol;
             this.Units = units;
         }
@@ -46,14 +56,14 @@ namespace SpaceTradersUnitySDK.Model
         /// Symbol of the good.
         /// </summary>
         /// <value>Symbol of the good.</value>
-        [DataMember(Name = "tradeSymbol", EmitDefaultValue = false)]
+        [DataMember(Name = "tradeSymbol", IsRequired = true, EmitDefaultValue = true)]
         public string TradeSymbol { get; set; }
 
         /// <summary>
         /// Amount of units of the good.
         /// </summary>
         /// <value>Amount of units of the good.</value>
-        [DataMember(Name = "units", EmitDefaultValue = false)]
+        [DataMember(Name = "units", IsRequired = true, EmitDefaultValue = true)]
         public int Units { get; set; }
 
         /// <summary>

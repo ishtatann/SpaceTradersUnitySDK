@@ -41,7 +41,7 @@ namespace SpaceTradersUnitySDK.Model
         /// </summary>
         /// <param name="status">The current status of the game server. (required).</param>
         /// <param name="version">The current version of the API. (required).</param>
-        /// <param name="resetDate">The date and time when the game server was last reset. (required).</param>
+        /// <param name="resetDate">The date when the game server was last reset. (required).</param>
         /// <param name="description">description (required).</param>
         /// <param name="stats">stats (required).</param>
         /// <param name="leaderboards">leaderboards (required).</param>
@@ -121,9 +121,9 @@ namespace SpaceTradersUnitySDK.Model
         public string _Version { get; set; }
 
         /// <summary>
-        /// The date and time when the game server was last reset.
+        /// The date when the game server was last reset.
         /// </summary>
-        /// <value>The date and time when the game server was last reset.</value>
+        /// <value>The date when the game server was last reset.</value>
         [DataMember(Name = "resetDate", IsRequired = true, EmitDefaultValue = true)]
         public string ResetDate { get; set; }
 

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Status** | **string** | The current status of the game server. | 
 **_Version** | **string** | The current version of the API. | 
-**ResetDate** | **string** | The date and time when the game server was last reset. | 
+**ResetDate** | **string** | The date when the game server was last reset. | 
 **Description** | **string** |  | 
 **Stats** | [**GetStatus200ResponseStats**](GetStatus200ResponseStats.md) |  | 
 **Leaderboards** | [**GetStatus200ResponseLeaderboards**](GetStatus200ResponseLeaderboards.md) |  | 
