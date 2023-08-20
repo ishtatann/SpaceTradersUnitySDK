@@ -437,6 +437,72 @@ paths:
       summary: Get Agent
       tags:
       - Agents
+  /agents:
+    get:
+      description: Fetch agents details.
+      operationId: get-agents
+      parameters:
+      - description: What entry offset to request
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          type: integer
+        style: form
+      - description: How many entries to return per page
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 10
+          maximum: 20
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_agents_200_response'
+          description: Successfully fetched agents details.
+      security:
+      - {}
+      - AgentToken: []
+      summary: List Agents
+      tags:
+      - Agents
+  /agents/{agentSymbol}:
+    get:
+      description: Fetch agent details.
+      operationId: get-agent
+      parameters:
+      - description: The agent symbol
+        explode: false
+        in: path
+        name: agentSymbol
+        required: true
+        schema:
+          default: FEBA66
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_my_agent_200_response'
+          description: Successfully fetched agent details.
+      security:
+      - {}
+      - AgentToken: []
+      summary: Get Public Agent
+      tags:
+      - Agents
   /my/contracts:
     get:
       description: Return a paginated list of all your contracts.
@@ -1502,14 +1568,17 @@ components:
         headquarters: headquarters
         credits: 0
         startingFaction: startingFaction
+        shipCount: 6
       properties:
         accountId:
-          description: Account ID that is tied to this agent.
+          description: Account ID that is tied to this agent. Only included on your
+            own agent.
           minLength: 1
           type: string
         symbol:
           description: Symbol of the agent.
-          minLength: 1
+          maxLength: 14
+          minLength: 3
           type: string
         headquarters:
           description: The headquarters of the agent.
@@ -1524,8 +1593,10 @@ components:
           description: The faction the agent started with.
           minLength: 1
           type: string
+        shipCount:
+          description: How many ships are owned by the agent.
+          type: integer
       required:
-      - accountId
       - credits
       - headquarters
       - startingFaction
@@ -1539,14 +1610,14 @@ components:
           - tradeSymbol: tradeSymbol
             unitsRequired: 5
             destinationSymbol: destinationSymbol
-            unitsFulfilled: 5
+            unitsFulfilled: 2
           - tradeSymbol: tradeSymbol
             unitsRequired: 5
             destinationSymbol: destinationSymbol
-            unitsFulfilled: 5
+            unitsFulfilled: 2
           payment:
-            onFulfilled: 1
-            onAccepted: 6
+            onFulfilled: 5
+            onAccepted: 1
           deadline: 2000-01-23T04:56:07.000+00:00
         factionSymbol: factionSymbol
         fulfilled: false
@@ -1657,14 +1728,14 @@ components:
             destination:
               symbol: symbol
               systemSymbol: systemSymbol
-              x: 2
-              "y": 7
+              x: 7
+              "y": 9
               type: null
             departure:
               symbol: symbol
               systemSymbol: systemSymbol
-              x: 2
-              "y": 7
+              x: 7
+              "y": 9
               type: null
           systemSymbol: systemSymbol
           waypointSymbol: waypointSymbol
@@ -1672,11 +1743,11 @@ components:
           status: null
         engine:
           symbol: ENGINE_IMPULSE_DRIVE_I
-          condition: 93
+          condition: 66
           requirements:
-            slots: 4
-            power: 7
-            crew: 1
+            slots: 5
+            power: 1
+            crew: 4
           name: name
           description: description
           speed: 1
@@ -1688,20 +1759,20 @@ components:
           capacity: 0
         reactor:
           symbol: REACTOR_SOLAR_I
-          condition: 50
+          condition: 99
           requirements:
-            slots: 4
-            power: 7
-            crew: 1
+            slots: 5
+            power: 1
+            crew: 4
           name: name
           description: description
           powerOutput: 1
         mounts:
         - symbol: MOUNT_GAS_SIPHON_I
           requirements:
-            slots: 4
-            power: 7
-            crew: 1
+            slots: 5
+            power: 1
+            crew: 4
           strength: 0
           name: name
           description: description
@@ -1710,9 +1781,9 @@ components:
           - QUARTZ_SAND
         - symbol: MOUNT_GAS_SIPHON_I
           requirements:
-            slots: 4
-            power: 7
-            crew: 1
+            slots: 5
+            power: 1
+            crew: 4
           strength: 0
           name: name
           description: description
@@ -1738,37 +1809,37 @@ components:
         modules:
         - symbol: MODULE_MINERAL_PROCESSOR_I
           requirements:
-            slots: 4
-            power: 7
-            crew: 1
+            slots: 5
+            power: 1
+            crew: 4
           name: name
           range: 0
           description: description
           capacity: 0
         - symbol: MODULE_MINERAL_PROCESSOR_I
           requirements:
-            slots: 4
-            power: 7
-            crew: 1
+            slots: 5
+            power: 1
+            crew: 4
           name: name
           range: 0
           description: description
           capacity: 0
         crew:
           wages: 0
-          current: 9
+          current: 3
           rotation: STRICT
-          morale: 41
-          required: 3
-          capacity: 2
+          morale: 73
+          required: 2
+          capacity: 4
         frame:
           symbol: FRAME_PROBE
-          condition: 12
+          condition: 10
           moduleSlots: 0
           requirements:
-            slots: 4
-            power: 7
-            crew: 1
+            slots: 5
+            power: 1
+            crew: 4
           fuelCapacity: 0
           name: name
           description: description
@@ -2073,21 +2144,21 @@ components:
         ships:
         - engine:
             symbol: ENGINE_IMPULSE_DRIVE_I
-            condition: 93
+            condition: 66
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             description: description
             speed: 1
           reactor:
             symbol: REACTOR_SOLAR_I
-            condition: 50
+            condition: 99
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             description: description
             powerOutput: 1
@@ -2096,9 +2167,9 @@ components:
           mounts:
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             strength: 0
             name: name
             description: description
@@ -2107,9 +2178,9 @@ components:
             - QUARTZ_SAND
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             strength: 0
             name: name
             description: description
@@ -2121,51 +2192,51 @@ components:
           modules:
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             range: 0
             description: description
             capacity: 0
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             range: 0
             description: description
             capacity: 0
           frame:
             symbol: FRAME_PROBE
-            condition: 12
+            condition: 10
             moduleSlots: 0
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             fuelCapacity: 0
             name: name
             description: description
             mountingPoints: 0
         - engine:
             symbol: ENGINE_IMPULSE_DRIVE_I
-            condition: 93
+            condition: 66
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             description: description
             speed: 1
           reactor:
             symbol: REACTOR_SOLAR_I
-            condition: 50
+            condition: 99
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             description: description
             powerOutput: 1
@@ -2174,9 +2245,9 @@ components:
           mounts:
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             strength: 0
             name: name
             description: description
@@ -2185,9 +2256,9 @@ components:
             - QUARTZ_SAND
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             strength: 0
             name: name
             description: description
@@ -2199,30 +2270,30 @@ components:
           modules:
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             range: 0
             description: description
             capacity: 0
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             range: 0
             description: description
             capacity: 0
           frame:
             symbol: FRAME_PROBE
-            condition: 12
+            condition: 10
             moduleSlots: 0
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             fuelCapacity: 0
             name: name
             description: description
@@ -2390,14 +2461,14 @@ components:
           destination:
             symbol: symbol
             systemSymbol: systemSymbol
-            x: 2
-            "y": 7
+            x: 7
+            "y": 9
             type: null
           departure:
             symbol: symbol
             systemSymbol: systemSymbol
-            x: 2
-            "y": 7
+            x: 7
+            "y": 9
             type: null
         systemSymbol: systemSymbol
         waypointSymbol: waypointSymbol
@@ -2850,14 +2921,14 @@ components:
             destination:
               symbol: symbol
               systemSymbol: systemSymbol
-              x: 2
-              "y": 7
+              x: 7
+              "y": 9
               type: null
             departure:
               symbol: symbol
               systemSymbol: systemSymbol
-              x: 2
-              "y": 7
+              x: 7
+              "y": 9
               type: null
           systemSymbol: systemSymbol
           waypointSymbol: waypointSymbol
@@ -2906,9 +2977,9 @@ components:
       example:
         symbol: MOUNT_GAS_SIPHON_I
         requirements:
-          slots: 4
-          power: 7
-          crew: 1
+          slots: 5
+          power: 1
+          crew: 4
         strength: 0
         name: name
         description: description
@@ -3015,14 +3086,14 @@ components:
         - tradeSymbol: tradeSymbol
           unitsRequired: 5
           destinationSymbol: destinationSymbol
-          unitsFulfilled: 5
+          unitsFulfilled: 2
         - tradeSymbol: tradeSymbol
           unitsRequired: 5
           destinationSymbol: destinationSymbol
-          unitsFulfilled: 5
+          unitsFulfilled: 2
         payment:
-          onFulfilled: 1
-          onAccepted: 6
+          onFulfilled: 5
+          onAccepted: 1
         deadline: 2000-01-23T04:56:07.000+00:00
       properties:
         deadline:
@@ -3146,11 +3217,11 @@ components:
       description: The ship's crew service and maintain the ship's systems and equipment.
       example:
         wages: 0
-        current: 9
+        current: 3
         rotation: STRICT
-        morale: 41
-        required: 3
-        capacity: 2
+        morale: 73
+        required: 2
+        capacity: 4
       properties:
         current:
           description: The current number of crew members on the ship.
@@ -3197,12 +3268,12 @@ components:
         \ maneuverable."
       example:
         symbol: FRAME_PROBE
-        condition: 12
+        condition: 10
         moduleSlots: 0
         requirements:
-          slots: 4
-          power: 7
-          crew: 1
+          slots: 5
+          power: 1
+          crew: 4
         fuelCapacity: 0
         name: name
         description: description
@@ -3272,11 +3343,11 @@ components:
         the ship's systems and weapons.
       example:
         symbol: REACTOR_SOLAR_I
-        condition: 50
+        condition: 99
         requirements:
-          slots: 4
-          power: 7
-          crew: 1
+          slots: 5
+          power: 1
+          crew: 4
         name: name
         description: description
         powerOutput: 1
@@ -3321,11 +3392,11 @@ components:
       description: The engine determines how quickly a ship travels between waypoints.
       example:
         symbol: ENGINE_IMPULSE_DRIVE_I
-        condition: 93
+        condition: 66
         requirements:
-          slots: 4
-          power: 7
-          crew: 1
+          slots: 5
+          power: 1
+          crew: 4
         name: name
         description: description
         speed: 1
@@ -3371,9 +3442,9 @@ components:
       example:
         symbol: MODULE_MINERAL_PROCESSOR_I
         requirements:
-          slots: 4
-          power: 7
-          crew: 1
+          slots: 5
+          power: 1
+          crew: 4
         name: name
         range: 0
         description: description
@@ -3651,21 +3722,21 @@ components:
       example:
         engine:
           symbol: ENGINE_IMPULSE_DRIVE_I
-          condition: 93
+          condition: 66
           requirements:
-            slots: 4
-            power: 7
-            crew: 1
+            slots: 5
+            power: 1
+            crew: 4
           name: name
           description: description
           speed: 1
         reactor:
           symbol: REACTOR_SOLAR_I
-          condition: 50
+          condition: 99
           requirements:
-            slots: 4
-            power: 7
-            crew: 1
+            slots: 5
+            power: 1
+            crew: 4
           name: name
           description: description
           powerOutput: 1
@@ -3674,9 +3745,9 @@ components:
         mounts:
         - symbol: MOUNT_GAS_SIPHON_I
           requirements:
-            slots: 4
-            power: 7
-            crew: 1
+            slots: 5
+            power: 1
+            crew: 4
           strength: 0
           name: name
           description: description
@@ -3685,9 +3756,9 @@ components:
           - QUARTZ_SAND
         - symbol: MOUNT_GAS_SIPHON_I
           requirements:
-            slots: 4
-            power: 7
-            crew: 1
+            slots: 5
+            power: 1
+            crew: 4
           strength: 0
           name: name
           description: description
@@ -3699,30 +3770,30 @@ components:
         modules:
         - symbol: MODULE_MINERAL_PROCESSOR_I
           requirements:
-            slots: 4
-            power: 7
-            crew: 1
+            slots: 5
+            power: 1
+            crew: 4
           name: name
           range: 0
           description: description
           capacity: 0
         - symbol: MODULE_MINERAL_PROCESSOR_I
           requirements:
-            slots: 4
-            power: 7
-            crew: 1
+            slots: 5
+            power: 1
+            crew: 4
           name: name
           range: 0
           description: description
           capacity: 0
         frame:
           symbol: FRAME_PROBE
-          condition: 12
+          condition: 10
           moduleSlots: 0
           requirements:
-            slots: 4
-            power: 7
-            crew: 1
+            slots: 5
+            power: 1
+            crew: 4
           fuelCapacity: 0
           name: name
           description: description
@@ -3837,14 +3908,14 @@ components:
         destination:
           symbol: symbol
           systemSymbol: systemSymbol
-          x: 2
-          "y": 7
+          x: 7
+          "y": 9
           type: null
         departure:
           symbol: symbol
           systemSymbol: systemSymbol
-          x: 2
-          "y": 7
+          x: 7
+          "y": 9
           type: null
       properties:
         destination:
@@ -3903,9 +3974,9 @@ components:
     ShipRequirements:
       description: The requirements for installation on a ship
       example:
-        slots: 4
-        power: 7
-        crew: 1
+        slots: 5
+        power: 1
+        crew: 4
       properties:
         power:
           description: The amount of power required from the reactor.
@@ -3919,8 +3990,8 @@ components:
       type: object
     ContractPayment:
       example:
-        onFulfilled: 1
-        onAccepted: 6
+        onFulfilled: 5
+        onAccepted: 1
       properties:
         onAccepted:
           description: The amount of credits received up front for accepting the contract.
@@ -3939,7 +4010,7 @@ components:
         tradeSymbol: tradeSymbol
         unitsRequired: 5
         destinationSymbol: destinationSymbol
-        unitsFulfilled: 5
+        unitsFulfilled: 2
       properties:
         tradeSymbol:
           description: The symbol of the trade good to deliver.
@@ -3990,8 +4061,8 @@ components:
       example:
         symbol: symbol
         systemSymbol: systemSymbol
-        x: 2
-        "y": 7
+        x: 7
+        "y": 9
         type: null
       properties:
         symbol:
@@ -4240,20 +4311,21 @@ components:
           headquarters: headquarters
           credits: 0
           startingFaction: startingFaction
+          shipCount: 6
         contract:
           terms:
             deliver:
             - tradeSymbol: tradeSymbol
               unitsRequired: 5
               destinationSymbol: destinationSymbol
-              unitsFulfilled: 5
+              unitsFulfilled: 2
             - tradeSymbol: tradeSymbol
               unitsRequired: 5
               destinationSymbol: destinationSymbol
-              unitsFulfilled: 5
+              unitsFulfilled: 2
             payment:
-              onFulfilled: 1
-              onAccepted: 6
+              onFulfilled: 5
+              onAccepted: 1
             deadline: 2000-01-23T04:56:07.000+00:00
           factionSymbol: factionSymbol
           fulfilled: false
@@ -4284,14 +4356,14 @@ components:
               destination:
                 symbol: symbol
                 systemSymbol: systemSymbol
-                x: 2
-                "y": 7
+                x: 7
+                "y": 9
                 type: null
               departure:
                 symbol: symbol
                 systemSymbol: systemSymbol
-                x: 2
-                "y": 7
+                x: 7
+                "y": 9
                 type: null
             systemSymbol: systemSymbol
             waypointSymbol: waypointSymbol
@@ -4299,11 +4371,11 @@ components:
             status: null
           engine:
             symbol: ENGINE_IMPULSE_DRIVE_I
-            condition: 93
+            condition: 66
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             description: description
             speed: 1
@@ -4315,20 +4387,20 @@ components:
             capacity: 0
           reactor:
             symbol: REACTOR_SOLAR_I
-            condition: 50
+            condition: 99
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             description: description
             powerOutput: 1
           mounts:
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             strength: 0
             name: name
             description: description
@@ -4337,9 +4409,9 @@ components:
             - QUARTZ_SAND
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             strength: 0
             name: name
             description: description
@@ -4365,37 +4437,37 @@ components:
           modules:
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             range: 0
             description: description
             capacity: 0
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             range: 0
             description: description
             capacity: 0
           crew:
             wages: 0
-            current: 9
+            current: 3
             rotation: STRICT
-            morale: 41
-            required: 3
-            capacity: 2
+            morale: 73
+            required: 2
+            capacity: 4
           frame:
             symbol: FRAME_PROBE
-            condition: 12
+            condition: 10
             moduleSlots: 0
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             fuelCapacity: 0
             name: name
             description: description
@@ -4429,20 +4501,21 @@ components:
             headquarters: headquarters
             credits: 0
             startingFaction: startingFaction
+            shipCount: 6
           contract:
             terms:
               deliver:
               - tradeSymbol: tradeSymbol
                 unitsRequired: 5
                 destinationSymbol: destinationSymbol
-                unitsFulfilled: 5
+                unitsFulfilled: 2
               - tradeSymbol: tradeSymbol
                 unitsRequired: 5
                 destinationSymbol: destinationSymbol
-                unitsFulfilled: 5
+                unitsFulfilled: 2
               payment:
-                onFulfilled: 1
-                onAccepted: 6
+                onFulfilled: 5
+                onAccepted: 1
               deadline: 2000-01-23T04:56:07.000+00:00
             factionSymbol: factionSymbol
             fulfilled: false
@@ -4473,14 +4546,14 @@ components:
                 destination:
                   symbol: symbol
                   systemSymbol: systemSymbol
-                  x: 2
-                  "y": 7
+                  x: 7
+                  "y": 9
                   type: null
                 departure:
                   symbol: symbol
                   systemSymbol: systemSymbol
-                  x: 2
-                  "y": 7
+                  x: 7
+                  "y": 9
                   type: null
               systemSymbol: systemSymbol
               waypointSymbol: waypointSymbol
@@ -4488,11 +4561,11 @@ components:
               status: null
             engine:
               symbol: ENGINE_IMPULSE_DRIVE_I
-              condition: 93
+              condition: 66
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               name: name
               description: description
               speed: 1
@@ -4504,20 +4577,20 @@ components:
               capacity: 0
             reactor:
               symbol: REACTOR_SOLAR_I
-              condition: 50
+              condition: 99
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               name: name
               description: description
               powerOutput: 1
             mounts:
             - symbol: MOUNT_GAS_SIPHON_I
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               strength: 0
               name: name
               description: description
@@ -4526,9 +4599,9 @@ components:
               - QUARTZ_SAND
             - symbol: MOUNT_GAS_SIPHON_I
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               strength: 0
               name: name
               description: description
@@ -4554,37 +4627,37 @@ components:
             modules:
             - symbol: MODULE_MINERAL_PROCESSOR_I
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               name: name
               range: 0
               description: description
               capacity: 0
             - symbol: MODULE_MINERAL_PROCESSOR_I
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               name: name
               range: 0
               description: description
               capacity: 0
             crew:
               wages: 0
-              current: 9
+              current: 3
               rotation: STRICT
-              morale: 41
-              required: 3
-              capacity: 2
+              morale: 73
+              required: 2
+              capacity: 4
             frame:
               symbol: FRAME_PROBE
-              condition: 12
+              condition: 10
               moduleSlots: 0
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               fuelCapacity: 0
               name: name
               description: description
@@ -4838,21 +4911,21 @@ components:
           ships:
           - engine:
               symbol: ENGINE_IMPULSE_DRIVE_I
-              condition: 93
+              condition: 66
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               name: name
               description: description
               speed: 1
             reactor:
               symbol: REACTOR_SOLAR_I
-              condition: 50
+              condition: 99
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               name: name
               description: description
               powerOutput: 1
@@ -4861,9 +4934,9 @@ components:
             mounts:
             - symbol: MOUNT_GAS_SIPHON_I
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               strength: 0
               name: name
               description: description
@@ -4872,9 +4945,9 @@ components:
               - QUARTZ_SAND
             - symbol: MOUNT_GAS_SIPHON_I
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               strength: 0
               name: name
               description: description
@@ -4886,51 +4959,51 @@ components:
             modules:
             - symbol: MODULE_MINERAL_PROCESSOR_I
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               name: name
               range: 0
               description: description
               capacity: 0
             - symbol: MODULE_MINERAL_PROCESSOR_I
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               name: name
               range: 0
               description: description
               capacity: 0
             frame:
               symbol: FRAME_PROBE
-              condition: 12
+              condition: 10
               moduleSlots: 0
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               fuelCapacity: 0
               name: name
               description: description
               mountingPoints: 0
           - engine:
               symbol: ENGINE_IMPULSE_DRIVE_I
-              condition: 93
+              condition: 66
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               name: name
               description: description
               speed: 1
             reactor:
               symbol: REACTOR_SOLAR_I
-              condition: 50
+              condition: 99
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               name: name
               description: description
               powerOutput: 1
@@ -4939,9 +5012,9 @@ components:
             mounts:
             - symbol: MOUNT_GAS_SIPHON_I
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               strength: 0
               name: name
               description: description
@@ -4950,9 +5023,9 @@ components:
               - QUARTZ_SAND
             - symbol: MOUNT_GAS_SIPHON_I
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               strength: 0
               name: name
               description: description
@@ -4964,30 +5037,30 @@ components:
             modules:
             - symbol: MODULE_MINERAL_PROCESSOR_I
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               name: name
               range: 0
               description: description
               capacity: 0
             - symbol: MODULE_MINERAL_PROCESSOR_I
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               name: name
               range: 0
               description: description
               capacity: 0
             frame:
               symbol: FRAME_PROBE
-              condition: 12
+              condition: 10
               moduleSlots: 0
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               fuelCapacity: 0
               name: name
               description: description
@@ -5107,11 +5180,42 @@ components:
           headquarters: headquarters
           credits: 0
           startingFaction: startingFaction
+          shipCount: 6
       properties:
         data:
           $ref: '#/components/schemas/Agent'
       required:
       - data
+      type: object
+    get_agents_200_response:
+      example:
+        data:
+        - accountId: accountId
+          symbol: symbol
+          headquarters: headquarters
+          credits: 0
+          startingFaction: startingFaction
+          shipCount: 6
+        - accountId: accountId
+          symbol: symbol
+          headquarters: headquarters
+          credits: 0
+          startingFaction: startingFaction
+          shipCount: 6
+        meta:
+          total: 0
+          limit: 14
+          page: 1
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Agent'
+          type: array
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - meta
       type: object
     get_contracts_200_response:
       description: ""
@@ -5122,14 +5226,14 @@ components:
             - tradeSymbol: tradeSymbol
               unitsRequired: 5
               destinationSymbol: destinationSymbol
-              unitsFulfilled: 5
+              unitsFulfilled: 2
             - tradeSymbol: tradeSymbol
               unitsRequired: 5
               destinationSymbol: destinationSymbol
-              unitsFulfilled: 5
+              unitsFulfilled: 2
             payment:
-              onFulfilled: 1
-              onAccepted: 6
+              onFulfilled: 5
+              onAccepted: 1
             deadline: 2000-01-23T04:56:07.000+00:00
           factionSymbol: factionSymbol
           fulfilled: false
@@ -5143,14 +5247,14 @@ components:
             - tradeSymbol: tradeSymbol
               unitsRequired: 5
               destinationSymbol: destinationSymbol
-              unitsFulfilled: 5
+              unitsFulfilled: 2
             - tradeSymbol: tradeSymbol
               unitsRequired: 5
               destinationSymbol: destinationSymbol
-              unitsFulfilled: 5
+              unitsFulfilled: 2
             payment:
-              onFulfilled: 1
-              onAccepted: 6
+              onFulfilled: 5
+              onAccepted: 1
             deadline: 2000-01-23T04:56:07.000+00:00
           factionSymbol: factionSymbol
           fulfilled: false
@@ -5182,14 +5286,14 @@ components:
             - tradeSymbol: tradeSymbol
               unitsRequired: 5
               destinationSymbol: destinationSymbol
-              unitsFulfilled: 5
+              unitsFulfilled: 2
             - tradeSymbol: tradeSymbol
               unitsRequired: 5
               destinationSymbol: destinationSymbol
-              unitsFulfilled: 5
+              unitsFulfilled: 2
             payment:
-              onFulfilled: 1
-              onAccepted: 6
+              onFulfilled: 5
+              onAccepted: 1
             deadline: 2000-01-23T04:56:07.000+00:00
           factionSymbol: factionSymbol
           fulfilled: false
@@ -5212,20 +5316,21 @@ components:
           headquarters: headquarters
           credits: 0
           startingFaction: startingFaction
+          shipCount: 6
         contract:
           terms:
             deliver:
             - tradeSymbol: tradeSymbol
               unitsRequired: 5
               destinationSymbol: destinationSymbol
-              unitsFulfilled: 5
+              unitsFulfilled: 2
             - tradeSymbol: tradeSymbol
               unitsRequired: 5
               destinationSymbol: destinationSymbol
-              unitsFulfilled: 5
+              unitsFulfilled: 2
             payment:
-              onFulfilled: 1
-              onAccepted: 6
+              onFulfilled: 5
+              onAccepted: 1
             deadline: 2000-01-23T04:56:07.000+00:00
           factionSymbol: factionSymbol
           fulfilled: false
@@ -5252,20 +5357,21 @@ components:
             headquarters: headquarters
             credits: 0
             startingFaction: startingFaction
+            shipCount: 6
           contract:
             terms:
               deliver:
               - tradeSymbol: tradeSymbol
                 unitsRequired: 5
                 destinationSymbol: destinationSymbol
-                unitsFulfilled: 5
+                unitsFulfilled: 2
               - tradeSymbol: tradeSymbol
                 unitsRequired: 5
                 destinationSymbol: destinationSymbol
-                unitsFulfilled: 5
+                unitsFulfilled: 2
               payment:
-                onFulfilled: 1
-                onAccepted: 6
+                onFulfilled: 5
+                onAccepted: 1
               deadline: 2000-01-23T04:56:07.000+00:00
             factionSymbol: factionSymbol
             fulfilled: false
@@ -5305,14 +5411,14 @@ components:
             - tradeSymbol: tradeSymbol
               unitsRequired: 5
               destinationSymbol: destinationSymbol
-              unitsFulfilled: 5
+              unitsFulfilled: 2
             - tradeSymbol: tradeSymbol
               unitsRequired: 5
               destinationSymbol: destinationSymbol
-              unitsFulfilled: 5
+              unitsFulfilled: 2
             payment:
-              onFulfilled: 1
-              onAccepted: 6
+              onFulfilled: 5
+              onAccepted: 1
             deadline: 2000-01-23T04:56:07.000+00:00
           factionSymbol: factionSymbol
           fulfilled: false
@@ -5352,14 +5458,14 @@ components:
               - tradeSymbol: tradeSymbol
                 unitsRequired: 5
                 destinationSymbol: destinationSymbol
-                unitsFulfilled: 5
+                unitsFulfilled: 2
               - tradeSymbol: tradeSymbol
                 unitsRequired: 5
                 destinationSymbol: destinationSymbol
-                unitsFulfilled: 5
+                unitsFulfilled: 2
               payment:
-                onFulfilled: 1
-                onAccepted: 6
+                onFulfilled: 5
+                onAccepted: 1
               deadline: 2000-01-23T04:56:07.000+00:00
             factionSymbol: factionSymbol
             fulfilled: false
@@ -5396,20 +5502,21 @@ components:
             headquarters: headquarters
             credits: 0
             startingFaction: startingFaction
+            shipCount: 6
           contract:
             terms:
               deliver:
               - tradeSymbol: tradeSymbol
                 unitsRequired: 5
                 destinationSymbol: destinationSymbol
-                unitsFulfilled: 5
+                unitsFulfilled: 2
               - tradeSymbol: tradeSymbol
                 unitsRequired: 5
                 destinationSymbol: destinationSymbol
-                unitsFulfilled: 5
+                unitsFulfilled: 2
               payment:
-                onFulfilled: 1
-                onAccepted: 6
+                onFulfilled: 5
+                onAccepted: 1
               deadline: 2000-01-23T04:56:07.000+00:00
             factionSymbol: factionSymbol
             fulfilled: false
@@ -5436,14 +5543,14 @@ components:
               destination:
                 symbol: symbol
                 systemSymbol: systemSymbol
-                x: 2
-                "y": 7
+                x: 7
+                "y": 9
                 type: null
               departure:
                 symbol: symbol
                 systemSymbol: systemSymbol
-                x: 2
-                "y": 7
+                x: 7
+                "y": 9
                 type: null
             systemSymbol: systemSymbol
             waypointSymbol: waypointSymbol
@@ -5451,11 +5558,11 @@ components:
             status: null
           engine:
             symbol: ENGINE_IMPULSE_DRIVE_I
-            condition: 93
+            condition: 66
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             description: description
             speed: 1
@@ -5467,20 +5574,20 @@ components:
             capacity: 0
           reactor:
             symbol: REACTOR_SOLAR_I
-            condition: 50
+            condition: 99
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             description: description
             powerOutput: 1
           mounts:
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             strength: 0
             name: name
             description: description
@@ -5489,9 +5596,9 @@ components:
             - QUARTZ_SAND
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             strength: 0
             name: name
             description: description
@@ -5517,37 +5624,37 @@ components:
           modules:
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             range: 0
             description: description
             capacity: 0
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             range: 0
             description: description
             capacity: 0
           crew:
             wages: 0
-            current: 9
+            current: 3
             rotation: STRICT
-            morale: 41
-            required: 3
-            capacity: 2
+            morale: 73
+            required: 2
+            capacity: 4
           frame:
             symbol: FRAME_PROBE
-            condition: 12
+            condition: 10
             moduleSlots: 0
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             fuelCapacity: 0
             name: name
             description: description
@@ -5560,14 +5667,14 @@ components:
               destination:
                 symbol: symbol
                 systemSymbol: systemSymbol
-                x: 2
-                "y": 7
+                x: 7
+                "y": 9
                 type: null
               departure:
                 symbol: symbol
                 systemSymbol: systemSymbol
-                x: 2
-                "y": 7
+                x: 7
+                "y": 9
                 type: null
             systemSymbol: systemSymbol
             waypointSymbol: waypointSymbol
@@ -5575,11 +5682,11 @@ components:
             status: null
           engine:
             symbol: ENGINE_IMPULSE_DRIVE_I
-            condition: 93
+            condition: 66
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             description: description
             speed: 1
@@ -5591,20 +5698,20 @@ components:
             capacity: 0
           reactor:
             symbol: REACTOR_SOLAR_I
-            condition: 50
+            condition: 99
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             description: description
             powerOutput: 1
           mounts:
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             strength: 0
             name: name
             description: description
@@ -5613,9 +5720,9 @@ components:
             - QUARTZ_SAND
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             strength: 0
             name: name
             description: description
@@ -5641,37 +5748,37 @@ components:
           modules:
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             range: 0
             description: description
             capacity: 0
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             range: 0
             description: description
             capacity: 0
           crew:
             wages: 0
-            current: 9
+            current: 3
             rotation: STRICT
-            morale: 41
-            required: 3
-            capacity: 2
+            morale: 73
+            required: 2
+            capacity: 4
           frame:
             symbol: FRAME_PROBE
-            condition: 12
+            condition: 10
             moduleSlots: 0
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             fuelCapacity: 0
             name: name
             description: description
@@ -5710,6 +5817,7 @@ components:
           headquarters: headquarters
           credits: 0
           startingFaction: startingFaction
+          shipCount: 6
         ship:
           symbol: symbol
           nav:
@@ -5719,14 +5827,14 @@ components:
               destination:
                 symbol: symbol
                 systemSymbol: systemSymbol
-                x: 2
-                "y": 7
+                x: 7
+                "y": 9
                 type: null
               departure:
                 symbol: symbol
                 systemSymbol: systemSymbol
-                x: 2
-                "y": 7
+                x: 7
+                "y": 9
                 type: null
             systemSymbol: systemSymbol
             waypointSymbol: waypointSymbol
@@ -5734,11 +5842,11 @@ components:
             status: null
           engine:
             symbol: ENGINE_IMPULSE_DRIVE_I
-            condition: 93
+            condition: 66
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             description: description
             speed: 1
@@ -5750,20 +5858,20 @@ components:
             capacity: 0
           reactor:
             symbol: REACTOR_SOLAR_I
-            condition: 50
+            condition: 99
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             description: description
             powerOutput: 1
           mounts:
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             strength: 0
             name: name
             description: description
@@ -5772,9 +5880,9 @@ components:
             - QUARTZ_SAND
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             strength: 0
             name: name
             description: description
@@ -5800,37 +5908,37 @@ components:
           modules:
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             range: 0
             description: description
             capacity: 0
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             range: 0
             description: description
             capacity: 0
           crew:
             wages: 0
-            current: 9
+            current: 3
             rotation: STRICT
-            morale: 41
-            required: 3
-            capacity: 2
+            morale: 73
+            required: 2
+            capacity: 4
           frame:
             symbol: FRAME_PROBE
-            condition: 12
+            condition: 10
             moduleSlots: 0
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             fuelCapacity: 0
             name: name
             description: description
@@ -5863,6 +5971,7 @@ components:
             headquarters: headquarters
             credits: 0
             startingFaction: startingFaction
+            shipCount: 6
           ship:
             symbol: symbol
             nav:
@@ -5872,14 +5981,14 @@ components:
                 destination:
                   symbol: symbol
                   systemSymbol: systemSymbol
-                  x: 2
-                  "y": 7
+                  x: 7
+                  "y": 9
                   type: null
                 departure:
                   symbol: symbol
                   systemSymbol: systemSymbol
-                  x: 2
-                  "y": 7
+                  x: 7
+                  "y": 9
                   type: null
               systemSymbol: systemSymbol
               waypointSymbol: waypointSymbol
@@ -5887,11 +5996,11 @@ components:
               status: null
             engine:
               symbol: ENGINE_IMPULSE_DRIVE_I
-              condition: 93
+              condition: 66
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               name: name
               description: description
               speed: 1
@@ -5903,20 +6012,20 @@ components:
               capacity: 0
             reactor:
               symbol: REACTOR_SOLAR_I
-              condition: 50
+              condition: 99
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               name: name
               description: description
               powerOutput: 1
             mounts:
             - symbol: MOUNT_GAS_SIPHON_I
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               strength: 0
               name: name
               description: description
@@ -5925,9 +6034,9 @@ components:
               - QUARTZ_SAND
             - symbol: MOUNT_GAS_SIPHON_I
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               strength: 0
               name: name
               description: description
@@ -5953,37 +6062,37 @@ components:
             modules:
             - symbol: MODULE_MINERAL_PROCESSOR_I
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               name: name
               range: 0
               description: description
               capacity: 0
             - symbol: MODULE_MINERAL_PROCESSOR_I
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               name: name
               range: 0
               description: description
               capacity: 0
             crew:
               wages: 0
-              current: 9
+              current: 3
               rotation: STRICT
-              morale: 41
-              required: 3
-              capacity: 2
+              morale: 73
+              required: 2
+              capacity: 4
             frame:
               symbol: FRAME_PROBE
-              condition: 12
+              condition: 10
               moduleSlots: 0
               requirements:
-                slots: 4
-                power: 7
-                crew: 1
+                slots: 5
+                power: 1
+                crew: 4
               fuelCapacity: 0
               name: name
               description: description
@@ -6012,14 +6121,14 @@ components:
               destination:
                 symbol: symbol
                 systemSymbol: systemSymbol
-                x: 2
-                "y": 7
+                x: 7
+                "y": 9
                 type: null
               departure:
                 symbol: symbol
                 systemSymbol: systemSymbol
-                x: 2
-                "y": 7
+                x: 7
+                "y": 9
                 type: null
             systemSymbol: systemSymbol
             waypointSymbol: waypointSymbol
@@ -6027,11 +6136,11 @@ components:
             status: null
           engine:
             symbol: ENGINE_IMPULSE_DRIVE_I
-            condition: 93
+            condition: 66
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             description: description
             speed: 1
@@ -6043,20 +6152,20 @@ components:
             capacity: 0
           reactor:
             symbol: REACTOR_SOLAR_I
-            condition: 50
+            condition: 99
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             description: description
             powerOutput: 1
           mounts:
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             strength: 0
             name: name
             description: description
@@ -6065,9 +6174,9 @@ components:
             - QUARTZ_SAND
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             strength: 0
             name: name
             description: description
@@ -6093,37 +6202,37 @@ components:
           modules:
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             range: 0
             description: description
             capacity: 0
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             name: name
             range: 0
             description: description
             capacity: 0
           crew:
             wages: 0
-            current: 9
+            current: 3
             rotation: STRICT
-            morale: 41
-            required: 3
-            capacity: 2
+            morale: 73
+            required: 2
+            capacity: 4
           frame:
             symbol: FRAME_PROBE
-            condition: 12
+            condition: 10
             moduleSlots: 0
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             fuelCapacity: 0
             name: name
             description: description
@@ -6164,14 +6273,14 @@ components:
             destination:
               symbol: symbol
               systemSymbol: systemSymbol
-              x: 2
-              "y": 7
+              x: 7
+              "y": 9
               type: null
             departure:
               symbol: symbol
               systemSymbol: systemSymbol
-              x: 2
-              "y": 7
+              x: 7
+              "y": 9
               type: null
           systemSymbol: systemSymbol
           waypointSymbol: waypointSymbol
@@ -6194,14 +6303,14 @@ components:
               destination:
                 symbol: symbol
                 systemSymbol: systemSymbol
-                x: 2
-                "y": 7
+                x: 7
+                "y": 9
                 type: null
               departure:
                 symbol: symbol
                 systemSymbol: systemSymbol
-                x: 2
-                "y": 7
+                x: 7
+                "y": 9
                 type: null
             systemSymbol: systemSymbol
             waypointSymbol: waypointSymbol
@@ -6431,14 +6540,14 @@ components:
               destination:
                 symbol: symbol
                 systemSymbol: systemSymbol
-                x: 2
-                "y": 7
+                x: 7
+                "y": 9
                 type: null
               departure:
                 symbol: symbol
                 systemSymbol: systemSymbol
-                x: 2
-                "y": 7
+                x: 7
+                "y": 9
                 type: null
             systemSymbol: systemSymbol
             waypointSymbol: waypointSymbol
@@ -6658,14 +6767,14 @@ components:
             destination:
               symbol: symbol
               systemSymbol: systemSymbol
-              x: 2
-              "y": 7
+              x: 7
+              "y": 9
               type: null
             departure:
               symbol: symbol
               systemSymbol: systemSymbol
-              x: 2
-              "y": 7
+              x: 7
+              "y": 9
               type: null
           systemSymbol: systemSymbol
           waypointSymbol: waypointSymbol
@@ -6696,14 +6805,14 @@ components:
               destination:
                 symbol: symbol
                 systemSymbol: systemSymbol
-                x: 2
-                "y": 7
+                x: 7
+                "y": 9
                 type: null
               departure:
                 symbol: symbol
                 systemSymbol: systemSymbol
-                x: 2
-                "y": 7
+                x: 7
+                "y": 9
                 type: null
             systemSymbol: systemSymbol
             waypointSymbol: waypointSymbol
@@ -6737,14 +6846,14 @@ components:
             destination:
               symbol: symbol
               systemSymbol: systemSymbol
-              x: 2
-              "y": 7
+              x: 7
+              "y": 9
               type: null
             departure:
               symbol: symbol
               systemSymbol: systemSymbol
-              x: 2
-              "y": 7
+              x: 7
+              "y": 9
               type: null
           systemSymbol: systemSymbol
           waypointSymbol: waypointSymbol
@@ -6776,14 +6885,14 @@ components:
               destination:
                 symbol: symbol
                 systemSymbol: systemSymbol
-                x: 2
-                "y": 7
+                x: 7
+                "y": 9
                 type: null
               departure:
                 symbol: symbol
                 systemSymbol: systemSymbol
-                x: 2
-                "y": 7
+                x: 7
+                "y": 9
                 type: null
             systemSymbol: systemSymbol
             waypointSymbol: waypointSymbol
@@ -6811,14 +6920,14 @@ components:
             destination:
               symbol: symbol
               systemSymbol: systemSymbol
-              x: 2
-              "y": 7
+              x: 7
+              "y": 9
               type: null
             departure:
               symbol: symbol
               systemSymbol: systemSymbol
-              x: 2
-              "y": 7
+              x: 7
+              "y": 9
               type: null
           systemSymbol: systemSymbol
           waypointSymbol: waypointSymbol
@@ -6858,6 +6967,7 @@ components:
           headquarters: headquarters
           credits: 0
           startingFaction: startingFaction
+          shipCount: 6
         cargo:
           units: 0
           inventory:
@@ -6901,6 +7011,7 @@ components:
             headquarters: headquarters
             credits: 0
             startingFaction: startingFaction
+            shipCount: 6
           cargo:
             units: 0
             inventory:
@@ -7118,14 +7229,14 @@ components:
               destination:
                 symbol: symbol
                 systemSymbol: systemSymbol
-                x: 2
-                "y": 7
+                x: 7
+                "y": 9
                 type: null
               departure:
                 symbol: symbol
                 systemSymbol: systemSymbol
-                x: 2
-                "y": 7
+                x: 7
+                "y": 9
                 type: null
             systemSymbol: systemSymbol
             waypointSymbol: waypointSymbol
@@ -7152,14 +7263,14 @@ components:
               destination:
                 symbol: symbol
                 systemSymbol: systemSymbol
-                x: 2
-                "y": 7
+                x: 7
+                "y": 9
                 type: null
               departure:
                 symbol: symbol
                 systemSymbol: systemSymbol
-                x: 2
-                "y": 7
+                x: 7
+                "y": 9
                 type: null
             systemSymbol: systemSymbol
             waypointSymbol: waypointSymbol
@@ -7207,14 +7318,14 @@ components:
                 destination:
                   symbol: symbol
                   systemSymbol: systemSymbol
-                  x: 2
-                  "y": 7
+                  x: 7
+                  "y": 9
                   type: null
                 departure:
                   symbol: symbol
                   systemSymbol: systemSymbol
-                  x: 2
-                  "y": 7
+                  x: 7
+                  "y": 9
                   type: null
               systemSymbol: systemSymbol
               waypointSymbol: waypointSymbol
@@ -7241,14 +7352,14 @@ components:
                 destination:
                   symbol: symbol
                   systemSymbol: systemSymbol
-                  x: 2
-                  "y": 7
+                  x: 7
+                  "y": 9
                   type: null
                 departure:
                   symbol: symbol
                   systemSymbol: systemSymbol
-                  x: 2
-                  "y": 7
+                  x: 7
+                  "y": 9
                   type: null
               systemSymbol: systemSymbol
               waypointSymbol: waypointSymbol
@@ -7298,6 +7409,7 @@ components:
           headquarters: headquarters
           credits: 0
           startingFaction: startingFaction
+          shipCount: 6
         fuel:
           consumed:
             amount: 0
@@ -7335,6 +7447,7 @@ components:
             headquarters: headquarters
             credits: 0
             startingFaction: startingFaction
+            shipCount: 6
           fuel:
             consumed:
               amount: 0
@@ -7378,6 +7491,7 @@ components:
             headquarters: headquarters
             credits: 0
             startingFaction: startingFaction
+            shipCount: 6
           cargo:
             units: 0
             inventory:
@@ -7452,14 +7566,14 @@ components:
             - tradeSymbol: tradeSymbol
               unitsRequired: 5
               destinationSymbol: destinationSymbol
-              unitsFulfilled: 5
+              unitsFulfilled: 2
             - tradeSymbol: tradeSymbol
               unitsRequired: 5
               destinationSymbol: destinationSymbol
-              unitsFulfilled: 5
+              unitsFulfilled: 2
             payment:
-              onFulfilled: 1
-              onAccepted: 6
+              onFulfilled: 5
+              onAccepted: 1
             deadline: 2000-01-23T04:56:07.000+00:00
           factionSymbol: factionSymbol
           fulfilled: false
@@ -7484,14 +7598,14 @@ components:
               - tradeSymbol: tradeSymbol
                 unitsRequired: 5
                 destinationSymbol: destinationSymbol
-                unitsFulfilled: 5
+                unitsFulfilled: 2
               - tradeSymbol: tradeSymbol
                 unitsRequired: 5
                 destinationSymbol: destinationSymbol
-                unitsFulfilled: 5
+                unitsFulfilled: 2
               payment:
-                onFulfilled: 1
-                onAccepted: 6
+                onFulfilled: 5
+                onAccepted: 1
               deadline: 2000-01-23T04:56:07.000+00:00
             factionSymbol: factionSymbol
             fulfilled: false
@@ -7513,9 +7627,9 @@ components:
         data:
         - symbol: MOUNT_GAS_SIPHON_I
           requirements:
-            slots: 4
-            power: 7
-            crew: 1
+            slots: 5
+            power: 1
+            crew: 4
           strength: 0
           name: name
           description: description
@@ -7524,9 +7638,9 @@ components:
           - QUARTZ_SAND
         - symbol: MOUNT_GAS_SIPHON_I
           requirements:
-            slots: 4
-            power: 7
-            crew: 1
+            slots: 5
+            power: 1
+            crew: 4
           strength: 0
           name: name
           description: description
@@ -7558,12 +7672,13 @@ components:
           headquarters: headquarters
           credits: 0
           startingFaction: startingFaction
+          shipCount: 6
         mounts:
         - symbol: MOUNT_GAS_SIPHON_I
           requirements:
-            slots: 4
-            power: 7
-            crew: 1
+            slots: 5
+            power: 1
+            crew: 4
           strength: 0
           name: name
           description: description
@@ -7572,9 +7687,9 @@ components:
           - QUARTZ_SAND
         - symbol: MOUNT_GAS_SIPHON_I
           requirements:
-            slots: 4
-            power: 7
-            crew: 1
+            slots: 5
+            power: 1
+            crew: 4
           strength: 0
           name: name
           description: description
@@ -7627,12 +7742,13 @@ components:
             headquarters: headquarters
             credits: 0
             startingFaction: startingFaction
+            shipCount: 6
           mounts:
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             strength: 0
             name: name
             description: description
@@ -7641,9 +7757,9 @@ components:
             - QUARTZ_SAND
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             strength: 0
             name: name
             description: description
@@ -7692,12 +7808,13 @@ components:
           headquarters: headquarters
           credits: 0
           startingFaction: startingFaction
+          shipCount: 6
         mounts:
         - symbol: MOUNT_GAS_SIPHON_I
           requirements:
-            slots: 4
-            power: 7
-            crew: 1
+            slots: 5
+            power: 1
+            crew: 4
           strength: 0
           name: name
           description: description
@@ -7706,9 +7823,9 @@ components:
           - QUARTZ_SAND
         - symbol: MOUNT_GAS_SIPHON_I
           requirements:
-            slots: 4
-            power: 7
-            crew: 1
+            slots: 5
+            power: 1
+            crew: 4
           strength: 0
           name: name
           description: description
@@ -7761,12 +7878,13 @@ components:
             headquarters: headquarters
             credits: 0
             startingFaction: startingFaction
+            shipCount: 6
           mounts:
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             strength: 0
             name: name
             description: description
@@ -7775,9 +7893,9 @@ components:
             - QUARTZ_SAND
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 4
-              power: 7
-              crew: 1
+              slots: 5
+              power: 1
+              crew: 4
             strength: 0
             name: name
             description: description

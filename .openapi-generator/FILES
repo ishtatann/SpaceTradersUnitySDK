@@ -39,6 +39,7 @@ docs/FactionTrait.md
 docs/FactionsApi.md
 docs/FleetApi.md
 docs/FulfillContract200Response.md
+docs/GetAgents200Response.md
 docs/GetContract200Response.md
 docs/GetContracts200Response.md
 docs/GetFaction200Response.md
@@ -157,6 +158,7 @@ docs/WaypointOrbital.md
 docs/WaypointTrait.md
 docs/WaypointType.md
 git_push.sh
+src/SpaceTradersUnitySDK.Test/Model/GetAgents200ResponseTests.cs
 src/SpaceTradersUnitySDK.Test/SpaceTradersUnitySDK.Test.asmdef
 src/SpaceTradersUnitySDK/Api/AgentsApi.cs
 src/SpaceTradersUnitySDK/Api/ContractsApi.cs
@@ -215,6 +217,7 @@ src/SpaceTradersUnitySDK/Model/Faction.cs
 src/SpaceTradersUnitySDK/Model/FactionSymbols.cs
 src/SpaceTradersUnitySDK/Model/FactionTrait.cs
 src/SpaceTradersUnitySDK/Model/FulfillContract200Response.cs
+src/SpaceTradersUnitySDK/Model/GetAgents200Response.cs
 src/SpaceTradersUnitySDK/Model/GetContract200Response.cs
 src/SpaceTradersUnitySDK/Model/GetContracts200Response.cs
 src/SpaceTradersUnitySDK/Model/GetFaction200Response.cs

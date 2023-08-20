@@ -39,19 +39,14 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Agent" /> class.
         /// </summary>
-        /// <param name="accountId">Account ID that is tied to this agent. (required).</param>
+        /// <param name="accountId">Account ID that is tied to this agent. Only included on your own agent..</param>
         /// <param name="symbol">Symbol of the agent. (required).</param>
         /// <param name="headquarters">The headquarters of the agent. (required).</param>
         /// <param name="credits">The number of credits the agent has available. Credits can be negative if funds have been overdrawn. (required).</param>
         /// <param name="startingFaction">The faction the agent started with. (required).</param>
-        public Agent(string accountId = default(string), string symbol = default(string), string headquarters = default(string), long credits = default(long), string startingFaction = default(string))
+        /// <param name="shipCount">How many ships are owned by the agent..</param>
+        public Agent(string accountId = default(string), string symbol = default(string), string headquarters = default(string), long credits = default(long), string startingFaction = default(string), int shipCount = default(int))
         {
-            // to ensure "accountId" is required (not null)
-            if (accountId == null)
-            {
-                throw new ArgumentNullException("accountId is a required property for Agent and cannot be null");
-            }
-            this.AccountId = accountId;
             // to ensure "symbol" is required (not null)
             if (symbol == null)
             {
@@ -71,13 +66,15 @@ namespace SpaceTradersUnitySDK.Model
                 throw new ArgumentNullException("startingFaction is a required property for Agent and cannot be null");
             }
             this.StartingFaction = startingFaction;
+            this.AccountId = accountId;
+            this.ShipCount = shipCount;
         }
 
         /// <summary>
-        /// Account ID that is tied to this agent.
+        /// Account ID that is tied to this agent. Only included on your own agent.
         /// </summary>
-        /// <value>Account ID that is tied to this agent.</value>
-        [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Account ID that is tied to this agent. Only included on your own agent.</value>
+        [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
 
         /// <summary>
@@ -109,6 +106,13 @@ namespace SpaceTradersUnitySDK.Model
         public string StartingFaction { get; set; }
 
         /// <summary>
+        /// How many ships are owned by the agent.
+        /// </summary>
+        /// <value>How many ships are owned by the agent.</value>
+        [DataMember(Name = "shipCount", EmitDefaultValue = false)]
+        public int ShipCount { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -121,6 +125,7 @@ namespace SpaceTradersUnitySDK.Model
             sb.Append("  Headquarters: ").Append(Headquarters).Append("\n");
             sb.Append("  Credits: ").Append(Credits).Append("\n");
             sb.Append("  StartingFaction: ").Append(StartingFaction).Append("\n");
+            sb.Append("  ShipCount: ").Append(ShipCount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -179,6 +184,10 @@ namespace SpaceTradersUnitySDK.Model
                     this.StartingFaction == input.StartingFaction ||
                     (this.StartingFaction != null &&
                     this.StartingFaction.Equals(input.StartingFaction))
+                ) && 
+                (
+                    this.ShipCount == input.ShipCount ||
+                    this.ShipCount.Equals(input.ShipCount)
                 );
         }
 
@@ -208,6 +217,7 @@ namespace SpaceTradersUnitySDK.Model
                 {
                     hashCode = (hashCode * 59) + this.StartingFaction.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.ShipCount.GetHashCode();
                 return hashCode;
             }
         }

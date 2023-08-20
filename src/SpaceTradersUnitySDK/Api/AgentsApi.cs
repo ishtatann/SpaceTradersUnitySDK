@@ -28,6 +28,50 @@ namespace SpaceTradersUnitySDK.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Get Public Agent
+        /// </summary>
+        /// <remarks>
+        /// Fetch agent details.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="agentSymbol">The agent symbol</param>
+        /// <returns>GetMyAgent200Response</returns>
+        GetMyAgent200Response GetAgent(string agentSymbol);
+
+        /// <summary>
+        /// Get Public Agent
+        /// </summary>
+        /// <remarks>
+        /// Fetch agent details.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="agentSymbol">The agent symbol</param>
+        /// <returns>ApiResponse of GetMyAgent200Response</returns>
+        ApiResponse<GetMyAgent200Response> GetAgentWithHttpInfo(string agentSymbol);
+        /// <summary>
+        /// List Agents
+        /// </summary>
+        /// <remarks>
+        /// Fetch agents details.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
+        /// <returns>GetAgents200Response</returns>
+        GetAgents200Response GetAgents(int? page = default(int?), int? limit = default(int?));
+
+        /// <summary>
+        /// List Agents
+        /// </summary>
+        /// <remarks>
+        /// Fetch agents details.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
+        /// <returns>ApiResponse of GetAgents200Response</returns>
+        ApiResponse<GetAgents200Response> GetAgentsWithHttpInfo(int? page = default(int?), int? limit = default(int?));
+        /// <summary>
         /// Get Agent
         /// </summary>
         /// <remarks>
@@ -55,6 +99,54 @@ namespace SpaceTradersUnitySDK.Api
     public interface IAgentsApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
+        /// <summary>
+        /// Get Public Agent
+        /// </summary>
+        /// <remarks>
+        /// Fetch agent details.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="agentSymbol">The agent symbol</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetMyAgent200Response</returns>
+        System.Threading.Tasks.Task<GetMyAgent200Response> GetAgentAsync(string agentSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Get Public Agent
+        /// </summary>
+        /// <remarks>
+        /// Fetch agent details.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="agentSymbol">The agent symbol</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetMyAgent200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetMyAgent200Response>> GetAgentWithHttpInfoAsync(string agentSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// List Agents
+        /// </summary>
+        /// <remarks>
+        /// Fetch agents details.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAgents200Response</returns>
+        System.Threading.Tasks.Task<GetAgents200Response> GetAgentsAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// List Agents
+        /// </summary>
+        /// <remarks>
+        /// Fetch agents details.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAgents200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetAgents200Response>> GetAgentsWithHttpInfoAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Get Agent
         /// </summary>
@@ -218,6 +310,292 @@ namespace SpaceTradersUnitySDK.Api
                 return _exceptionFactory;
             }
             set { _exceptionFactory = value; }
+        }
+
+        /// <summary>
+        /// Get Public Agent Fetch agent details.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="agentSymbol">The agent symbol</param>
+        /// <returns>GetMyAgent200Response</returns>
+        public GetMyAgent200Response GetAgent(string agentSymbol)
+        {
+            SpaceTradersUnitySDK.Client.ApiResponse<GetMyAgent200Response> localVarResponse = GetAgentWithHttpInfo(agentSymbol);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Public Agent Fetch agent details.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="agentSymbol">The agent symbol</param>
+        /// <returns>ApiResponse of GetMyAgent200Response</returns>
+        public SpaceTradersUnitySDK.Client.ApiResponse<GetMyAgent200Response> GetAgentWithHttpInfo(string agentSymbol)
+        {
+            // verify the required parameter 'agentSymbol' is set
+            if (agentSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'agentSymbol' when calling AgentsApi->GetAgent");
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("agentSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(agentSymbol)); // path parameter
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetMyAgent200Response>("/agents/{agentSymbol}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAgent", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Public Agent Fetch agent details.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="agentSymbol">The agent symbol</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetMyAgent200Response</returns>
+        public async System.Threading.Tasks.Task<GetMyAgent200Response> GetAgentAsync(string agentSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = GetAgentWithHttpInfoAsync(agentSymbol, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            SpaceTradersUnitySDK.Client.ApiResponse<GetMyAgent200Response> localVarResponse = await task.ConfigureAwait(false);
+#else
+            SpaceTradersUnitySDK.Client.ApiResponse<GetMyAgent200Response> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Public Agent Fetch agent details.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="agentSymbol">The agent symbol</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetMyAgent200Response)</returns>
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetMyAgent200Response>> GetAgentWithHttpInfoAsync(string agentSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'agentSymbol' is set
+            if (agentSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'agentSymbol' when calling AgentsApi->GetAgent");
+
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("agentSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(agentSymbol)); // path parameter
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.GetAsync<GetMyAgent200Response>("/agents/{agentSymbol}", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAgent", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Agents Fetch agents details.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
+        /// <returns>GetAgents200Response</returns>
+        public GetAgents200Response GetAgents(int? page = default(int?), int? limit = default(int?))
+        {
+            SpaceTradersUnitySDK.Client.ApiResponse<GetAgents200Response> localVarResponse = GetAgentsWithHttpInfo(page, limit);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Agents Fetch agents details.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
+        /// <returns>ApiResponse of GetAgents200Response</returns>
+        public SpaceTradersUnitySDK.Client.ApiResponse<GetAgents200Response> GetAgentsWithHttpInfo(int? page = default(int?), int? limit = default(int?))
+        {
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            if (page != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(SpaceTradersUnitySDK.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(SpaceTradersUnitySDK.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetAgents200Response>("/agents", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAgents", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Agents Fetch agents details.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAgents200Response</returns>
+        public async System.Threading.Tasks.Task<GetAgents200Response> GetAgentsAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = GetAgentsWithHttpInfoAsync(page, limit, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            SpaceTradersUnitySDK.Client.ApiResponse<GetAgents200Response> localVarResponse = await task.ConfigureAwait(false);
+#else
+            SpaceTradersUnitySDK.Client.ApiResponse<GetAgents200Response> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Agents Fetch agents details.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="page">What entry offset to request (optional, default to 1)</param>
+        /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAgents200Response)</returns>
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetAgents200Response>> GetAgentsWithHttpInfoAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            if (page != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(SpaceTradersUnitySDK.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(SpaceTradersUnitySDK.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.GetAsync<GetAgents200Response>("/agents", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAgents", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
         }
 
         /// <summary>

@@ -70,7 +70,7 @@ using SpaceTradersUnitySDK.Model;
 namespace SpaceTradersUnitySDKExample
 {
 
-    public class GetMyAgentExample : MonoBehaviour
+    public class GetAgentExample : MonoBehaviour
     {
         async void Start()
         {
@@ -80,17 +80,18 @@ namespace SpaceTradersUnitySDKExample
             config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AgentsApi(config);
+            var agentSymbol = "\"FEBA66\"";  // string | The agent symbol (default to "FEBA66")
 
             try
             {
-                // Get Agent
-                GetMyAgent200Response result = await apiInstance.GetMyAgentAsync();
+                // Get Public Agent
+                GetMyAgent200Response result = await apiInstance.GetAgentAsync(agentSymbol);
                 Debug.Log(result);
                 Debug.Log("Done!");
             }
             catch (ApiException e)
             {
-                Debug.LogError("Exception when calling AgentsApi.GetMyAgent: " + e.Message );
+                Debug.LogError("Exception when calling AgentsApi.GetAgent: " + e.Message );
                 Debug.LogError("Status Code: "+ e.ErrorCode);
                 Debug.LogError(e.StackTrace);
             }
@@ -107,6 +108,8 @@ All URIs are relative to *https://api.spacetraders.io/v2*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AgentsApi* | [**GetAgent**](AgentsApi.md#getagent) | **GET** /agents/{agentSymbol} | Get Public Agent
+*AgentsApi* | [**GetAgents**](AgentsApi.md#getagents) | **GET** /agents | List Agents
 *AgentsApi* | [**GetMyAgent**](AgentsApi.md#getmyagent) | **GET** /my/agent | Get Agent
 *ContractsApi* | [**AcceptContract**](ContractsApi.md#acceptcontract) | **POST** /my/contracts/{contractId}/accept | Accept Contract
 *ContractsApi* | [**DeliverContract**](ContractsApi.md#delivercontract) | **POST** /my/contracts/{contractId}/deliver | Deliver Cargo to Contract
@@ -190,6 +193,7 @@ Class | Method | HTTP request | Description
  - [Model.FactionSymbols](FactionSymbols.md)
  - [Model.FactionTrait](FactionTrait.md)
  - [Model.FulfillContract200Response](FulfillContract200Response.md)
+ - [Model.GetAgents200Response](GetAgents200Response.md)
  - [Model.GetContract200Response](GetContract200Response.md)
  - [Model.GetContracts200Response](GetContracts200Response.md)
  - [Model.GetFaction200Response](GetFaction200Response.md)
