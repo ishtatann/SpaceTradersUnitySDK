@@ -157,7 +157,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Extract Resources
         /// </summary>
         /// <remarks>
-        /// Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the &#x60;Gas Siphon&#x60; mount for gas-based goods or &#x60;Mining Laser&#x60; mount for ore-based goods.
+        /// Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the &#x60;Gas Siphon&#x60; mount for gas-based goods or &#x60;Mining Laser&#x60; mount for ore-based goods.  The survey property is now deprecated. See the &#x60;extract/survey&#x60; endpoint for more details.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
@@ -169,13 +169,36 @@ namespace SpaceTradersUnitySDK.Api
         /// Extract Resources
         /// </summary>
         /// <remarks>
-        /// Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the &#x60;Gas Siphon&#x60; mount for gas-based goods or &#x60;Mining Laser&#x60; mount for ore-based goods.
+        /// Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the &#x60;Gas Siphon&#x60; mount for gas-based goods or &#x60;Mining Laser&#x60; mount for ore-based goods.  The survey property is now deprecated. See the &#x60;extract/survey&#x60; endpoint for more details.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="extractResourcesRequest"> (optional)</param>
         /// <returns>ApiResponse of ExtractResources201Response</returns>
         ApiResponse<ExtractResources201Response> ExtractResourcesWithHttpInfo(string shipSymbol, ExtractResourcesRequest extractResourcesRequest = default(ExtractResourcesRequest));
+        /// <summary>
+        /// Extract Resources with Survey
+        /// </summary>
+        /// <remarks>
+        /// Use a survey when extracting resources from a waypoint. This endpoint requires a survey as the payload, which allows your ship to extract specific yields.  Send the full survey object as the payload which will be validated according to the signature. If the signature is invalid, or any properties of the survey are changed, the request will fail.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="survey"> (optional)</param>
+        /// <returns>ExtractResources201Response</returns>
+        ExtractResources201Response ExtractResourcesWithSurvey(string shipSymbol, Survey survey = default(Survey));
+
+        /// <summary>
+        /// Extract Resources with Survey
+        /// </summary>
+        /// <remarks>
+        /// Use a survey when extracting resources from a waypoint. This endpoint requires a survey as the payload, which allows your ship to extract specific yields.  Send the full survey object as the payload which will be validated according to the signature. If the signature is invalid, or any properties of the survey are changed, the request will fail.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="survey"> (optional)</param>
+        /// <returns>ApiResponse of ExtractResources201Response</returns>
+        ApiResponse<ExtractResources201Response> ExtractResourcesWithSurveyWithHttpInfo(string shipSymbol, Survey survey = default(Survey));
         /// <summary>
         /// Get Mounts
         /// </summary>
@@ -794,7 +817,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Extract Resources
         /// </summary>
         /// <remarks>
-        /// Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the &#x60;Gas Siphon&#x60; mount for gas-based goods or &#x60;Mining Laser&#x60; mount for ore-based goods.
+        /// Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the &#x60;Gas Siphon&#x60; mount for gas-based goods or &#x60;Mining Laser&#x60; mount for ore-based goods.  The survey property is now deprecated. See the &#x60;extract/survey&#x60; endpoint for more details.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
@@ -807,7 +830,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Extract Resources
         /// </summary>
         /// <remarks>
-        /// Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the &#x60;Gas Siphon&#x60; mount for gas-based goods or &#x60;Mining Laser&#x60; mount for ore-based goods.
+        /// Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the &#x60;Gas Siphon&#x60; mount for gas-based goods or &#x60;Mining Laser&#x60; mount for ore-based goods.  The survey property is now deprecated. See the &#x60;extract/survey&#x60; endpoint for more details.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
@@ -815,6 +838,31 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ExtractResources201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ExtractResources201Response>> ExtractResourcesWithHttpInfoAsync(string shipSymbol, ExtractResourcesRequest extractResourcesRequest = default(ExtractResourcesRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Extract Resources with Survey
+        /// </summary>
+        /// <remarks>
+        /// Use a survey when extracting resources from a waypoint. This endpoint requires a survey as the payload, which allows your ship to extract specific yields.  Send the full survey object as the payload which will be validated according to the signature. If the signature is invalid, or any properties of the survey are changed, the request will fail.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="survey"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ExtractResources201Response</returns>
+        System.Threading.Tasks.Task<ExtractResources201Response> ExtractResourcesWithSurveyAsync(string shipSymbol, Survey survey = default(Survey), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Extract Resources with Survey
+        /// </summary>
+        /// <remarks>
+        /// Use a survey when extracting resources from a waypoint. This endpoint requires a survey as the payload, which allows your ship to extract specific yields.  Send the full survey object as the payload which will be validated according to the signature. If the signature is invalid, or any properties of the survey are changed, the request will fail.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="survey"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ExtractResources201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ExtractResources201Response>> ExtractResourcesWithSurveyWithHttpInfoAsync(string shipSymbol, Survey survey = default(Survey), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Get Mounts
         /// </summary>
@@ -2297,7 +2345,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Extract Resources Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the &#x60;Gas Siphon&#x60; mount for gas-based goods or &#x60;Mining Laser&#x60; mount for ore-based goods.
+        /// Extract Resources Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the &#x60;Gas Siphon&#x60; mount for gas-based goods or &#x60;Mining Laser&#x60; mount for ore-based goods.  The survey property is now deprecated. See the &#x60;extract/survey&#x60; endpoint for more details.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
@@ -2310,7 +2358,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Extract Resources Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the &#x60;Gas Siphon&#x60; mount for gas-based goods or &#x60;Mining Laser&#x60; mount for ore-based goods.
+        /// Extract Resources Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the &#x60;Gas Siphon&#x60; mount for gas-based goods or &#x60;Mining Laser&#x60; mount for ore-based goods.  The survey property is now deprecated. See the &#x60;extract/survey&#x60; endpoint for more details.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
@@ -2362,7 +2410,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Extract Resources Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the &#x60;Gas Siphon&#x60; mount for gas-based goods or &#x60;Mining Laser&#x60; mount for ore-based goods.
+        /// Extract Resources Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the &#x60;Gas Siphon&#x60; mount for gas-based goods or &#x60;Mining Laser&#x60; mount for ore-based goods.  The survey property is now deprecated. See the &#x60;extract/survey&#x60; endpoint for more details.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
@@ -2381,7 +2429,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Extract Resources Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the &#x60;Gas Siphon&#x60; mount for gas-based goods or &#x60;Mining Laser&#x60; mount for ore-based goods.
+        /// Extract Resources Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the &#x60;Gas Siphon&#x60; mount for gas-based goods or &#x60;Mining Laser&#x60; mount for ore-based goods.  The survey property is now deprecated. See the &#x60;extract/survey&#x60; endpoint for more details.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
@@ -2436,6 +2484,152 @@ namespace SpaceTradersUnitySDK.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ExtractResources", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Extract Resources with Survey Use a survey when extracting resources from a waypoint. This endpoint requires a survey as the payload, which allows your ship to extract specific yields.  Send the full survey object as the payload which will be validated according to the signature. If the signature is invalid, or any properties of the survey are changed, the request will fail.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="survey"> (optional)</param>
+        /// <returns>ExtractResources201Response</returns>
+        public ExtractResources201Response ExtractResourcesWithSurvey(string shipSymbol, Survey survey = default(Survey))
+        {
+            SpaceTradersUnitySDK.Client.ApiResponse<ExtractResources201Response> localVarResponse = ExtractResourcesWithSurveyWithHttpInfo(shipSymbol, survey);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Extract Resources with Survey Use a survey when extracting resources from a waypoint. This endpoint requires a survey as the payload, which allows your ship to extract specific yields.  Send the full survey object as the payload which will be validated according to the signature. If the signature is invalid, or any properties of the survey are changed, the request will fail.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="survey"> (optional)</param>
+        /// <returns>ApiResponse of ExtractResources201Response</returns>
+        public SpaceTradersUnitySDK.Client.ApiResponse<ExtractResources201Response> ExtractResourcesWithSurveyWithHttpInfo(string shipSymbol, Survey survey = default(Survey))
+        {
+            // verify the required parameter 'shipSymbol' is set
+            if (shipSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'shipSymbol' when calling FleetApi->ExtractResourcesWithSurvey");
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("shipSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(shipSymbol)); // path parameter
+            localVarRequestOptions.Data = survey;
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<ExtractResources201Response>("/my/ships/{shipSymbol}/extract/survey", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ExtractResourcesWithSurvey", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Extract Resources with Survey Use a survey when extracting resources from a waypoint. This endpoint requires a survey as the payload, which allows your ship to extract specific yields.  Send the full survey object as the payload which will be validated according to the signature. If the signature is invalid, or any properties of the survey are changed, the request will fail.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="survey"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ExtractResources201Response</returns>
+        public async System.Threading.Tasks.Task<ExtractResources201Response> ExtractResourcesWithSurveyAsync(string shipSymbol, Survey survey = default(Survey), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = ExtractResourcesWithSurveyWithHttpInfoAsync(shipSymbol, survey, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            SpaceTradersUnitySDK.Client.ApiResponse<ExtractResources201Response> localVarResponse = await task.ConfigureAwait(false);
+#else
+            SpaceTradersUnitySDK.Client.ApiResponse<ExtractResources201Response> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Extract Resources with Survey Use a survey when extracting resources from a waypoint. This endpoint requires a survey as the payload, which allows your ship to extract specific yields.  Send the full survey object as the payload which will be validated according to the signature. If the signature is invalid, or any properties of the survey are changed, the request will fail.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="survey"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ExtractResources201Response)</returns>
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<ExtractResources201Response>> ExtractResourcesWithSurveyWithHttpInfoAsync(string shipSymbol, Survey survey = default(Survey), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'shipSymbol' is set
+            if (shipSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'shipSymbol' when calling FleetApi->ExtractResourcesWithSurvey");
+
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("shipSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(shipSymbol)); // path parameter
+            localVarRequestOptions.Data = survey;
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.PostAsync<ExtractResources201Response>("/my/ships/{shipSymbol}/extract/survey", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ExtractResourcesWithSurvey", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

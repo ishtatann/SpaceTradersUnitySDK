@@ -41,9 +41,10 @@ namespace SpaceTradersUnitySDK.Model
         /// </summary>
         /// <param name="destination">destination (required).</param>
         /// <param name="departure">departure (required).</param>
+        /// <param name="origin">origin (required).</param>
         /// <param name="departureTime">The date time of the ship&#39;s departure. (required).</param>
         /// <param name="arrival">The date time of the ship&#39;s arrival. If the ship is in-transit, this is the expected time of arrival. (required).</param>
-        public ShipNavRoute(ShipNavRouteWaypoint destination = default(ShipNavRouteWaypoint), ShipNavRouteWaypoint departure = default(ShipNavRouteWaypoint), DateTime departureTime = default(DateTime), DateTime arrival = default(DateTime))
+        public ShipNavRoute(ShipNavRouteWaypoint destination = default(ShipNavRouteWaypoint), ShipNavRouteWaypoint departure = default(ShipNavRouteWaypoint), ShipNavRouteWaypoint origin = default(ShipNavRouteWaypoint), DateTime departureTime = default(DateTime), DateTime arrival = default(DateTime))
         {
             // to ensure "destination" is required (not null)
             if (destination == null)
@@ -57,6 +58,12 @@ namespace SpaceTradersUnitySDK.Model
                 throw new ArgumentNullException("departure is a required property for ShipNavRoute and cannot be null");
             }
             this.Departure = departure;
+            // to ensure "origin" is required (not null)
+            if (origin == null)
+            {
+                throw new ArgumentNullException("origin is a required property for ShipNavRoute and cannot be null");
+            }
+            this.Origin = origin;
             this.DepartureTime = departureTime;
             this.Arrival = arrival;
         }
@@ -72,6 +79,12 @@ namespace SpaceTradersUnitySDK.Model
         /// </summary>
         [DataMember(Name = "departure", IsRequired = true, EmitDefaultValue = true)]
         public ShipNavRouteWaypoint Departure { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Origin
+        /// </summary>
+        [DataMember(Name = "origin", IsRequired = true, EmitDefaultValue = true)]
+        public ShipNavRouteWaypoint Origin { get; set; }
 
         /// <summary>
         /// The date time of the ship&#39;s departure.
@@ -97,6 +110,7 @@ namespace SpaceTradersUnitySDK.Model
             sb.Append("class ShipNavRoute {\n");
             sb.Append("  Destination: ").Append(Destination).Append("\n");
             sb.Append("  Departure: ").Append(Departure).Append("\n");
+            sb.Append("  Origin: ").Append(Origin).Append("\n");
             sb.Append("  DepartureTime: ").Append(DepartureTime).Append("\n");
             sb.Append("  Arrival: ").Append(Arrival).Append("\n");
             sb.Append("}\n");
@@ -145,6 +159,11 @@ namespace SpaceTradersUnitySDK.Model
                     this.Departure.Equals(input.Departure))
                 ) && 
                 (
+                    this.Origin == input.Origin ||
+                    (this.Origin != null &&
+                    this.Origin.Equals(input.Origin))
+                ) && 
+                (
                     this.DepartureTime == input.DepartureTime ||
                     (this.DepartureTime != null &&
                     this.DepartureTime.Equals(input.DepartureTime))
@@ -172,6 +191,10 @@ namespace SpaceTradersUnitySDK.Model
                 if (this.Departure != null)
                 {
                     hashCode = (hashCode * 59) + this.Departure.GetHashCode();
+                }
+                if (this.Origin != null)
+                {
+                    hashCode = (hashCode * 59) + this.Origin.GetHashCode();
                 }
                 if (this.DepartureTime != null)
                 {

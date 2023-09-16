@@ -48,8 +48,8 @@ namespace SpaceTradersUnitySDK.Model
         /// <param name="symbol">The symbol of the system. (required).</param>
         /// <param name="sectorSymbol">The symbol of the sector. (required).</param>
         /// <param name="type">type (required).</param>
-        /// <param name="x">Position in the universe in the x axis. (required).</param>
-        /// <param name="y">Position in the universe in the y axis. (required).</param>
+        /// <param name="x">Relative position of the system in the sector in the x axis. (required).</param>
+        /// <param name="y">Relative position of the system in the sector in the y axis. (required).</param>
         /// <param name="waypoints">Waypoints in this system. (required).</param>
         /// <param name="factions">Factions that control this system. (required).</param>
         public System(string symbol = default(string), string sectorSymbol = default(string), SystemType type = default(SystemType), int x = default(int), int y = default(int), List<SystemWaypoint> waypoints = default(List<SystemWaypoint>), List<SystemFaction> factions = default(List<SystemFaction>))
@@ -98,16 +98,16 @@ namespace SpaceTradersUnitySDK.Model
         public string SectorSymbol { get; set; }
 
         /// <summary>
-        /// Position in the universe in the x axis.
+        /// Relative position of the system in the sector in the x axis.
         /// </summary>
-        /// <value>Position in the universe in the x axis.</value>
+        /// <value>Relative position of the system in the sector in the x axis.</value>
         [DataMember(Name = "x", IsRequired = true, EmitDefaultValue = true)]
         public int X { get; set; }
 
         /// <summary>
-        /// Position in the universe in the y axis.
+        /// Relative position of the system in the sector in the y axis.
         /// </summary>
-        /// <value>Position in the universe in the y axis.</value>
+        /// <value>Relative position of the system in the sector in the y axis.</value>
         [DataMember(Name = "y", IsRequired = true, EmitDefaultValue = true)]
         public int Y { get; set; }
 

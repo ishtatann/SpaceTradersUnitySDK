@@ -127,6 +127,7 @@ Class | Method | HTTP request | Description
 *FleetApi* | [**CreateSurvey**](FleetApi.md#createsurvey) | **POST** /my/ships/{shipSymbol}/survey | Create Survey
 *FleetApi* | [**DockShip**](FleetApi.md#dockship) | **POST** /my/ships/{shipSymbol}/dock | Dock Ship
 *FleetApi* | [**ExtractResources**](FleetApi.md#extractresources) | **POST** /my/ships/{shipSymbol}/extract | Extract Resources
+*FleetApi* | [**ExtractResourcesWithSurvey**](FleetApi.md#extractresourceswithsurvey) | **POST** /my/ships/{shipSymbol}/extract/survey | Extract Resources with Survey
 *FleetApi* | [**GetMounts**](FleetApi.md#getmounts) | **GET** /my/ships/{shipSymbol}/mounts | Get Mounts
 *FleetApi* | [**GetMyShip**](FleetApi.md#getmyship) | **GET** /my/ships/{shipSymbol} | Get Ship
 *FleetApi* | [**GetMyShipCargo**](FleetApi.md#getmyshipcargo) | **GET** /my/ships/{shipSymbol}/cargo | Get Ship Cargo
@@ -293,6 +294,7 @@ Class | Method | HTTP request | Description
  - [Model.ShipType](ShipType.md)
  - [Model.Shipyard](Shipyard.md)
  - [Model.ShipyardShip](ShipyardShip.md)
+ - [Model.ShipyardShipCrew](ShipyardShipCrew.md)
  - [Model.ShipyardShipTypesInner](ShipyardShipTypesInner.md)
  - [Model.ShipyardTransaction](ShipyardTransaction.md)
  - [Model.Survey](Survey.md)

@@ -75,7 +75,7 @@ namespace SpaceTradersUnitySDK.Model
         /// </summary>
         /// <param name="signature">A unique signature for the location of this survey. This signature is verified when attempting an extraction using this survey. (required).</param>
         /// <param name="symbol">The symbol of the waypoint that this survey is for. (required).</param>
-        /// <param name="deposits">A list of deposits that can be found at this location. (required).</param>
+        /// <param name="deposits">A list of deposits that can be found at this location. A ship will extract one of these deposits when using this survey in an extraction request. If multiple deposits of the same type are present, the chance of extracting that deposit is increased. (required).</param>
         /// <param name="expiration">The date and time when the survey expires. After this date and time, the survey will no longer be available for extraction. (required).</param>
         /// <param name="size">The size of the deposit. This value indicates how much can be extracted from the survey before it is exhausted. (required).</param>
         public Survey(string signature = default(string), string symbol = default(string), List<SurveyDeposit> deposits = default(List<SurveyDeposit>), DateTime expiration = default(DateTime), SizeEnum size = default(SizeEnum))
@@ -117,9 +117,9 @@ namespace SpaceTradersUnitySDK.Model
         public string Symbol { get; set; }
 
         /// <summary>
-        /// A list of deposits that can be found at this location.
+        /// A list of deposits that can be found at this location. A ship will extract one of these deposits when using this survey in an extraction request. If multiple deposits of the same type are present, the chance of extracting that deposit is increased.
         /// </summary>
-        /// <value>A list of deposits that can be found at this location.</value>
+        /// <value>A list of deposits that can be found at this location. A ship will extract one of these deposits when using this survey in an extraction request. If multiple deposits of the same type are present, the chance of extracting that deposit is increased.</value>
         [DataMember(Name = "deposits", IsRequired = true, EmitDefaultValue = true)]
         public List<SurveyDeposit> Deposits { get; set; }
 

@@ -961,6 +961,8 @@ paths:
         Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.
 
         The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the `Gas Siphon` mount for gas-based goods or `Mining Laser` mount for ore-based goods.
+
+        The survey property is now deprecated. See the `extract/survey` endpoint for more details.
       operationId: extract-resources
       parameters:
       - description: The ship symbol.
@@ -986,6 +988,39 @@ paths:
       security:
       - AgentToken: []
       summary: Extract Resources
+      tags:
+      - Fleet
+  /my/ships/{shipSymbol}/extract/survey:
+    post:
+      description: |-
+        Use a survey when extracting resources from a waypoint. This endpoint requires a survey as the payload, which allows your ship to extract specific yields.
+
+        Send the full survey object as the payload which will be validated according to the signature. If the signature is invalid, or any properties of the survey are changed, the request will fail.
+      operationId: extract-resources-with-survey
+      parameters:
+      - description: The ship symbol.
+        explode: false
+        in: path
+        name: shipSymbol
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Survey'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/extract_resources_201_response'
+          description: Extracted successfully.
+      security:
+      - AgentToken: []
+      summary: Extract Resources with Survey
       tags:
       - Fleet
   /my/ships/{shipSymbol}/jettison:
@@ -1725,6 +1760,12 @@ components:
           route:
             departureTime: 2000-01-23T04:56:07.000+00:00
             arrival: 2000-01-23T04:56:07.000+00:00
+            origin:
+              symbol: symbol
+              systemSymbol: systemSymbol
+              x: 7
+              "y": 9
+              type: null
             destination:
               symbol: symbol
               systemSymbol: systemSymbol
@@ -1767,6 +1808,11 @@ components:
           name: name
           description: description
           powerOutput: 1
+        cooldown:
+          remainingSeconds: 0
+          totalSeconds: 0
+          shipSymbol: shipSymbol
+          expiration: 2000-01-23T04:56:07.000+00:00
         mounts:
         - symbol: MOUNT_GAS_SIPHON_I
           requirements:
@@ -1861,6 +1907,8 @@ components:
           $ref: '#/components/schemas/ShipReactor'
         engine:
           $ref: '#/components/schemas/ShipEngine'
+        cooldown:
+          $ref: '#/components/schemas/Cooldown'
         modules:
           description: Modules installed in this ship.
           items:
@@ -1877,6 +1925,7 @@ components:
           $ref: '#/components/schemas/ShipFuel'
       required:
       - cargo
+      - cooldown
       - crew
       - engine
       - frame
@@ -1897,13 +1946,21 @@ components:
         type: null
         waypoints:
         - symbol: symbol
+          orbits: orbits
           x: 1
           "y": 5
           type: null
+          orbitals:
+          - symbol: symbol
+          - symbol: symbol
         - symbol: symbol
+          orbits: orbits
           x: 1
           "y": 5
           type: null
+          orbitals:
+          - symbol: symbol
+          - symbol: symbol
         factions:
         - symbol: null
         - symbol: null
@@ -1919,10 +1976,10 @@ components:
         type:
           $ref: '#/components/schemas/SystemType'
         x:
-          description: Position in the universe in the x axis.
+          description: Relative position of the system in the sector in the x axis.
           type: integer
         "y":
-          description: Position in the universe in the y axis.
+          description: Relative position of the system in the sector in the y axis.
           type: integer
         waypoints:
           description: Waypoints in this system.
@@ -1990,6 +2047,7 @@ components:
           name: name
           description: description
         systemSymbol: systemSymbol
+        orbits: orbits
         faction:
           symbol: null
         x: 0
@@ -2014,16 +2072,23 @@ components:
           minLength: 1
           type: string
         x:
-          description: Position in the universe in the x axis.
+          description: Relative position of the waypoint on the system's x axis. This
+            is not an absolute position in the universe.
           type: integer
         "y":
-          description: Position in the universe in the Y axis.
+          description: Relative position of the waypoint on the system's y axis. This
+            is not an absolute position in the universe.
           type: integer
         orbitals:
           description: Waypoints that orbit this waypoint.
           items:
             $ref: '#/components/schemas/WaypointOrbital'
           type: array
+        orbits:
+          description: "The symbol of the parent waypoint, if this waypoint is in\
+            \ orbit around another waypoint. Otherwise this value is undefined."
+          minLength: 1
+          type: string
         faction:
           $ref: '#/components/schemas/WaypointFaction'
         traits:
@@ -2220,6 +2285,9 @@ components:
             name: name
             description: description
             mountingPoints: 0
+          crew:
+            required: 1
+            capacity: 5
         - engine:
             symbol: ENGINE_IMPULSE_DRIVE_I
             condition: 66
@@ -2298,6 +2366,10 @@ components:
             name: name
             description: description
             mountingPoints: 0
+          crew:
+            required: 1
+            capacity: 5
+        modificationsFee: 5
         transactions:
         - waypointSymbol: waypointSymbol
           price: 0
@@ -2331,7 +2403,14 @@ components:
           items:
             $ref: '#/components/schemas/ShipyardShip'
           type: array
+        modificationsFee:
+          description: "The fee to modify a ship at this shipyard. This includes installing\
+            \ or removing modules and mounts on a ship. In the case of mounts, the\
+            \ fee is a flat rate per mount. In the case of modules, the fee is per\
+            \ slot the module occupies."
+          type: integer
       required:
+      - modificationsFee
       - shipTypes
       - symbol
       type: object
@@ -2458,6 +2537,12 @@ components:
         route:
           departureTime: 2000-01-23T04:56:07.000+00:00
           arrival: 2000-01-23T04:56:07.000+00:00
+          origin:
+            symbol: symbol
+            systemSymbol: systemSymbol
+            x: 7
+            "y": 9
+            type: null
           destination:
             symbol: symbol
             systemSymbol: systemSymbol
@@ -2566,7 +2651,10 @@ components:
           minLength: 1
           type: string
         deposits:
-          description: A list of deposits that can be found at this location.
+          description: "A list of deposits that can be found at this location. A ship\
+            \ will extract one of these deposits when using this survey in an extraction\
+            \ request. If multiple deposits of the same type are present, the chance\
+            \ of extracting that deposit is increased."
           items:
             $ref: '#/components/schemas/SurveyDeposit'
           type: array
@@ -2918,6 +3006,12 @@ components:
           route:
             departureTime: 2000-01-23T04:56:07.000+00:00
             arrival: 2000-01-23T04:56:07.000+00:00
+            origin:
+              symbol: symbol
+              systemSymbol: systemSymbol
+              x: 7
+              "y": 9
+              type: null
             destination:
               symbol: symbol
               systemSymbol: systemSymbol
@@ -3513,9 +3607,13 @@ components:
     SystemWaypoint:
       example:
         symbol: symbol
+        orbits: orbits
         x: 1
         "y": 5
         type: null
+        orbitals:
+        - symbol: symbol
+        - symbol: symbol
       properties:
         symbol:
           description: The symbol of the waypoint.
@@ -3523,12 +3621,25 @@ components:
         type:
           $ref: '#/components/schemas/WaypointType'
         x:
-          description: Position in the universe in the x axis.
+          description: Relative position of the waypoint on the system's x axis. This
+            is not an absolute position in the universe.
           type: integer
         "y":
-          description: Position in the universe in the y axis.
+          description: Relative position of the waypoint on the system's y axis. This
+            is not an absolute position in the universe.
           type: integer
+        orbitals:
+          description: Waypoints that orbit this waypoint.
+          items:
+            $ref: '#/components/schemas/WaypointOrbital'
+          type: array
+        orbits:
+          description: "The symbol of the parent waypoint, if this waypoint is in\
+            \ orbit around another waypoint. Otherwise this value is undefined."
+          minLength: 1
+          type: string
       required:
+      - orbitals
       - symbol
       - type
       - x
@@ -3798,6 +3909,9 @@ components:
           name: name
           description: description
           mountingPoints: 0
+        crew:
+          required: 1
+          capacity: 5
       properties:
         type:
           $ref: '#/components/schemas/ShipType'
@@ -3821,7 +3935,10 @@ components:
           items:
             $ref: '#/components/schemas/ShipMount'
           type: array
+        crew:
+          $ref: '#/components/schemas/ShipyardShip_crew'
       required:
+      - crew
       - description
       - engine
       - frame
@@ -3905,6 +4022,12 @@ components:
       example:
         departureTime: 2000-01-23T04:56:07.000+00:00
         arrival: 2000-01-23T04:56:07.000+00:00
+        origin:
+          symbol: symbol
+          systemSymbol: systemSymbol
+          x: 7
+          "y": 9
+          type: null
         destination:
           symbol: symbol
           systemSymbol: systemSymbol
@@ -3922,6 +4045,8 @@ components:
           $ref: '#/components/schemas/ShipNavRouteWaypoint'
         departure:
           $ref: '#/components/schemas/ShipNavRouteWaypoint'
+        origin:
+          $ref: '#/components/schemas/ShipNavRouteWaypoint'
         departureTime:
           description: The date time of the ship's departure.
           format: date-time
@@ -3936,6 +4061,7 @@ components:
       - departure
       - departureTime
       - destination
+      - origin
       type: object
     ShipNavStatus:
       description: The current status of the ship
@@ -4353,6 +4479,12 @@ components:
             route:
               departureTime: 2000-01-23T04:56:07.000+00:00
               arrival: 2000-01-23T04:56:07.000+00:00
+              origin:
+                symbol: symbol
+                systemSymbol: systemSymbol
+                x: 7
+                "y": 9
+                type: null
               destination:
                 symbol: symbol
                 systemSymbol: systemSymbol
@@ -4395,6 +4527,11 @@ components:
             name: name
             description: description
             powerOutput: 1
+          cooldown:
+            remainingSeconds: 0
+            totalSeconds: 0
+            shipSymbol: shipSymbol
+            expiration: 2000-01-23T04:56:07.000+00:00
           mounts:
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
@@ -4543,6 +4680,12 @@ components:
               route:
                 departureTime: 2000-01-23T04:56:07.000+00:00
                 arrival: 2000-01-23T04:56:07.000+00:00
+                origin:
+                  symbol: symbol
+                  systemSymbol: systemSymbol
+                  x: 7
+                  "y": 9
+                  type: null
                 destination:
                   symbol: symbol
                   systemSymbol: systemSymbol
@@ -4585,6 +4728,11 @@ components:
               name: name
               description: description
               powerOutput: 1
+            cooldown:
+              remainingSeconds: 0
+              totalSeconds: 0
+              shipSymbol: shipSymbol
+              expiration: 2000-01-23T04:56:07.000+00:00
             mounts:
             - symbol: MOUNT_GAS_SIPHON_I
               requirements:
@@ -4680,13 +4828,21 @@ components:
           type: null
           waypoints:
           - symbol: symbol
+            orbits: orbits
             x: 1
             "y": 5
             type: null
+            orbitals:
+            - symbol: symbol
+            - symbol: symbol
           - symbol: symbol
+            orbits: orbits
             x: 1
             "y": 5
             type: null
+            orbitals:
+            - symbol: symbol
+            - symbol: symbol
           factions:
           - symbol: null
           - symbol: null
@@ -4697,13 +4853,21 @@ components:
           type: null
           waypoints:
           - symbol: symbol
+            orbits: orbits
             x: 1
             "y": 5
             type: null
+            orbitals:
+            - symbol: symbol
+            - symbol: symbol
           - symbol: symbol
+            orbits: orbits
             x: 1
             "y": 5
             type: null
+            orbitals:
+            - symbol: symbol
+            - symbol: symbol
           factions:
           - symbol: null
           - symbol: null
@@ -4733,13 +4897,21 @@ components:
           type: null
           waypoints:
           - symbol: symbol
+            orbits: orbits
             x: 1
             "y": 5
             type: null
+            orbitals:
+            - symbol: symbol
+            - symbol: symbol
           - symbol: symbol
+            orbits: orbits
             x: 1
             "y": 5
             type: null
+            orbitals:
+            - symbol: symbol
+            - symbol: symbol
           factions:
           - symbol: null
           - symbol: null
@@ -4762,6 +4934,7 @@ components:
             name: name
             description: description
           systemSymbol: systemSymbol
+          orbits: orbits
           faction:
             symbol: null
           x: 0
@@ -4783,6 +4956,7 @@ components:
             name: name
             description: description
           systemSymbol: systemSymbol
+          orbits: orbits
           faction:
             symbol: null
           x: 0
@@ -4823,6 +4997,7 @@ components:
             name: name
             description: description
           systemSymbol: systemSymbol
+          orbits: orbits
           faction:
             symbol: null
           x: 0
@@ -4987,6 +5162,9 @@ components:
               name: name
               description: description
               mountingPoints: 0
+            crew:
+              required: 1
+              capacity: 5
           - engine:
               symbol: ENGINE_IMPULSE_DRIVE_I
               condition: 66
@@ -5065,6 +5243,10 @@ components:
               name: name
               description: description
               mountingPoints: 0
+            crew:
+              required: 1
+              capacity: 5
+          modificationsFee: 5
           transactions:
           - waypointSymbol: waypointSymbol
             price: 0
@@ -5540,6 +5722,12 @@ components:
             route:
               departureTime: 2000-01-23T04:56:07.000+00:00
               arrival: 2000-01-23T04:56:07.000+00:00
+              origin:
+                symbol: symbol
+                systemSymbol: systemSymbol
+                x: 7
+                "y": 9
+                type: null
               destination:
                 symbol: symbol
                 systemSymbol: systemSymbol
@@ -5582,6 +5770,11 @@ components:
             name: name
             description: description
             powerOutput: 1
+          cooldown:
+            remainingSeconds: 0
+            totalSeconds: 0
+            shipSymbol: shipSymbol
+            expiration: 2000-01-23T04:56:07.000+00:00
           mounts:
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
@@ -5664,6 +5857,12 @@ components:
             route:
               departureTime: 2000-01-23T04:56:07.000+00:00
               arrival: 2000-01-23T04:56:07.000+00:00
+              origin:
+                symbol: symbol
+                systemSymbol: systemSymbol
+                x: 7
+                "y": 9
+                type: null
               destination:
                 symbol: symbol
                 systemSymbol: systemSymbol
@@ -5706,6 +5905,11 @@ components:
             name: name
             description: description
             powerOutput: 1
+          cooldown:
+            remainingSeconds: 0
+            totalSeconds: 0
+            shipSymbol: shipSymbol
+            expiration: 2000-01-23T04:56:07.000+00:00
           mounts:
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
@@ -5824,6 +6028,12 @@ components:
             route:
               departureTime: 2000-01-23T04:56:07.000+00:00
               arrival: 2000-01-23T04:56:07.000+00:00
+              origin:
+                symbol: symbol
+                systemSymbol: systemSymbol
+                x: 7
+                "y": 9
+                type: null
               destination:
                 symbol: symbol
                 systemSymbol: systemSymbol
@@ -5866,6 +6076,11 @@ components:
             name: name
             description: description
             powerOutput: 1
+          cooldown:
+            remainingSeconds: 0
+            totalSeconds: 0
+            shipSymbol: shipSymbol
+            expiration: 2000-01-23T04:56:07.000+00:00
           mounts:
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
@@ -5978,6 +6193,12 @@ components:
               route:
                 departureTime: 2000-01-23T04:56:07.000+00:00
                 arrival: 2000-01-23T04:56:07.000+00:00
+                origin:
+                  symbol: symbol
+                  systemSymbol: systemSymbol
+                  x: 7
+                  "y": 9
+                  type: null
                 destination:
                   symbol: symbol
                   systemSymbol: systemSymbol
@@ -6020,6 +6241,11 @@ components:
               name: name
               description: description
               powerOutput: 1
+            cooldown:
+              remainingSeconds: 0
+              totalSeconds: 0
+              shipSymbol: shipSymbol
+              expiration: 2000-01-23T04:56:07.000+00:00
             mounts:
             - symbol: MOUNT_GAS_SIPHON_I
               requirements:
@@ -6118,6 +6344,12 @@ components:
             route:
               departureTime: 2000-01-23T04:56:07.000+00:00
               arrival: 2000-01-23T04:56:07.000+00:00
+              origin:
+                symbol: symbol
+                systemSymbol: systemSymbol
+                x: 7
+                "y": 9
+                type: null
               destination:
                 symbol: symbol
                 systemSymbol: systemSymbol
@@ -6160,6 +6392,11 @@ components:
             name: name
             description: description
             powerOutput: 1
+          cooldown:
+            remainingSeconds: 0
+            totalSeconds: 0
+            shipSymbol: shipSymbol
+            expiration: 2000-01-23T04:56:07.000+00:00
           mounts:
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
@@ -6270,6 +6507,12 @@ components:
           route:
             departureTime: 2000-01-23T04:56:07.000+00:00
             arrival: 2000-01-23T04:56:07.000+00:00
+            origin:
+              symbol: symbol
+              systemSymbol: systemSymbol
+              x: 7
+              "y": 9
+              type: null
             destination:
               symbol: symbol
               systemSymbol: systemSymbol
@@ -6300,6 +6543,12 @@ components:
             route:
               departureTime: 2000-01-23T04:56:07.000+00:00
               arrival: 2000-01-23T04:56:07.000+00:00
+              origin:
+                symbol: symbol
+                systemSymbol: systemSymbol
+                x: 7
+                "y": 9
+                type: null
               destination:
                 symbol: symbol
                 systemSymbol: systemSymbol
@@ -6344,7 +6593,7 @@ components:
     Ship_Refine_201_Response_data_produced_inner:
       example:
         tradeSymbol: tradeSymbol
-        units: 1
+        units: 0
       properties:
         tradeSymbol:
           description: Symbol of the good.
@@ -6360,9 +6609,9 @@ components:
       example:
         consumed:
         - tradeSymbol: tradeSymbol
-          units: 1
+          units: 0
         - tradeSymbol: tradeSymbol
-          units: 1
+          units: 0
         cooldown:
           remainingSeconds: 0
           totalSeconds: 0
@@ -6382,9 +6631,9 @@ components:
           capacity: 0
         produced:
         - tradeSymbol: tradeSymbol
-          units: 1
+          units: 0
         - tradeSymbol: tradeSymbol
-          units: 1
+          units: 0
       properties:
         cargo:
           $ref: '#/components/schemas/ShipCargo'
@@ -6411,9 +6660,9 @@ components:
         data:
           consumed:
           - tradeSymbol: tradeSymbol
-            units: 1
+            units: 0
           - tradeSymbol: tradeSymbol
-            units: 1
+            units: 0
           cooldown:
             remainingSeconds: 0
             totalSeconds: 0
@@ -6433,9 +6682,9 @@ components:
             capacity: 0
           produced:
           - tradeSymbol: tradeSymbol
-            units: 1
+            units: 0
           - tradeSymbol: tradeSymbol
-            units: 1
+            units: 0
       properties:
         data:
           $ref: '#/components/schemas/Ship_Refine_201_Response_data'
@@ -6455,6 +6704,7 @@ components:
             name: name
             description: description
           systemSymbol: systemSymbol
+          orbits: orbits
           faction:
             symbol: null
           x: 0
@@ -6493,6 +6743,7 @@ components:
               name: name
               description: description
             systemSymbol: systemSymbol
+            orbits: orbits
             faction:
               symbol: null
             x: 0
@@ -6537,6 +6788,12 @@ components:
             route:
               departureTime: 2000-01-23T04:56:07.000+00:00
               arrival: 2000-01-23T04:56:07.000+00:00
+              origin:
+                symbol: symbol
+                systemSymbol: systemSymbol
+                x: 7
+                "y": 9
+                type: null
               destination:
                 symbol: symbol
                 systemSymbol: systemSymbol
@@ -6764,6 +7021,12 @@ components:
           route:
             departureTime: 2000-01-23T04:56:07.000+00:00
             arrival: 2000-01-23T04:56:07.000+00:00
+            origin:
+              symbol: symbol
+              systemSymbol: systemSymbol
+              x: 7
+              "y": 9
+              type: null
             destination:
               symbol: symbol
               systemSymbol: systemSymbol
@@ -6802,6 +7065,12 @@ components:
             route:
               departureTime: 2000-01-23T04:56:07.000+00:00
               arrival: 2000-01-23T04:56:07.000+00:00
+              origin:
+                symbol: symbol
+                systemSymbol: systemSymbol
+                x: 7
+                "y": 9
+                type: null
               destination:
                 symbol: symbol
                 systemSymbol: systemSymbol
@@ -6843,6 +7112,12 @@ components:
           route:
             departureTime: 2000-01-23T04:56:07.000+00:00
             arrival: 2000-01-23T04:56:07.000+00:00
+            origin:
+              symbol: symbol
+              systemSymbol: systemSymbol
+              x: 7
+              "y": 9
+              type: null
             destination:
               symbol: symbol
               systemSymbol: systemSymbol
@@ -6882,6 +7157,12 @@ components:
             route:
               departureTime: 2000-01-23T04:56:07.000+00:00
               arrival: 2000-01-23T04:56:07.000+00:00
+              origin:
+                symbol: symbol
+                systemSymbol: systemSymbol
+                x: 7
+                "y": 9
+                type: null
               destination:
                 symbol: symbol
                 systemSymbol: systemSymbol
@@ -6917,6 +7198,12 @@ components:
           route:
             departureTime: 2000-01-23T04:56:07.000+00:00
             arrival: 2000-01-23T04:56:07.000+00:00
+            origin:
+              symbol: symbol
+              systemSymbol: systemSymbol
+              x: 7
+              "y": 9
+              type: null
             destination:
               symbol: symbol
               systemSymbol: systemSymbol
@@ -7226,6 +7513,12 @@ components:
             route:
               departureTime: 2000-01-23T04:56:07.000+00:00
               arrival: 2000-01-23T04:56:07.000+00:00
+              origin:
+                symbol: symbol
+                systemSymbol: systemSymbol
+                x: 7
+                "y": 9
+                type: null
               destination:
                 symbol: symbol
                 systemSymbol: systemSymbol
@@ -7260,6 +7553,12 @@ components:
             route:
               departureTime: 2000-01-23T04:56:07.000+00:00
               arrival: 2000-01-23T04:56:07.000+00:00
+              origin:
+                symbol: symbol
+                systemSymbol: systemSymbol
+                x: 7
+                "y": 9
+                type: null
               destination:
                 symbol: symbol
                 systemSymbol: systemSymbol
@@ -7315,6 +7614,12 @@ components:
               route:
                 departureTime: 2000-01-23T04:56:07.000+00:00
                 arrival: 2000-01-23T04:56:07.000+00:00
+                origin:
+                  symbol: symbol
+                  systemSymbol: systemSymbol
+                  x: 7
+                  "y": 9
+                  type: null
                 destination:
                   symbol: symbol
                   systemSymbol: systemSymbol
@@ -7349,6 +7654,12 @@ components:
               route:
                 departureTime: 2000-01-23T04:56:07.000+00:00
                 arrival: 2000-01-23T04:56:07.000+00:00
+                origin:
+                  symbol: symbol
+                  systemSymbol: systemSymbol
+                  x: 7
+                  "y": 9
+                  type: null
                 destination:
                   symbol: symbol
                   systemSymbol: systemSymbol
@@ -7996,6 +8307,19 @@ components:
           type: string
       required:
       - symbol
+      type: object
+    ShipyardShip_crew:
+      example:
+        required: 1
+        capacity: 5
+      properties:
+        required:
+          type: integer
+        capacity:
+          type: integer
+      required:
+      - capacity
+      - required
       type: object
   securitySchemes:
     AgentToken:

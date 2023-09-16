@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **Symbol** | **string** | The symbol of the system. | 
 **SectorSymbol** | **string** | The symbol of the sector. | 
 **Type** | **SystemType** |  | 
-**X** | **int** | Position in the universe in the x axis. | 
-**Y** | **int** | Position in the universe in the y axis. | 
+**X** | **int** | Relative position of the system in the sector in the x axis. | 
+**Y** | **int** | Relative position of the system in the sector in the y axis. | 
 **Waypoints** | [**List&lt;SystemWaypoint&gt;**](SystemWaypoint.md) | Waypoints in this system. | 
 **Factions** | [**List&lt;SystemFaction&gt;**](SystemFaction.md) | Factions that control this system. | 
 

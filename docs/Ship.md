@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Frame** | [**ShipFrame**](ShipFrame.md) |  | 
 **Reactor** | [**ShipReactor**](ShipReactor.md) |  | 
 **Engine** | [**ShipEngine**](ShipEngine.md) |  | 
+**Cooldown** | [**Cooldown**](Cooldown.md) |  | 
 **Modules** | [**List&lt;ShipModule&gt;**](ShipModule.md) | Modules installed in this ship. | 
 **Mounts** | [**List&lt;ShipMount&gt;**](ShipMount.md) | Mounts installed in this ship. | 
 **Cargo** | [**ShipCargo**](ShipCargo.md) |  | 

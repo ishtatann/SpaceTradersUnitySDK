@@ -46,11 +46,12 @@ namespace SpaceTradersUnitySDK.Model
         /// <param name="frame">frame (required).</param>
         /// <param name="reactor">reactor (required).</param>
         /// <param name="engine">engine (required).</param>
+        /// <param name="cooldown">cooldown (required).</param>
         /// <param name="modules">Modules installed in this ship. (required).</param>
         /// <param name="mounts">Mounts installed in this ship. (required).</param>
         /// <param name="cargo">cargo (required).</param>
         /// <param name="fuel">fuel (required).</param>
-        public Ship(string symbol = default(string), ShipRegistration registration = default(ShipRegistration), ShipNav nav = default(ShipNav), ShipCrew crew = default(ShipCrew), ShipFrame frame = default(ShipFrame), ShipReactor reactor = default(ShipReactor), ShipEngine engine = default(ShipEngine), List<ShipModule> modules = default(List<ShipModule>), List<ShipMount> mounts = default(List<ShipMount>), ShipCargo cargo = default(ShipCargo), ShipFuel fuel = default(ShipFuel))
+        public Ship(string symbol = default(string), ShipRegistration registration = default(ShipRegistration), ShipNav nav = default(ShipNav), ShipCrew crew = default(ShipCrew), ShipFrame frame = default(ShipFrame), ShipReactor reactor = default(ShipReactor), ShipEngine engine = default(ShipEngine), Cooldown cooldown = default(Cooldown), List<ShipModule> modules = default(List<ShipModule>), List<ShipMount> mounts = default(List<ShipMount>), ShipCargo cargo = default(ShipCargo), ShipFuel fuel = default(ShipFuel))
         {
             // to ensure "symbol" is required (not null)
             if (symbol == null)
@@ -94,6 +95,12 @@ namespace SpaceTradersUnitySDK.Model
                 throw new ArgumentNullException("engine is a required property for Ship and cannot be null");
             }
             this.Engine = engine;
+            // to ensure "cooldown" is required (not null)
+            if (cooldown == null)
+            {
+                throw new ArgumentNullException("cooldown is a required property for Ship and cannot be null");
+            }
+            this.Cooldown = cooldown;
             // to ensure "modules" is required (not null)
             if (modules == null)
             {
@@ -164,6 +171,12 @@ namespace SpaceTradersUnitySDK.Model
         public ShipEngine Engine { get; set; }
 
         /// <summary>
+        /// Gets or Sets Cooldown
+        /// </summary>
+        [DataMember(Name = "cooldown", IsRequired = true, EmitDefaultValue = true)]
+        public Cooldown Cooldown { get; set; }
+
+        /// <summary>
         /// Modules installed in this ship.
         /// </summary>
         /// <value>Modules installed in this ship.</value>
@@ -204,6 +217,7 @@ namespace SpaceTradersUnitySDK.Model
             sb.Append("  Frame: ").Append(Frame).Append("\n");
             sb.Append("  Reactor: ").Append(Reactor).Append("\n");
             sb.Append("  Engine: ").Append(Engine).Append("\n");
+            sb.Append("  Cooldown: ").Append(Cooldown).Append("\n");
             sb.Append("  Modules: ").Append(Modules).Append("\n");
             sb.Append("  Mounts: ").Append(Mounts).Append("\n");
             sb.Append("  Cargo: ").Append(Cargo).Append("\n");
@@ -279,6 +293,11 @@ namespace SpaceTradersUnitySDK.Model
                     this.Engine.Equals(input.Engine))
                 ) && 
                 (
+                    this.Cooldown == input.Cooldown ||
+                    (this.Cooldown != null &&
+                    this.Cooldown.Equals(input.Cooldown))
+                ) && 
+                (
                     this.Modules == input.Modules ||
                     this.Modules != null &&
                     input.Modules != null &&
@@ -338,6 +357,10 @@ namespace SpaceTradersUnitySDK.Model
                 if (this.Engine != null)
                 {
                     hashCode = (hashCode * 59) + this.Engine.GetHashCode();
+                }
+                if (this.Cooldown != null)
+                {
+                    hashCode = (hashCode * 59) + this.Cooldown.GetHashCode();
                 }
                 if (this.Modules != null)
                 {

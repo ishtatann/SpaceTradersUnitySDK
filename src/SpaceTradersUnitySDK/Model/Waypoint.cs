@@ -48,13 +48,14 @@ namespace SpaceTradersUnitySDK.Model
         /// <param name="symbol">Symbol fo the waypoint. (required).</param>
         /// <param name="type">type (required).</param>
         /// <param name="systemSymbol">The symbol of the system this waypoint belongs to. (required).</param>
-        /// <param name="x">Position in the universe in the x axis. (required).</param>
-        /// <param name="y">Position in the universe in the Y axis. (required).</param>
+        /// <param name="x">Relative position of the waypoint on the system&#39;s x axis. This is not an absolute position in the universe. (required).</param>
+        /// <param name="y">Relative position of the waypoint on the system&#39;s y axis. This is not an absolute position in the universe. (required).</param>
         /// <param name="orbitals">Waypoints that orbit this waypoint. (required).</param>
+        /// <param name="orbits">The symbol of the parent waypoint, if this waypoint is in orbit around another waypoint. Otherwise this value is undefined..</param>
         /// <param name="faction">faction.</param>
         /// <param name="traits">The traits of the waypoint. (required).</param>
         /// <param name="chart">chart.</param>
-        public Waypoint(string symbol = default(string), WaypointType type = default(WaypointType), string systemSymbol = default(string), int x = default(int), int y = default(int), List<WaypointOrbital> orbitals = default(List<WaypointOrbital>), WaypointFaction faction = default(WaypointFaction), List<WaypointTrait> traits = default(List<WaypointTrait>), Chart chart = default(Chart))
+        public Waypoint(string symbol = default(string), WaypointType type = default(WaypointType), string systemSymbol = default(string), int x = default(int), int y = default(int), List<WaypointOrbital> orbitals = default(List<WaypointOrbital>), string orbits = default(string), WaypointFaction faction = default(WaypointFaction), List<WaypointTrait> traits = default(List<WaypointTrait>), Chart chart = default(Chart))
         {
             // to ensure "symbol" is required (not null)
             if (symbol == null)
@@ -83,6 +84,7 @@ namespace SpaceTradersUnitySDK.Model
                 throw new ArgumentNullException("traits is a required property for Waypoint and cannot be null");
             }
             this.Traits = traits;
+            this.Orbits = orbits;
             this.Faction = faction;
             this.Chart = chart;
         }
@@ -102,16 +104,16 @@ namespace SpaceTradersUnitySDK.Model
         public string SystemSymbol { get; set; }
 
         /// <summary>
-        /// Position in the universe in the x axis.
+        /// Relative position of the waypoint on the system&#39;s x axis. This is not an absolute position in the universe.
         /// </summary>
-        /// <value>Position in the universe in the x axis.</value>
+        /// <value>Relative position of the waypoint on the system&#39;s x axis. This is not an absolute position in the universe.</value>
         [DataMember(Name = "x", IsRequired = true, EmitDefaultValue = true)]
         public int X { get; set; }
 
         /// <summary>
-        /// Position in the universe in the Y axis.
+        /// Relative position of the waypoint on the system&#39;s y axis. This is not an absolute position in the universe.
         /// </summary>
-        /// <value>Position in the universe in the Y axis.</value>
+        /// <value>Relative position of the waypoint on the system&#39;s y axis. This is not an absolute position in the universe.</value>
         [DataMember(Name = "y", IsRequired = true, EmitDefaultValue = true)]
         public int Y { get; set; }
 
@@ -121,6 +123,13 @@ namespace SpaceTradersUnitySDK.Model
         /// <value>Waypoints that orbit this waypoint.</value>
         [DataMember(Name = "orbitals", IsRequired = true, EmitDefaultValue = true)]
         public List<WaypointOrbital> Orbitals { get; set; }
+
+        /// <summary>
+        /// The symbol of the parent waypoint, if this waypoint is in orbit around another waypoint. Otherwise this value is undefined.
+        /// </summary>
+        /// <value>The symbol of the parent waypoint, if this waypoint is in orbit around another waypoint. Otherwise this value is undefined.</value>
+        [DataMember(Name = "orbits", EmitDefaultValue = false)]
+        public string Orbits { get; set; }
 
         /// <summary>
         /// Gets or Sets Faction
@@ -155,6 +164,7 @@ namespace SpaceTradersUnitySDK.Model
             sb.Append("  X: ").Append(X).Append("\n");
             sb.Append("  Y: ").Append(Y).Append("\n");
             sb.Append("  Orbitals: ").Append(Orbitals).Append("\n");
+            sb.Append("  Orbits: ").Append(Orbits).Append("\n");
             sb.Append("  Faction: ").Append(Faction).Append("\n");
             sb.Append("  Traits: ").Append(Traits).Append("\n");
             sb.Append("  Chart: ").Append(Chart).Append("\n");
@@ -222,6 +232,11 @@ namespace SpaceTradersUnitySDK.Model
                     this.Orbitals.SequenceEqual(input.Orbitals)
                 ) && 
                 (
+                    this.Orbits == input.Orbits ||
+                    (this.Orbits != null &&
+                    this.Orbits.Equals(input.Orbits))
+                ) && 
+                (
                     this.Faction == input.Faction ||
                     (this.Faction != null &&
                     this.Faction.Equals(input.Faction))
@@ -262,6 +277,10 @@ namespace SpaceTradersUnitySDK.Model
                 if (this.Orbitals != null)
                 {
                     hashCode = (hashCode * 59) + this.Orbitals.GetHashCode();
+                }
+                if (this.Orbits != null)
+                {
+                    hashCode = (hashCode * 59) + this.Orbits.GetHashCode();
                 }
                 if (this.Faction != null)
                 {

@@ -47,9 +47,11 @@ namespace SpaceTradersUnitySDK.Model
         /// </summary>
         /// <param name="symbol">The symbol of the waypoint. (required).</param>
         /// <param name="type">type (required).</param>
-        /// <param name="x">Position in the universe in the x axis. (required).</param>
-        /// <param name="y">Position in the universe in the y axis. (required).</param>
-        public SystemWaypoint(string symbol = default(string), WaypointType type = default(WaypointType), int x = default(int), int y = default(int))
+        /// <param name="x">Relative position of the waypoint on the system&#39;s x axis. This is not an absolute position in the universe. (required).</param>
+        /// <param name="y">Relative position of the waypoint on the system&#39;s y axis. This is not an absolute position in the universe. (required).</param>
+        /// <param name="orbitals">Waypoints that orbit this waypoint. (required).</param>
+        /// <param name="orbits">The symbol of the parent waypoint, if this waypoint is in orbit around another waypoint. Otherwise this value is undefined..</param>
+        public SystemWaypoint(string symbol = default(string), WaypointType type = default(WaypointType), int x = default(int), int y = default(int), List<WaypointOrbital> orbitals = default(List<WaypointOrbital>), string orbits = default(string))
         {
             // to ensure "symbol" is required (not null)
             if (symbol == null)
@@ -60,6 +62,13 @@ namespace SpaceTradersUnitySDK.Model
             this.Type = type;
             this.X = x;
             this.Y = y;
+            // to ensure "orbitals" is required (not null)
+            if (orbitals == null)
+            {
+                throw new ArgumentNullException("orbitals is a required property for SystemWaypoint and cannot be null");
+            }
+            this.Orbitals = orbitals;
+            this.Orbits = orbits;
         }
 
         /// <summary>
@@ -70,18 +79,32 @@ namespace SpaceTradersUnitySDK.Model
         public string Symbol { get; set; }
 
         /// <summary>
-        /// Position in the universe in the x axis.
+        /// Relative position of the waypoint on the system&#39;s x axis. This is not an absolute position in the universe.
         /// </summary>
-        /// <value>Position in the universe in the x axis.</value>
+        /// <value>Relative position of the waypoint on the system&#39;s x axis. This is not an absolute position in the universe.</value>
         [DataMember(Name = "x", IsRequired = true, EmitDefaultValue = true)]
         public int X { get; set; }
 
         /// <summary>
-        /// Position in the universe in the y axis.
+        /// Relative position of the waypoint on the system&#39;s y axis. This is not an absolute position in the universe.
         /// </summary>
-        /// <value>Position in the universe in the y axis.</value>
+        /// <value>Relative position of the waypoint on the system&#39;s y axis. This is not an absolute position in the universe.</value>
         [DataMember(Name = "y", IsRequired = true, EmitDefaultValue = true)]
         public int Y { get; set; }
+
+        /// <summary>
+        /// Waypoints that orbit this waypoint.
+        /// </summary>
+        /// <value>Waypoints that orbit this waypoint.</value>
+        [DataMember(Name = "orbitals", IsRequired = true, EmitDefaultValue = true)]
+        public List<WaypointOrbital> Orbitals { get; set; }
+
+        /// <summary>
+        /// The symbol of the parent waypoint, if this waypoint is in orbit around another waypoint. Otherwise this value is undefined.
+        /// </summary>
+        /// <value>The symbol of the parent waypoint, if this waypoint is in orbit around another waypoint. Otherwise this value is undefined.</value>
+        [DataMember(Name = "orbits", EmitDefaultValue = false)]
+        public string Orbits { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -95,6 +118,8 @@ namespace SpaceTradersUnitySDK.Model
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  X: ").Append(X).Append("\n");
             sb.Append("  Y: ").Append(Y).Append("\n");
+            sb.Append("  Orbitals: ").Append(Orbitals).Append("\n");
+            sb.Append("  Orbits: ").Append(Orbits).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -146,6 +171,17 @@ namespace SpaceTradersUnitySDK.Model
                 (
                     this.Y == input.Y ||
                     this.Y.Equals(input.Y)
+                ) && 
+                (
+                    this.Orbitals == input.Orbitals ||
+                    this.Orbitals != null &&
+                    input.Orbitals != null &&
+                    this.Orbitals.SequenceEqual(input.Orbitals)
+                ) && 
+                (
+                    this.Orbits == input.Orbits ||
+                    (this.Orbits != null &&
+                    this.Orbits.Equals(input.Orbits))
                 );
         }
 
@@ -165,6 +201,14 @@ namespace SpaceTradersUnitySDK.Model
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 hashCode = (hashCode * 59) + this.X.GetHashCode();
                 hashCode = (hashCode * 59) + this.Y.GetHashCode();
+                if (this.Orbitals != null)
+                {
+                    hashCode = (hashCode * 59) + this.Orbitals.GetHashCode();
+                }
+                if (this.Orbits != null)
+                {
+                    hashCode = (hashCode * 59) + this.Orbits.GetHashCode();
+                }
                 return hashCode;
             }
         }

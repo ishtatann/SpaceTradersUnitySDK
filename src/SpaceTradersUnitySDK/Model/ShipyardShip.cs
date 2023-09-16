@@ -54,7 +54,8 @@ namespace SpaceTradersUnitySDK.Model
         /// <param name="engine">engine (required).</param>
         /// <param name="modules">modules (required).</param>
         /// <param name="mounts">mounts (required).</param>
-        public ShipyardShip(ShipType? type = default(ShipType?), string name = default(string), string description = default(string), int purchasePrice = default(int), ShipFrame frame = default(ShipFrame), ShipReactor reactor = default(ShipReactor), ShipEngine engine = default(ShipEngine), List<ShipModule> modules = default(List<ShipModule>), List<ShipMount> mounts = default(List<ShipMount>))
+        /// <param name="crew">crew (required).</param>
+        public ShipyardShip(ShipType? type = default(ShipType?), string name = default(string), string description = default(string), int purchasePrice = default(int), ShipFrame frame = default(ShipFrame), ShipReactor reactor = default(ShipReactor), ShipEngine engine = default(ShipEngine), List<ShipModule> modules = default(List<ShipModule>), List<ShipMount> mounts = default(List<ShipMount>), ShipyardShipCrew crew = default(ShipyardShipCrew))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -99,6 +100,12 @@ namespace SpaceTradersUnitySDK.Model
                 throw new ArgumentNullException("mounts is a required property for ShipyardShip and cannot be null");
             }
             this.Mounts = mounts;
+            // to ensure "crew" is required (not null)
+            if (crew == null)
+            {
+                throw new ArgumentNullException("crew is a required property for ShipyardShip and cannot be null");
+            }
+            this.Crew = crew;
             this.Type = type;
         }
 
@@ -151,6 +158,12 @@ namespace SpaceTradersUnitySDK.Model
         public List<ShipMount> Mounts { get; set; }
 
         /// <summary>
+        /// Gets or Sets Crew
+        /// </summary>
+        [DataMember(Name = "crew", IsRequired = true, EmitDefaultValue = true)]
+        public ShipyardShipCrew Crew { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -167,6 +180,7 @@ namespace SpaceTradersUnitySDK.Model
             sb.Append("  Engine: ").Append(Engine).Append("\n");
             sb.Append("  Modules: ").Append(Modules).Append("\n");
             sb.Append("  Mounts: ").Append(Mounts).Append("\n");
+            sb.Append("  Crew: ").Append(Crew).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -246,6 +260,11 @@ namespace SpaceTradersUnitySDK.Model
                     this.Mounts != null &&
                     input.Mounts != null &&
                     this.Mounts.SequenceEqual(input.Mounts)
+                ) && 
+                (
+                    this.Crew == input.Crew ||
+                    (this.Crew != null &&
+                    this.Crew.Equals(input.Crew))
                 );
         }
 
@@ -287,6 +306,10 @@ namespace SpaceTradersUnitySDK.Model
                 if (this.Mounts != null)
                 {
                     hashCode = (hashCode * 59) + this.Mounts.GetHashCode();
+                }
+                if (this.Crew != null)
+                {
+                    hashCode = (hashCode * 59) + this.Crew.GetHashCode();
                 }
                 return hashCode;
             }

@@ -11,6 +11,7 @@ All URIs are relative to *https://api.spacetraders.io/v2*
 | [**CreateSurvey**](FleetApi.md#createsurvey) | **POST** /my/ships/{shipSymbol}/survey | Create Survey |
 | [**DockShip**](FleetApi.md#dockship) | **POST** /my/ships/{shipSymbol}/dock | Dock Ship |
 | [**ExtractResources**](FleetApi.md#extractresources) | **POST** /my/ships/{shipSymbol}/extract | Extract Resources |
+| [**ExtractResourcesWithSurvey**](FleetApi.md#extractresourceswithsurvey) | **POST** /my/ships/{shipSymbol}/extract/survey | Extract Resources with Survey |
 | [**GetMounts**](FleetApi.md#getmounts) | **GET** /my/ships/{shipSymbol}/mounts | Get Mounts |
 | [**GetMyShip**](FleetApi.md#getmyship) | **GET** /my/ships/{shipSymbol} | Get Ship |
 | [**GetMyShipCargo**](FleetApi.md#getmyshipcargo) | **GET** /my/ships/{shipSymbol}/cargo | Get Ship Cargo |
@@ -603,7 +604,7 @@ catch (ApiException e)
 
 Extract Resources
 
-Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the `Gas Siphon` mount for gas-based goods or `Mining Laser` mount for ore-based goods.
+Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the `Gas Siphon` mount for gas-based goods or `Mining Laser` mount for ore-based goods.  The survey property is now deprecated. See the `extract/survey` endpoint for more details.
 
 ### Example
 ```csharp
@@ -671,6 +672,102 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **shipSymbol** | **string** | The ship symbol. |  |
 | **extractResourcesRequest** | [**ExtractResourcesRequest**](ExtractResourcesRequest.md) |  | [optional]  |
+
+### Return type
+
+[**ExtractResources201Response**](ExtractResources201Response.md)
+
+### Authorization
+
+[AgentToken](../README.md#AgentToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Extracted successfully. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="extractresourceswithsurvey"></a>
+# **ExtractResourcesWithSurvey**
+> ExtractResources201Response ExtractResourcesWithSurvey (string shipSymbol, Survey survey = null)
+
+Extract Resources with Survey
+
+Use a survey when extracting resources from a waypoint. This endpoint requires a survey as the payload, which allows your ship to extract specific yields.  Send the full survey object as the payload which will be validated according to the signature. If the signature is invalid, or any properties of the survey are changed, the request will fail.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using SpaceTradersUnitySDK.Api;
+using SpaceTradersUnitySDK.Client;
+using SpaceTradersUnitySDK.Model;
+
+namespace Example
+{
+    public class ExtractResourcesWithSurveyExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.spacetraders.io/v2";
+            // Configure Bearer token for authorization: AgentToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new FleetApi(config);
+            var shipSymbol = "shipSymbol_example";  // string | The ship symbol.
+            var survey = new Survey(); // Survey |  (optional) 
+
+            try
+            {
+                // Extract Resources with Survey
+                ExtractResources201Response result = apiInstance.ExtractResourcesWithSurvey(shipSymbol, survey);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FleetApi.ExtractResourcesWithSurvey: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ExtractResourcesWithSurveyWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Extract Resources with Survey
+    ApiResponse<ExtractResources201Response> response = apiInstance.ExtractResourcesWithSurveyWithHttpInfo(shipSymbol, survey);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling FleetApi.ExtractResourcesWithSurveyWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **shipSymbol** | **string** | The ship symbol. |  |
+| **survey** | [**Survey**](Survey.md) |  | [optional]  |
 
 ### Return type
 

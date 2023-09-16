@@ -43,7 +43,8 @@ namespace SpaceTradersUnitySDK.Model
         /// <param name="shipTypes">The list of ship types available for purchase at this shipyard. (required).</param>
         /// <param name="transactions">The list of recent transactions at this shipyard..</param>
         /// <param name="ships">The ships that are currently available for purchase at the shipyard..</param>
-        public Shipyard(string symbol = default(string), List<ShipyardShipTypesInner> shipTypes = default(List<ShipyardShipTypesInner>), List<ShipyardTransaction> transactions = default(List<ShipyardTransaction>), List<ShipyardShip> ships = default(List<ShipyardShip>))
+        /// <param name="modificationsFee">The fee to modify a ship at this shipyard. This includes installing or removing modules and mounts on a ship. In the case of mounts, the fee is a flat rate per mount. In the case of modules, the fee is per slot the module occupies. (required).</param>
+        public Shipyard(string symbol = default(string), List<ShipyardShipTypesInner> shipTypes = default(List<ShipyardShipTypesInner>), List<ShipyardTransaction> transactions = default(List<ShipyardTransaction>), List<ShipyardShip> ships = default(List<ShipyardShip>), int modificationsFee = default(int))
         {
             // to ensure "symbol" is required (not null)
             if (symbol == null)
@@ -57,6 +58,7 @@ namespace SpaceTradersUnitySDK.Model
                 throw new ArgumentNullException("shipTypes is a required property for Shipyard and cannot be null");
             }
             this.ShipTypes = shipTypes;
+            this.ModificationsFee = modificationsFee;
             this.Transactions = transactions;
             this.Ships = ships;
         }
@@ -90,6 +92,13 @@ namespace SpaceTradersUnitySDK.Model
         public List<ShipyardShip> Ships { get; set; }
 
         /// <summary>
+        /// The fee to modify a ship at this shipyard. This includes installing or removing modules and mounts on a ship. In the case of mounts, the fee is a flat rate per mount. In the case of modules, the fee is per slot the module occupies.
+        /// </summary>
+        /// <value>The fee to modify a ship at this shipyard. This includes installing or removing modules and mounts on a ship. In the case of mounts, the fee is a flat rate per mount. In the case of modules, the fee is per slot the module occupies.</value>
+        [DataMember(Name = "modificationsFee", IsRequired = true, EmitDefaultValue = true)]
+        public int ModificationsFee { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -101,6 +110,7 @@ namespace SpaceTradersUnitySDK.Model
             sb.Append("  ShipTypes: ").Append(ShipTypes).Append("\n");
             sb.Append("  Transactions: ").Append(Transactions).Append("\n");
             sb.Append("  Ships: ").Append(Ships).Append("\n");
+            sb.Append("  ModificationsFee: ").Append(ModificationsFee).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -158,6 +168,10 @@ namespace SpaceTradersUnitySDK.Model
                     this.Ships != null &&
                     input.Ships != null &&
                     this.Ships.SequenceEqual(input.Ships)
+                ) && 
+                (
+                    this.ModificationsFee == input.ModificationsFee ||
+                    this.ModificationsFee.Equals(input.ModificationsFee)
                 );
         }
 
@@ -186,6 +200,7 @@ namespace SpaceTradersUnitySDK.Model
                 {
                     hashCode = (hashCode * 59) + this.Ships.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.ModificationsFee.GetHashCode();
                 return hashCode;
             }
         }
