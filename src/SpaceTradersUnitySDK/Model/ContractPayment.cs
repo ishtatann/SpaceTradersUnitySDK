@@ -26,7 +26,7 @@ using OpenAPIDateConverter = SpaceTradersUnitySDK.Client.OpenAPIDateConverter;
 namespace SpaceTradersUnitySDK.Model
 {
     /// <summary>
-    /// ContractPayment
+    /// Payments for the contract.
     /// </summary>
     [DataContract(Name = "ContractPayment")]
     public partial class ContractPayment : IEquatable<ContractPayment>

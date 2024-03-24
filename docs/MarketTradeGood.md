@@ -4,9 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | **string** | The symbol of the trade good. | 
-**TradeVolume** | **int** | The typical volume flowing through the market for this type of good. The larger the trade volume, the more stable prices will be. | 
-**Supply** | **string** | A rough estimate of the total supply of this good in the marketplace. | 
+**Symbol** | **TradeSymbol** |  | 
+**Type** | **string** | The type of trade good (export, import, or exchange). | 
+**TradeVolume** | **int** | This is the maximum number of units that can be purchased or sold at this market in a single trade for this good. Trade volume also gives an indication of price volatility. A market with a low trade volume will have large price swings, while high trade volume will be more resilient to price changes. | 
+**Supply** | **SupplyLevel** |  | 
+**Activity** | **ActivityLevel** |  | [optional] 
 **PurchasePrice** | **int** | The price at which this good can be purchased from the market. | 
 **SellPrice** | **int** | The price at which this good can be sold to the market. | 
 

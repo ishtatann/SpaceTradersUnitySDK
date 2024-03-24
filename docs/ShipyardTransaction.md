@@ -5,8 +5,9 @@ Results of a transaction with a shipyard.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**WaypointSymbol** | **string** | The symbol of the waypoint where the transaction took place. | 
+**WaypointSymbol** | **string** | The symbol of the waypoint. | 
 **ShipSymbol** | **string** | The symbol of the ship that was the subject of the transaction. | 
+**ShipType** | **string** | The symbol of the ship that was the subject of the transaction. | 
 **Price** | **int** | The price of the transaction. | 
 **AgentSymbol** | **string** | The symbol of the agent that made the transaction. | 
 **Timestamp** | **DateTime** | The timestamp of the transaction. | 

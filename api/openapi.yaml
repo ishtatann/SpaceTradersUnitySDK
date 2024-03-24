@@ -198,6 +198,22 @@ paths:
           minimum: 1
           type: integer
         style: form
+      - description: Filter waypoints by type.
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          $ref: '#/components/schemas/WaypointType'
+        style: form
+      - description: Filter waypoints by one or more traits.
+        explode: true
+        in: query
+        name: traits
+        required: false
+        schema:
+          $ref: '#/components/schemas/get_system_waypoints_traits_parameter'
+        style: form
       responses:
         "200":
           content:
@@ -323,10 +339,8 @@ paths:
       - Systems
   /systems/{systemSymbol}/waypoints/{waypointSymbol}/jump-gate:
     get:
-      description: |-
-        Get jump gate details for a waypoint. Requires a waypoint of type `JUMP_GATE` to use.
-
-        The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
+      description: "Get jump gate details for a waypoint. Requires a waypoint of type\
+        \ `JUMP_GATE` to use.\n\nWaypoints connected to this jump gate can be "
       operationId: get-jump-gate
       parameters:
       - description: The system symbol
@@ -356,6 +370,83 @@ paths:
       - {}
       - AgentToken: []
       summary: Get Jump Gate
+      tags:
+      - Systems
+  /systems/{systemSymbol}/waypoints/{waypointSymbol}/construction:
+    get:
+      description: Get construction details for a waypoint. Requires a waypoint with
+        a property of `isUnderConstruction` to be true.
+      operationId: get-construction
+      parameters:
+      - description: The system symbol
+        explode: false
+        in: path
+        name: systemSymbol
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The waypoint symbol
+        explode: false
+        in: path
+        name: waypointSymbol
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_construction_200_response'
+          description: Successfully fetched construction site.
+      security:
+      - {}
+      - AgentToken: []
+      summary: Get Construction Site
+      tags:
+      - Systems
+  /systems/{systemSymbol}/waypoints/{waypointSymbol}/construction/supply:
+    post:
+      description: |-
+        Supply a construction site with the specified good. Requires a waypoint with a property of `isUnderConstruction` to be true.
+
+        The good must be in your ship's cargo. The good will be removed from your ship's cargo and added to the construction site's materials.
+      operationId: supply-construction
+      parameters:
+      - description: The system symbol
+        explode: false
+        in: path
+        name: systemSymbol
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The waypoint symbol
+        explode: false
+        in: path
+        name: waypointSymbol
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/supply_construction_request'
+        description: ""
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/supply_construction_201_response'
+          description: Successfully supplied construction site.
+      security:
+      - AgentToken: []
+      summary: Supply Construction Site
       tags:
       - Systems
   /factions:
@@ -990,6 +1081,34 @@ paths:
       summary: Extract Resources
       tags:
       - Fleet
+  /my/ships/{shipSymbol}/siphon:
+    post:
+      description: |-
+        Siphon gases, such as hydrocarbon, from gas giants.
+
+        The ship must be in orbit to be able to siphon and must have siphon mounts and a gas processor installed.
+      operationId: siphon-resources
+      parameters:
+      - description: The ship symbol.
+        explode: false
+        in: path
+        name: shipSymbol
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/siphon_resources_201_response'
+          description: Siphon successful.
+      security:
+      - AgentToken: []
+      summary: Siphon Resources
+      tags:
+      - Fleet
   /my/ships/{shipSymbol}/extract/survey:
     post:
       description: |-
@@ -1056,9 +1175,9 @@ paths:
   /my/ships/{shipSymbol}/jump:
     post:
       description: |-
-        Jump your ship instantly to a target system. The ship must be in orbit to use this function. When used while in orbit of a Jump Gate waypoint, any ship can use this command, jumping to the target system's Jump Gate waypoint.
+        Jump your ship instantly to a target connected waypoint. The ship must be in orbit to execute a jump.
 
-        When used elsewhere, jumping requires the ship to have a `Jump Drive` module installed and consumes a unit of antimatter from the ship's cargo. The command will fail if there is no antimatter to consume. When jumping via the `Jump Drive` module, the ship ends up at its largest source of energy in the system, such as a gas planet or a jump gate.
+        A unit of antimatter is purchased and consumed from the market when jumping. The price of antimatter is determined by the market and is subject to change. A ship can only jump to connected waypoints
       operationId: jump-ship
       parameters:
       - description: The ship symbol.
@@ -1207,7 +1326,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/navigate_ship_200_response'
+                $ref: '#/components/schemas/warp_ship_200_response'
           description: The successful transit information including the route details
             and changes to ship fuel. The route includes the expected time of arrival.
       security:
@@ -1451,8 +1570,8 @@ paths:
         \ the allowed maximum amount. Currently the maximum contracts an agent can\
         \ have at a time is 1.\n\nOnce a contract is negotiated, it is added to the\
         \ list of contracts offered to the agent, which the agent can then accept.\
-        \ \n\nThe ship must be present at a faction's HQ waypoint to negotiate a contract\
-        \ with that faction."
+        \ \n\nThe ship must be present at any waypoint with a faction present to negotiate\
+        \ a contract with that faction."
       operationId: negotiateContract
       parameters:
       - description: The ship's symbol.
@@ -1568,10 +1687,119 @@ paths:
       summary: Remove Mount
       tags:
       - Fleet
+  /my/ships/{shipSymbol}/scrap:
+    get:
+      description: Get the amount of value that will be returned when scrapping a
+        ship.
+      operationId: get-scrap-ship
+      parameters:
+      - description: The ship symbol.
+        explode: false
+        in: path
+        name: shipSymbol
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_scrap_ship_200_response'
+          description: Successfully retrieved the amount of value that will be returned
+            when scrapping a ship.
+      security:
+      - AgentToken: []
+      summary: Get Scrap Ship
+      tags:
+      - Fleet
+      x-preview-feature: true
+    post:
+      description: "Scrap a ship, removing it from the game and returning a portion\
+        \ of the ship's value to the agent. The ship must be docked in a waypoint\
+        \ that has the `Shipyard` trait in order to use this function. To preview\
+        \ the amount of value that will be returned, use the Get Ship action."
+      operationId: scrap-ship
+      parameters:
+      - description: The ship symbol.
+        explode: false
+        in: path
+        name: shipSymbol
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scrap_ship_200_response'
+          description: Ship scrapped successfully.
+      security:
+      - AgentToken: []
+      summary: Scrap Ship
+      tags:
+      - Fleet
+      x-preview-feature: true
+  /my/ships/{shipSymbol}/repair:
+    get:
+      description: Get the cost of repairing a ship.
+      operationId: get-repair-ship
+      parameters:
+      - description: The ship symbol.
+        explode: false
+        in: path
+        name: shipSymbol
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_repair_ship_200_response'
+          description: Successfully retrieved the cost of repairing a ship.
+      security:
+      - AgentToken: []
+      summary: Get Repair Ship
+      tags:
+      - Fleet
+      x-preview-feature: true
+    post:
+      description: "Repair a ship, restoring the ship to maximum condition. The ship\
+        \ must be docked at a waypoint that has the `Shipyard` trait in order to use\
+        \ this function. To preview the cost of repairing the ship, use the Get action."
+      operationId: repair-ship
+      parameters:
+      - description: The ship symbol.
+        explode: false
+        in: path
+        name: shipSymbol
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/repair_ship_200_response'
+          description: Ship repaired successfully.
+      security:
+      - AgentToken: []
+      summary: Repair Ship
+      tags:
+      - Fleet
+      x-preview-feature: true
 components:
   requestBodies: {}
   schemas:
-    FactionSymbols:
+    FactionSymbol:
       description: The symbol of the faction.
       enum:
       - COSMIC
@@ -1634,6 +1862,7 @@ components:
       required:
       - credits
       - headquarters
+      - shipCount
       - startingFaction
       - symbol
       type: object
@@ -1713,17 +1942,17 @@ components:
         symbol: null
         headquarters: headquarters
         traits:
-        - symbol: BUREAUCRATIC
+        - symbol: null
           name: name
           description: description
-        - symbol: BUREAUCRATIC
+        - symbol: null
           name: name
           description: description
         name: name
         description: description
       properties:
         symbol:
-          $ref: '#/components/schemas/FactionSymbols'
+          $ref: '#/components/schemas/FactionSymbol'
         name:
           description: Name of the faction.
           minLength: 1
@@ -1772,23 +2001,18 @@ components:
               x: 7
               "y": 9
               type: null
-            departure:
-              symbol: symbol
-              systemSymbol: systemSymbol
-              x: 7
-              "y": 9
-              type: null
           systemSymbol: systemSymbol
           waypointSymbol: waypointSymbol
           flightMode: null
           status: null
         engine:
           symbol: ENGINE_IMPULSE_DRIVE_I
-          condition: 66
+          condition: 0.9018348186070783
+          integrity: 0.6438423552598547
           requirements:
-            slots: 5
-            power: 1
-            crew: 4
+            slots: 9
+            power: 4
+            crew: 5
           name: name
           description: description
           speed: 1
@@ -1800,11 +2024,12 @@ components:
           capacity: 0
         reactor:
           symbol: REACTOR_SOLAR_I
-          condition: 99
+          condition: 0.9369310271410669
+          integrity: 0.6683562403749608
           requirements:
-            slots: 5
-            power: 1
-            crew: 4
+            slots: 9
+            power: 4
+            crew: 5
           name: name
           description: description
           powerOutput: 1
@@ -1816,9 +2041,9 @@ components:
         mounts:
         - symbol: MOUNT_GAS_SIPHON_I
           requirements:
-            slots: 5
-            power: 1
-            crew: 4
+            slots: 9
+            power: 4
+            crew: 5
           strength: 0
           name: name
           description: description
@@ -1827,9 +2052,9 @@ components:
           - QUARTZ_SAND
         - symbol: MOUNT_GAS_SIPHON_I
           requirements:
-            slots: 5
-            power: 1
-            crew: 4
+            slots: 9
+            power: 4
+            crew: 5
           strength: 0
           name: name
           description: description
@@ -1843,11 +2068,11 @@ components:
         cargo:
           units: 0
           inventory:
-          - symbol: symbol
+          - symbol: null
             name: name
             description: description
             units: 1
-          - symbol: symbol
+          - symbol: null
             name: name
             description: description
             units: 1
@@ -1855,18 +2080,18 @@ components:
         modules:
         - symbol: MODULE_MINERAL_PROCESSOR_I
           requirements:
-            slots: 5
-            power: 1
-            crew: 4
+            slots: 9
+            power: 4
+            crew: 5
           name: name
           range: 0
           description: description
           capacity: 0
         - symbol: MODULE_MINERAL_PROCESSOR_I
           requirements:
-            slots: 5
-            power: 1
-            crew: 4
+            slots: 9
+            power: 4
+            crew: 5
           name: name
           range: 0
           description: description
@@ -1880,12 +2105,13 @@ components:
           capacity: 4
         frame:
           symbol: FRAME_PROBE
-          condition: 10
+          condition: 0.10246457001441578
+          integrity: 0.14894159098541704
           moduleSlots: 0
           requirements:
-            slots: 5
-            power: 1
-            crew: 4
+            slots: 9
+            power: 4
+            crew: 5
           fuelCapacity: 0
           name: name
           description: description
@@ -2034,16 +2260,107 @@ components:
           total: 6
           page: 1
           limit: 20
+    WaypointType:
+      description: The type of waypoint.
+      enum:
+      - PLANET
+      - GAS_GIANT
+      - MOON
+      - ORBITAL_STATION
+      - JUMP_GATE
+      - ASTEROID_FIELD
+      - ASTEROID
+      - ENGINEERED_ASTEROID
+      - ASTEROID_BASE
+      - NEBULA
+      - DEBRIS_FIELD
+      - GRAVITY_WELL
+      - ARTIFICIAL_GRAVITY_WELL
+      - FUEL_STATION
+      type: string
+    WaypointTraitSymbol:
+      description: The unique identifier of the trait.
+      enum:
+      - UNCHARTED
+      - UNDER_CONSTRUCTION
+      - MARKETPLACE
+      - SHIPYARD
+      - OUTPOST
+      - SCATTERED_SETTLEMENTS
+      - SPRAWLING_CITIES
+      - MEGA_STRUCTURES
+      - PIRATE_BASE
+      - OVERCROWDED
+      - HIGH_TECH
+      - CORRUPT
+      - BUREAUCRATIC
+      - TRADING_HUB
+      - INDUSTRIAL
+      - BLACK_MARKET
+      - RESEARCH_FACILITY
+      - MILITARY_BASE
+      - SURVEILLANCE_OUTPOST
+      - EXPLORATION_OUTPOST
+      - MINERAL_DEPOSITS
+      - COMMON_METAL_DEPOSITS
+      - PRECIOUS_METAL_DEPOSITS
+      - RARE_METAL_DEPOSITS
+      - METHANE_POOLS
+      - ICE_CRYSTALS
+      - EXPLOSIVE_GASES
+      - STRONG_MAGNETOSPHERE
+      - VIBRANT_AURORAS
+      - SALT_FLATS
+      - CANYONS
+      - PERPETUAL_DAYLIGHT
+      - PERPETUAL_OVERCAST
+      - DRY_SEABEDS
+      - MAGMA_SEAS
+      - SUPERVOLCANOES
+      - ASH_CLOUDS
+      - VAST_RUINS
+      - MUTATED_FLORA
+      - TERRAFORMED
+      - EXTREME_TEMPERATURES
+      - EXTREME_PRESSURE
+      - DIVERSE_LIFE
+      - SCARCE_LIFE
+      - FOSSILS
+      - WEAK_GRAVITY
+      - STRONG_GRAVITY
+      - CRUSHING_GRAVITY
+      - TOXIC_ATMOSPHERE
+      - CORROSIVE_ATMOSPHERE
+      - BREATHABLE_ATMOSPHERE
+      - THIN_ATMOSPHERE
+      - JOVIAN
+      - ROCKY
+      - VOLCANIC
+      - FROZEN
+      - SWAMP
+      - BARREN
+      - TEMPERATE
+      - JUNGLE
+      - OCEAN
+      - RADIOACTIVE
+      - MICRO_GRAVITY_ANOMALIES
+      - DEBRIS_CLUSTER
+      - DEEP_CRATERS
+      - SHALLOW_CRATERS
+      - UNSTABLE_COMPOSITION
+      - HOLLOWED_INTERIOR
+      - STRIPPED
+      type: string
     Waypoint:
       description: "A waypoint is a location that ships can travel to such as a Planet,\
         \ Moon or Space Station."
       example:
         symbol: symbol
         traits:
-        - symbol: UNCHARTED
+        - symbol: null
           name: name
           description: description
-        - symbol: UNCHARTED
+        - symbol: null
           name: name
           description: description
         systemSymbol: systemSymbol
@@ -2053,24 +2370,38 @@ components:
         x: 0
         "y": 6
         type: null
+        modifiers:
+        - symbol: null
+          name: name
+          description: description
+        - symbol: null
+          name: name
+          description: description
         chart:
           submittedBy: submittedBy
           waypointSymbol: waypointSymbol
           submittedOn: 2000-01-23T04:56:07.000+00:00
+        isUnderConstruction: true
         orbitals:
         - symbol: symbol
         - symbol: symbol
       properties:
         symbol:
-          description: Symbol fo the waypoint.
+          description: The symbol of the waypoint.
           minLength: 1
           type: string
+          x-faker:
+            fake:
+            - "X1-{{random.alphaNumeric(5)}}-{{random.alphaNumeric(5)}}"
         type:
           $ref: '#/components/schemas/WaypointType'
         systemSymbol:
-          description: The symbol of the system this waypoint belongs to.
+          description: The symbol of the system.
           minLength: 1
           type: string
+          x-faker:
+            fake:
+            - "X1-{{random.alphaNumeric(5)}}"
         x:
           description: Relative position of the waypoint on the system's x axis. This
             is not an absolute position in the universe.
@@ -2096,9 +2427,18 @@ components:
           items:
             $ref: '#/components/schemas/WaypointTrait'
           type: array
+        modifiers:
+          description: The modifiers of the waypoint.
+          items:
+            $ref: '#/components/schemas/WaypointModifier'
+          type: array
         chart:
           $ref: '#/components/schemas/Chart'
+        isUnderConstruction:
+          description: True if the waypoint is under construction.
+          type: boolean
       required:
+      - isUnderConstruction
       - orbitals
       - symbol
       - systemSymbol
@@ -2120,15 +2460,19 @@ components:
           description: description
         tradeGoods:
         - tradeVolume: 1
-          symbol: symbol
+          symbol: null
+          activity: null
           sellPrice: 0
           purchasePrice: 0
-          supply: SCARCE
+          type: EXPORT
+          supply: null
         - tradeVolume: 1
-          symbol: symbol
+          symbol: null
+          activity: null
           sellPrice: 0
           purchasePrice: 0
-          supply: SCARCE
+          type: EXPORT
+          supply: null
         exports:
         - symbol: null
           name: name
@@ -2207,23 +2551,26 @@ components:
         - type: null
         symbol: symbol
         ships:
-        - engine:
+        - activity: null
+          engine:
             symbol: ENGINE_IMPULSE_DRIVE_I
-            condition: 66
+            condition: 0.9018348186070783
+            integrity: 0.6438423552598547
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             description: description
             speed: 1
           reactor:
             symbol: REACTOR_SOLAR_I
-            condition: 99
+            condition: 0.9369310271410669
+            integrity: 0.6683562403749608
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             description: description
             powerOutput: 1
@@ -2232,9 +2579,9 @@ components:
           mounts:
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             strength: 0
             name: name
             description: description
@@ -2243,9 +2590,9 @@ components:
             - QUARTZ_SAND
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             strength: 0
             name: name
             description: description
@@ -2254,33 +2601,35 @@ components:
             - QUARTZ_SAND
           purchasePrice: 6
           type: null
+          supply: null
           modules:
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             range: 0
             description: description
             capacity: 0
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             range: 0
             description: description
             capacity: 0
           frame:
             symbol: FRAME_PROBE
-            condition: 10
+            condition: 0.10246457001441578
+            integrity: 0.14894159098541704
             moduleSlots: 0
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             fuelCapacity: 0
             name: name
             description: description
@@ -2288,23 +2637,26 @@ components:
           crew:
             required: 1
             capacity: 5
-        - engine:
+        - activity: null
+          engine:
             symbol: ENGINE_IMPULSE_DRIVE_I
-            condition: 66
+            condition: 0.9018348186070783
+            integrity: 0.6438423552598547
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             description: description
             speed: 1
           reactor:
             symbol: REACTOR_SOLAR_I
-            condition: 99
+            condition: 0.9369310271410669
+            integrity: 0.6683562403749608
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             description: description
             powerOutput: 1
@@ -2313,9 +2665,9 @@ components:
           mounts:
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             strength: 0
             name: name
             description: description
@@ -2324,9 +2676,9 @@ components:
             - QUARTZ_SAND
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             strength: 0
             name: name
             description: description
@@ -2335,33 +2687,35 @@ components:
             - QUARTZ_SAND
           purchasePrice: 6
           type: null
+          supply: null
           modules:
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             range: 0
             description: description
             capacity: 0
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             range: 0
             description: description
             capacity: 0
           frame:
             symbol: FRAME_PROBE
-            condition: 10
+            condition: 0.10246457001441578
+            integrity: 0.14894159098541704
             moduleSlots: 0
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             fuelCapacity: 0
             name: name
             description: description
@@ -2373,11 +2727,13 @@ components:
         transactions:
         - waypointSymbol: waypointSymbol
           price: 0
+          shipType: shipType
           shipSymbol: shipSymbol
           agentSymbol: agentSymbol
           timestamp: 2000-01-23T04:56:07.000+00:00
         - waypointSymbol: waypointSymbol
           price: 0
+          shipType: shipType
           shipSymbol: shipSymbol
           agentSymbol: agentSymbol
           timestamp: 2000-01-23T04:56:07.000+00:00
@@ -2417,50 +2773,67 @@ components:
     JumpGate:
       description: ""
       example:
-        factionSymbol: factionSymbol
-        connectedSystems:
-        - symbol: symbol
-          distance: 5
-          sectorSymbol: sectorSymbol
-          factionSymbol: factionSymbol
-          x: 6
-          "y": 1
-          type: null
-        - symbol: symbol
-          distance: 5
-          sectorSymbol: sectorSymbol
-          factionSymbol: factionSymbol
-          x: 6
-          "y": 1
-          type: null
-        jumpRange: 0.8008281904610115
+        symbol: symbol
+        connections:
+        - connections
+        - connections
       properties:
-        jumpRange:
-          description: The maximum jump range of the gate.
-          type: number
-        factionSymbol:
-          description: The symbol of the faction that owns the gate.
+        symbol:
+          description: The symbol of the waypoint.
+          minLength: 1
           type: string
-        connectedSystems:
-          description: The systems within range of the gate that have a corresponding
-            gate.
+          x-faker:
+            fake:
+            - "X1-{{random.alphaNumeric(5)}}-{{random.alphaNumeric(5)}}"
+        connections:
+          description: All the gates that are connected to this waypoint.
           items:
-            $ref: '#/components/schemas/ConnectedSystem'
+            description: The symbol of the waypoint that has a corresponding gate.
+            type: string
           type: array
       required:
-      - connectedSystems
-      - jumpRange
+      - connections
+      - symbol
+      type: object
+    Construction:
+      description: The construction details of a waypoint.
+      example:
+        symbol: symbol
+        materials:
+        - tradeSymbol: null
+          fulfilled: 6
+          required: 0
+        - tradeSymbol: null
+          fulfilled: 6
+          required: 0
+        isComplete: true
+      properties:
+        symbol:
+          description: The symbol of the waypoint.
+          type: string
+        materials:
+          description: The materials required to construct the waypoint.
+          items:
+            $ref: '#/components/schemas/ConstructionMaterial'
+          type: array
+        isComplete:
+          description: Whether the waypoint has been constructed.
+          type: boolean
+      required:
+      - isComplete
+      - materials
+      - symbol
       type: object
     ShipCargo:
       description: Ship cargo details.
       example:
         units: 0
         inventory:
-        - symbol: symbol
+        - symbol: null
           name: name
           description: description
           units: 1
-        - symbol: symbol
+        - symbol: null
           name: name
           description: description
           units: 1
@@ -2489,6 +2862,7 @@ components:
       enum:
       - SHIP_PROBE
       - SHIP_MINING_DRONE
+      - SHIP_SIPHON_DRONE
       - SHIP_INTERCEPTOR
       - SHIP_LIGHT_HAULER
       - SHIP_COMMAND_FRIGATE
@@ -2497,20 +2871,30 @@ components:
       - SHIP_LIGHT_SHUTTLE
       - SHIP_ORE_HOUND
       - SHIP_REFINING_FREIGHTER
+      - SHIP_SURVEYOR
       type: string
     ShipyardTransaction:
       description: Results of a transaction with a shipyard.
       example:
         waypointSymbol: waypointSymbol
         price: 0
+        shipType: shipType
         shipSymbol: shipSymbol
         agentSymbol: agentSymbol
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         waypointSymbol:
-          description: The symbol of the waypoint where the transaction took place.
+          description: The symbol of the waypoint.
+          minLength: 1
           type: string
+          x-faker:
+            fake:
+            - "X1-{{random.alphaNumeric(5)}}-{{random.alphaNumeric(5)}}"
         shipSymbol:
+          deprecated: true
+          description: The symbol of the ship that was the subject of the transaction.
+          type: string
+        shipType:
           description: The symbol of the ship that was the subject of the transaction.
           type: string
         price:
@@ -2528,6 +2912,7 @@ components:
       - agentSymbol
       - price
       - shipSymbol
+      - shipType
       - timestamp
       - waypointSymbol
       type: object
@@ -2549,24 +2934,25 @@ components:
             x: 7
             "y": 9
             type: null
-          departure:
-            symbol: symbol
-            systemSymbol: systemSymbol
-            x: 7
-            "y": 9
-            type: null
         systemSymbol: systemSymbol
         waypointSymbol: waypointSymbol
         flightMode: null
         status: null
       properties:
         systemSymbol:
-          description: The system symbol of the ship's current location.
+          description: The symbol of the system.
+          minLength: 1
           type: string
+          x-faker:
+            fake:
+            - "X1-{{random.alphaNumeric(5)}}"
         waypointSymbol:
-          description: "The waypoint symbol of the ship's current location, or if\
-            \ the ship is in-transit, the waypoint symbol of the ship's destination."
+          description: The symbol of the waypoint.
+          minLength: 1
           type: string
+          x-faker:
+            fake:
+            - "X1-{{random.alphaNumeric(5)}}-{{random.alphaNumeric(5)}}"
         route:
           $ref: '#/components/schemas/ShipNavRoute'
         status:
@@ -2620,7 +3006,11 @@ components:
       properties:
         waypointSymbol:
           description: The symbol of the waypoint.
+          minLength: 1
           type: string
+          x-faker:
+            fake:
+            - "X1-{{random.alphaNumeric(5)}}-{{random.alphaNumeric(5)}}"
         submittedBy:
           description: The agent that submitted the chart for this waypoint.
           type: string
@@ -2696,6 +3086,76 @@ components:
       - shipSymbol
       - yield
       type: object
+    ShipConditionEvent:
+      description: "An event that represents damage or wear to a ship's reactor, frame,\
+        \ or engine, reducing the condition of the ship."
+      properties:
+        symbol:
+          enum:
+          - REACTOR_OVERLOAD
+          - ENERGY_SPIKE_FROM_MINERAL
+          - SOLAR_FLARE_INTERFERENCE
+          - COOLANT_LEAK
+          - POWER_DISTRIBUTION_FLUCTUATION
+          - MAGNETIC_FIELD_DISRUPTION
+          - HULL_MICROMETEORITE_STRIKES
+          - STRUCTURAL_STRESS_FRACTURES
+          - CORROSIVE_MINERAL_CONTAMINATION
+          - THERMAL_EXPANSION_MISMATCH
+          - VIBRATION_DAMAGE_FROM_DRILLING
+          - ELECTROMAGNETIC_FIELD_INTERFERENCE
+          - IMPACT_WITH_EXTRACTED_DEBRIS
+          - FUEL_EFFICIENCY_DEGRADATION
+          - COOLANT_SYSTEM_AGEING
+          - DUST_MICROABRASIONS
+          - THRUSTER_NOZZLE_WEAR
+          - EXHAUST_PORT_CLOGGING
+          - BEARING_LUBRICATION_FADE
+          - SENSOR_CALIBRATION_DRIFT
+          - HULL_MICROMETEORITE_DAMAGE
+          - SPACE_DEBRIS_COLLISION
+          - THERMAL_STRESS
+          - VIBRATION_OVERLOAD
+          - PRESSURE_DIFFERENTIAL_STRESS
+          - ELECTROMAGNETIC_SURGE_EFFECTS
+          - ATMOSPHERIC_ENTRY_HEAT
+          type: string
+        component:
+          enum:
+          - FRAME
+          - REACTOR
+          - ENGINE
+          type: string
+        name:
+          description: The name of the event.
+          type: string
+        description:
+          description: A description of the event.
+          type: string
+      required:
+      - component
+      - description
+      - name
+      - symbol
+      type: object
+    Siphon:
+      description: Siphon details.
+      example:
+        yield:
+          symbol: null
+          units: 0
+        shipSymbol: shipSymbol
+      properties:
+        shipSymbol:
+          description: Symbol of the ship that executed the siphon.
+          minLength: 1
+          type: string
+        yield:
+          $ref: '#/components/schemas/SiphonYield'
+      required:
+      - shipSymbol
+      - yield
+      type: object
     TradeSymbol:
       description: The good's symbol.
       enum:
@@ -2728,6 +3188,7 @@ components:
       - MERITIUM_ORE
       - HYDROCARBON
       - ANTIMATTER
+      - FAB_MATS
       - FERTILIZERS
       - FABRICS
       - FOOD
@@ -2741,6 +3202,7 @@ components:
       - AMMUNITION
       - ELECTRONICS
       - SHIP_PLATING
+      - SHIP_PARTS
       - EQUIPMENT
       - FUEL
       - MEDICINE
@@ -2750,6 +3212,7 @@ components:
       - PLASTICS
       - POLYNUCLEOTIDES
       - BIOCOMPOSITES
+      - QUANTUM_STABILIZERS
       - NANOBOTS
       - AI_MAINFRAMES
       - QUANTUM_DRIVES
@@ -2768,6 +3231,21 @@ components:
       - NOVEL_LIFEFORMS
       - BOTANICAL_SPECIMENS
       - CULTURAL_ARTIFACTS
+      - FRAME_PROBE
+      - FRAME_DRONE
+      - FRAME_INTERCEPTOR
+      - FRAME_RACER
+      - FRAME_FIGHTER
+      - FRAME_FRIGATE
+      - FRAME_SHUTTLE
+      - FRAME_EXPLORER
+      - FRAME_MINER
+      - FRAME_LIGHT_FREIGHTER
+      - FRAME_HEAVY_FREIGHTER
+      - FRAME_TRANSPORT
+      - FRAME_DESTROYER
+      - FRAME_CRUISER
+      - FRAME_CARRIER
       - REACTOR_SOLAR_I
       - REACTOR_FUSION_I
       - REACTOR_FISSION_I
@@ -2778,13 +3256,14 @@ components:
       - ENGINE_ION_DRIVE_II
       - ENGINE_HYPER_DRIVE_I
       - MODULE_MINERAL_PROCESSOR_I
+      - MODULE_GAS_PROCESSOR_I
       - MODULE_CARGO_HOLD_I
+      - MODULE_CARGO_HOLD_II
+      - MODULE_CARGO_HOLD_III
       - MODULE_CREW_QUARTERS_I
       - MODULE_ENVOY_QUARTERS_I
       - MODULE_PASSENGER_CABIN_I
       - MODULE_MICRO_REFINERY_I
-      - MODULE_ORE_REFINERY_I
-      - MODULE_FUEL_REFINERY_I
       - MODULE_SCIENCE_LAB_I
       - MODULE_JUMP_DRIVE_I
       - MODULE_JUMP_DRIVE_II
@@ -2794,6 +3273,8 @@ components:
       - MODULE_WARP_DRIVE_III
       - MODULE_SHIELD_GENERATOR_I
       - MODULE_SHIELD_GENERATOR_II
+      - MODULE_ORE_REFINERY_I
+      - MODULE_FUEL_REFINERY_I
       - MOUNT_GAS_SIPHON_I
       - MOUNT_GAS_SIPHON_II
       - MOUNT_GAS_SIPHON_III
@@ -2809,39 +3290,18 @@ components:
       - MOUNT_LASER_CANNON_I
       - MOUNT_MISSILE_LAUNCHER_I
       - MOUNT_TURRET_I
-      type: string
-    ShipFuel:
-      description: Details of the ship's fuel tanks including how much fuel was consumed
-        during the last transit or action.
-      example:
-        consumed:
-          amount: 0
-          timestamp: 2000-01-23T04:56:07.000+00:00
-        current: 0
-        capacity: 0
-      properties:
-        current:
-          description: The current amount of fuel in the ship's tanks.
-          minimum: 0
-          type: integer
-        capacity:
-          description: The maximum amount of fuel the ship's tanks can hold.
-          minimum: 0
-          type: integer
-        consumed:
-          $ref: '#/components/schemas/ShipFuel_consumed'
-      required:
-      - capacity
-      - current
-      type: object
-    ShipNavFlightMode:
-      default: CRUISE
-      description: The ship's set speed when traveling between waypoints or systems.
-      enum:
-      - DRIFT
-      - STEALTH
-      - CRUISE
-      - BURN
+      - SHIP_PROBE
+      - SHIP_MINING_DRONE
+      - SHIP_SIPHON_DRONE
+      - SHIP_INTERCEPTOR
+      - SHIP_LIGHT_HAULER
+      - SHIP_COMMAND_FRIGATE
+      - SHIP_EXPLORER
+      - SHIP_HEAVY_FREIGHTER
+      - SHIP_LIGHT_SHUTTLE
+      - SHIP_ORE_HOUND
+      - SHIP_REFINING_FREIGHTER
+      - SHIP_SURVEYOR
       type: string
     MarketTransaction:
       description: Result of a transaction with a market.
@@ -2856,8 +3316,12 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         waypointSymbol:
-          description: The symbol of the waypoint where the transaction took place.
+          description: The symbol of the waypoint.
+          minLength: 1
           type: string
+          x-faker:
+            fake:
+            - "X1-{{random.alphaNumeric(5)}}-{{random.alphaNumeric(5)}}"
         shipSymbol:
           description: The symbol of the ship that made the transaction.
           type: string
@@ -2896,6 +3360,39 @@ components:
       - units
       - waypointSymbol
       type: object
+    ShipFuel:
+      description: Details of the ship's fuel tanks including how much fuel was consumed
+        during the last transit or action.
+      example:
+        consumed:
+          amount: 0
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        current: 0
+        capacity: 0
+      properties:
+        current:
+          description: The current amount of fuel in the ship's tanks.
+          minimum: 0
+          type: integer
+        capacity:
+          description: The maximum amount of fuel the ship's tanks can hold.
+          minimum: 0
+          type: integer
+        consumed:
+          $ref: '#/components/schemas/ShipFuel_consumed'
+      required:
+      - capacity
+      - current
+      type: object
+    ShipNavFlightMode:
+      default: CRUISE
+      description: The ship's set speed when traveling between waypoints or systems.
+      enum:
+      - DRIFT
+      - STEALTH
+      - CRUISE
+      - BURN
+      type: string
     ScannedSystem:
       description: Details of a system was that scanned.
       example:
@@ -2938,10 +3435,10 @@ components:
       example:
         symbol: symbol
         traits:
-        - symbol: UNCHARTED
+        - symbol: null
           name: name
           description: description
-        - symbol: UNCHARTED
+        - symbol: null
           name: name
           description: description
         systemSymbol: systemSymbol
@@ -2959,15 +3456,21 @@ components:
         - symbol: symbol
       properties:
         symbol:
-          description: Symbol of the waypoint.
+          description: The symbol of the waypoint.
           minLength: 1
           type: string
+          x-faker:
+            fake:
+            - "X1-{{random.alphaNumeric(5)}}-{{random.alphaNumeric(5)}}"
         type:
           $ref: '#/components/schemas/WaypointType'
         systemSymbol:
-          description: Symbol of the system.
+          description: The symbol of the system.
           minLength: 1
           type: string
+          x-faker:
+            fake:
+            - "X1-{{random.alphaNumeric(5)}}"
         x:
           description: Position in the universe in the x axis.
           type: integer
@@ -3013,12 +3516,6 @@ components:
               "y": 9
               type: null
             destination:
-              symbol: symbol
-              systemSymbol: systemSymbol
-              x: 7
-              "y": 9
-              type: null
-            departure:
               symbol: symbol
               systemSymbol: systemSymbol
               x: 7
@@ -3071,9 +3568,9 @@ components:
       example:
         symbol: MOUNT_GAS_SIPHON_I
         requirements:
-          slots: 5
-          power: 1
-          crew: 4
+          slots: 9
+          power: 4
+          crew: 5
         strength: 0
         name: name
         description: description
@@ -3173,8 +3670,72 @@ components:
       - tradeSymbol
       - waypointSymbol
       type: object
+    ScrapTransaction:
+      description: Result of a scrap transaction.
+      example:
+        totalPrice: 0
+        waypointSymbol: waypointSymbol
+        shipSymbol: shipSymbol
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        waypointSymbol:
+          description: The symbol of the waypoint.
+          minLength: 1
+          type: string
+          x-faker:
+            fake:
+            - "X1-{{random.alphaNumeric(5)}}-{{random.alphaNumeric(5)}}"
+        shipSymbol:
+          description: The symbol of the ship.
+          type: string
+        totalPrice:
+          description: The total price of the transaction.
+          minimum: 0
+          type: integer
+        timestamp:
+          description: The timestamp of the transaction.
+          format: date-time
+          type: string
+      required:
+      - shipSymbol
+      - timestamp
+      - totalPrice
+      - waypointSymbol
+      type: object
+    RepairTransaction:
+      description: Result of a repair transaction.
+      example:
+        totalPrice: 0
+        waypointSymbol: waypointSymbol
+        shipSymbol: shipSymbol
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        waypointSymbol:
+          description: The symbol of the waypoint.
+          minLength: 1
+          type: string
+          x-faker:
+            fake:
+            - "X1-{{random.alphaNumeric(5)}}-{{random.alphaNumeric(5)}}"
+        shipSymbol:
+          description: The symbol of the ship.
+          type: string
+        totalPrice:
+          description: The total price of the transaction.
+          minimum: 0
+          type: integer
+        timestamp:
+          description: The timestamp of the transaction.
+          format: date-time
+          type: string
+      required:
+      - shipSymbol
+      - timestamp
+      - totalPrice
+      - waypointSymbol
+      type: object
     ContractTerms:
-      description: Terms of the contract needed to fulfill it.
+      description: The terms to fulfill the contract.
       example:
         deliver:
         - tradeSymbol: tradeSymbol
@@ -3207,73 +3768,12 @@ components:
       type: object
     FactionTrait:
       example:
-        symbol: BUREAUCRATIC
+        symbol: null
         name: name
         description: description
       properties:
         symbol:
-          description: The unique identifier of the trait.
-          enum:
-          - BUREAUCRATIC
-          - SECRETIVE
-          - CAPITALISTIC
-          - INDUSTRIOUS
-          - PEACEFUL
-          - DISTRUSTFUL
-          - WELCOMING
-          - SMUGGLERS
-          - SCAVENGERS
-          - REBELLIOUS
-          - EXILES
-          - PIRATES
-          - RAIDERS
-          - CLAN
-          - GUILD
-          - DOMINION
-          - FRINGE
-          - FORSAKEN
-          - ISOLATED
-          - LOCALIZED
-          - ESTABLISHED
-          - NOTABLE
-          - DOMINANT
-          - INESCAPABLE
-          - INNOVATIVE
-          - BOLD
-          - VISIONARY
-          - CURIOUS
-          - DARING
-          - EXPLORATORY
-          - RESOURCEFUL
-          - FLEXIBLE
-          - COOPERATIVE
-          - UNITED
-          - STRATEGIC
-          - INTELLIGENT
-          - RESEARCH_FOCUSED
-          - COLLABORATIVE
-          - PROGRESSIVE
-          - MILITARISTIC
-          - TECHNOLOGICALLY_ADVANCED
-          - AGGRESSIVE
-          - IMPERIALISTIC
-          - TREASURE_HUNTERS
-          - DEXTEROUS
-          - UNPREDICTABLE
-          - BRUTAL
-          - FLEETING
-          - ADAPTABLE
-          - SELF_SUFFICIENT
-          - DEFENSIVE
-          - PROUD
-          - DIVERSE
-          - INDEPENDENT
-          - SELF_INTERESTED
-          - FRAGMENTED
-          - COMMERCIAL
-          - FREE_MARKETS
-          - ENTREPRENEURIAL
-          type: string
+          $ref: '#/components/schemas/FactionTraitSymbol'
         name:
           description: The name of the trait.
           type: string
@@ -3362,12 +3862,13 @@ components:
         \ maneuverable."
       example:
         symbol: FRAME_PROBE
-        condition: 10
+        condition: 0.10246457001441578
+        integrity: 0.14894159098541704
         moduleSlots: 0
         requirements:
-          slots: 5
-          power: 1
-          crew: 4
+          slots: 9
+          power: 4
+          crew: 5
         fuelCapacity: 0
         name: name
         description: description
@@ -3399,11 +3900,24 @@ components:
           description: Description of the frame.
           type: string
         condition:
-          description: Condition is a range of 0 to 100 where 0 is completely worn
-            out and 100 is brand new.
-          maximum: 100
+          description: "The repairable condition of a component. A value of 0 indicates\
+            \ the component needs significant repairs, while a value of 1 indicates\
+            \ the component is in near perfect condition. As the condition of a component\
+            \ is repaired, the overall integrity of the component decreases."
+          format: double
+          maximum: 1
           minimum: 0
-          type: integer
+          type: number
+        integrity:
+          description: "The overall integrity of the component, which determines the\
+            \ performance of the component. A value of 0 indicates that the component\
+            \ is almost completely degraded, while a value of 1 indicates that the\
+            \ component is in near perfect condition. The integrity of the component\
+            \ is non-repairable, and represents permanent wear over time."
+          format: double
+          maximum: 1
+          minimum: 0
+          type: number
         moduleSlots:
           description: "The amount of slots that can be dedicated to modules installed\
             \ in the ship. Each installed module take up a number of slots, and once\
@@ -3424,8 +3938,10 @@ components:
         requirements:
           $ref: '#/components/schemas/ShipRequirements'
       required:
+      - condition
       - description
       - fuelCapacity
+      - integrity
       - moduleSlots
       - mountingPoints
       - name
@@ -3437,11 +3953,12 @@ components:
         the ship's systems and weapons.
       example:
         symbol: REACTOR_SOLAR_I
-        condition: 99
+        condition: 0.9369310271410669
+        integrity: 0.6683562403749608
         requirements:
-          slots: 5
-          power: 1
-          crew: 4
+          slots: 9
+          power: 4
+          crew: 5
         name: name
         description: description
         powerOutput: 1
@@ -3462,11 +3979,24 @@ components:
           description: Description of the reactor.
           type: string
         condition:
-          description: Condition is a range of 0 to 100 where 0 is completely worn
-            out and 100 is brand new.
-          maximum: 100
+          description: "The repairable condition of a component. A value of 0 indicates\
+            \ the component needs significant repairs, while a value of 1 indicates\
+            \ the component is in near perfect condition. As the condition of a component\
+            \ is repaired, the overall integrity of the component decreases."
+          format: double
+          maximum: 1
           minimum: 0
-          type: integer
+          type: number
+        integrity:
+          description: "The overall integrity of the component, which determines the\
+            \ performance of the component. A value of 0 indicates that the component\
+            \ is almost completely degraded, while a value of 1 indicates that the\
+            \ component is in near perfect condition. The integrity of the component\
+            \ is non-repairable, and represents permanent wear over time."
+          format: double
+          maximum: 1
+          minimum: 0
+          type: number
         powerOutput:
           description: "The amount of power provided by this reactor. The more power\
             \ a reactor provides to the ship, the lower the cooldown it gets when\
@@ -3476,7 +4006,9 @@ components:
         requirements:
           $ref: '#/components/schemas/ShipRequirements'
       required:
+      - condition
       - description
+      - integrity
       - name
       - powerOutput
       - requirements
@@ -3486,11 +4018,12 @@ components:
       description: The engine determines how quickly a ship travels between waypoints.
       example:
         symbol: ENGINE_IMPULSE_DRIVE_I
-        condition: 66
+        condition: 0.9018348186070783
+        integrity: 0.6438423552598547
         requirements:
-          slots: 5
-          power: 1
-          crew: 4
+          slots: 9
+          power: 4
+          crew: 5
         name: name
         description: description
         speed: 1
@@ -3510,11 +4043,24 @@ components:
           description: The description of the engine.
           type: string
         condition:
-          description: Condition is a range of 0 to 100 where 0 is completely worn
-            out and 100 is brand new.
-          maximum: 100
+          description: "The repairable condition of a component. A value of 0 indicates\
+            \ the component needs significant repairs, while a value of 1 indicates\
+            \ the component is in near perfect condition. As the condition of a component\
+            \ is repaired, the overall integrity of the component decreases."
+          format: double
+          maximum: 1
           minimum: 0
-          type: integer
+          type: number
+        integrity:
+          description: "The overall integrity of the component, which determines the\
+            \ performance of the component. A value of 0 indicates that the component\
+            \ is almost completely degraded, while a value of 1 indicates that the\
+            \ component is in near perfect condition. The integrity of the component\
+            \ is non-repairable, and represents permanent wear over time."
+          format: double
+          maximum: 1
+          minimum: 0
+          type: number
         speed:
           description: "The speed stat of this engine. The higher the speed, the faster\
             \ a ship can travel from one point to another. Reduces the time of arrival\
@@ -3524,7 +4070,9 @@ components:
         requirements:
           $ref: '#/components/schemas/ShipRequirements'
       required:
+      - condition
       - description
+      - integrity
       - name
       - requirements
       - speed
@@ -3536,9 +4084,9 @@ components:
       example:
         symbol: MODULE_MINERAL_PROCESSOR_I
         requirements:
-          slots: 5
-          power: 1
-          crew: 4
+          slots: 9
+          power: 4
+          crew: 5
         name: name
         range: 0
         description: description
@@ -3548,7 +4096,10 @@ components:
           description: The symbol of the module.
           enum:
           - MODULE_MINERAL_PROCESSOR_I
+          - MODULE_GAS_PROCESSOR_I
           - MODULE_CARGO_HOLD_I
+          - MODULE_CARGO_HOLD_II
+          - MODULE_CARGO_HOLD_III
           - MODULE_CREW_QUARTERS_I
           - MODULE_ENVOY_QUARTERS_I
           - MODULE_PASSENGER_CABIN_I
@@ -3591,7 +4142,7 @@ components:
       - symbol
       type: object
     SystemType:
-      description: The type of waypoint.
+      description: The type of system.
       enum:
       - NEUTRON_STAR
       - RED_STAR
@@ -3617,7 +4168,11 @@ components:
       properties:
         symbol:
           description: The symbol of the waypoint.
+          minLength: 1
           type: string
+          x-faker:
+            fake:
+            - "X1-{{random.alphaNumeric(5)}}-{{random.alphaNumeric(5)}}"
         type:
           $ref: '#/components/schemas/WaypointType'
         x:
@@ -3650,23 +4205,24 @@ components:
         symbol: null
       properties:
         symbol:
-          $ref: '#/components/schemas/FactionSymbols'
+          $ref: '#/components/schemas/FactionSymbol'
       required:
       - symbol
       type: object
-    WaypointType:
-      description: The type of waypoint.
-      enum:
-      - PLANET
-      - GAS_GIANT
-      - MOON
-      - ORBITAL_STATION
-      - JUMP_GATE
-      - ASTEROID_FIELD
-      - NEBULA
-      - DEBRIS_FIELD
-      - GRAVITY_WELL
+    WaypointSymbol:
+      description: The symbol of the waypoint.
+      minLength: 1
       type: string
+      x-faker:
+        fake:
+        - "X1-{{random.alphaNumeric(5)}}-{{random.alphaNumeric(5)}}"
+    SystemSymbol:
+      description: The symbol of the system.
+      minLength: 1
+      type: string
+      x-faker:
+        fake:
+        - "X1-{{random.alphaNumeric(5)}}"
     WaypointOrbital:
       description: An orbital is another waypoint that orbits a parent waypoint.
       example:
@@ -3685,79 +4241,37 @@ components:
         symbol: null
       properties:
         symbol:
-          $ref: '#/components/schemas/FactionSymbols'
+          $ref: '#/components/schemas/FactionSymbol'
       required:
       - symbol
       type: object
     WaypointTrait:
       example:
-        symbol: UNCHARTED
+        symbol: null
         name: name
         description: description
       properties:
         symbol:
-          description: The unique identifier of the trait.
-          enum:
-          - UNCHARTED
-          - MARKETPLACE
-          - SHIPYARD
-          - OUTPOST
-          - SCATTERED_SETTLEMENTS
-          - SPRAWLING_CITIES
-          - MEGA_STRUCTURES
-          - OVERCROWDED
-          - HIGH_TECH
-          - CORRUPT
-          - BUREAUCRATIC
-          - TRADING_HUB
-          - INDUSTRIAL
-          - BLACK_MARKET
-          - RESEARCH_FACILITY
-          - MILITARY_BASE
-          - SURVEILLANCE_OUTPOST
-          - EXPLORATION_OUTPOST
-          - MINERAL_DEPOSITS
-          - COMMON_METAL_DEPOSITS
-          - PRECIOUS_METAL_DEPOSITS
-          - RARE_METAL_DEPOSITS
-          - METHANE_POOLS
-          - ICE_CRYSTALS
-          - EXPLOSIVE_GASES
-          - STRONG_MAGNETOSPHERE
-          - VIBRANT_AURORAS
-          - SALT_FLATS
-          - CANYONS
-          - PERPETUAL_DAYLIGHT
-          - PERPETUAL_OVERCAST
-          - DRY_SEABEDS
-          - MAGMA_SEAS
-          - SUPERVOLCANOES
-          - ASH_CLOUDS
-          - VAST_RUINS
-          - MUTATED_FLORA
-          - TERRAFORMED
-          - EXTREME_TEMPERATURES
-          - EXTREME_PRESSURE
-          - DIVERSE_LIFE
-          - SCARCE_LIFE
-          - FOSSILS
-          - WEAK_GRAVITY
-          - STRONG_GRAVITY
-          - CRUSHING_GRAVITY
-          - TOXIC_ATMOSPHERE
-          - CORROSIVE_ATMOSPHERE
-          - BREATHABLE_ATMOSPHERE
-          - JOVIAN
-          - ROCKY
-          - VOLCANIC
-          - FROZEN
-          - SWAMP
-          - BARREN
-          - TEMPERATE
-          - JUNGLE
-          - OCEAN
-          - STRIPPED
+          $ref: '#/components/schemas/WaypointTraitSymbol'
+        name:
+          description: The name of the trait.
           type: string
+        description:
+          description: A description of the trait.
+          type: string
+      required:
+      - description
+      - name
+      - symbol
+      type: object
+    WaypointModifier:
+      example:
+        symbol: null
+        name: name
+        description: description
+      properties:
+        symbol:
+          $ref: '#/components/schemas/WaypointModifierSymbol'
         name:
           description: The name of the trait.
           type: string
@@ -3792,27 +4306,34 @@ components:
     MarketTradeGood:
       example:
         tradeVolume: 1
-        symbol: symbol
+        symbol: null
+        activity: null
         sellPrice: 0
         purchasePrice: 0
-        supply: SCARCE
+        type: EXPORT
+        supply: null
       properties:
         symbol:
-          description: The symbol of the trade good.
+          $ref: '#/components/schemas/TradeSymbol'
+        type:
+          description: "The type of trade good (export, import, or exchange)."
+          enum:
+          - EXPORT
+          - IMPORT
+          - EXCHANGE
           type: string
         tradeVolume:
-          description: "The typical volume flowing through the market for this type\
-            \ of good. The larger the trade volume, the more stable prices will be."
+          description: "This is the maximum number of units that can be purchased\
+            \ or sold at this market in a single trade for this good. Trade volume\
+            \ also gives an indication of price volatility. A market with a low trade\
+            \ volume will have large price swings, while high trade volume will be\
+            \ more resilient to price changes."
           minimum: 1
           type: integer
         supply:
-          description: A rough estimate of the total supply of this good in the marketplace.
-          enum:
-          - SCARCE
-          - LIMITED
-          - MODERATE
-          - ABUNDANT
-          type: string
+          $ref: '#/components/schemas/SupplyLevel'
+        activity:
+          $ref: '#/components/schemas/ActivityLevel'
         purchasePrice:
           description: The price at which this good can be purchased from the market.
           minimum: 0
@@ -3827,27 +4348,31 @@ components:
       - supply
       - symbol
       - tradeVolume
+      - type
       type: object
     ShipyardShip:
       description: ""
       example:
+        activity: null
         engine:
           symbol: ENGINE_IMPULSE_DRIVE_I
-          condition: 66
+          condition: 0.9018348186070783
+          integrity: 0.6438423552598547
           requirements:
-            slots: 5
-            power: 1
-            crew: 4
+            slots: 9
+            power: 4
+            crew: 5
           name: name
           description: description
           speed: 1
         reactor:
           symbol: REACTOR_SOLAR_I
-          condition: 99
+          condition: 0.9369310271410669
+          integrity: 0.6683562403749608
           requirements:
-            slots: 5
-            power: 1
-            crew: 4
+            slots: 9
+            power: 4
+            crew: 5
           name: name
           description: description
           powerOutput: 1
@@ -3856,9 +4381,9 @@ components:
         mounts:
         - symbol: MOUNT_GAS_SIPHON_I
           requirements:
-            slots: 5
-            power: 1
-            crew: 4
+            slots: 9
+            power: 4
+            crew: 5
           strength: 0
           name: name
           description: description
@@ -3867,9 +4392,9 @@ components:
           - QUARTZ_SAND
         - symbol: MOUNT_GAS_SIPHON_I
           requirements:
-            slots: 5
-            power: 1
-            crew: 4
+            slots: 9
+            power: 4
+            crew: 5
           strength: 0
           name: name
           description: description
@@ -3878,33 +4403,35 @@ components:
           - QUARTZ_SAND
         purchasePrice: 6
         type: null
+        supply: null
         modules:
         - symbol: MODULE_MINERAL_PROCESSOR_I
           requirements:
-            slots: 5
-            power: 1
-            crew: 4
+            slots: 9
+            power: 4
+            crew: 5
           name: name
           range: 0
           description: description
           capacity: 0
         - symbol: MODULE_MINERAL_PROCESSOR_I
           requirements:
-            slots: 5
-            power: 1
-            crew: 4
+            slots: 9
+            power: 4
+            crew: 5
           name: name
           range: 0
           description: description
           capacity: 0
         frame:
           symbol: FRAME_PROBE
-          condition: 10
+          condition: 0.10246457001441578
+          integrity: 0.14894159098541704
           moduleSlots: 0
           requirements:
-            slots: 5
-            power: 1
-            crew: 4
+            slots: 9
+            power: 4
+            crew: 5
           fuelCapacity: 0
           name: name
           description: description
@@ -3919,6 +4446,10 @@ components:
           type: string
         description:
           type: string
+        supply:
+          $ref: '#/components/schemas/SupplyLevel'
+        activity:
+          $ref: '#/components/schemas/ActivityLevel'
         purchasePrice:
           type: integer
         frame:
@@ -3947,59 +4478,40 @@ components:
       - name
       - purchasePrice
       - reactor
+      - supply
+      - type
       type: object
-    ConnectedSystem:
+    ConstructionMaterial:
+      description: The details of the required construction materials for a given
+        waypoint under construction.
       example:
-        symbol: symbol
-        distance: 5
-        sectorSymbol: sectorSymbol
-        factionSymbol: factionSymbol
-        x: 6
-        "y": 1
-        type: null
+        tradeSymbol: null
+        fulfilled: 6
+        required: 0
       properties:
-        symbol:
-          description: The symbol of the system.
-          minLength: 1
-          type: string
-        sectorSymbol:
-          description: The sector of this system.
-          minLength: 1
-          type: string
-        type:
-          $ref: '#/components/schemas/SystemType'
-        factionSymbol:
-          description: The symbol of the faction that owns the connected jump gate
-            in the system.
-          type: string
-        x:
-          description: Position in the universe in the x axis.
+        tradeSymbol:
+          $ref: '#/components/schemas/TradeSymbol'
+        required:
+          description: The number of units required.
           type: integer
-        "y":
-          description: Position in the universe in the y axis.
-          type: integer
-        distance:
-          description: The distance of this system to the connected Jump Gate.
+        fulfilled:
+          description: The number of units fulfilled toward the required amount.
           type: integer
       required:
-      - distance
-      - sectorSymbol
-      - symbol
-      - type
-      - x
-      - "y"
+      - fulfilled
+      - required
+      - tradeSymbol
       type: object
     ShipCargoItem:
       description: The type of cargo item and the number of units.
       example:
-        symbol: symbol
+        symbol: null
         name: name
         description: description
         units: 1
       properties:
         symbol:
-          description: The unique identifier of the cargo item type.
-          type: string
+          $ref: '#/components/schemas/TradeSymbol'
         name:
           description: The name of the cargo item type.
           type: string
@@ -4034,16 +4546,8 @@ components:
           x: 7
           "y": 9
           type: null
-        departure:
-          symbol: symbol
-          systemSymbol: systemSymbol
-          x: 7
-          "y": 9
-          type: null
       properties:
         destination:
-          $ref: '#/components/schemas/ShipNavRouteWaypoint'
-        departure:
           $ref: '#/components/schemas/ShipNavRouteWaypoint'
         origin:
           $ref: '#/components/schemas/ShipNavRouteWaypoint'
@@ -4058,7 +4562,6 @@ components:
           type: string
       required:
       - arrival
-      - departure
       - departureTime
       - destination
       - origin
@@ -4097,12 +4600,28 @@ components:
       - symbol
       - units
       type: object
+    SiphonYield:
+      description: A yield from the siphon operation.
+      example:
+        symbol: null
+        units: 0
+      properties:
+        symbol:
+          $ref: '#/components/schemas/TradeSymbol'
+        units:
+          description: The number of units siphoned that were placed into the ship's
+            cargo hold.
+          type: integer
+      required:
+      - symbol
+      - units
+      type: object
     ShipRequirements:
       description: The requirements for installation on a ship
       example:
-        slots: 5
-        power: 1
-        crew: 4
+        slots: 9
+        power: 4
+        crew: 5
       properties:
         power:
           description: The amount of power required from the reactor.
@@ -4115,6 +4634,7 @@ components:
           type: integer
       type: object
     ContractPayment:
+      description: Payments for the contract.
       example:
         onFulfilled: 5
         onAccepted: 1
@@ -4158,6 +4678,69 @@ components:
       - unitsFulfilled
       - unitsRequired
       type: object
+    FactionTraitSymbol:
+      description: The unique identifier of the trait.
+      enum:
+      - BUREAUCRATIC
+      - SECRETIVE
+      - CAPITALISTIC
+      - INDUSTRIOUS
+      - PEACEFUL
+      - DISTRUSTFUL
+      - WELCOMING
+      - SMUGGLERS
+      - SCAVENGERS
+      - REBELLIOUS
+      - EXILES
+      - PIRATES
+      - RAIDERS
+      - CLAN
+      - GUILD
+      - DOMINION
+      - FRINGE
+      - FORSAKEN
+      - ISOLATED
+      - LOCALIZED
+      - ESTABLISHED
+      - NOTABLE
+      - DOMINANT
+      - INESCAPABLE
+      - INNOVATIVE
+      - BOLD
+      - VISIONARY
+      - CURIOUS
+      - DARING
+      - EXPLORATORY
+      - RESOURCEFUL
+      - FLEXIBLE
+      - COOPERATIVE
+      - UNITED
+      - STRATEGIC
+      - INTELLIGENT
+      - RESEARCH_FOCUSED
+      - COLLABORATIVE
+      - PROGRESSIVE
+      - MILITARISTIC
+      - TECHNOLOGICALLY_ADVANCED
+      - AGGRESSIVE
+      - IMPERIALISTIC
+      - TREASURE_HUNTERS
+      - DEXTEROUS
+      - UNPREDICTABLE
+      - BRUTAL
+      - FLEETING
+      - ADAPTABLE
+      - SELF_SUFFICIENT
+      - DEFENSIVE
+      - PROUD
+      - DIVERSE
+      - INDEPENDENT
+      - SELF_INTERESTED
+      - FRAGMENTED
+      - COMMERCIAL
+      - FREE_MARKETS
+      - ENTREPRENEURIAL
+      type: string
     ShipRole:
       description: The registered role of the ship
       enum:
@@ -4176,12 +4759,64 @@ components:
       - EXPLORER
       - REFINERY
       type: string
-    ShipCondition:
-      description: Condition is a range of 0 to 100 where 0 is completely worn out
-        and 100 is brand new.
-      maximum: 100
+    ShipComponentCondition:
+      description: "The repairable condition of a component. A value of 0 indicates\
+        \ the component needs significant repairs, while a value of 1 indicates the\
+        \ component is in near perfect condition. As the condition of a component\
+        \ is repaired, the overall integrity of the component decreases."
+      format: double
+      maximum: 1
       minimum: 0
-      type: integer
+      type: number
+    ShipComponentIntegrity:
+      description: "The overall integrity of the component, which determines the performance\
+        \ of the component. A value of 0 indicates that the component is almost completely\
+        \ degraded, while a value of 1 indicates that the component is in near perfect\
+        \ condition. The integrity of the component is non-repairable, and represents\
+        \ permanent wear over time."
+      format: double
+      maximum: 1
+      minimum: 0
+      type: number
+    WaypointModifierSymbol:
+      description: The unique identifier of the modifier.
+      enum:
+      - STRIPPED
+      - UNSTABLE
+      - RADIATION_LEAK
+      - CRITICAL_LIMIT
+      - CIVIL_UNREST
+      type: string
+    SupplyLevel:
+      description: The supply level of a trade good.
+      enum:
+      - SCARCE
+      - LIMITED
+      - MODERATE
+      - HIGH
+      - ABUNDANT
+      type: string
+    ActivityLevel:
+      description: "The activity level of a trade good. If the good is an import,\
+        \ this represents how strong consumption is. If the good is an export, this\
+        \ represents how strong the production is for the good. When activity is strong,\
+        \ consumption or production is near maximum capacity. When activity is weak,\
+        \ consumption or production is near minimum capacity."
+      enum:
+      - WEAK
+      - GROWING
+      - STRONG
+      - RESTRICTED
+      type: string
+      x-enumDescriptions:
+        WEAK: Indicates very low production or consumption activity. This may suggest
+          a surplus in supply or a lack of demand.
+        GROWING: "Represents increasing activity in production or consumption, suggesting\
+          \ a developing market."
+        STRONG: Signifies high levels of production or consumption. Indicates a healthy
+          and active market with high demand or supply.
+        RESTRICTED: "Reflects a bottleneck in production or consumption, possibly\
+          \ due to a lack of supply or demand in related goods."
     ShipNavRouteWaypoint:
       description: The destination or departure of a ships nav route.
       example:
@@ -4198,9 +4833,12 @@ components:
         type:
           $ref: '#/components/schemas/WaypointType'
         systemSymbol:
-          description: The symbol of the system the waypoint is in.
+          description: The symbol of the system.
           minLength: 1
           type: string
+          x-faker:
+            fake:
+            - "X1-{{random.alphaNumeric(5)}}"
         x:
           description: Position in the universe in the x axis.
           type: integer
@@ -4413,7 +5051,7 @@ components:
     register_request:
       properties:
         faction:
-          $ref: '#/components/schemas/FactionSymbols'
+          $ref: '#/components/schemas/FactionSymbol'
         symbol:
           description: "Your desired agent symbol. This will be a unique name used\
             \ to represent your agent, and will be the prefix for your ships."
@@ -4465,10 +5103,10 @@ components:
           symbol: null
           headquarters: headquarters
           traits:
-          - symbol: BUREAUCRATIC
+          - symbol: null
             name: name
             description: description
-          - symbol: BUREAUCRATIC
+          - symbol: null
             name: name
             description: description
           name: name
@@ -4491,23 +5129,18 @@ components:
                 x: 7
                 "y": 9
                 type: null
-              departure:
-                symbol: symbol
-                systemSymbol: systemSymbol
-                x: 7
-                "y": 9
-                type: null
             systemSymbol: systemSymbol
             waypointSymbol: waypointSymbol
             flightMode: null
             status: null
           engine:
             symbol: ENGINE_IMPULSE_DRIVE_I
-            condition: 66
+            condition: 0.9018348186070783
+            integrity: 0.6438423552598547
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             description: description
             speed: 1
@@ -4519,11 +5152,12 @@ components:
             capacity: 0
           reactor:
             symbol: REACTOR_SOLAR_I
-            condition: 99
+            condition: 0.9369310271410669
+            integrity: 0.6683562403749608
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             description: description
             powerOutput: 1
@@ -4535,9 +5169,9 @@ components:
           mounts:
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             strength: 0
             name: name
             description: description
@@ -4546,9 +5180,9 @@ components:
             - QUARTZ_SAND
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             strength: 0
             name: name
             description: description
@@ -4562,11 +5196,11 @@ components:
           cargo:
             units: 0
             inventory:
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
@@ -4574,18 +5208,18 @@ components:
           modules:
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             range: 0
             description: description
             capacity: 0
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             range: 0
             description: description
@@ -4599,12 +5233,13 @@ components:
             capacity: 4
           frame:
             symbol: FRAME_PROBE
-            condition: 10
+            condition: 0.10246457001441578
+            integrity: 0.14894159098541704
             moduleSlots: 0
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             fuelCapacity: 0
             name: name
             description: description
@@ -4666,10 +5301,10 @@ components:
             symbol: null
             headquarters: headquarters
             traits:
-            - symbol: BUREAUCRATIC
+            - symbol: null
               name: name
               description: description
-            - symbol: BUREAUCRATIC
+            - symbol: null
               name: name
               description: description
             name: name
@@ -4692,23 +5327,18 @@ components:
                   x: 7
                   "y": 9
                   type: null
-                departure:
-                  symbol: symbol
-                  systemSymbol: systemSymbol
-                  x: 7
-                  "y": 9
-                  type: null
               systemSymbol: systemSymbol
               waypointSymbol: waypointSymbol
               flightMode: null
               status: null
             engine:
               symbol: ENGINE_IMPULSE_DRIVE_I
-              condition: 66
+              condition: 0.9018348186070783
+              integrity: 0.6438423552598547
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               name: name
               description: description
               speed: 1
@@ -4720,11 +5350,12 @@ components:
               capacity: 0
             reactor:
               symbol: REACTOR_SOLAR_I
-              condition: 99
+              condition: 0.9369310271410669
+              integrity: 0.6683562403749608
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               name: name
               description: description
               powerOutput: 1
@@ -4736,9 +5367,9 @@ components:
             mounts:
             - symbol: MOUNT_GAS_SIPHON_I
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               strength: 0
               name: name
               description: description
@@ -4747,9 +5378,9 @@ components:
               - QUARTZ_SAND
             - symbol: MOUNT_GAS_SIPHON_I
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               strength: 0
               name: name
               description: description
@@ -4763,11 +5394,11 @@ components:
             cargo:
               units: 0
               inventory:
-              - symbol: symbol
+              - symbol: null
                 name: name
                 description: description
                 units: 1
-              - symbol: symbol
+              - symbol: null
                 name: name
                 description: description
                 units: 1
@@ -4775,18 +5406,18 @@ components:
             modules:
             - symbol: MODULE_MINERAL_PROCESSOR_I
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               name: name
               range: 0
               description: description
               capacity: 0
             - symbol: MODULE_MINERAL_PROCESSOR_I
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               name: name
               range: 0
               description: description
@@ -4800,12 +5431,13 @@ components:
               capacity: 4
             frame:
               symbol: FRAME_PROBE
-              condition: 10
+              condition: 0.10246457001441578
+              integrity: 0.14894159098541704
               moduleSlots: 0
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               fuelCapacity: 0
               name: name
               description: description
@@ -4921,16 +5553,22 @@ components:
       required:
       - data
       type: object
+    get_system_waypoints_traits_parameter:
+      oneOf:
+      - $ref: '#/components/schemas/WaypointTraitSymbol'
+      - items:
+          $ref: '#/components/schemas/WaypointTraitSymbol'
+        type: array
     get_system_waypoints_200_response:
       description: ""
       example:
         data:
         - symbol: symbol
           traits:
-          - symbol: UNCHARTED
+          - symbol: null
             name: name
             description: description
-          - symbol: UNCHARTED
+          - symbol: null
             name: name
             description: description
           systemSymbol: systemSymbol
@@ -4940,19 +5578,27 @@ components:
           x: 0
           "y": 6
           type: null
+          modifiers:
+          - symbol: null
+            name: name
+            description: description
+          - symbol: null
+            name: name
+            description: description
           chart:
             submittedBy: submittedBy
             waypointSymbol: waypointSymbol
             submittedOn: 2000-01-23T04:56:07.000+00:00
+          isUnderConstruction: true
           orbitals:
           - symbol: symbol
           - symbol: symbol
         - symbol: symbol
           traits:
-          - symbol: UNCHARTED
+          - symbol: null
             name: name
             description: description
-          - symbol: UNCHARTED
+          - symbol: null
             name: name
             description: description
           systemSymbol: systemSymbol
@@ -4962,10 +5608,18 @@ components:
           x: 0
           "y": 6
           type: null
+          modifiers:
+          - symbol: null
+            name: name
+            description: description
+          - symbol: null
+            name: name
+            description: description
           chart:
             submittedBy: submittedBy
             waypointSymbol: waypointSymbol
             submittedOn: 2000-01-23T04:56:07.000+00:00
+          isUnderConstruction: true
           orbitals:
           - symbol: symbol
           - symbol: symbol
@@ -4990,10 +5644,10 @@ components:
         data:
           symbol: symbol
           traits:
-          - symbol: UNCHARTED
+          - symbol: null
             name: name
             description: description
-          - symbol: UNCHARTED
+          - symbol: null
             name: name
             description: description
           systemSymbol: systemSymbol
@@ -5003,10 +5657,18 @@ components:
           x: 0
           "y": 6
           type: null
+          modifiers:
+          - symbol: null
+            name: name
+            description: description
+          - symbol: null
+            name: name
+            description: description
           chart:
             submittedBy: submittedBy
             waypointSymbol: waypointSymbol
             submittedOn: 2000-01-23T04:56:07.000+00:00
+          isUnderConstruction: true
           orbitals:
           - symbol: symbol
           - symbol: symbol
@@ -5029,15 +5691,19 @@ components:
             description: description
           tradeGoods:
           - tradeVolume: 1
-            symbol: symbol
+            symbol: null
+            activity: null
             sellPrice: 0
             purchasePrice: 0
-            supply: SCARCE
+            type: EXPORT
+            supply: null
           - tradeVolume: 1
-            symbol: symbol
+            symbol: null
+            activity: null
             sellPrice: 0
             purchasePrice: 0
-            supply: SCARCE
+            type: EXPORT
+            supply: null
           exports:
           - symbol: null
             name: name
@@ -5084,23 +5750,26 @@ components:
           - type: null
           symbol: symbol
           ships:
-          - engine:
+          - activity: null
+            engine:
               symbol: ENGINE_IMPULSE_DRIVE_I
-              condition: 66
+              condition: 0.9018348186070783
+              integrity: 0.6438423552598547
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               name: name
               description: description
               speed: 1
             reactor:
               symbol: REACTOR_SOLAR_I
-              condition: 99
+              condition: 0.9369310271410669
+              integrity: 0.6683562403749608
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               name: name
               description: description
               powerOutput: 1
@@ -5109,9 +5778,9 @@ components:
             mounts:
             - symbol: MOUNT_GAS_SIPHON_I
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               strength: 0
               name: name
               description: description
@@ -5120,9 +5789,9 @@ components:
               - QUARTZ_SAND
             - symbol: MOUNT_GAS_SIPHON_I
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               strength: 0
               name: name
               description: description
@@ -5131,33 +5800,35 @@ components:
               - QUARTZ_SAND
             purchasePrice: 6
             type: null
+            supply: null
             modules:
             - symbol: MODULE_MINERAL_PROCESSOR_I
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               name: name
               range: 0
               description: description
               capacity: 0
             - symbol: MODULE_MINERAL_PROCESSOR_I
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               name: name
               range: 0
               description: description
               capacity: 0
             frame:
               symbol: FRAME_PROBE
-              condition: 10
+              condition: 0.10246457001441578
+              integrity: 0.14894159098541704
               moduleSlots: 0
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               fuelCapacity: 0
               name: name
               description: description
@@ -5165,23 +5836,26 @@ components:
             crew:
               required: 1
               capacity: 5
-          - engine:
+          - activity: null
+            engine:
               symbol: ENGINE_IMPULSE_DRIVE_I
-              condition: 66
+              condition: 0.9018348186070783
+              integrity: 0.6438423552598547
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               name: name
               description: description
               speed: 1
             reactor:
               symbol: REACTOR_SOLAR_I
-              condition: 99
+              condition: 0.9369310271410669
+              integrity: 0.6683562403749608
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               name: name
               description: description
               powerOutput: 1
@@ -5190,9 +5864,9 @@ components:
             mounts:
             - symbol: MOUNT_GAS_SIPHON_I
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               strength: 0
               name: name
               description: description
@@ -5201,9 +5875,9 @@ components:
               - QUARTZ_SAND
             - symbol: MOUNT_GAS_SIPHON_I
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               strength: 0
               name: name
               description: description
@@ -5212,33 +5886,35 @@ components:
               - QUARTZ_SAND
             purchasePrice: 6
             type: null
+            supply: null
             modules:
             - symbol: MODULE_MINERAL_PROCESSOR_I
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               name: name
               range: 0
               description: description
               capacity: 0
             - symbol: MODULE_MINERAL_PROCESSOR_I
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               name: name
               range: 0
               description: description
               capacity: 0
             frame:
               symbol: FRAME_PROBE
-              condition: 10
+              condition: 0.10246457001441578
+              integrity: 0.14894159098541704
               moduleSlots: 0
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               fuelCapacity: 0
               name: name
               description: description
@@ -5250,11 +5926,13 @@ components:
           transactions:
           - waypointSymbol: waypointSymbol
             price: 0
+            shipType: shipType
             shipSymbol: shipSymbol
             agentSymbol: agentSymbol
             timestamp: 2000-01-23T04:56:07.000+00:00
           - waypointSymbol: waypointSymbol
             price: 0
+            shipType: shipType
             shipSymbol: shipSymbol
             agentSymbol: agentSymbol
             timestamp: 2000-01-23T04:56:07.000+00:00
@@ -5268,26 +5946,113 @@ components:
       description: ""
       example:
         data:
-          factionSymbol: factionSymbol
-          connectedSystems:
-          - symbol: symbol
-            distance: 5
-            sectorSymbol: sectorSymbol
-            factionSymbol: factionSymbol
-            x: 6
-            "y": 1
-            type: null
-          - symbol: symbol
-            distance: 5
-            sectorSymbol: sectorSymbol
-            factionSymbol: factionSymbol
-            x: 6
-            "y": 1
-            type: null
-          jumpRange: 0.8008281904610115
+          symbol: symbol
+          connections:
+          - connections
+          - connections
       properties:
         data:
           $ref: '#/components/schemas/JumpGate'
+      required:
+      - data
+      type: object
+    get_construction_200_response:
+      description: ""
+      example:
+        data:
+          symbol: symbol
+          materials:
+          - tradeSymbol: null
+            fulfilled: 6
+            required: 0
+          - tradeSymbol: null
+            fulfilled: 6
+            required: 0
+          isComplete: true
+      properties:
+        data:
+          $ref: '#/components/schemas/Construction'
+      required:
+      - data
+      type: object
+    supply_construction_request:
+      properties:
+        shipSymbol:
+          description: Symbol of the ship to use.
+          type: string
+        tradeSymbol:
+          description: The symbol of the good to supply.
+          type: string
+        units:
+          description: Amount of units to supply.
+          type: integer
+      required:
+      - shipSymbol
+      - tradeSymbol
+      - units
+      type: object
+    supply_construction_201_response_data:
+      example:
+        construction:
+          symbol: symbol
+          materials:
+          - tradeSymbol: null
+            fulfilled: 6
+            required: 0
+          - tradeSymbol: null
+            fulfilled: 6
+            required: 0
+          isComplete: true
+        cargo:
+          units: 0
+          inventory:
+          - symbol: null
+            name: name
+            description: description
+            units: 1
+          - symbol: null
+            name: name
+            description: description
+            units: 1
+          capacity: 0
+      properties:
+        construction:
+          $ref: '#/components/schemas/Construction'
+        cargo:
+          $ref: '#/components/schemas/ShipCargo'
+      required:
+      - cargo
+      - construction
+      type: object
+    supply_construction_201_response:
+      description: ""
+      example:
+        data:
+          construction:
+            symbol: symbol
+            materials:
+            - tradeSymbol: null
+              fulfilled: 6
+              required: 0
+            - tradeSymbol: null
+              fulfilled: 6
+              required: 0
+            isComplete: true
+          cargo:
+            units: 0
+            inventory:
+            - symbol: null
+              name: name
+              description: description
+              units: 1
+            - symbol: null
+              name: name
+              description: description
+              units: 1
+            capacity: 0
+      properties:
+        data:
+          $ref: '#/components/schemas/supply_construction_201_response_data'
       required:
       - data
       type: object
@@ -5298,10 +6063,10 @@ components:
           symbol: null
           headquarters: headquarters
           traits:
-          - symbol: BUREAUCRATIC
+          - symbol: null
             name: name
             description: description
-          - symbol: BUREAUCRATIC
+          - symbol: null
             name: name
             description: description
           name: name
@@ -5310,10 +6075,10 @@ components:
           symbol: null
           headquarters: headquarters
           traits:
-          - symbol: BUREAUCRATIC
+          - symbol: null
             name: name
             description: description
-          - symbol: BUREAUCRATIC
+          - symbol: null
             name: name
             description: description
           name: name
@@ -5340,10 +6105,10 @@ components:
           symbol: null
           headquarters: headquarters
           traits:
-          - symbol: BUREAUCRATIC
+          - symbol: null
             name: name
             description: description
-          - symbol: BUREAUCRATIC
+          - symbol: null
             name: name
             description: description
           name: name
@@ -5612,11 +6377,11 @@ components:
         cargo:
           units: 0
           inventory:
-          - symbol: symbol
+          - symbol: null
             name: name
             description: description
             units: 1
-          - symbol: symbol
+          - symbol: null
             name: name
             description: description
             units: 1
@@ -5659,11 +6424,11 @@ components:
           cargo:
             units: 0
             inventory:
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
@@ -5734,23 +6499,18 @@ components:
                 x: 7
                 "y": 9
                 type: null
-              departure:
-                symbol: symbol
-                systemSymbol: systemSymbol
-                x: 7
-                "y": 9
-                type: null
             systemSymbol: systemSymbol
             waypointSymbol: waypointSymbol
             flightMode: null
             status: null
           engine:
             symbol: ENGINE_IMPULSE_DRIVE_I
-            condition: 66
+            condition: 0.9018348186070783
+            integrity: 0.6438423552598547
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             description: description
             speed: 1
@@ -5762,11 +6522,12 @@ components:
             capacity: 0
           reactor:
             symbol: REACTOR_SOLAR_I
-            condition: 99
+            condition: 0.9369310271410669
+            integrity: 0.6683562403749608
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             description: description
             powerOutput: 1
@@ -5778,9 +6539,9 @@ components:
           mounts:
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             strength: 0
             name: name
             description: description
@@ -5789,9 +6550,9 @@ components:
             - QUARTZ_SAND
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             strength: 0
             name: name
             description: description
@@ -5805,11 +6566,11 @@ components:
           cargo:
             units: 0
             inventory:
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
@@ -5817,18 +6578,18 @@ components:
           modules:
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             range: 0
             description: description
             capacity: 0
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             range: 0
             description: description
@@ -5842,12 +6603,13 @@ components:
             capacity: 4
           frame:
             symbol: FRAME_PROBE
-            condition: 10
+            condition: 0.10246457001441578
+            integrity: 0.14894159098541704
             moduleSlots: 0
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             fuelCapacity: 0
             name: name
             description: description
@@ -5869,23 +6631,18 @@ components:
                 x: 7
                 "y": 9
                 type: null
-              departure:
-                symbol: symbol
-                systemSymbol: systemSymbol
-                x: 7
-                "y": 9
-                type: null
             systemSymbol: systemSymbol
             waypointSymbol: waypointSymbol
             flightMode: null
             status: null
           engine:
             symbol: ENGINE_IMPULSE_DRIVE_I
-            condition: 66
+            condition: 0.9018348186070783
+            integrity: 0.6438423552598547
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             description: description
             speed: 1
@@ -5897,11 +6654,12 @@ components:
             capacity: 0
           reactor:
             symbol: REACTOR_SOLAR_I
-            condition: 99
+            condition: 0.9369310271410669
+            integrity: 0.6683562403749608
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             description: description
             powerOutput: 1
@@ -5913,9 +6671,9 @@ components:
           mounts:
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             strength: 0
             name: name
             description: description
@@ -5924,9 +6682,9 @@ components:
             - QUARTZ_SAND
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             strength: 0
             name: name
             description: description
@@ -5940,11 +6698,11 @@ components:
           cargo:
             units: 0
             inventory:
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
@@ -5952,18 +6710,18 @@ components:
           modules:
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             range: 0
             description: description
             capacity: 0
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             range: 0
             description: description
@@ -5977,12 +6735,13 @@ components:
             capacity: 4
           frame:
             symbol: FRAME_PROBE
-            condition: 10
+            condition: 0.10246457001441578
+            integrity: 0.14894159098541704
             moduleSlots: 0
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             fuelCapacity: 0
             name: name
             description: description
@@ -6040,23 +6799,18 @@ components:
                 x: 7
                 "y": 9
                 type: null
-              departure:
-                symbol: symbol
-                systemSymbol: systemSymbol
-                x: 7
-                "y": 9
-                type: null
             systemSymbol: systemSymbol
             waypointSymbol: waypointSymbol
             flightMode: null
             status: null
           engine:
             symbol: ENGINE_IMPULSE_DRIVE_I
-            condition: 66
+            condition: 0.9018348186070783
+            integrity: 0.6438423552598547
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             description: description
             speed: 1
@@ -6068,11 +6822,12 @@ components:
             capacity: 0
           reactor:
             symbol: REACTOR_SOLAR_I
-            condition: 99
+            condition: 0.9369310271410669
+            integrity: 0.6683562403749608
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             description: description
             powerOutput: 1
@@ -6084,9 +6839,9 @@ components:
           mounts:
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             strength: 0
             name: name
             description: description
@@ -6095,9 +6850,9 @@ components:
             - QUARTZ_SAND
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             strength: 0
             name: name
             description: description
@@ -6111,11 +6866,11 @@ components:
           cargo:
             units: 0
             inventory:
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
@@ -6123,18 +6878,18 @@ components:
           modules:
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             range: 0
             description: description
             capacity: 0
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             range: 0
             description: description
@@ -6148,12 +6903,13 @@ components:
             capacity: 4
           frame:
             symbol: FRAME_PROBE
-            condition: 10
+            condition: 0.10246457001441578
+            integrity: 0.14894159098541704
             moduleSlots: 0
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             fuelCapacity: 0
             name: name
             description: description
@@ -6161,6 +6917,7 @@ components:
         transaction:
           waypointSymbol: waypointSymbol
           price: 0
+          shipType: shipType
           shipSymbol: shipSymbol
           agentSymbol: agentSymbol
           timestamp: 2000-01-23T04:56:07.000+00:00
@@ -6205,23 +6962,18 @@ components:
                   x: 7
                   "y": 9
                   type: null
-                departure:
-                  symbol: symbol
-                  systemSymbol: systemSymbol
-                  x: 7
-                  "y": 9
-                  type: null
               systemSymbol: systemSymbol
               waypointSymbol: waypointSymbol
               flightMode: null
               status: null
             engine:
               symbol: ENGINE_IMPULSE_DRIVE_I
-              condition: 66
+              condition: 0.9018348186070783
+              integrity: 0.6438423552598547
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               name: name
               description: description
               speed: 1
@@ -6233,11 +6985,12 @@ components:
               capacity: 0
             reactor:
               symbol: REACTOR_SOLAR_I
-              condition: 99
+              condition: 0.9369310271410669
+              integrity: 0.6683562403749608
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               name: name
               description: description
               powerOutput: 1
@@ -6249,9 +7002,9 @@ components:
             mounts:
             - symbol: MOUNT_GAS_SIPHON_I
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               strength: 0
               name: name
               description: description
@@ -6260,9 +7013,9 @@ components:
               - QUARTZ_SAND
             - symbol: MOUNT_GAS_SIPHON_I
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               strength: 0
               name: name
               description: description
@@ -6276,11 +7029,11 @@ components:
             cargo:
               units: 0
               inventory:
-              - symbol: symbol
+              - symbol: null
                 name: name
                 description: description
                 units: 1
-              - symbol: symbol
+              - symbol: null
                 name: name
                 description: description
                 units: 1
@@ -6288,18 +7041,18 @@ components:
             modules:
             - symbol: MODULE_MINERAL_PROCESSOR_I
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               name: name
               range: 0
               description: description
               capacity: 0
             - symbol: MODULE_MINERAL_PROCESSOR_I
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               name: name
               range: 0
               description: description
@@ -6313,12 +7066,13 @@ components:
               capacity: 4
             frame:
               symbol: FRAME_PROBE
-              condition: 10
+              condition: 0.10246457001441578
+              integrity: 0.14894159098541704
               moduleSlots: 0
               requirements:
-                slots: 5
-                power: 1
-                crew: 4
+                slots: 9
+                power: 4
+                crew: 5
               fuelCapacity: 0
               name: name
               description: description
@@ -6326,6 +7080,7 @@ components:
           transaction:
             waypointSymbol: waypointSymbol
             price: 0
+            shipType: shipType
             shipSymbol: shipSymbol
             agentSymbol: agentSymbol
             timestamp: 2000-01-23T04:56:07.000+00:00
@@ -6356,23 +7111,18 @@ components:
                 x: 7
                 "y": 9
                 type: null
-              departure:
-                symbol: symbol
-                systemSymbol: systemSymbol
-                x: 7
-                "y": 9
-                type: null
             systemSymbol: systemSymbol
             waypointSymbol: waypointSymbol
             flightMode: null
             status: null
           engine:
             symbol: ENGINE_IMPULSE_DRIVE_I
-            condition: 66
+            condition: 0.9018348186070783
+            integrity: 0.6438423552598547
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             description: description
             speed: 1
@@ -6384,11 +7134,12 @@ components:
             capacity: 0
           reactor:
             symbol: REACTOR_SOLAR_I
-            condition: 99
+            condition: 0.9369310271410669
+            integrity: 0.6683562403749608
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             description: description
             powerOutput: 1
@@ -6400,9 +7151,9 @@ components:
           mounts:
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             strength: 0
             name: name
             description: description
@@ -6411,9 +7162,9 @@ components:
             - QUARTZ_SAND
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             strength: 0
             name: name
             description: description
@@ -6427,11 +7178,11 @@ components:
           cargo:
             units: 0
             inventory:
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
@@ -6439,18 +7190,18 @@ components:
           modules:
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             range: 0
             description: description
             capacity: 0
           - symbol: MODULE_MINERAL_PROCESSOR_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             name: name
             range: 0
             description: description
@@ -6464,12 +7215,13 @@ components:
             capacity: 4
           frame:
             symbol: FRAME_PROBE
-            condition: 10
+            condition: 0.10246457001441578
+            integrity: 0.14894159098541704
             moduleSlots: 0
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             fuelCapacity: 0
             name: name
             description: description
@@ -6486,11 +7238,11 @@ components:
         data:
           units: 0
           inventory:
-          - symbol: symbol
+          - symbol: null
             name: name
             description: description
             units: 1
-          - symbol: symbol
+          - symbol: null
             name: name
             description: description
             units: 1
@@ -6514,12 +7266,6 @@ components:
               "y": 9
               type: null
             destination:
-              symbol: symbol
-              systemSymbol: systemSymbol
-              x: 7
-              "y": 9
-              type: null
-            departure:
               symbol: symbol
               systemSymbol: systemSymbol
               x: 7
@@ -6550,12 +7296,6 @@ components:
                 "y": 9
                 type: null
               destination:
-                symbol: symbol
-                systemSymbol: systemSymbol
-                x: 7
-                "y": 9
-                type: null
-              departure:
                 symbol: symbol
                 systemSymbol: systemSymbol
                 x: 7
@@ -6620,11 +7360,11 @@ components:
         cargo:
           units: 0
           inventory:
-          - symbol: symbol
+          - symbol: null
             name: name
             description: description
             units: 1
-          - symbol: symbol
+          - symbol: null
             name: name
             description: description
             units: 1
@@ -6671,11 +7411,11 @@ components:
           cargo:
             units: 0
             inventory:
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
@@ -6697,10 +7437,10 @@ components:
         waypoint:
           symbol: symbol
           traits:
-          - symbol: UNCHARTED
+          - symbol: null
             name: name
             description: description
-          - symbol: UNCHARTED
+          - symbol: null
             name: name
             description: description
           systemSymbol: systemSymbol
@@ -6710,10 +7450,18 @@ components:
           x: 0
           "y": 6
           type: null
+          modifiers:
+          - symbol: null
+            name: name
+            description: description
+          - symbol: null
+            name: name
+            description: description
           chart:
             submittedBy: submittedBy
             waypointSymbol: waypointSymbol
             submittedOn: 2000-01-23T04:56:07.000+00:00
+          isUnderConstruction: true
           orbitals:
           - symbol: symbol
           - symbol: symbol
@@ -6736,10 +7484,10 @@ components:
           waypoint:
             symbol: symbol
             traits:
-            - symbol: UNCHARTED
+            - symbol: null
               name: name
               description: description
-            - symbol: UNCHARTED
+            - symbol: null
               name: name
               description: description
             systemSymbol: systemSymbol
@@ -6749,10 +7497,18 @@ components:
             x: 0
             "y": 6
             type: null
+            modifiers:
+            - symbol: null
+              name: name
+              description: description
+            - symbol: null
+              name: name
+              description: description
             chart:
               submittedBy: submittedBy
               waypointSymbol: waypointSymbol
               submittedOn: 2000-01-23T04:56:07.000+00:00
+            isUnderConstruction: true
             orbitals:
             - symbol: symbol
             - symbol: symbol
@@ -6795,12 +7551,6 @@ components:
                 "y": 9
                 type: null
               destination:
-                symbol: symbol
-                systemSymbol: systemSymbol
-                x: 7
-                "y": 9
-                type: null
-              departure:
                 symbol: symbol
                 systemSymbol: systemSymbol
                 x: 7
@@ -6885,6 +7635,9 @@ components:
         survey:
           $ref: '#/components/schemas/Survey'
       type: object
+    extract_resources_201_response_data_events_inner:
+      oneOf:
+      - $ref: '#/components/schemas/ShipConditionEvent'
     extract_resources_201_response_data:
       example:
         cooldown:
@@ -6900,15 +7653,18 @@ components:
         cargo:
           units: 0
           inventory:
-          - symbol: symbol
+          - symbol: null
             name: name
             description: description
             units: 1
-          - symbol: symbol
+          - symbol: null
             name: name
             description: description
             units: 1
           capacity: 0
+        events:
+        - null
+        - null
       properties:
         cooldown:
           $ref: '#/components/schemas/Cooldown'
@@ -6916,9 +7672,14 @@ components:
           $ref: '#/components/schemas/Extraction'
         cargo:
           $ref: '#/components/schemas/ShipCargo'
+        events:
+          items:
+            $ref: '#/components/schemas/extract_resources_201_response_data_events_inner'
+          type: array
       required:
       - cargo
       - cooldown
+      - events
       - extraction
       type: object
     extract_resources_201_response:
@@ -6938,18 +7699,100 @@ components:
           cargo:
             units: 0
             inventory:
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
             capacity: 0
+          events:
+          - null
+          - null
       properties:
         data:
           $ref: '#/components/schemas/extract_resources_201_response_data'
+      required:
+      - data
+      type: object
+    siphon_resources_201_response_data:
+      example:
+        siphon:
+          yield:
+            symbol: null
+            units: 0
+          shipSymbol: shipSymbol
+        cooldown:
+          remainingSeconds: 0
+          totalSeconds: 0
+          shipSymbol: shipSymbol
+          expiration: 2000-01-23T04:56:07.000+00:00
+        cargo:
+          units: 0
+          inventory:
+          - symbol: null
+            name: name
+            description: description
+            units: 1
+          - symbol: null
+            name: name
+            description: description
+            units: 1
+          capacity: 0
+        events:
+        - null
+        - null
+      properties:
+        cooldown:
+          $ref: '#/components/schemas/Cooldown'
+        siphon:
+          $ref: '#/components/schemas/Siphon'
+        cargo:
+          $ref: '#/components/schemas/ShipCargo'
+        events:
+          items:
+            $ref: '#/components/schemas/extract_resources_201_response_data_events_inner'
+          type: array
+      required:
+      - cargo
+      - cooldown
+      - events
+      - siphon
+      type: object
+    siphon_resources_201_response:
+      description: ""
+      example:
+        data:
+          siphon:
+            yield:
+              symbol: null
+              units: 0
+            shipSymbol: shipSymbol
+          cooldown:
+            remainingSeconds: 0
+            totalSeconds: 0
+            shipSymbol: shipSymbol
+            expiration: 2000-01-23T04:56:07.000+00:00
+          cargo:
+            units: 0
+            inventory:
+            - symbol: null
+              name: name
+              description: description
+              units: 1
+            - symbol: null
+              name: name
+              description: description
+              units: 1
+            capacity: 0
+          events:
+          - null
+          - null
+      properties:
+        data:
+          $ref: '#/components/schemas/siphon_resources_201_response_data'
       required:
       - data
       type: object
@@ -6970,11 +7813,11 @@ components:
         cargo:
           units: 0
           inventory:
-          - symbol: symbol
+          - symbol: null
             name: name
             description: description
             units: 1
-          - symbol: symbol
+          - symbol: null
             name: name
             description: description
             units: 1
@@ -6992,11 +7835,11 @@ components:
           cargo:
             units: 0
             inventory:
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
@@ -7009,11 +7852,12 @@ components:
       type: object
     jump_ship_request:
       properties:
-        systemSymbol:
-          description: The system symbol to jump to.
+        waypointSymbol:
+          description: The symbol of the waypoint to jump to. The destination must
+            be a connected waypoint.
           type: string
       required:
-      - systemSymbol
+      - waypointSymbol
       type: object
     jump_ship_200_response_data:
       example:
@@ -7033,29 +7877,45 @@ components:
               x: 7
               "y": 9
               type: null
-            departure:
-              symbol: symbol
-              systemSymbol: systemSymbol
-              x: 7
-              "y": 9
-              type: null
           systemSymbol: systemSymbol
           waypointSymbol: waypointSymbol
           flightMode: null
           status: null
+        agent:
+          accountId: accountId
+          symbol: symbol
+          headquarters: headquarters
+          credits: 0
+          startingFaction: startingFaction
+          shipCount: 6
         cooldown:
           remainingSeconds: 0
           totalSeconds: 0
           shipSymbol: shipSymbol
           expiration: 2000-01-23T04:56:07.000+00:00
+        transaction:
+          tradeSymbol: tradeSymbol
+          totalPrice: 0
+          waypointSymbol: waypointSymbol
+          shipSymbol: shipSymbol
+          units: 0
+          type: PURCHASE
+          pricePerUnit: 0
+          timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
-        cooldown:
-          $ref: '#/components/schemas/Cooldown'
         nav:
           $ref: '#/components/schemas/ShipNav'
+        cooldown:
+          $ref: '#/components/schemas/Cooldown'
+        transaction:
+          $ref: '#/components/schemas/MarketTransaction'
+        agent:
+          $ref: '#/components/schemas/Agent'
       required:
+      - agent
       - cooldown
       - nav
+      - transaction
       type: object
     jump_ship_200_response:
       description: ""
@@ -7077,21 +7937,31 @@ components:
                 x: 7
                 "y": 9
                 type: null
-              departure:
-                symbol: symbol
-                systemSymbol: systemSymbol
-                x: 7
-                "y": 9
-                type: null
             systemSymbol: systemSymbol
             waypointSymbol: waypointSymbol
             flightMode: null
             status: null
+          agent:
+            accountId: accountId
+            symbol: symbol
+            headquarters: headquarters
+            credits: 0
+            startingFaction: startingFaction
+            shipCount: 6
           cooldown:
             remainingSeconds: 0
             totalSeconds: 0
             shipSymbol: shipSymbol
             expiration: 2000-01-23T04:56:07.000+00:00
+          transaction:
+            tradeSymbol: tradeSymbol
+            totalPrice: 0
+            waypointSymbol: waypointSymbol
+            shipSymbol: shipSymbol
+            units: 0
+            type: PURCHASE
+            pricePerUnit: 0
+            timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
           $ref: '#/components/schemas/jump_ship_200_response_data'
@@ -7124,12 +7994,6 @@ components:
               x: 7
               "y": 9
               type: null
-            departure:
-              symbol: symbol
-              systemSymbol: systemSymbol
-              x: 7
-              "y": 9
-              type: null
           systemSymbol: systemSymbol
           waypointSymbol: waypointSymbol
           flightMode: null
@@ -7140,12 +8004,20 @@ components:
             timestamp: 2000-01-23T04:56:07.000+00:00
           current: 0
           capacity: 0
+        events:
+        - null
+        - null
       properties:
         fuel:
           $ref: '#/components/schemas/ShipFuel'
         nav:
           $ref: '#/components/schemas/ShipNav'
+        events:
+          items:
+            $ref: '#/components/schemas/extract_resources_201_response_data_events_inner'
+          type: array
       required:
+      - events
       - fuel
       - nav
       type: object
@@ -7169,12 +8041,6 @@ components:
                 x: 7
                 "y": 9
                 type: null
-              departure:
-                symbol: symbol
-                systemSymbol: systemSymbol
-                x: 7
-                "y": 9
-                type: null
             systemSymbol: systemSymbol
             waypointSymbol: waypointSymbol
             flightMode: null
@@ -7185,6 +8051,9 @@ components:
               timestamp: 2000-01-23T04:56:07.000+00:00
             current: 0
             capacity: 0
+          events:
+          - null
+          - null
       properties:
         data:
           $ref: '#/components/schemas/navigate_ship_200_response_data'
@@ -7210,12 +8079,6 @@ components:
               x: 7
               "y": 9
               type: null
-            departure:
-              symbol: symbol
-              systemSymbol: systemSymbol
-              x: 7
-              "y": 9
-              type: null
           systemSymbol: systemSymbol
           waypointSymbol: waypointSymbol
           flightMode: null
@@ -7230,6 +8093,79 @@ components:
       properties:
         flightMode:
           $ref: '#/components/schemas/ShipNavFlightMode'
+      type: object
+    warp_ship_200_response_data:
+      example:
+        nav:
+          route:
+            departureTime: 2000-01-23T04:56:07.000+00:00
+            arrival: 2000-01-23T04:56:07.000+00:00
+            origin:
+              symbol: symbol
+              systemSymbol: systemSymbol
+              x: 7
+              "y": 9
+              type: null
+            destination:
+              symbol: symbol
+              systemSymbol: systemSymbol
+              x: 7
+              "y": 9
+              type: null
+          systemSymbol: systemSymbol
+          waypointSymbol: waypointSymbol
+          flightMode: null
+          status: null
+        fuel:
+          consumed:
+            amount: 0
+            timestamp: 2000-01-23T04:56:07.000+00:00
+          current: 0
+          capacity: 0
+      properties:
+        fuel:
+          $ref: '#/components/schemas/ShipFuel'
+        nav:
+          $ref: '#/components/schemas/ShipNav'
+      required:
+      - fuel
+      - nav
+      type: object
+    warp_ship_200_response:
+      description: ""
+      example:
+        data:
+          nav:
+            route:
+              departureTime: 2000-01-23T04:56:07.000+00:00
+              arrival: 2000-01-23T04:56:07.000+00:00
+              origin:
+                symbol: symbol
+                systemSymbol: systemSymbol
+                x: 7
+                "y": 9
+                type: null
+              destination:
+                symbol: symbol
+                systemSymbol: systemSymbol
+                x: 7
+                "y": 9
+                type: null
+            systemSymbol: systemSymbol
+            waypointSymbol: waypointSymbol
+            flightMode: null
+            status: null
+          fuel:
+            consumed:
+              amount: 0
+              timestamp: 2000-01-23T04:56:07.000+00:00
+            current: 0
+            capacity: 0
+      properties:
+        data:
+          $ref: '#/components/schemas/warp_ship_200_response_data'
+      required:
+      - data
       type: object
     SellCargoRequest:
       example:
@@ -7258,11 +8194,11 @@ components:
         cargo:
           units: 0
           inventory:
-          - symbol: symbol
+          - symbol: null
             name: name
             description: description
             units: 1
-          - symbol: symbol
+          - symbol: null
             name: name
             description: description
             units: 1
@@ -7302,11 +8238,11 @@ components:
           cargo:
             units: 0
             inventory:
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
@@ -7396,10 +8332,10 @@ components:
         waypoints:
         - symbol: symbol
           traits:
-          - symbol: UNCHARTED
+          - symbol: null
             name: name
             description: description
-          - symbol: UNCHARTED
+          - symbol: null
             name: name
             description: description
           systemSymbol: systemSymbol
@@ -7417,10 +8353,10 @@ components:
           - symbol: symbol
         - symbol: symbol
           traits:
-          - symbol: UNCHARTED
+          - symbol: null
             name: name
             description: description
-          - symbol: UNCHARTED
+          - symbol: null
             name: name
             description: description
           systemSymbol: systemSymbol
@@ -7459,10 +8395,10 @@ components:
           waypoints:
           - symbol: symbol
             traits:
-            - symbol: UNCHARTED
+            - symbol: null
               name: name
               description: description
-            - symbol: UNCHARTED
+            - symbol: null
               name: name
               description: description
             systemSymbol: systemSymbol
@@ -7480,10 +8416,10 @@ components:
             - symbol: symbol
           - symbol: symbol
             traits:
-            - symbol: UNCHARTED
+            - symbol: null
               name: name
               description: description
-            - symbol: UNCHARTED
+            - symbol: null
               name: name
               description: description
             systemSymbol: systemSymbol
@@ -7525,12 +8461,6 @@ components:
                 x: 7
                 "y": 9
                 type: null
-              departure:
-                symbol: symbol
-                systemSymbol: systemSymbol
-                x: 7
-                "y": 9
-                type: null
             systemSymbol: systemSymbol
             waypointSymbol: waypointSymbol
             flightMode: null
@@ -7560,12 +8490,6 @@ components:
                 "y": 9
                 type: null
               destination:
-                symbol: symbol
-                systemSymbol: systemSymbol
-                x: 7
-                "y": 9
-                type: null
-              departure:
                 symbol: symbol
                 systemSymbol: systemSymbol
                 x: 7
@@ -7626,12 +8550,6 @@ components:
                   x: 7
                   "y": 9
                   type: null
-                departure:
-                  symbol: symbol
-                  systemSymbol: systemSymbol
-                  x: 7
-                  "y": 9
-                  type: null
               systemSymbol: systemSymbol
               waypointSymbol: waypointSymbol
               flightMode: null
@@ -7661,12 +8579,6 @@ components:
                   "y": 9
                   type: null
                 destination:
-                  symbol: symbol
-                  systemSymbol: systemSymbol
-                  x: 7
-                  "y": 9
-                  type: null
-                departure:
                   symbol: symbol
                   systemSymbol: systemSymbol
                   x: 7
@@ -7711,6 +8623,11 @@ components:
           example: 100
           minimum: 1
           type: integer
+        fromCargo:
+          description: "Wether to use the FUEL thats in your cargo or not. Default:\
+            \ false"
+          example: false
+          type: boolean
       type: object
     refuel_ship_200_response_data:
       example:
@@ -7806,11 +8723,11 @@ components:
           cargo:
             units: 0
             inventory:
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
@@ -7853,11 +8770,11 @@ components:
           cargo:
             units: 0
             inventory:
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
@@ -7938,9 +8855,9 @@ components:
         data:
         - symbol: MOUNT_GAS_SIPHON_I
           requirements:
-            slots: 5
-            power: 1
-            crew: 4
+            slots: 9
+            power: 4
+            crew: 5
           strength: 0
           name: name
           description: description
@@ -7949,9 +8866,9 @@ components:
           - QUARTZ_SAND
         - symbol: MOUNT_GAS_SIPHON_I
           requirements:
-            slots: 5
-            power: 1
-            crew: 4
+            slots: 9
+            power: 4
+            crew: 5
           strength: 0
           name: name
           description: description
@@ -7987,9 +8904,9 @@ components:
         mounts:
         - symbol: MOUNT_GAS_SIPHON_I
           requirements:
-            slots: 5
-            power: 1
-            crew: 4
+            slots: 9
+            power: 4
+            crew: 5
           strength: 0
           name: name
           description: description
@@ -7998,9 +8915,9 @@ components:
           - QUARTZ_SAND
         - symbol: MOUNT_GAS_SIPHON_I
           requirements:
-            slots: 5
-            power: 1
-            crew: 4
+            slots: 9
+            power: 4
+            crew: 5
           strength: 0
           name: name
           description: description
@@ -8010,11 +8927,11 @@ components:
         cargo:
           units: 0
           inventory:
-          - symbol: symbol
+          - symbol: null
             name: name
             description: description
             units: 1
-          - symbol: symbol
+          - symbol: null
             name: name
             description: description
             units: 1
@@ -8057,9 +8974,9 @@ components:
           mounts:
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             strength: 0
             name: name
             description: description
@@ -8068,9 +8985,9 @@ components:
             - QUARTZ_SAND
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             strength: 0
             name: name
             description: description
@@ -8080,11 +8997,11 @@ components:
           cargo:
             units: 0
             inventory:
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
@@ -8123,9 +9040,9 @@ components:
         mounts:
         - symbol: MOUNT_GAS_SIPHON_I
           requirements:
-            slots: 5
-            power: 1
-            crew: 4
+            slots: 9
+            power: 4
+            crew: 5
           strength: 0
           name: name
           description: description
@@ -8134,9 +9051,9 @@ components:
           - QUARTZ_SAND
         - symbol: MOUNT_GAS_SIPHON_I
           requirements:
-            slots: 5
-            power: 1
-            crew: 4
+            slots: 9
+            power: 4
+            crew: 5
           strength: 0
           name: name
           description: description
@@ -8146,11 +9063,11 @@ components:
         cargo:
           units: 0
           inventory:
-          - symbol: symbol
+          - symbol: null
             name: name
             description: description
             units: 1
-          - symbol: symbol
+          - symbol: null
             name: name
             description: description
             units: 1
@@ -8193,9 +9110,9 @@ components:
           mounts:
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             strength: 0
             name: name
             description: description
@@ -8204,9 +9121,9 @@ components:
             - QUARTZ_SAND
           - symbol: MOUNT_GAS_SIPHON_I
             requirements:
-              slots: 5
-              power: 1
-              crew: 4
+              slots: 9
+              power: 4
+              crew: 5
             strength: 0
             name: name
             description: description
@@ -8216,11 +9133,11 @@ components:
           cargo:
             units: 0
             inventory:
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
-            - symbol: symbol
+            - symbol: null
               name: name
               description: description
               units: 1
@@ -8238,12 +9155,429 @@ components:
       - data
       title: Remove Mount 201 Response
       type: object
+    get_scrap_ship_200_response_data:
+      example:
+        transaction:
+          totalPrice: 0
+          waypointSymbol: waypointSymbol
+          shipSymbol: shipSymbol
+          timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        transaction:
+          $ref: '#/components/schemas/ScrapTransaction'
+      required:
+      - transaction
+      type: object
+    get_scrap_ship_200_response:
+      description: ""
+      example:
+        data:
+          transaction:
+            totalPrice: 0
+            waypointSymbol: waypointSymbol
+            shipSymbol: shipSymbol
+            timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        data:
+          $ref: '#/components/schemas/get_scrap_ship_200_response_data'
+      required:
+      - data
+      type: object
+    scrap_ship_200_response_data:
+      example:
+        agent:
+          accountId: accountId
+          symbol: symbol
+          headquarters: headquarters
+          credits: 0
+          startingFaction: startingFaction
+          shipCount: 6
+        transaction:
+          totalPrice: 0
+          waypointSymbol: waypointSymbol
+          shipSymbol: shipSymbol
+          timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        agent:
+          $ref: '#/components/schemas/Agent'
+        transaction:
+          $ref: '#/components/schemas/ScrapTransaction'
+      required:
+      - agent
+      - transaction
+      type: object
+    scrap_ship_200_response:
+      description: ""
+      example:
+        data:
+          agent:
+            accountId: accountId
+            symbol: symbol
+            headquarters: headquarters
+            credits: 0
+            startingFaction: startingFaction
+            shipCount: 6
+          transaction:
+            totalPrice: 0
+            waypointSymbol: waypointSymbol
+            shipSymbol: shipSymbol
+            timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        data:
+          $ref: '#/components/schemas/scrap_ship_200_response_data'
+      required:
+      - data
+      type: object
+    get_repair_ship_200_response_data:
+      example:
+        transaction:
+          totalPrice: 0
+          waypointSymbol: waypointSymbol
+          shipSymbol: shipSymbol
+          timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        transaction:
+          $ref: '#/components/schemas/RepairTransaction'
+      required:
+      - transaction
+      type: object
+    get_repair_ship_200_response:
+      description: ""
+      example:
+        data:
+          transaction:
+            totalPrice: 0
+            waypointSymbol: waypointSymbol
+            shipSymbol: shipSymbol
+            timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        data:
+          $ref: '#/components/schemas/get_repair_ship_200_response_data'
+      required:
+      - data
+      type: object
+    repair_ship_200_response_data:
+      example:
+        agent:
+          accountId: accountId
+          symbol: symbol
+          headquarters: headquarters
+          credits: 0
+          startingFaction: startingFaction
+          shipCount: 6
+        ship:
+          symbol: symbol
+          nav:
+            route:
+              departureTime: 2000-01-23T04:56:07.000+00:00
+              arrival: 2000-01-23T04:56:07.000+00:00
+              origin:
+                symbol: symbol
+                systemSymbol: systemSymbol
+                x: 7
+                "y": 9
+                type: null
+              destination:
+                symbol: symbol
+                systemSymbol: systemSymbol
+                x: 7
+                "y": 9
+                type: null
+            systemSymbol: systemSymbol
+            waypointSymbol: waypointSymbol
+            flightMode: null
+            status: null
+          engine:
+            symbol: ENGINE_IMPULSE_DRIVE_I
+            condition: 0.9018348186070783
+            integrity: 0.6438423552598547
+            requirements:
+              slots: 9
+              power: 4
+              crew: 5
+            name: name
+            description: description
+            speed: 1
+          fuel:
+            consumed:
+              amount: 0
+              timestamp: 2000-01-23T04:56:07.000+00:00
+            current: 0
+            capacity: 0
+          reactor:
+            symbol: REACTOR_SOLAR_I
+            condition: 0.9369310271410669
+            integrity: 0.6683562403749608
+            requirements:
+              slots: 9
+              power: 4
+              crew: 5
+            name: name
+            description: description
+            powerOutput: 1
+          cooldown:
+            remainingSeconds: 0
+            totalSeconds: 0
+            shipSymbol: shipSymbol
+            expiration: 2000-01-23T04:56:07.000+00:00
+          mounts:
+          - symbol: MOUNT_GAS_SIPHON_I
+            requirements:
+              slots: 9
+              power: 4
+              crew: 5
+            strength: 0
+            name: name
+            description: description
+            deposits:
+            - QUARTZ_SAND
+            - QUARTZ_SAND
+          - symbol: MOUNT_GAS_SIPHON_I
+            requirements:
+              slots: 9
+              power: 4
+              crew: 5
+            strength: 0
+            name: name
+            description: description
+            deposits:
+            - QUARTZ_SAND
+            - QUARTZ_SAND
+          registration:
+            role: null
+            name: name
+            factionSymbol: factionSymbol
+          cargo:
+            units: 0
+            inventory:
+            - symbol: null
+              name: name
+              description: description
+              units: 1
+            - symbol: null
+              name: name
+              description: description
+              units: 1
+            capacity: 0
+          modules:
+          - symbol: MODULE_MINERAL_PROCESSOR_I
+            requirements:
+              slots: 9
+              power: 4
+              crew: 5
+            name: name
+            range: 0
+            description: description
+            capacity: 0
+          - symbol: MODULE_MINERAL_PROCESSOR_I
+            requirements:
+              slots: 9
+              power: 4
+              crew: 5
+            name: name
+            range: 0
+            description: description
+            capacity: 0
+          crew:
+            wages: 0
+            current: 3
+            rotation: STRICT
+            morale: 73
+            required: 2
+            capacity: 4
+          frame:
+            symbol: FRAME_PROBE
+            condition: 0.10246457001441578
+            integrity: 0.14894159098541704
+            moduleSlots: 0
+            requirements:
+              slots: 9
+              power: 4
+              crew: 5
+            fuelCapacity: 0
+            name: name
+            description: description
+            mountingPoints: 0
+        transaction:
+          totalPrice: 0
+          waypointSymbol: waypointSymbol
+          shipSymbol: shipSymbol
+          timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        agent:
+          $ref: '#/components/schemas/Agent'
+        ship:
+          $ref: '#/components/schemas/Ship'
+        transaction:
+          $ref: '#/components/schemas/RepairTransaction'
+      required:
+      - agent
+      - ship
+      - transaction
+      type: object
+    repair_ship_200_response:
+      description: ""
+      example:
+        data:
+          agent:
+            accountId: accountId
+            symbol: symbol
+            headquarters: headquarters
+            credits: 0
+            startingFaction: startingFaction
+            shipCount: 6
+          ship:
+            symbol: symbol
+            nav:
+              route:
+                departureTime: 2000-01-23T04:56:07.000+00:00
+                arrival: 2000-01-23T04:56:07.000+00:00
+                origin:
+                  symbol: symbol
+                  systemSymbol: systemSymbol
+                  x: 7
+                  "y": 9
+                  type: null
+                destination:
+                  symbol: symbol
+                  systemSymbol: systemSymbol
+                  x: 7
+                  "y": 9
+                  type: null
+              systemSymbol: systemSymbol
+              waypointSymbol: waypointSymbol
+              flightMode: null
+              status: null
+            engine:
+              symbol: ENGINE_IMPULSE_DRIVE_I
+              condition: 0.9018348186070783
+              integrity: 0.6438423552598547
+              requirements:
+                slots: 9
+                power: 4
+                crew: 5
+              name: name
+              description: description
+              speed: 1
+            fuel:
+              consumed:
+                amount: 0
+                timestamp: 2000-01-23T04:56:07.000+00:00
+              current: 0
+              capacity: 0
+            reactor:
+              symbol: REACTOR_SOLAR_I
+              condition: 0.9369310271410669
+              integrity: 0.6683562403749608
+              requirements:
+                slots: 9
+                power: 4
+                crew: 5
+              name: name
+              description: description
+              powerOutput: 1
+            cooldown:
+              remainingSeconds: 0
+              totalSeconds: 0
+              shipSymbol: shipSymbol
+              expiration: 2000-01-23T04:56:07.000+00:00
+            mounts:
+            - symbol: MOUNT_GAS_SIPHON_I
+              requirements:
+                slots: 9
+                power: 4
+                crew: 5
+              strength: 0
+              name: name
+              description: description
+              deposits:
+              - QUARTZ_SAND
+              - QUARTZ_SAND
+            - symbol: MOUNT_GAS_SIPHON_I
+              requirements:
+                slots: 9
+                power: 4
+                crew: 5
+              strength: 0
+              name: name
+              description: description
+              deposits:
+              - QUARTZ_SAND
+              - QUARTZ_SAND
+            registration:
+              role: null
+              name: name
+              factionSymbol: factionSymbol
+            cargo:
+              units: 0
+              inventory:
+              - symbol: null
+                name: name
+                description: description
+                units: 1
+              - symbol: null
+                name: name
+                description: description
+                units: 1
+              capacity: 0
+            modules:
+            - symbol: MODULE_MINERAL_PROCESSOR_I
+              requirements:
+                slots: 9
+                power: 4
+                crew: 5
+              name: name
+              range: 0
+              description: description
+              capacity: 0
+            - symbol: MODULE_MINERAL_PROCESSOR_I
+              requirements:
+                slots: 9
+                power: 4
+                crew: 5
+              name: name
+              range: 0
+              description: description
+              capacity: 0
+            crew:
+              wages: 0
+              current: 3
+              rotation: STRICT
+              morale: 73
+              required: 2
+              capacity: 4
+            frame:
+              symbol: FRAME_PROBE
+              condition: 0.10246457001441578
+              integrity: 0.14894159098541704
+              moduleSlots: 0
+              requirements:
+                slots: 9
+                power: 4
+                crew: 5
+              fuelCapacity: 0
+              name: name
+              description: description
+              mountingPoints: 0
+          transaction:
+            totalPrice: 0
+            waypointSymbol: waypointSymbol
+            shipSymbol: shipSymbol
+            timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        data:
+          $ref: '#/components/schemas/repair_ship_200_response_data'
+      required:
+      - data
+      type: object
     Shipyard_shipTypes_inner:
       example:
         type: null
       properties:
         type:
           $ref: '#/components/schemas/ShipType'
+      required:
+      - type
       type: object
     ShipFuel_consumed:
       description: An object that only shows up when an action has consumed fuel in

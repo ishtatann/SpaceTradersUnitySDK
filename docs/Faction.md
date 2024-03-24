@@ -5,7 +5,7 @@ Faction details.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | **FactionSymbols** |  | 
+**Symbol** | **FactionSymbol** |  | 
 **Name** | **string** | Name of the faction. | 
 **Description** | **string** | Description of the faction. | 
 **Headquarters** | **string** | The waypoint in which the faction&#39;s HQ is located in. | 

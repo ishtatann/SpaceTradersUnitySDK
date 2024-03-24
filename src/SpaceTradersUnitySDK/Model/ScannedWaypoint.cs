@@ -45,9 +45,9 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ScannedWaypoint" /> class.
         /// </summary>
-        /// <param name="symbol">Symbol of the waypoint. (required).</param>
+        /// <param name="symbol">The symbol of the waypoint. (required).</param>
         /// <param name="type">type (required).</param>
-        /// <param name="systemSymbol">Symbol of the system. (required).</param>
+        /// <param name="systemSymbol">The symbol of the system. (required).</param>
         /// <param name="x">Position in the universe in the x axis. (required).</param>
         /// <param name="y">Position in the universe in the y axis. (required).</param>
         /// <param name="orbitals">List of waypoints that orbit this waypoint. (required).</param>
@@ -88,16 +88,16 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// Symbol of the waypoint.
+        /// The symbol of the waypoint.
         /// </summary>
-        /// <value>Symbol of the waypoint.</value>
+        /// <value>The symbol of the waypoint.</value>
         [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
         public string Symbol { get; set; }
 
         /// <summary>
-        /// Symbol of the system.
+        /// The symbol of the system.
         /// </summary>
-        /// <value>Symbol of the system.</value>
+        /// <value>The symbol of the system.</value>
         [DataMember(Name = "systemSymbol", IsRequired = true, EmitDefaultValue = true)]
         public string SystemSymbol { get; set; }
 

@@ -4,9 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **ShipType** |  | [optional] 
+**Type** | **ShipType** |  | 
 **Name** | **string** |  | 
 **Description** | **string** |  | 
+**Supply** | **SupplyLevel** |  | 
+**Activity** | **ActivityLevel** |  | [optional] 
 **PurchasePrice** | **int** |  | 
 **Frame** | [**ShipFrame**](ShipFrame.md) |  | 
 **Reactor** | [**ShipReactor**](ShipReactor.md) |  | 

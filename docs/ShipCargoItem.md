@@ -5,7 +5,7 @@ The type of cargo item and the number of units.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | **string** | The unique identifier of the cargo item type. | 
+**Symbol** | **TradeSymbol** |  | 
 **Name** | **string** | The name of the cargo item type. | 
 **Description** | **string** | The description of the cargo item type. | 
 **Units** | **int** | The number of units of the cargo item. | 

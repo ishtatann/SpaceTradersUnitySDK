@@ -148,12 +148,13 @@ namespace SpaceTradersUnitySDK.Model
         /// <param name="symbol">Symbol of the frame. (required).</param>
         /// <param name="name">Name of the frame. (required).</param>
         /// <param name="description">Description of the frame. (required).</param>
-        /// <param name="condition">Condition is a range of 0 to 100 where 0 is completely worn out and 100 is brand new..</param>
+        /// <param name="condition">The repairable condition of a component. A value of 0 indicates the component needs significant repairs, while a value of 1 indicates the component is in near perfect condition. As the condition of a component is repaired, the overall integrity of the component decreases. (required).</param>
+        /// <param name="integrity">The overall integrity of the component, which determines the performance of the component. A value of 0 indicates that the component is almost completely degraded, while a value of 1 indicates that the component is in near perfect condition. The integrity of the component is non-repairable, and represents permanent wear over time. (required).</param>
         /// <param name="moduleSlots">The amount of slots that can be dedicated to modules installed in the ship. Each installed module take up a number of slots, and once there are no more slots, no new modules can be installed. (required).</param>
         /// <param name="mountingPoints">The amount of slots that can be dedicated to mounts installed in the ship. Each installed mount takes up a number of points, and once there are no more points remaining, no new mounts can be installed. (required).</param>
         /// <param name="fuelCapacity">The maximum amount of fuel that can be stored in this ship. When refueling, the ship will be refueled to this amount. (required).</param>
         /// <param name="requirements">requirements (required).</param>
-        public ShipFrame(SymbolEnum symbol = default(SymbolEnum), string name = default(string), string description = default(string), int condition = default(int), int moduleSlots = default(int), int mountingPoints = default(int), int fuelCapacity = default(int), ShipRequirements requirements = default(ShipRequirements))
+        public ShipFrame(SymbolEnum symbol = default(SymbolEnum), string name = default(string), string description = default(string), double condition = default(double), double integrity = default(double), int moduleSlots = default(int), int mountingPoints = default(int), int fuelCapacity = default(int), ShipRequirements requirements = default(ShipRequirements))
         {
             this.Symbol = symbol;
             // to ensure "name" is required (not null)
@@ -168,6 +169,8 @@ namespace SpaceTradersUnitySDK.Model
                 throw new ArgumentNullException("description is a required property for ShipFrame and cannot be null");
             }
             this.Description = description;
+            this.Condition = condition;
+            this.Integrity = integrity;
             this.ModuleSlots = moduleSlots;
             this.MountingPoints = mountingPoints;
             this.FuelCapacity = fuelCapacity;
@@ -177,7 +180,6 @@ namespace SpaceTradersUnitySDK.Model
                 throw new ArgumentNullException("requirements is a required property for ShipFrame and cannot be null");
             }
             this.Requirements = requirements;
-            this.Condition = condition;
         }
 
         /// <summary>
@@ -195,11 +197,18 @@ namespace SpaceTradersUnitySDK.Model
         public string Description { get; set; }
 
         /// <summary>
-        /// Condition is a range of 0 to 100 where 0 is completely worn out and 100 is brand new.
+        /// The repairable condition of a component. A value of 0 indicates the component needs significant repairs, while a value of 1 indicates the component is in near perfect condition. As the condition of a component is repaired, the overall integrity of the component decreases.
         /// </summary>
-        /// <value>Condition is a range of 0 to 100 where 0 is completely worn out and 100 is brand new.</value>
-        [DataMember(Name = "condition", EmitDefaultValue = false)]
-        public int Condition { get; set; }
+        /// <value>The repairable condition of a component. A value of 0 indicates the component needs significant repairs, while a value of 1 indicates the component is in near perfect condition. As the condition of a component is repaired, the overall integrity of the component decreases.</value>
+        [DataMember(Name = "condition", IsRequired = true, EmitDefaultValue = true)]
+        public double Condition { get; set; }
+
+        /// <summary>
+        /// The overall integrity of the component, which determines the performance of the component. A value of 0 indicates that the component is almost completely degraded, while a value of 1 indicates that the component is in near perfect condition. The integrity of the component is non-repairable, and represents permanent wear over time.
+        /// </summary>
+        /// <value>The overall integrity of the component, which determines the performance of the component. A value of 0 indicates that the component is almost completely degraded, while a value of 1 indicates that the component is in near perfect condition. The integrity of the component is non-repairable, and represents permanent wear over time.</value>
+        [DataMember(Name = "integrity", IsRequired = true, EmitDefaultValue = true)]
+        public double Integrity { get; set; }
 
         /// <summary>
         /// The amount of slots that can be dedicated to modules installed in the ship. Each installed module take up a number of slots, and once there are no more slots, no new modules can be installed.
@@ -240,6 +249,7 @@ namespace SpaceTradersUnitySDK.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Condition: ").Append(Condition).Append("\n");
+            sb.Append("  Integrity: ").Append(Integrity).Append("\n");
             sb.Append("  ModuleSlots: ").Append(ModuleSlots).Append("\n");
             sb.Append("  MountingPoints: ").Append(MountingPoints).Append("\n");
             sb.Append("  FuelCapacity: ").Append(FuelCapacity).Append("\n");
@@ -298,6 +308,10 @@ namespace SpaceTradersUnitySDK.Model
                     this.Condition.Equals(input.Condition)
                 ) && 
                 (
+                    this.Integrity == input.Integrity ||
+                    this.Integrity.Equals(input.Integrity)
+                ) && 
+                (
                     this.ModuleSlots == input.ModuleSlots ||
                     this.ModuleSlots.Equals(input.ModuleSlots)
                 ) && 
@@ -335,6 +349,7 @@ namespace SpaceTradersUnitySDK.Model
                     hashCode = (hashCode * 59) + this.Description.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Condition.GetHashCode();
+                hashCode = (hashCode * 59) + this.Integrity.GetHashCode();
                 hashCode = (hashCode * 59) + this.ModuleSlots.GetHashCode();
                 hashCode = (hashCode * 59) + this.MountingPoints.GetHashCode();
                 hashCode = (hashCode * 59) + this.FuelCapacity.GetHashCode();

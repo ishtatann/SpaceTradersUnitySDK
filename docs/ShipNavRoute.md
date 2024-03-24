@@ -6,7 +6,6 @@ The routing information for the ship's most recent transit or current location.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Destination** | [**ShipNavRouteWaypoint**](ShipNavRouteWaypoint.md) |  | 
-**Departure** | [**ShipNavRouteWaypoint**](ShipNavRouteWaypoint.md) |  | 
 **Origin** | [**ShipNavRouteWaypoint**](ShipNavRouteWaypoint.md) |  | 
 **DepartureTime** | **DateTime** | The date time of the ship&#39;s departure. | 
 **Arrival** | **DateTime** | The date time of the ship&#39;s arrival. If the ship is in-transit, this is the expected time of arrival. | 

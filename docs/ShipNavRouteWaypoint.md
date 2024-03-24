@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Symbol** | **string** | The symbol of the waypoint. | 
 **Type** | **WaypointType** |  | 
-**SystemSymbol** | **string** | The symbol of the system the waypoint is in. | 
+**SystemSymbol** | **string** | The symbol of the system. | 
 **X** | **int** | Position in the universe in the x axis. | 
 **Y** | **int** | Position in the universe in the y axis. | 
 

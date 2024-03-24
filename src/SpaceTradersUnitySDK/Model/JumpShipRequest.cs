@@ -39,23 +39,23 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="JumpShipRequest" /> class.
         /// </summary>
-        /// <param name="systemSymbol">The system symbol to jump to. (required).</param>
-        public JumpShipRequest(string systemSymbol = default(string))
+        /// <param name="waypointSymbol">The symbol of the waypoint to jump to. The destination must be a connected waypoint. (required).</param>
+        public JumpShipRequest(string waypointSymbol = default(string))
         {
-            // to ensure "systemSymbol" is required (not null)
-            if (systemSymbol == null)
+            // to ensure "waypointSymbol" is required (not null)
+            if (waypointSymbol == null)
             {
-                throw new ArgumentNullException("systemSymbol is a required property for JumpShipRequest and cannot be null");
+                throw new ArgumentNullException("waypointSymbol is a required property for JumpShipRequest and cannot be null");
             }
-            this.SystemSymbol = systemSymbol;
+            this.WaypointSymbol = waypointSymbol;
         }
 
         /// <summary>
-        /// The system symbol to jump to.
+        /// The symbol of the waypoint to jump to. The destination must be a connected waypoint.
         /// </summary>
-        /// <value>The system symbol to jump to.</value>
-        [DataMember(Name = "systemSymbol", IsRequired = true, EmitDefaultValue = true)]
-        public string SystemSymbol { get; set; }
+        /// <value>The symbol of the waypoint to jump to. The destination must be a connected waypoint.</value>
+        [DataMember(Name = "waypointSymbol", IsRequired = true, EmitDefaultValue = true)]
+        public string WaypointSymbol { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -65,7 +65,7 @@ namespace SpaceTradersUnitySDK.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class JumpShipRequest {\n");
-            sb.Append("  SystemSymbol: ").Append(SystemSymbol).Append("\n");
+            sb.Append("  WaypointSymbol: ").Append(WaypointSymbol).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -102,9 +102,9 @@ namespace SpaceTradersUnitySDK.Model
             }
             return 
                 (
-                    this.SystemSymbol == input.SystemSymbol ||
-                    (this.SystemSymbol != null &&
-                    this.SystemSymbol.Equals(input.SystemSymbol))
+                    this.WaypointSymbol == input.WaypointSymbol ||
+                    (this.WaypointSymbol != null &&
+                    this.WaypointSymbol.Equals(input.WaypointSymbol))
                 );
         }
 
@@ -117,9 +117,9 @@ namespace SpaceTradersUnitySDK.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.SystemSymbol != null)
+                if (this.WaypointSymbol != null)
                 {
-                    hashCode = (hashCode * 59) + this.SystemSymbol.GetHashCode();
+                    hashCode = (hashCode * 59) + this.WaypointSymbol.GetHashCode();
                 }
                 return hashCode;
             }

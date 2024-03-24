@@ -31,6 +31,12 @@ namespace SpaceTradersUnitySDK.Model
     [DataContract(Name = "ShipCargoItem")]
     public partial class ShipCargoItem : IEquatable<ShipCargoItem>
     {
+
+        /// <summary>
+        /// Gets or Sets Symbol
+        /// </summary>
+        [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
+        public TradeSymbol Symbol { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ShipCargoItem" /> class.
         /// </summary>
@@ -39,17 +45,12 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ShipCargoItem" /> class.
         /// </summary>
-        /// <param name="symbol">The unique identifier of the cargo item type. (required).</param>
+        /// <param name="symbol">symbol (required).</param>
         /// <param name="name">The name of the cargo item type. (required).</param>
         /// <param name="description">The description of the cargo item type. (required).</param>
         /// <param name="units">The number of units of the cargo item. (required).</param>
-        public ShipCargoItem(string symbol = default(string), string name = default(string), string description = default(string), int units = default(int))
+        public ShipCargoItem(TradeSymbol symbol = default(TradeSymbol), string name = default(string), string description = default(string), int units = default(int))
         {
-            // to ensure "symbol" is required (not null)
-            if (symbol == null)
-            {
-                throw new ArgumentNullException("symbol is a required property for ShipCargoItem and cannot be null");
-            }
             this.Symbol = symbol;
             // to ensure "name" is required (not null)
             if (name == null)
@@ -65,13 +66,6 @@ namespace SpaceTradersUnitySDK.Model
             this.Description = description;
             this.Units = units;
         }
-
-        /// <summary>
-        /// The unique identifier of the cargo item type.
-        /// </summary>
-        /// <value>The unique identifier of the cargo item type.</value>
-        [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
-        public string Symbol { get; set; }
 
         /// <summary>
         /// The name of the cargo item type.
@@ -143,8 +137,7 @@ namespace SpaceTradersUnitySDK.Model
             return 
                 (
                     this.Symbol == input.Symbol ||
-                    (this.Symbol != null &&
-                    this.Symbol.Equals(input.Symbol))
+                    this.Symbol.Equals(input.Symbol)
                 ) && 
                 (
                     this.Name == input.Name ||
@@ -171,10 +164,7 @@ namespace SpaceTradersUnitySDK.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Symbol != null)
-                {
-                    hashCode = (hashCode * 59) + this.Symbol.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Symbol.GetHashCode();
                 if (this.Name != null)
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();

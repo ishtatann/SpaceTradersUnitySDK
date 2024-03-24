@@ -39,41 +39,37 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="JumpGate" /> class.
         /// </summary>
-        /// <param name="jumpRange">The maximum jump range of the gate. (required).</param>
-        /// <param name="factionSymbol">The symbol of the faction that owns the gate..</param>
-        /// <param name="connectedSystems">The systems within range of the gate that have a corresponding gate. (required).</param>
-        public JumpGate(decimal jumpRange = default(decimal), string factionSymbol = default(string), List<ConnectedSystem> connectedSystems = default(List<ConnectedSystem>))
+        /// <param name="symbol">The symbol of the waypoint. (required).</param>
+        /// <param name="connections">All the gates that are connected to this waypoint. (required).</param>
+        public JumpGate(string symbol = default(string), List<string> connections = default(List<string>))
         {
-            this.JumpRange = jumpRange;
-            // to ensure "connectedSystems" is required (not null)
-            if (connectedSystems == null)
+            // to ensure "symbol" is required (not null)
+            if (symbol == null)
             {
-                throw new ArgumentNullException("connectedSystems is a required property for JumpGate and cannot be null");
+                throw new ArgumentNullException("symbol is a required property for JumpGate and cannot be null");
             }
-            this.ConnectedSystems = connectedSystems;
-            this.FactionSymbol = factionSymbol;
+            this.Symbol = symbol;
+            // to ensure "connections" is required (not null)
+            if (connections == null)
+            {
+                throw new ArgumentNullException("connections is a required property for JumpGate and cannot be null");
+            }
+            this.Connections = connections;
         }
 
         /// <summary>
-        /// The maximum jump range of the gate.
+        /// The symbol of the waypoint.
         /// </summary>
-        /// <value>The maximum jump range of the gate.</value>
-        [DataMember(Name = "jumpRange", IsRequired = true, EmitDefaultValue = true)]
-        public decimal JumpRange { get; set; }
+        /// <value>The symbol of the waypoint.</value>
+        [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
+        public string Symbol { get; set; }
 
         /// <summary>
-        /// The symbol of the faction that owns the gate.
+        /// All the gates that are connected to this waypoint.
         /// </summary>
-        /// <value>The symbol of the faction that owns the gate.</value>
-        [DataMember(Name = "factionSymbol", EmitDefaultValue = false)]
-        public string FactionSymbol { get; set; }
-
-        /// <summary>
-        /// The systems within range of the gate that have a corresponding gate.
-        /// </summary>
-        /// <value>The systems within range of the gate that have a corresponding gate.</value>
-        [DataMember(Name = "connectedSystems", IsRequired = true, EmitDefaultValue = true)]
-        public List<ConnectedSystem> ConnectedSystems { get; set; }
+        /// <value>All the gates that are connected to this waypoint.</value>
+        [DataMember(Name = "connections", IsRequired = true, EmitDefaultValue = true)]
+        public List<string> Connections { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -83,9 +79,8 @@ namespace SpaceTradersUnitySDK.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class JumpGate {\n");
-            sb.Append("  JumpRange: ").Append(JumpRange).Append("\n");
-            sb.Append("  FactionSymbol: ").Append(FactionSymbol).Append("\n");
-            sb.Append("  ConnectedSystems: ").Append(ConnectedSystems).Append("\n");
+            sb.Append("  Symbol: ").Append(Symbol).Append("\n");
+            sb.Append("  Connections: ").Append(Connections).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -122,19 +117,15 @@ namespace SpaceTradersUnitySDK.Model
             }
             return 
                 (
-                    this.JumpRange == input.JumpRange ||
-                    this.JumpRange.Equals(input.JumpRange)
+                    this.Symbol == input.Symbol ||
+                    (this.Symbol != null &&
+                    this.Symbol.Equals(input.Symbol))
                 ) && 
                 (
-                    this.FactionSymbol == input.FactionSymbol ||
-                    (this.FactionSymbol != null &&
-                    this.FactionSymbol.Equals(input.FactionSymbol))
-                ) && 
-                (
-                    this.ConnectedSystems == input.ConnectedSystems ||
-                    this.ConnectedSystems != null &&
-                    input.ConnectedSystems != null &&
-                    this.ConnectedSystems.SequenceEqual(input.ConnectedSystems)
+                    this.Connections == input.Connections ||
+                    this.Connections != null &&
+                    input.Connections != null &&
+                    this.Connections.SequenceEqual(input.Connections)
                 );
         }
 
@@ -147,14 +138,13 @@ namespace SpaceTradersUnitySDK.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.JumpRange.GetHashCode();
-                if (this.FactionSymbol != null)
+                if (this.Symbol != null)
                 {
-                    hashCode = (hashCode * 59) + this.FactionSymbol.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Symbol.GetHashCode();
                 }
-                if (this.ConnectedSystems != null)
+                if (this.Connections != null)
                 {
-                    hashCode = (hashCode * 59) + this.ConnectedSystems.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Connections.GetHashCode();
                 }
                 return hashCode;
             }

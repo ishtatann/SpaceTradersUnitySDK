@@ -31,46 +31,58 @@ namespace SpaceTradersUnitySDK.Model
     [DataContract(Name = "MarketTradeGood")]
     public partial class MarketTradeGood : IEquatable<MarketTradeGood>
     {
+
         /// <summary>
-        /// A rough estimate of the total supply of this good in the marketplace.
+        /// Gets or Sets Symbol
         /// </summary>
-        /// <value>A rough estimate of the total supply of this good in the marketplace.</value>
+        [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
+        public TradeSymbol Symbol { get; set; }
+        /// <summary>
+        /// The type of trade good (export, import, or exchange).
+        /// </summary>
+        /// <value>The type of trade good (export, import, or exchange).</value>
         [JsonConverter(typeof(StringEnumConverter))]
-        public enum SupplyEnum
+        public enum TypeEnum
         {
             /// <summary>
-            /// Enum SCARCE for value: SCARCE
+            /// Enum EXPORT for value: EXPORT
             /// </summary>
-            [EnumMember(Value = "SCARCE")]
-            SCARCE = 1,
+            [EnumMember(Value = "EXPORT")]
+            EXPORT = 1,
 
             /// <summary>
-            /// Enum LIMITED for value: LIMITED
+            /// Enum IMPORT for value: IMPORT
             /// </summary>
-            [EnumMember(Value = "LIMITED")]
-            LIMITED = 2,
+            [EnumMember(Value = "IMPORT")]
+            IMPORT = 2,
 
             /// <summary>
-            /// Enum MODERATE for value: MODERATE
+            /// Enum EXCHANGE for value: EXCHANGE
             /// </summary>
-            [EnumMember(Value = "MODERATE")]
-            MODERATE = 3,
-
-            /// <summary>
-            /// Enum ABUNDANT for value: ABUNDANT
-            /// </summary>
-            [EnumMember(Value = "ABUNDANT")]
-            ABUNDANT = 4
+            [EnumMember(Value = "EXCHANGE")]
+            EXCHANGE = 3
 
         }
 
 
         /// <summary>
-        /// A rough estimate of the total supply of this good in the marketplace.
+        /// The type of trade good (export, import, or exchange).
         /// </summary>
-        /// <value>A rough estimate of the total supply of this good in the marketplace.</value>
+        /// <value>The type of trade good (export, import, or exchange).</value>
+        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+        public TypeEnum Type { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Supply
+        /// </summary>
         [DataMember(Name = "supply", IsRequired = true, EmitDefaultValue = true)]
-        public SupplyEnum Supply { get; set; }
+        public SupplyLevel Supply { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Activity
+        /// </summary>
+        [DataMember(Name = "activity", EmitDefaultValue = false)]
+        public ActivityLevel? Activity { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="MarketTradeGood" /> class.
         /// </summary>
@@ -79,36 +91,28 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MarketTradeGood" /> class.
         /// </summary>
-        /// <param name="symbol">The symbol of the trade good. (required).</param>
-        /// <param name="tradeVolume">The typical volume flowing through the market for this type of good. The larger the trade volume, the more stable prices will be. (required).</param>
-        /// <param name="supply">A rough estimate of the total supply of this good in the marketplace. (required).</param>
+        /// <param name="symbol">symbol (required).</param>
+        /// <param name="type">The type of trade good (export, import, or exchange). (required).</param>
+        /// <param name="tradeVolume">This is the maximum number of units that can be purchased or sold at this market in a single trade for this good. Trade volume also gives an indication of price volatility. A market with a low trade volume will have large price swings, while high trade volume will be more resilient to price changes. (required).</param>
+        /// <param name="supply">supply (required).</param>
+        /// <param name="activity">activity.</param>
         /// <param name="purchasePrice">The price at which this good can be purchased from the market. (required).</param>
         /// <param name="sellPrice">The price at which this good can be sold to the market. (required).</param>
-        public MarketTradeGood(string symbol = default(string), int tradeVolume = default(int), SupplyEnum supply = default(SupplyEnum), int purchasePrice = default(int), int sellPrice = default(int))
+        public MarketTradeGood(TradeSymbol symbol = default(TradeSymbol), TypeEnum type = default(TypeEnum), int tradeVolume = default(int), SupplyLevel supply = default(SupplyLevel), ActivityLevel? activity = default(ActivityLevel?), int purchasePrice = default(int), int sellPrice = default(int))
         {
-            // to ensure "symbol" is required (not null)
-            if (symbol == null)
-            {
-                throw new ArgumentNullException("symbol is a required property for MarketTradeGood and cannot be null");
-            }
             this.Symbol = symbol;
+            this.Type = type;
             this.TradeVolume = tradeVolume;
             this.Supply = supply;
             this.PurchasePrice = purchasePrice;
             this.SellPrice = sellPrice;
+            this.Activity = activity;
         }
 
         /// <summary>
-        /// The symbol of the trade good.
+        /// This is the maximum number of units that can be purchased or sold at this market in a single trade for this good. Trade volume also gives an indication of price volatility. A market with a low trade volume will have large price swings, while high trade volume will be more resilient to price changes.
         /// </summary>
-        /// <value>The symbol of the trade good.</value>
-        [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
-        public string Symbol { get; set; }
-
-        /// <summary>
-        /// The typical volume flowing through the market for this type of good. The larger the trade volume, the more stable prices will be.
-        /// </summary>
-        /// <value>The typical volume flowing through the market for this type of good. The larger the trade volume, the more stable prices will be.</value>
+        /// <value>This is the maximum number of units that can be purchased or sold at this market in a single trade for this good. Trade volume also gives an indication of price volatility. A market with a low trade volume will have large price swings, while high trade volume will be more resilient to price changes.</value>
         [DataMember(Name = "tradeVolume", IsRequired = true, EmitDefaultValue = true)]
         public int TradeVolume { get; set; }
 
@@ -135,8 +139,10 @@ namespace SpaceTradersUnitySDK.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class MarketTradeGood {\n");
             sb.Append("  Symbol: ").Append(Symbol).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  TradeVolume: ").Append(TradeVolume).Append("\n");
             sb.Append("  Supply: ").Append(Supply).Append("\n");
+            sb.Append("  Activity: ").Append(Activity).Append("\n");
             sb.Append("  PurchasePrice: ").Append(PurchasePrice).Append("\n");
             sb.Append("  SellPrice: ").Append(SellPrice).Append("\n");
             sb.Append("}\n");
@@ -176,8 +182,11 @@ namespace SpaceTradersUnitySDK.Model
             return 
                 (
                     this.Symbol == input.Symbol ||
-                    (this.Symbol != null &&
-                    this.Symbol.Equals(input.Symbol))
+                    this.Symbol.Equals(input.Symbol)
+                ) && 
+                (
+                    this.Type == input.Type ||
+                    this.Type.Equals(input.Type)
                 ) && 
                 (
                     this.TradeVolume == input.TradeVolume ||
@@ -186,6 +195,10 @@ namespace SpaceTradersUnitySDK.Model
                 (
                     this.Supply == input.Supply ||
                     this.Supply.Equals(input.Supply)
+                ) && 
+                (
+                    this.Activity == input.Activity ||
+                    this.Activity.Equals(input.Activity)
                 ) && 
                 (
                     this.PurchasePrice == input.PurchasePrice ||
@@ -206,12 +219,11 @@ namespace SpaceTradersUnitySDK.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Symbol != null)
-                {
-                    hashCode = (hashCode * 59) + this.Symbol.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Symbol.GetHashCode();
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 hashCode = (hashCode * 59) + this.TradeVolume.GetHashCode();
                 hashCode = (hashCode * 59) + this.Supply.GetHashCode();
+                hashCode = (hashCode * 59) + this.Activity.GetHashCode();
                 hashCode = (hashCode * 59) + this.PurchasePrice.GetHashCode();
                 hashCode = (hashCode * 59) + this.SellPrice.GetHashCode();
                 return hashCode;

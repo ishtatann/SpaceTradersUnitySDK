@@ -39,23 +39,43 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="JumpShip200ResponseData" /> class.
         /// </summary>
-        /// <param name="cooldown">cooldown (required).</param>
         /// <param name="nav">nav (required).</param>
-        public JumpShip200ResponseData(Cooldown cooldown = default(Cooldown), ShipNav nav = default(ShipNav))
+        /// <param name="cooldown">cooldown (required).</param>
+        /// <param name="transaction">transaction (required).</param>
+        /// <param name="agent">agent (required).</param>
+        public JumpShip200ResponseData(ShipNav nav = default(ShipNav), Cooldown cooldown = default(Cooldown), MarketTransaction transaction = default(MarketTransaction), Agent agent = default(Agent))
         {
-            // to ensure "cooldown" is required (not null)
-            if (cooldown == null)
-            {
-                throw new ArgumentNullException("cooldown is a required property for JumpShip200ResponseData and cannot be null");
-            }
-            this.Cooldown = cooldown;
             // to ensure "nav" is required (not null)
             if (nav == null)
             {
                 throw new ArgumentNullException("nav is a required property for JumpShip200ResponseData and cannot be null");
             }
             this.Nav = nav;
+            // to ensure "cooldown" is required (not null)
+            if (cooldown == null)
+            {
+                throw new ArgumentNullException("cooldown is a required property for JumpShip200ResponseData and cannot be null");
+            }
+            this.Cooldown = cooldown;
+            // to ensure "transaction" is required (not null)
+            if (transaction == null)
+            {
+                throw new ArgumentNullException("transaction is a required property for JumpShip200ResponseData and cannot be null");
+            }
+            this.Transaction = transaction;
+            // to ensure "agent" is required (not null)
+            if (agent == null)
+            {
+                throw new ArgumentNullException("agent is a required property for JumpShip200ResponseData and cannot be null");
+            }
+            this.Agent = agent;
         }
+
+        /// <summary>
+        /// Gets or Sets Nav
+        /// </summary>
+        [DataMember(Name = "nav", IsRequired = true, EmitDefaultValue = true)]
+        public ShipNav Nav { get; set; }
 
         /// <summary>
         /// Gets or Sets Cooldown
@@ -64,10 +84,16 @@ namespace SpaceTradersUnitySDK.Model
         public Cooldown Cooldown { get; set; }
 
         /// <summary>
-        /// Gets or Sets Nav
+        /// Gets or Sets Transaction
         /// </summary>
-        [DataMember(Name = "nav", IsRequired = true, EmitDefaultValue = true)]
-        public ShipNav Nav { get; set; }
+        [DataMember(Name = "transaction", IsRequired = true, EmitDefaultValue = true)]
+        public MarketTransaction Transaction { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Agent
+        /// </summary>
+        [DataMember(Name = "agent", IsRequired = true, EmitDefaultValue = true)]
+        public Agent Agent { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -77,8 +103,10 @@ namespace SpaceTradersUnitySDK.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class JumpShip200ResponseData {\n");
-            sb.Append("  Cooldown: ").Append(Cooldown).Append("\n");
             sb.Append("  Nav: ").Append(Nav).Append("\n");
+            sb.Append("  Cooldown: ").Append(Cooldown).Append("\n");
+            sb.Append("  Transaction: ").Append(Transaction).Append("\n");
+            sb.Append("  Agent: ").Append(Agent).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -115,14 +143,24 @@ namespace SpaceTradersUnitySDK.Model
             }
             return 
                 (
+                    this.Nav == input.Nav ||
+                    (this.Nav != null &&
+                    this.Nav.Equals(input.Nav))
+                ) && 
+                (
                     this.Cooldown == input.Cooldown ||
                     (this.Cooldown != null &&
                     this.Cooldown.Equals(input.Cooldown))
                 ) && 
                 (
-                    this.Nav == input.Nav ||
-                    (this.Nav != null &&
-                    this.Nav.Equals(input.Nav))
+                    this.Transaction == input.Transaction ||
+                    (this.Transaction != null &&
+                    this.Transaction.Equals(input.Transaction))
+                ) && 
+                (
+                    this.Agent == input.Agent ||
+                    (this.Agent != null &&
+                    this.Agent.Equals(input.Agent))
                 );
         }
 
@@ -135,13 +173,21 @@ namespace SpaceTradersUnitySDK.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Nav != null)
+                {
+                    hashCode = (hashCode * 59) + this.Nav.GetHashCode();
+                }
                 if (this.Cooldown != null)
                 {
                     hashCode = (hashCode * 59) + this.Cooldown.GetHashCode();
                 }
-                if (this.Nav != null)
+                if (this.Transaction != null)
                 {
-                    hashCode = (hashCode * 59) + this.Nav.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Transaction.GetHashCode();
+                }
+                if (this.Agent != null)
+                {
+                    hashCode = (hashCode * 59) + this.Agent.GetHashCode();
                 }
                 return hashCode;
             }

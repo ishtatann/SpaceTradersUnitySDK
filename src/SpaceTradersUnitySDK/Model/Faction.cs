@@ -36,7 +36,7 @@ namespace SpaceTradersUnitySDK.Model
         /// Gets or Sets Symbol
         /// </summary>
         [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
-        public FactionSymbols Symbol { get; set; }
+        public FactionSymbol Symbol { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Faction" /> class.
         /// </summary>
@@ -51,7 +51,7 @@ namespace SpaceTradersUnitySDK.Model
         /// <param name="headquarters">The waypoint in which the faction&#39;s HQ is located in. (required).</param>
         /// <param name="traits">List of traits that define this faction. (required).</param>
         /// <param name="isRecruiting">Whether or not the faction is currently recruiting new agents. (required).</param>
-        public Faction(FactionSymbols symbol = default(FactionSymbols), string name = default(string), string description = default(string), string headquarters = default(string), List<FactionTrait> traits = default(List<FactionTrait>), bool isRecruiting = default(bool))
+        public Faction(FactionSymbol symbol = default(FactionSymbol), string name = default(string), string description = default(string), string headquarters = default(string), List<FactionTrait> traits = default(List<FactionTrait>), bool isRecruiting = default(bool))
         {
             this.Symbol = symbol;
             // to ensure "name" is required (not null)

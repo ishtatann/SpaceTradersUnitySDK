@@ -45,17 +45,19 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Waypoint" /> class.
         /// </summary>
-        /// <param name="symbol">Symbol fo the waypoint. (required).</param>
+        /// <param name="symbol">The symbol of the waypoint. (required).</param>
         /// <param name="type">type (required).</param>
-        /// <param name="systemSymbol">The symbol of the system this waypoint belongs to. (required).</param>
+        /// <param name="systemSymbol">The symbol of the system. (required).</param>
         /// <param name="x">Relative position of the waypoint on the system&#39;s x axis. This is not an absolute position in the universe. (required).</param>
         /// <param name="y">Relative position of the waypoint on the system&#39;s y axis. This is not an absolute position in the universe. (required).</param>
         /// <param name="orbitals">Waypoints that orbit this waypoint. (required).</param>
         /// <param name="orbits">The symbol of the parent waypoint, if this waypoint is in orbit around another waypoint. Otherwise this value is undefined..</param>
         /// <param name="faction">faction.</param>
         /// <param name="traits">The traits of the waypoint. (required).</param>
+        /// <param name="modifiers">The modifiers of the waypoint..</param>
         /// <param name="chart">chart.</param>
-        public Waypoint(string symbol = default(string), WaypointType type = default(WaypointType), string systemSymbol = default(string), int x = default(int), int y = default(int), List<WaypointOrbital> orbitals = default(List<WaypointOrbital>), string orbits = default(string), WaypointFaction faction = default(WaypointFaction), List<WaypointTrait> traits = default(List<WaypointTrait>), Chart chart = default(Chart))
+        /// <param name="isUnderConstruction">True if the waypoint is under construction. (required).</param>
+        public Waypoint(string symbol = default(string), WaypointType type = default(WaypointType), string systemSymbol = default(string), int x = default(int), int y = default(int), List<WaypointOrbital> orbitals = default(List<WaypointOrbital>), string orbits = default(string), WaypointFaction faction = default(WaypointFaction), List<WaypointTrait> traits = default(List<WaypointTrait>), List<WaypointModifier> modifiers = default(List<WaypointModifier>), Chart chart = default(Chart), bool isUnderConstruction = default(bool))
         {
             // to ensure "symbol" is required (not null)
             if (symbol == null)
@@ -84,22 +86,24 @@ namespace SpaceTradersUnitySDK.Model
                 throw new ArgumentNullException("traits is a required property for Waypoint and cannot be null");
             }
             this.Traits = traits;
+            this.IsUnderConstruction = isUnderConstruction;
             this.Orbits = orbits;
             this.Faction = faction;
+            this.Modifiers = modifiers;
             this.Chart = chart;
         }
 
         /// <summary>
-        /// Symbol fo the waypoint.
+        /// The symbol of the waypoint.
         /// </summary>
-        /// <value>Symbol fo the waypoint.</value>
+        /// <value>The symbol of the waypoint.</value>
         [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
         public string Symbol { get; set; }
 
         /// <summary>
-        /// The symbol of the system this waypoint belongs to.
+        /// The symbol of the system.
         /// </summary>
-        /// <value>The symbol of the system this waypoint belongs to.</value>
+        /// <value>The symbol of the system.</value>
         [DataMember(Name = "systemSymbol", IsRequired = true, EmitDefaultValue = true)]
         public string SystemSymbol { get; set; }
 
@@ -145,10 +149,24 @@ namespace SpaceTradersUnitySDK.Model
         public List<WaypointTrait> Traits { get; set; }
 
         /// <summary>
+        /// The modifiers of the waypoint.
+        /// </summary>
+        /// <value>The modifiers of the waypoint.</value>
+        [DataMember(Name = "modifiers", EmitDefaultValue = false)]
+        public List<WaypointModifier> Modifiers { get; set; }
+
+        /// <summary>
         /// Gets or Sets Chart
         /// </summary>
         [DataMember(Name = "chart", EmitDefaultValue = false)]
         public Chart Chart { get; set; }
+
+        /// <summary>
+        /// True if the waypoint is under construction.
+        /// </summary>
+        /// <value>True if the waypoint is under construction.</value>
+        [DataMember(Name = "isUnderConstruction", IsRequired = true, EmitDefaultValue = true)]
+        public bool IsUnderConstruction { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -167,7 +185,9 @@ namespace SpaceTradersUnitySDK.Model
             sb.Append("  Orbits: ").Append(Orbits).Append("\n");
             sb.Append("  Faction: ").Append(Faction).Append("\n");
             sb.Append("  Traits: ").Append(Traits).Append("\n");
+            sb.Append("  Modifiers: ").Append(Modifiers).Append("\n");
             sb.Append("  Chart: ").Append(Chart).Append("\n");
+            sb.Append("  IsUnderConstruction: ").Append(IsUnderConstruction).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -248,9 +268,19 @@ namespace SpaceTradersUnitySDK.Model
                     this.Traits.SequenceEqual(input.Traits)
                 ) && 
                 (
+                    this.Modifiers == input.Modifiers ||
+                    this.Modifiers != null &&
+                    input.Modifiers != null &&
+                    this.Modifiers.SequenceEqual(input.Modifiers)
+                ) && 
+                (
                     this.Chart == input.Chart ||
                     (this.Chart != null &&
                     this.Chart.Equals(input.Chart))
+                ) && 
+                (
+                    this.IsUnderConstruction == input.IsUnderConstruction ||
+                    this.IsUnderConstruction.Equals(input.IsUnderConstruction)
                 );
         }
 
@@ -290,10 +320,15 @@ namespace SpaceTradersUnitySDK.Model
                 {
                     hashCode = (hashCode * 59) + this.Traits.GetHashCode();
                 }
+                if (this.Modifiers != null)
+                {
+                    hashCode = (hashCode * 59) + this.Modifiers.GetHashCode();
+                }
                 if (this.Chart != null)
                 {
                     hashCode = (hashCode * 59) + this.Chart.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.IsUnderConstruction.GetHashCode();
                 return hashCode;
             }
         }

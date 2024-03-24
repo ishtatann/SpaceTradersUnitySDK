@@ -35,9 +35,11 @@ namespace SpaceTradersUnitySDK.Model
         /// Initializes a new instance of the <see cref="RefuelShipRequest" /> class.
         /// </summary>
         /// <param name="units">The amount of fuel to fill in the ship&#39;s tanks. When not specified, the ship will be refueled to its maximum fuel capacity. If the amount specified is greater than the ship&#39;s remaining capacity, the ship will only be refueled to its maximum fuel capacity. The amount specified is not in market units but in ship fuel units..</param>
-        public RefuelShipRequest(int units = default(int))
+        /// <param name="fromCargo">Wether to use the FUEL thats in your cargo or not. Default: false.</param>
+        public RefuelShipRequest(int units = default(int), bool fromCargo = default(bool))
         {
             this.Units = units;
+            this.FromCargo = fromCargo;
         }
 
         /// <summary>
@@ -49,6 +51,14 @@ namespace SpaceTradersUnitySDK.Model
         public int Units { get; set; }
 
         /// <summary>
+        /// Wether to use the FUEL thats in your cargo or not. Default: false
+        /// </summary>
+        /// <value>Wether to use the FUEL thats in your cargo or not. Default: false</value>
+        /// <example>false</example>
+        [DataMember(Name = "fromCargo", EmitDefaultValue = true)]
+        public bool FromCargo { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -57,6 +67,7 @@ namespace SpaceTradersUnitySDK.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class RefuelShipRequest {\n");
             sb.Append("  Units: ").Append(Units).Append("\n");
+            sb.Append("  FromCargo: ").Append(FromCargo).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -95,6 +106,10 @@ namespace SpaceTradersUnitySDK.Model
                 (
                     this.Units == input.Units ||
                     this.Units.Equals(input.Units)
+                ) && 
+                (
+                    this.FromCargo == input.FromCargo ||
+                    this.FromCargo.Equals(input.FromCargo)
                 );
         }
 
@@ -108,6 +123,7 @@ namespace SpaceTradersUnitySDK.Model
             {
                 int hashCode = 41;
                 hashCode = (hashCode * 59) + this.Units.GetHashCode();
+                hashCode = (hashCode * 59) + this.FromCargo.GetHashCode();
                 return hashCode;
             }
         }

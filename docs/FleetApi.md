@@ -16,6 +16,8 @@ All URIs are relative to *https://api.spacetraders.io/v2*
 | [**GetMyShip**](FleetApi.md#getmyship) | **GET** /my/ships/{shipSymbol} | Get Ship |
 | [**GetMyShipCargo**](FleetApi.md#getmyshipcargo) | **GET** /my/ships/{shipSymbol}/cargo | Get Ship Cargo |
 | [**GetMyShips**](FleetApi.md#getmyships) | **GET** /my/ships | List Ships |
+| [**GetRepairShip**](FleetApi.md#getrepairship) | **GET** /my/ships/{shipSymbol}/repair | Get Repair Ship |
+| [**GetScrapShip**](FleetApi.md#getscrapship) | **GET** /my/ships/{shipSymbol}/scrap | Get Scrap Ship |
 | [**GetShipCooldown**](FleetApi.md#getshipcooldown) | **GET** /my/ships/{shipSymbol}/cooldown | Get Ship Cooldown |
 | [**GetShipNav**](FleetApi.md#getshipnav) | **GET** /my/ships/{shipSymbol}/nav | Get Ship Nav |
 | [**InstallMount**](FleetApi.md#installmount) | **POST** /my/ships/{shipSymbol}/mounts/install | Install Mount |
@@ -29,8 +31,11 @@ All URIs are relative to *https://api.spacetraders.io/v2*
 | [**PurchaseShip**](FleetApi.md#purchaseship) | **POST** /my/ships | Purchase Ship |
 | [**RefuelShip**](FleetApi.md#refuelship) | **POST** /my/ships/{shipSymbol}/refuel | Refuel Ship |
 | [**RemoveMount**](FleetApi.md#removemount) | **POST** /my/ships/{shipSymbol}/mounts/remove | Remove Mount |
+| [**RepairShip**](FleetApi.md#repairship) | **POST** /my/ships/{shipSymbol}/repair | Repair Ship |
+| [**ScrapShip**](FleetApi.md#scrapship) | **POST** /my/ships/{shipSymbol}/scrap | Scrap Ship |
 | [**SellCargo**](FleetApi.md#sellcargo) | **POST** /my/ships/{shipSymbol}/sell | Sell Cargo |
 | [**ShipRefine**](FleetApi.md#shiprefine) | **POST** /my/ships/{shipSymbol}/refine | Ship Refine |
+| [**SiphonResources**](FleetApi.md#siphonresources) | **POST** /my/ships/{shipSymbol}/siphon | Siphon Resources |
 | [**TransferCargo**](FleetApi.md#transfercargo) | **POST** /my/ships/{shipSymbol}/transfer | Transfer Cargo |
 | [**WarpShip**](FleetApi.md#warpship) | **POST** /my/ships/{shipSymbol}/warp | Warp Ship |
 
@@ -1168,6 +1173,194 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="getrepairship"></a>
+# **GetRepairShip**
+> GetRepairShip200Response GetRepairShip (string shipSymbol)
+
+Get Repair Ship
+
+Get the cost of repairing a ship.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using SpaceTradersUnitySDK.Api;
+using SpaceTradersUnitySDK.Client;
+using SpaceTradersUnitySDK.Model;
+
+namespace Example
+{
+    public class GetRepairShipExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.spacetraders.io/v2";
+            // Configure Bearer token for authorization: AgentToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new FleetApi(config);
+            var shipSymbol = "shipSymbol_example";  // string | The ship symbol.
+
+            try
+            {
+                // Get Repair Ship
+                GetRepairShip200Response result = apiInstance.GetRepairShip(shipSymbol);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FleetApi.GetRepairShip: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetRepairShipWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get Repair Ship
+    ApiResponse<GetRepairShip200Response> response = apiInstance.GetRepairShipWithHttpInfo(shipSymbol);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling FleetApi.GetRepairShipWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **shipSymbol** | **string** | The ship symbol. |  |
+
+### Return type
+
+[**GetRepairShip200Response**](GetRepairShip200Response.md)
+
+### Authorization
+
+[AgentToken](../README.md#AgentToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved the cost of repairing a ship. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getscrapship"></a>
+# **GetScrapShip**
+> GetScrapShip200Response GetScrapShip (string shipSymbol)
+
+Get Scrap Ship
+
+Get the amount of value that will be returned when scrapping a ship.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using SpaceTradersUnitySDK.Api;
+using SpaceTradersUnitySDK.Client;
+using SpaceTradersUnitySDK.Model;
+
+namespace Example
+{
+    public class GetScrapShipExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.spacetraders.io/v2";
+            // Configure Bearer token for authorization: AgentToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new FleetApi(config);
+            var shipSymbol = "shipSymbol_example";  // string | The ship symbol.
+
+            try
+            {
+                // Get Scrap Ship
+                GetScrapShip200Response result = apiInstance.GetScrapShip(shipSymbol);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FleetApi.GetScrapShip: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetScrapShipWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get Scrap Ship
+    ApiResponse<GetScrapShip200Response> response = apiInstance.GetScrapShipWithHttpInfo(shipSymbol);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling FleetApi.GetScrapShipWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **shipSymbol** | **string** | The ship symbol. |  |
+
+### Return type
+
+[**GetScrapShip200Response**](GetScrapShip200Response.md)
+
+### Authorization
+
+[AgentToken](../README.md#AgentToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved the amount of value that will be returned when scrapping a ship. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="getshipcooldown"></a>
 # **GetShipCooldown**
 > GetShipCooldown200Response GetShipCooldown (string shipSymbol)
@@ -1555,7 +1748,7 @@ catch (ApiException e)
 
 Jump Ship
 
-Jump your ship instantly to a target system. The ship must be in orbit to use this function. When used while in orbit of a Jump Gate waypoint, any ship can use this command, jumping to the target system's Jump Gate waypoint.  When used elsewhere, jumping requires the ship to have a `Jump Drive` module installed and consumes a unit of antimatter from the ship's cargo. The command will fail if there is no antimatter to consume. When jumping via the `Jump Drive` module, the ship ends up at its largest source of energy in the system, such as a gas planet or a jump gate.
+Jump your ship instantly to a target connected waypoint. The ship must be in orbit to execute a jump.  A unit of antimatter is purchased and consumed from the market when jumping. The price of antimatter is determined by the market and is subject to change. A ship can only jump to connected waypoints
 
 ### Example
 ```csharp
@@ -1747,7 +1940,7 @@ catch (ApiException e)
 
 Negotiate Contract
 
-Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at a faction's HQ waypoint to negotiate a contract with that faction.
+Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at any waypoint with a faction present to negotiate a contract with that faction.
 
 ### Example
 ```csharp
@@ -2407,6 +2600,194 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="repairship"></a>
+# **RepairShip**
+> RepairShip200Response RepairShip (string shipSymbol)
+
+Repair Ship
+
+Repair a ship, restoring the ship to maximum condition. The ship must be docked at a waypoint that has the `Shipyard` trait in order to use this function. To preview the cost of repairing the ship, use the Get action.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using SpaceTradersUnitySDK.Api;
+using SpaceTradersUnitySDK.Client;
+using SpaceTradersUnitySDK.Model;
+
+namespace Example
+{
+    public class RepairShipExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.spacetraders.io/v2";
+            // Configure Bearer token for authorization: AgentToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new FleetApi(config);
+            var shipSymbol = "shipSymbol_example";  // string | The ship symbol.
+
+            try
+            {
+                // Repair Ship
+                RepairShip200Response result = apiInstance.RepairShip(shipSymbol);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FleetApi.RepairShip: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the RepairShipWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Repair Ship
+    ApiResponse<RepairShip200Response> response = apiInstance.RepairShipWithHttpInfo(shipSymbol);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling FleetApi.RepairShipWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **shipSymbol** | **string** | The ship symbol. |  |
+
+### Return type
+
+[**RepairShip200Response**](RepairShip200Response.md)
+
+### Authorization
+
+[AgentToken](../README.md#AgentToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ship repaired successfully. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="scrapship"></a>
+# **ScrapShip**
+> ScrapShip200Response ScrapShip (string shipSymbol)
+
+Scrap Ship
+
+Scrap a ship, removing it from the game and returning a portion of the ship's value to the agent. The ship must be docked in a waypoint that has the `Shipyard` trait in order to use this function. To preview the amount of value that will be returned, use the Get Ship action.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using SpaceTradersUnitySDK.Api;
+using SpaceTradersUnitySDK.Client;
+using SpaceTradersUnitySDK.Model;
+
+namespace Example
+{
+    public class ScrapShipExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.spacetraders.io/v2";
+            // Configure Bearer token for authorization: AgentToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new FleetApi(config);
+            var shipSymbol = "shipSymbol_example";  // string | The ship symbol.
+
+            try
+            {
+                // Scrap Ship
+                ScrapShip200Response result = apiInstance.ScrapShip(shipSymbol);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FleetApi.ScrapShip: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ScrapShipWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Scrap Ship
+    ApiResponse<ScrapShip200Response> response = apiInstance.ScrapShipWithHttpInfo(shipSymbol);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling FleetApi.ScrapShipWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **shipSymbol** | **string** | The ship symbol. |  |
+
+### Return type
+
+[**ScrapShip200Response**](ScrapShip200Response.md)
+
+### Authorization
+
+[AgentToken](../README.md#AgentToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ship scrapped successfully. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="sellcargo"></a>
 # **SellCargo**
 > SellCargo201Response SellCargo (string shipSymbol, SellCargoRequest sellCargoRequest = null)
@@ -2599,6 +2980,100 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="siphonresources"></a>
+# **SiphonResources**
+> SiphonResources201Response SiphonResources (string shipSymbol)
+
+Siphon Resources
+
+Siphon gases, such as hydrocarbon, from gas giants.  The ship must be in orbit to be able to siphon and must have siphon mounts and a gas processor installed.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using SpaceTradersUnitySDK.Api;
+using SpaceTradersUnitySDK.Client;
+using SpaceTradersUnitySDK.Model;
+
+namespace Example
+{
+    public class SiphonResourcesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.spacetraders.io/v2";
+            // Configure Bearer token for authorization: AgentToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new FleetApi(config);
+            var shipSymbol = "shipSymbol_example";  // string | The ship symbol.
+
+            try
+            {
+                // Siphon Resources
+                SiphonResources201Response result = apiInstance.SiphonResources(shipSymbol);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling FleetApi.SiphonResources: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the SiphonResourcesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Siphon Resources
+    ApiResponse<SiphonResources201Response> response = apiInstance.SiphonResourcesWithHttpInfo(shipSymbol);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling FleetApi.SiphonResourcesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **shipSymbol** | **string** | The ship symbol. |  |
+
+### Return type
+
+[**SiphonResources201Response**](SiphonResources201Response.md)
+
+### Authorization
+
+[AgentToken](../README.md#AgentToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Siphon successful. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="transfercargo"></a>
 # **TransferCargo**
 > TransferCargo200Response TransferCargo (string shipSymbol, TransferCargoRequest transferCargoRequest = null)
@@ -2697,7 +3172,7 @@ catch (ApiException e)
 
 <a id="warpship"></a>
 # **WarpShip**
-> NavigateShip200Response WarpShip (string shipSymbol, NavigateShipRequest navigateShipRequest = null)
+> WarpShip200Response WarpShip (string shipSymbol, NavigateShipRequest navigateShipRequest = null)
 
 Warp Ship
 
@@ -2729,7 +3204,7 @@ namespace Example
             try
             {
                 // Warp Ship
-                NavigateShip200Response result = apiInstance.WarpShip(shipSymbol, navigateShipRequest);
+                WarpShip200Response result = apiInstance.WarpShip(shipSymbol, navigateShipRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2750,7 +3225,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Warp Ship
-    ApiResponse<NavigateShip200Response> response = apiInstance.WarpShipWithHttpInfo(shipSymbol, navigateShipRequest);
+    ApiResponse<WarpShip200Response> response = apiInstance.WarpShipWithHttpInfo(shipSymbol, navigateShipRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2772,7 +3247,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**NavigateShip200Response**](NavigateShip200Response.md)
+[**WarpShip200Response**](WarpShip200Response.md)
 
 ### Authorization
 

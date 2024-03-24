@@ -1,4 +1,5 @@
 # SpaceTradersUnitySDK.Model.ContractPayment
+Payments for the contract.
 
 ## Properties
 

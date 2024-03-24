@@ -28,10 +28,33 @@ namespace SpaceTradersUnitySDK.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Get Construction Site
+        /// </summary>
+        /// <remarks>
+        /// Get construction details for a waypoint. Requires a waypoint with a property of &#x60;isUnderConstruction&#x60; to be true.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="systemSymbol">The system symbol</param>
+        /// <param name="waypointSymbol">The waypoint symbol</param>
+        /// <returns>GetConstruction200Response</returns>
+        GetConstruction200Response GetConstruction(string systemSymbol, string waypointSymbol);
+
+        /// <summary>
+        /// Get Construction Site
+        /// </summary>
+        /// <remarks>
+        /// Get construction details for a waypoint. Requires a waypoint with a property of &#x60;isUnderConstruction&#x60; to be true.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="systemSymbol">The system symbol</param>
+        /// <param name="waypointSymbol">The waypoint symbol</param>
+        /// <returns>ApiResponse of GetConstruction200Response</returns>
+        ApiResponse<GetConstruction200Response> GetConstructionWithHttpInfo(string systemSymbol, string waypointSymbol);
+        /// <summary>
         /// Get Jump Gate
         /// </summary>
         /// <remarks>
-        /// Get jump gate details for a waypoint. Requires a waypoint of type &#x60;JUMP_GATE&#x60; to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
+        /// Get jump gate details for a waypoint. Requires a waypoint of type &#x60;JUMP_GATE&#x60; to use.  Waypoints connected to this jump gate can be 
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -43,7 +66,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Jump Gate
         /// </summary>
         /// <remarks>
-        /// Get jump gate details for a waypoint. Requires a waypoint of type &#x60;JUMP_GATE&#x60; to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
+        /// Get jump gate details for a waypoint. Requires a waypoint of type &#x60;JUMP_GATE&#x60; to use.  Waypoints connected to this jump gate can be 
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -127,8 +150,10 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="systemSymbol">The system symbol</param>
         /// <param name="page">What entry offset to request (optional, default to 1)</param>
         /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
+        /// <param name="type">Filter waypoints by type. (optional)</param>
+        /// <param name="traits">Filter waypoints by one or more traits. (optional)</param>
         /// <returns>GetSystemWaypoints200Response</returns>
-        GetSystemWaypoints200Response GetSystemWaypoints(string systemSymbol, int? page = default(int?), int? limit = default(int?));
+        GetSystemWaypoints200Response GetSystemWaypoints(string systemSymbol, int? page = default(int?), int? limit = default(int?), WaypointType? type = default(WaypointType?), GetSystemWaypointsTraitsParameter traits = default(GetSystemWaypointsTraitsParameter));
 
         /// <summary>
         /// List Waypoints in System
@@ -140,8 +165,10 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="systemSymbol">The system symbol</param>
         /// <param name="page">What entry offset to request (optional, default to 1)</param>
         /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
+        /// <param name="type">Filter waypoints by type. (optional)</param>
+        /// <param name="traits">Filter waypoints by one or more traits. (optional)</param>
         /// <returns>ApiResponse of GetSystemWaypoints200Response</returns>
-        ApiResponse<GetSystemWaypoints200Response> GetSystemWaypointsWithHttpInfo(string systemSymbol, int? page = default(int?), int? limit = default(int?));
+        ApiResponse<GetSystemWaypoints200Response> GetSystemWaypointsWithHttpInfo(string systemSymbol, int? page = default(int?), int? limit = default(int?), WaypointType? type = default(WaypointType?), GetSystemWaypointsTraitsParameter traits = default(GetSystemWaypointsTraitsParameter));
         /// <summary>
         /// List Systems
         /// </summary>
@@ -188,6 +215,31 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="waypointSymbol">The waypoint symbol</param>
         /// <returns>ApiResponse of GetWaypoint200Response</returns>
         ApiResponse<GetWaypoint200Response> GetWaypointWithHttpInfo(string systemSymbol, string waypointSymbol);
+        /// <summary>
+        /// Supply Construction Site
+        /// </summary>
+        /// <remarks>
+        /// Supply a construction site with the specified good. Requires a waypoint with a property of &#x60;isUnderConstruction&#x60; to be true.  The good must be in your ship&#39;s cargo. The good will be removed from your ship&#39;s cargo and added to the construction site&#39;s materials.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="systemSymbol">The system symbol</param>
+        /// <param name="waypointSymbol">The waypoint symbol</param>
+        /// <param name="supplyConstructionRequest"> (optional)</param>
+        /// <returns>SupplyConstruction201Response</returns>
+        SupplyConstruction201Response SupplyConstruction(string systemSymbol, string waypointSymbol, SupplyConstructionRequest supplyConstructionRequest = default(SupplyConstructionRequest));
+
+        /// <summary>
+        /// Supply Construction Site
+        /// </summary>
+        /// <remarks>
+        /// Supply a construction site with the specified good. Requires a waypoint with a property of &#x60;isUnderConstruction&#x60; to be true.  The good must be in your ship&#39;s cargo. The good will be removed from your ship&#39;s cargo and added to the construction site&#39;s materials.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="systemSymbol">The system symbol</param>
+        /// <param name="waypointSymbol">The waypoint symbol</param>
+        /// <param name="supplyConstructionRequest"> (optional)</param>
+        /// <returns>ApiResponse of SupplyConstruction201Response</returns>
+        ApiResponse<SupplyConstruction201Response> SupplyConstructionWithHttpInfo(string systemSymbol, string waypointSymbol, SupplyConstructionRequest supplyConstructionRequest = default(SupplyConstructionRequest));
         #endregion Synchronous Operations
     }
 
@@ -198,10 +250,35 @@ namespace SpaceTradersUnitySDK.Api
     {
         #region Asynchronous Operations
         /// <summary>
+        /// Get Construction Site
+        /// </summary>
+        /// <remarks>
+        /// Get construction details for a waypoint. Requires a waypoint with a property of &#x60;isUnderConstruction&#x60; to be true.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="systemSymbol">The system symbol</param>
+        /// <param name="waypointSymbol">The waypoint symbol</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetConstruction200Response</returns>
+        System.Threading.Tasks.Task<GetConstruction200Response> GetConstructionAsync(string systemSymbol, string waypointSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Get Construction Site
+        /// </summary>
+        /// <remarks>
+        /// Get construction details for a waypoint. Requires a waypoint with a property of &#x60;isUnderConstruction&#x60; to be true.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="systemSymbol">The system symbol</param>
+        /// <param name="waypointSymbol">The waypoint symbol</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetConstruction200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetConstruction200Response>> GetConstructionWithHttpInfoAsync(string systemSymbol, string waypointSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
         /// Get Jump Gate
         /// </summary>
         /// <remarks>
-        /// Get jump gate details for a waypoint. Requires a waypoint of type &#x60;JUMP_GATE&#x60; to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
+        /// Get jump gate details for a waypoint. Requires a waypoint of type &#x60;JUMP_GATE&#x60; to use.  Waypoints connected to this jump gate can be 
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -214,7 +291,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Get Jump Gate
         /// </summary>
         /// <remarks>
-        /// Get jump gate details for a waypoint. Requires a waypoint of type &#x60;JUMP_GATE&#x60; to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
+        /// Get jump gate details for a waypoint. Requires a waypoint of type &#x60;JUMP_GATE&#x60; to use.  Waypoints connected to this jump gate can be 
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -305,9 +382,11 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="systemSymbol">The system symbol</param>
         /// <param name="page">What entry offset to request (optional, default to 1)</param>
         /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
+        /// <param name="type">Filter waypoints by type. (optional)</param>
+        /// <param name="traits">Filter waypoints by one or more traits. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetSystemWaypoints200Response</returns>
-        System.Threading.Tasks.Task<GetSystemWaypoints200Response> GetSystemWaypointsAsync(string systemSymbol, int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<GetSystemWaypoints200Response> GetSystemWaypointsAsync(string systemSymbol, int? page = default(int?), int? limit = default(int?), WaypointType? type = default(WaypointType?), GetSystemWaypointsTraitsParameter traits = default(GetSystemWaypointsTraitsParameter), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// List Waypoints in System
@@ -319,9 +398,11 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="systemSymbol">The system symbol</param>
         /// <param name="page">What entry offset to request (optional, default to 1)</param>
         /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
+        /// <param name="type">Filter waypoints by type. (optional)</param>
+        /// <param name="traits">Filter waypoints by one or more traits. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetSystemWaypoints200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetSystemWaypoints200Response>> GetSystemWaypointsWithHttpInfoAsync(string systemSymbol, int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<GetSystemWaypoints200Response>> GetSystemWaypointsWithHttpInfoAsync(string systemSymbol, int? page = default(int?), int? limit = default(int?), WaypointType? type = default(WaypointType?), GetSystemWaypointsTraitsParameter traits = default(GetSystemWaypointsTraitsParameter), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// List Systems
         /// </summary>
@@ -372,6 +453,33 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWaypoint200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetWaypoint200Response>> GetWaypointWithHttpInfoAsync(string systemSymbol, string waypointSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Supply Construction Site
+        /// </summary>
+        /// <remarks>
+        /// Supply a construction site with the specified good. Requires a waypoint with a property of &#x60;isUnderConstruction&#x60; to be true.  The good must be in your ship&#39;s cargo. The good will be removed from your ship&#39;s cargo and added to the construction site&#39;s materials.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="systemSymbol">The system symbol</param>
+        /// <param name="waypointSymbol">The waypoint symbol</param>
+        /// <param name="supplyConstructionRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SupplyConstruction201Response</returns>
+        System.Threading.Tasks.Task<SupplyConstruction201Response> SupplyConstructionAsync(string systemSymbol, string waypointSymbol, SupplyConstructionRequest supplyConstructionRequest = default(SupplyConstructionRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Supply Construction Site
+        /// </summary>
+        /// <remarks>
+        /// Supply a construction site with the specified good. Requires a waypoint with a property of &#x60;isUnderConstruction&#x60; to be true.  The good must be in your ship&#39;s cargo. The good will be removed from your ship&#39;s cargo and added to the construction site&#39;s materials.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="systemSymbol">The system symbol</param>
+        /// <param name="waypointSymbol">The waypoint symbol</param>
+        /// <param name="supplyConstructionRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SupplyConstruction201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SupplyConstruction201Response>> SupplyConstructionWithHttpInfoAsync(string systemSymbol, string waypointSymbol, SupplyConstructionRequest supplyConstructionRequest = default(SupplyConstructionRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -517,7 +625,159 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Jump Gate Get jump gate details for a waypoint. Requires a waypoint of type &#x60;JUMP_GATE&#x60; to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
+        /// Get Construction Site Get construction details for a waypoint. Requires a waypoint with a property of &#x60;isUnderConstruction&#x60; to be true.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="systemSymbol">The system symbol</param>
+        /// <param name="waypointSymbol">The waypoint symbol</param>
+        /// <returns>GetConstruction200Response</returns>
+        public GetConstruction200Response GetConstruction(string systemSymbol, string waypointSymbol)
+        {
+            SpaceTradersUnitySDK.Client.ApiResponse<GetConstruction200Response> localVarResponse = GetConstructionWithHttpInfo(systemSymbol, waypointSymbol);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Construction Site Get construction details for a waypoint. Requires a waypoint with a property of &#x60;isUnderConstruction&#x60; to be true.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="systemSymbol">The system symbol</param>
+        /// <param name="waypointSymbol">The waypoint symbol</param>
+        /// <returns>ApiResponse of GetConstruction200Response</returns>
+        public SpaceTradersUnitySDK.Client.ApiResponse<GetConstruction200Response> GetConstructionWithHttpInfo(string systemSymbol, string waypointSymbol)
+        {
+            // verify the required parameter 'systemSymbol' is set
+            if (systemSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'systemSymbol' when calling SystemsApi->GetConstruction");
+
+            // verify the required parameter 'waypointSymbol' is set
+            if (waypointSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'waypointSymbol' when calling SystemsApi->GetConstruction");
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("systemSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(systemSymbol)); // path parameter
+            localVarRequestOptions.PathParameters.Add("waypointSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(waypointSymbol)); // path parameter
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetConstruction200Response>("/systems/{systemSymbol}/waypoints/{waypointSymbol}/construction", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetConstruction", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Construction Site Get construction details for a waypoint. Requires a waypoint with a property of &#x60;isUnderConstruction&#x60; to be true.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="systemSymbol">The system symbol</param>
+        /// <param name="waypointSymbol">The waypoint symbol</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetConstruction200Response</returns>
+        public async System.Threading.Tasks.Task<GetConstruction200Response> GetConstructionAsync(string systemSymbol, string waypointSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = GetConstructionWithHttpInfoAsync(systemSymbol, waypointSymbol, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            SpaceTradersUnitySDK.Client.ApiResponse<GetConstruction200Response> localVarResponse = await task.ConfigureAwait(false);
+#else
+            SpaceTradersUnitySDK.Client.ApiResponse<GetConstruction200Response> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Construction Site Get construction details for a waypoint. Requires a waypoint with a property of &#x60;isUnderConstruction&#x60; to be true.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="systemSymbol">The system symbol</param>
+        /// <param name="waypointSymbol">The waypoint symbol</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetConstruction200Response)</returns>
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetConstruction200Response>> GetConstructionWithHttpInfoAsync(string systemSymbol, string waypointSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'systemSymbol' is set
+            if (systemSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'systemSymbol' when calling SystemsApi->GetConstruction");
+
+            // verify the required parameter 'waypointSymbol' is set
+            if (waypointSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'waypointSymbol' when calling SystemsApi->GetConstruction");
+
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("systemSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(systemSymbol)); // path parameter
+            localVarRequestOptions.PathParameters.Add("waypointSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(waypointSymbol)); // path parameter
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.GetAsync<GetConstruction200Response>("/systems/{systemSymbol}/waypoints/{waypointSymbol}/construction", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetConstruction", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Jump Gate Get jump gate details for a waypoint. Requires a waypoint of type &#x60;JUMP_GATE&#x60; to use.  Waypoints connected to this jump gate can be 
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -530,7 +790,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Jump Gate Get jump gate details for a waypoint. Requires a waypoint of type &#x60;JUMP_GATE&#x60; to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
+        /// Get Jump Gate Get jump gate details for a waypoint. Requires a waypoint of type &#x60;JUMP_GATE&#x60; to use.  Waypoints connected to this jump gate can be 
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -585,7 +845,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Jump Gate Get jump gate details for a waypoint. Requires a waypoint of type &#x60;JUMP_GATE&#x60; to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
+        /// Get Jump Gate Get jump gate details for a waypoint. Requires a waypoint of type &#x60;JUMP_GATE&#x60; to use.  Waypoints connected to this jump gate can be 
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -604,7 +864,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Get Jump Gate Get jump gate details for a waypoint. Requires a waypoint of type &#x60;JUMP_GATE&#x60; to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
+        /// Get Jump Gate Get jump gate details for a waypoint. Requires a waypoint of type &#x60;JUMP_GATE&#x60; to use.  Waypoints connected to this jump gate can be 
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="systemSymbol">The system symbol</param>
@@ -1117,10 +1377,12 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="systemSymbol">The system symbol</param>
         /// <param name="page">What entry offset to request (optional, default to 1)</param>
         /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
+        /// <param name="type">Filter waypoints by type. (optional)</param>
+        /// <param name="traits">Filter waypoints by one or more traits. (optional)</param>
         /// <returns>GetSystemWaypoints200Response</returns>
-        public GetSystemWaypoints200Response GetSystemWaypoints(string systemSymbol, int? page = default(int?), int? limit = default(int?))
+        public GetSystemWaypoints200Response GetSystemWaypoints(string systemSymbol, int? page = default(int?), int? limit = default(int?), WaypointType? type = default(WaypointType?), GetSystemWaypointsTraitsParameter traits = default(GetSystemWaypointsTraitsParameter))
         {
-            SpaceTradersUnitySDK.Client.ApiResponse<GetSystemWaypoints200Response> localVarResponse = GetSystemWaypointsWithHttpInfo(systemSymbol, page, limit);
+            SpaceTradersUnitySDK.Client.ApiResponse<GetSystemWaypoints200Response> localVarResponse = GetSystemWaypointsWithHttpInfo(systemSymbol, page, limit, type, traits);
             return localVarResponse.Data;
         }
 
@@ -1131,8 +1393,10 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="systemSymbol">The system symbol</param>
         /// <param name="page">What entry offset to request (optional, default to 1)</param>
         /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
+        /// <param name="type">Filter waypoints by type. (optional)</param>
+        /// <param name="traits">Filter waypoints by one or more traits. (optional)</param>
         /// <returns>ApiResponse of GetSystemWaypoints200Response</returns>
-        public SpaceTradersUnitySDK.Client.ApiResponse<GetSystemWaypoints200Response> GetSystemWaypointsWithHttpInfo(string systemSymbol, int? page = default(int?), int? limit = default(int?))
+        public SpaceTradersUnitySDK.Client.ApiResponse<GetSystemWaypoints200Response> GetSystemWaypointsWithHttpInfo(string systemSymbol, int? page = default(int?), int? limit = default(int?), WaypointType? type = default(WaypointType?), GetSystemWaypointsTraitsParameter traits = default(GetSystemWaypointsTraitsParameter))
         {
             // verify the required parameter 'systemSymbol' is set
             if (systemSymbol == null)
@@ -1162,6 +1426,14 @@ namespace SpaceTradersUnitySDK.Api
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(SpaceTradersUnitySDK.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (type != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(SpaceTradersUnitySDK.Client.ClientUtils.ParameterToMultiMap("", "type", type));
+            }
+            if (traits != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(SpaceTradersUnitySDK.Client.ClientUtils.ParameterToMultiMap("", "traits", traits));
             }
 
             // authentication (AgentToken) required
@@ -1190,11 +1462,13 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="systemSymbol">The system symbol</param>
         /// <param name="page">What entry offset to request (optional, default to 1)</param>
         /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
+        /// <param name="type">Filter waypoints by type. (optional)</param>
+        /// <param name="traits">Filter waypoints by one or more traits. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetSystemWaypoints200Response</returns>
-        public async System.Threading.Tasks.Task<GetSystemWaypoints200Response> GetSystemWaypointsAsync(string systemSymbol, int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<GetSystemWaypoints200Response> GetSystemWaypointsAsync(string systemSymbol, int? page = default(int?), int? limit = default(int?), WaypointType? type = default(WaypointType?), GetSystemWaypointsTraitsParameter traits = default(GetSystemWaypointsTraitsParameter), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var task = GetSystemWaypointsWithHttpInfoAsync(systemSymbol, page, limit, cancellationToken);
+            var task = GetSystemWaypointsWithHttpInfoAsync(systemSymbol, page, limit, type, traits, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
             SpaceTradersUnitySDK.Client.ApiResponse<GetSystemWaypoints200Response> localVarResponse = await task.ConfigureAwait(false);
 #else
@@ -1210,9 +1484,11 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="systemSymbol">The system symbol</param>
         /// <param name="page">What entry offset to request (optional, default to 1)</param>
         /// <param name="limit">How many entries to return per page (optional, default to 10)</param>
+        /// <param name="type">Filter waypoints by type. (optional)</param>
+        /// <param name="traits">Filter waypoints by one or more traits. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetSystemWaypoints200Response)</returns>
-        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetSystemWaypoints200Response>> GetSystemWaypointsWithHttpInfoAsync(string systemSymbol, int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetSystemWaypoints200Response>> GetSystemWaypointsWithHttpInfoAsync(string systemSymbol, int? page = default(int?), int? limit = default(int?), WaypointType? type = default(WaypointType?), GetSystemWaypointsTraitsParameter traits = default(GetSystemWaypointsTraitsParameter), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'systemSymbol' is set
             if (systemSymbol == null)
@@ -1244,6 +1520,14 @@ namespace SpaceTradersUnitySDK.Api
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(SpaceTradersUnitySDK.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (type != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(SpaceTradersUnitySDK.Client.ClientUtils.ParameterToMultiMap("", "type", type));
+            }
+            if (traits != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(SpaceTradersUnitySDK.Client.ClientUtils.ParameterToMultiMap("", "traits", traits));
             }
 
             // authentication (AgentToken) required
@@ -1566,6 +1850,166 @@ namespace SpaceTradersUnitySDK.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetWaypoint", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Supply Construction Site Supply a construction site with the specified good. Requires a waypoint with a property of &#x60;isUnderConstruction&#x60; to be true.  The good must be in your ship&#39;s cargo. The good will be removed from your ship&#39;s cargo and added to the construction site&#39;s materials.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="systemSymbol">The system symbol</param>
+        /// <param name="waypointSymbol">The waypoint symbol</param>
+        /// <param name="supplyConstructionRequest"> (optional)</param>
+        /// <returns>SupplyConstruction201Response</returns>
+        public SupplyConstruction201Response SupplyConstruction(string systemSymbol, string waypointSymbol, SupplyConstructionRequest supplyConstructionRequest = default(SupplyConstructionRequest))
+        {
+            SpaceTradersUnitySDK.Client.ApiResponse<SupplyConstruction201Response> localVarResponse = SupplyConstructionWithHttpInfo(systemSymbol, waypointSymbol, supplyConstructionRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Supply Construction Site Supply a construction site with the specified good. Requires a waypoint with a property of &#x60;isUnderConstruction&#x60; to be true.  The good must be in your ship&#39;s cargo. The good will be removed from your ship&#39;s cargo and added to the construction site&#39;s materials.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="systemSymbol">The system symbol</param>
+        /// <param name="waypointSymbol">The waypoint symbol</param>
+        /// <param name="supplyConstructionRequest"> (optional)</param>
+        /// <returns>ApiResponse of SupplyConstruction201Response</returns>
+        public SpaceTradersUnitySDK.Client.ApiResponse<SupplyConstruction201Response> SupplyConstructionWithHttpInfo(string systemSymbol, string waypointSymbol, SupplyConstructionRequest supplyConstructionRequest = default(SupplyConstructionRequest))
+        {
+            // verify the required parameter 'systemSymbol' is set
+            if (systemSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'systemSymbol' when calling SystemsApi->SupplyConstruction");
+
+            // verify the required parameter 'waypointSymbol' is set
+            if (waypointSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'waypointSymbol' when calling SystemsApi->SupplyConstruction");
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("systemSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(systemSymbol)); // path parameter
+            localVarRequestOptions.PathParameters.Add("waypointSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(waypointSymbol)); // path parameter
+            localVarRequestOptions.Data = supplyConstructionRequest;
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<SupplyConstruction201Response>("/systems/{systemSymbol}/waypoints/{waypointSymbol}/construction/supply", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SupplyConstruction", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Supply Construction Site Supply a construction site with the specified good. Requires a waypoint with a property of &#x60;isUnderConstruction&#x60; to be true.  The good must be in your ship&#39;s cargo. The good will be removed from your ship&#39;s cargo and added to the construction site&#39;s materials.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="systemSymbol">The system symbol</param>
+        /// <param name="waypointSymbol">The waypoint symbol</param>
+        /// <param name="supplyConstructionRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SupplyConstruction201Response</returns>
+        public async System.Threading.Tasks.Task<SupplyConstruction201Response> SupplyConstructionAsync(string systemSymbol, string waypointSymbol, SupplyConstructionRequest supplyConstructionRequest = default(SupplyConstructionRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = SupplyConstructionWithHttpInfoAsync(systemSymbol, waypointSymbol, supplyConstructionRequest, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            SpaceTradersUnitySDK.Client.ApiResponse<SupplyConstruction201Response> localVarResponse = await task.ConfigureAwait(false);
+#else
+            SpaceTradersUnitySDK.Client.ApiResponse<SupplyConstruction201Response> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Supply Construction Site Supply a construction site with the specified good. Requires a waypoint with a property of &#x60;isUnderConstruction&#x60; to be true.  The good must be in your ship&#39;s cargo. The good will be removed from your ship&#39;s cargo and added to the construction site&#39;s materials.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="systemSymbol">The system symbol</param>
+        /// <param name="waypointSymbol">The waypoint symbol</param>
+        /// <param name="supplyConstructionRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SupplyConstruction201Response)</returns>
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<SupplyConstruction201Response>> SupplyConstructionWithHttpInfoAsync(string systemSymbol, string waypointSymbol, SupplyConstructionRequest supplyConstructionRequest = default(SupplyConstructionRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'systemSymbol' is set
+            if (systemSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'systemSymbol' when calling SystemsApi->SupplyConstruction");
+
+            // verify the required parameter 'waypointSymbol' is set
+            if (waypointSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'waypointSymbol' when calling SystemsApi->SupplyConstruction");
+
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("systemSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(systemSymbol)); // path parameter
+            localVarRequestOptions.PathParameters.Add("waypointSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(waypointSymbol)); // path parameter
+            localVarRequestOptions.Data = supplyConstructionRequest;
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.PostAsync<SupplyConstruction201Response>("/systems/{systemSymbol}/waypoints/{waypointSymbol}/construction/supply", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SupplyConstruction", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

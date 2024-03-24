@@ -47,7 +47,7 @@ namespace SpaceTradersUnitySDK.Model
         /// </summary>
         /// <param name="symbol">The symbol of the waypoint. (required).</param>
         /// <param name="type">type (required).</param>
-        /// <param name="systemSymbol">The symbol of the system the waypoint is in. (required).</param>
+        /// <param name="systemSymbol">The symbol of the system. (required).</param>
         /// <param name="x">Position in the universe in the x axis. (required).</param>
         /// <param name="y">Position in the universe in the y axis. (required).</param>
         public ShipNavRouteWaypoint(string symbol = default(string), WaypointType type = default(WaypointType), string systemSymbol = default(string), int x = default(int), int y = default(int))
@@ -77,9 +77,9 @@ namespace SpaceTradersUnitySDK.Model
         public string Symbol { get; set; }
 
         /// <summary>
-        /// The symbol of the system the waypoint is in.
+        /// The symbol of the system.
         /// </summary>
-        /// <value>The symbol of the system the waypoint is in.</value>
+        /// <value>The symbol of the system.</value>
         [DataMember(Name = "systemSymbol", IsRequired = true, EmitDefaultValue = true)]
         public string SystemSymbol { get; set; }
 

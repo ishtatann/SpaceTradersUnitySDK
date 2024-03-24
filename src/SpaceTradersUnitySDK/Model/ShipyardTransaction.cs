@@ -39,12 +39,13 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ShipyardTransaction" /> class.
         /// </summary>
-        /// <param name="waypointSymbol">The symbol of the waypoint where the transaction took place. (required).</param>
+        /// <param name="waypointSymbol">The symbol of the waypoint. (required).</param>
         /// <param name="shipSymbol">The symbol of the ship that was the subject of the transaction. (required).</param>
+        /// <param name="shipType">The symbol of the ship that was the subject of the transaction. (required).</param>
         /// <param name="price">The price of the transaction. (required).</param>
         /// <param name="agentSymbol">The symbol of the agent that made the transaction. (required).</param>
         /// <param name="timestamp">The timestamp of the transaction. (required).</param>
-        public ShipyardTransaction(string waypointSymbol = default(string), string shipSymbol = default(string), int price = default(int), string agentSymbol = default(string), DateTime timestamp = default(DateTime))
+        public ShipyardTransaction(string waypointSymbol = default(string), string shipSymbol = default(string), string shipType = default(string), int price = default(int), string agentSymbol = default(string), DateTime timestamp = default(DateTime))
         {
             // to ensure "waypointSymbol" is required (not null)
             if (waypointSymbol == null)
@@ -58,6 +59,12 @@ namespace SpaceTradersUnitySDK.Model
                 throw new ArgumentNullException("shipSymbol is a required property for ShipyardTransaction and cannot be null");
             }
             this.ShipSymbol = shipSymbol;
+            // to ensure "shipType" is required (not null)
+            if (shipType == null)
+            {
+                throw new ArgumentNullException("shipType is a required property for ShipyardTransaction and cannot be null");
+            }
+            this.ShipType = shipType;
             this.Price = price;
             // to ensure "agentSymbol" is required (not null)
             if (agentSymbol == null)
@@ -69,9 +76,9 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// The symbol of the waypoint where the transaction took place.
+        /// The symbol of the waypoint.
         /// </summary>
-        /// <value>The symbol of the waypoint where the transaction took place.</value>
+        /// <value>The symbol of the waypoint.</value>
         [DataMember(Name = "waypointSymbol", IsRequired = true, EmitDefaultValue = true)]
         public string WaypointSymbol { get; set; }
 
@@ -80,7 +87,15 @@ namespace SpaceTradersUnitySDK.Model
         /// </summary>
         /// <value>The symbol of the ship that was the subject of the transaction.</value>
         [DataMember(Name = "shipSymbol", IsRequired = true, EmitDefaultValue = true)]
+        [Obsolete]
         public string ShipSymbol { get; set; }
+
+        /// <summary>
+        /// The symbol of the ship that was the subject of the transaction.
+        /// </summary>
+        /// <value>The symbol of the ship that was the subject of the transaction.</value>
+        [DataMember(Name = "shipType", IsRequired = true, EmitDefaultValue = true)]
+        public string ShipType { get; set; }
 
         /// <summary>
         /// The price of the transaction.
@@ -113,6 +128,7 @@ namespace SpaceTradersUnitySDK.Model
             sb.Append("class ShipyardTransaction {\n");
             sb.Append("  WaypointSymbol: ").Append(WaypointSymbol).Append("\n");
             sb.Append("  ShipSymbol: ").Append(ShipSymbol).Append("\n");
+            sb.Append("  ShipType: ").Append(ShipType).Append("\n");
             sb.Append("  Price: ").Append(Price).Append("\n");
             sb.Append("  AgentSymbol: ").Append(AgentSymbol).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
@@ -162,6 +178,11 @@ namespace SpaceTradersUnitySDK.Model
                     this.ShipSymbol.Equals(input.ShipSymbol))
                 ) && 
                 (
+                    this.ShipType == input.ShipType ||
+                    (this.ShipType != null &&
+                    this.ShipType.Equals(input.ShipType))
+                ) && 
+                (
                     this.Price == input.Price ||
                     this.Price.Equals(input.Price)
                 ) && 
@@ -193,6 +214,10 @@ namespace SpaceTradersUnitySDK.Model
                 if (this.ShipSymbol != null)
                 {
                     hashCode = (hashCode * 59) + this.ShipSymbol.GetHashCode();
+                }
+                if (this.ShipType != null)
+                {
+                    hashCode = (hashCode * 59) + this.ShipType.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Price.GetHashCode();
                 if (this.AgentSymbol != null)

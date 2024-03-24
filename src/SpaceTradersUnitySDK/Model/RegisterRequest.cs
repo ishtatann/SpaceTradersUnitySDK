@@ -36,7 +36,7 @@ namespace SpaceTradersUnitySDK.Model
         /// Gets or Sets Faction
         /// </summary>
         [DataMember(Name = "faction", IsRequired = true, EmitDefaultValue = true)]
-        public FactionSymbols Faction { get; set; }
+        public FactionSymbol Faction { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="RegisterRequest" /> class.
         /// </summary>
@@ -48,7 +48,7 @@ namespace SpaceTradersUnitySDK.Model
         /// <param name="faction">faction (required).</param>
         /// <param name="symbol">Your desired agent symbol. This will be a unique name used to represent your agent, and will be the prefix for your ships. (required).</param>
         /// <param name="email">Your email address. This is used if you reserved your call sign between resets..</param>
-        public RegisterRequest(FactionSymbols faction = default(FactionSymbols), string symbol = default(string), string email = default(string))
+        public RegisterRequest(FactionSymbol faction = default(FactionSymbol), string symbol = default(string), string email = default(string))
         {
             this.Faction = faction;
             // to ensure "symbol" is required (not null)

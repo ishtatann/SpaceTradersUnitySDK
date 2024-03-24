@@ -44,7 +44,7 @@ namespace SpaceTradersUnitySDK.Model
         /// <param name="headquarters">The headquarters of the agent. (required).</param>
         /// <param name="credits">The number of credits the agent has available. Credits can be negative if funds have been overdrawn. (required).</param>
         /// <param name="startingFaction">The faction the agent started with. (required).</param>
-        /// <param name="shipCount">How many ships are owned by the agent..</param>
+        /// <param name="shipCount">How many ships are owned by the agent. (required).</param>
         public Agent(string accountId = default(string), string symbol = default(string), string headquarters = default(string), long credits = default(long), string startingFaction = default(string), int shipCount = default(int))
         {
             // to ensure "symbol" is required (not null)
@@ -66,8 +66,8 @@ namespace SpaceTradersUnitySDK.Model
                 throw new ArgumentNullException("startingFaction is a required property for Agent and cannot be null");
             }
             this.StartingFaction = startingFaction;
-            this.AccountId = accountId;
             this.ShipCount = shipCount;
+            this.AccountId = accountId;
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace SpaceTradersUnitySDK.Model
         /// How many ships are owned by the agent.
         /// </summary>
         /// <value>How many ships are owned by the agent.</value>
-        [DataMember(Name = "shipCount", EmitDefaultValue = false)]
+        [DataMember(Name = "shipCount", IsRequired = true, EmitDefaultValue = true)]
         public int ShipCount { get; set; }
 
         /// <summary>

@@ -207,490 +207,688 @@ namespace SpaceTradersUnitySDK.Model
         ANTIMATTER = 29,
 
         /// <summary>
+        /// Enum FABMATS for value: FAB_MATS
+        /// </summary>
+        [EnumMember(Value = "FAB_MATS")]
+        FABMATS = 30,
+
+        /// <summary>
         /// Enum FERTILIZERS for value: FERTILIZERS
         /// </summary>
         [EnumMember(Value = "FERTILIZERS")]
-        FERTILIZERS = 30,
+        FERTILIZERS = 31,
 
         /// <summary>
         /// Enum FABRICS for value: FABRICS
         /// </summary>
         [EnumMember(Value = "FABRICS")]
-        FABRICS = 31,
+        FABRICS = 32,
 
         /// <summary>
         /// Enum FOOD for value: FOOD
         /// </summary>
         [EnumMember(Value = "FOOD")]
-        FOOD = 32,
+        FOOD = 33,
 
         /// <summary>
         /// Enum JEWELRY for value: JEWELRY
         /// </summary>
         [EnumMember(Value = "JEWELRY")]
-        JEWELRY = 33,
+        JEWELRY = 34,
 
         /// <summary>
         /// Enum MACHINERY for value: MACHINERY
         /// </summary>
         [EnumMember(Value = "MACHINERY")]
-        MACHINERY = 34,
+        MACHINERY = 35,
 
         /// <summary>
         /// Enum FIREARMS for value: FIREARMS
         /// </summary>
         [EnumMember(Value = "FIREARMS")]
-        FIREARMS = 35,
+        FIREARMS = 36,
 
         /// <summary>
         /// Enum ASSAULTRIFLES for value: ASSAULT_RIFLES
         /// </summary>
         [EnumMember(Value = "ASSAULT_RIFLES")]
-        ASSAULTRIFLES = 36,
+        ASSAULTRIFLES = 37,
 
         /// <summary>
         /// Enum MILITARYEQUIPMENT for value: MILITARY_EQUIPMENT
         /// </summary>
         [EnumMember(Value = "MILITARY_EQUIPMENT")]
-        MILITARYEQUIPMENT = 37,
+        MILITARYEQUIPMENT = 38,
 
         /// <summary>
         /// Enum EXPLOSIVES for value: EXPLOSIVES
         /// </summary>
         [EnumMember(Value = "EXPLOSIVES")]
-        EXPLOSIVES = 38,
+        EXPLOSIVES = 39,
 
         /// <summary>
         /// Enum LABINSTRUMENTS for value: LAB_INSTRUMENTS
         /// </summary>
         [EnumMember(Value = "LAB_INSTRUMENTS")]
-        LABINSTRUMENTS = 39,
+        LABINSTRUMENTS = 40,
 
         /// <summary>
         /// Enum AMMUNITION for value: AMMUNITION
         /// </summary>
         [EnumMember(Value = "AMMUNITION")]
-        AMMUNITION = 40,
+        AMMUNITION = 41,
 
         /// <summary>
         /// Enum ELECTRONICS for value: ELECTRONICS
         /// </summary>
         [EnumMember(Value = "ELECTRONICS")]
-        ELECTRONICS = 41,
+        ELECTRONICS = 42,
 
         /// <summary>
         /// Enum SHIPPLATING for value: SHIP_PLATING
         /// </summary>
         [EnumMember(Value = "SHIP_PLATING")]
-        SHIPPLATING = 42,
+        SHIPPLATING = 43,
+
+        /// <summary>
+        /// Enum SHIPPARTS for value: SHIP_PARTS
+        /// </summary>
+        [EnumMember(Value = "SHIP_PARTS")]
+        SHIPPARTS = 44,
 
         /// <summary>
         /// Enum EQUIPMENT for value: EQUIPMENT
         /// </summary>
         [EnumMember(Value = "EQUIPMENT")]
-        EQUIPMENT = 43,
+        EQUIPMENT = 45,
 
         /// <summary>
         /// Enum FUEL for value: FUEL
         /// </summary>
         [EnumMember(Value = "FUEL")]
-        FUEL = 44,
+        FUEL = 46,
 
         /// <summary>
         /// Enum MEDICINE for value: MEDICINE
         /// </summary>
         [EnumMember(Value = "MEDICINE")]
-        MEDICINE = 45,
+        MEDICINE = 47,
 
         /// <summary>
         /// Enum DRUGS for value: DRUGS
         /// </summary>
         [EnumMember(Value = "DRUGS")]
-        DRUGS = 46,
+        DRUGS = 48,
 
         /// <summary>
         /// Enum CLOTHING for value: CLOTHING
         /// </summary>
         [EnumMember(Value = "CLOTHING")]
-        CLOTHING = 47,
+        CLOTHING = 49,
 
         /// <summary>
         /// Enum MICROPROCESSORS for value: MICROPROCESSORS
         /// </summary>
         [EnumMember(Value = "MICROPROCESSORS")]
-        MICROPROCESSORS = 48,
+        MICROPROCESSORS = 50,
 
         /// <summary>
         /// Enum PLASTICS for value: PLASTICS
         /// </summary>
         [EnumMember(Value = "PLASTICS")]
-        PLASTICS = 49,
+        PLASTICS = 51,
 
         /// <summary>
         /// Enum POLYNUCLEOTIDES for value: POLYNUCLEOTIDES
         /// </summary>
         [EnumMember(Value = "POLYNUCLEOTIDES")]
-        POLYNUCLEOTIDES = 50,
+        POLYNUCLEOTIDES = 52,
 
         /// <summary>
         /// Enum BIOCOMPOSITES for value: BIOCOMPOSITES
         /// </summary>
         [EnumMember(Value = "BIOCOMPOSITES")]
-        BIOCOMPOSITES = 51,
+        BIOCOMPOSITES = 53,
+
+        /// <summary>
+        /// Enum QUANTUMSTABILIZERS for value: QUANTUM_STABILIZERS
+        /// </summary>
+        [EnumMember(Value = "QUANTUM_STABILIZERS")]
+        QUANTUMSTABILIZERS = 54,
 
         /// <summary>
         /// Enum NANOBOTS for value: NANOBOTS
         /// </summary>
         [EnumMember(Value = "NANOBOTS")]
-        NANOBOTS = 52,
+        NANOBOTS = 55,
 
         /// <summary>
         /// Enum AIMAINFRAMES for value: AI_MAINFRAMES
         /// </summary>
         [EnumMember(Value = "AI_MAINFRAMES")]
-        AIMAINFRAMES = 53,
+        AIMAINFRAMES = 56,
 
         /// <summary>
         /// Enum QUANTUMDRIVES for value: QUANTUM_DRIVES
         /// </summary>
         [EnumMember(Value = "QUANTUM_DRIVES")]
-        QUANTUMDRIVES = 54,
+        QUANTUMDRIVES = 57,
 
         /// <summary>
         /// Enum ROBOTICDRONES for value: ROBOTIC_DRONES
         /// </summary>
         [EnumMember(Value = "ROBOTIC_DRONES")]
-        ROBOTICDRONES = 55,
+        ROBOTICDRONES = 58,
 
         /// <summary>
         /// Enum CYBERIMPLANTS for value: CYBER_IMPLANTS
         /// </summary>
         [EnumMember(Value = "CYBER_IMPLANTS")]
-        CYBERIMPLANTS = 56,
+        CYBERIMPLANTS = 59,
 
         /// <summary>
         /// Enum GENETHERAPEUTICS for value: GENE_THERAPEUTICS
         /// </summary>
         [EnumMember(Value = "GENE_THERAPEUTICS")]
-        GENETHERAPEUTICS = 57,
+        GENETHERAPEUTICS = 60,
 
         /// <summary>
         /// Enum NEURALCHIPS for value: NEURAL_CHIPS
         /// </summary>
         [EnumMember(Value = "NEURAL_CHIPS")]
-        NEURALCHIPS = 58,
+        NEURALCHIPS = 61,
 
         /// <summary>
         /// Enum MOODREGULATORS for value: MOOD_REGULATORS
         /// </summary>
         [EnumMember(Value = "MOOD_REGULATORS")]
-        MOODREGULATORS = 59,
+        MOODREGULATORS = 62,
 
         /// <summary>
         /// Enum VIRALAGENTS for value: VIRAL_AGENTS
         /// </summary>
         [EnumMember(Value = "VIRAL_AGENTS")]
-        VIRALAGENTS = 60,
+        VIRALAGENTS = 63,
 
         /// <summary>
         /// Enum MICROFUSIONGENERATORS for value: MICRO_FUSION_GENERATORS
         /// </summary>
         [EnumMember(Value = "MICRO_FUSION_GENERATORS")]
-        MICROFUSIONGENERATORS = 61,
+        MICROFUSIONGENERATORS = 64,
 
         /// <summary>
         /// Enum SUPERGRAINS for value: SUPERGRAINS
         /// </summary>
         [EnumMember(Value = "SUPERGRAINS")]
-        SUPERGRAINS = 62,
+        SUPERGRAINS = 65,
 
         /// <summary>
         /// Enum LASERRIFLES for value: LASER_RIFLES
         /// </summary>
         [EnumMember(Value = "LASER_RIFLES")]
-        LASERRIFLES = 63,
+        LASERRIFLES = 66,
 
         /// <summary>
         /// Enum HOLOGRAPHICS for value: HOLOGRAPHICS
         /// </summary>
         [EnumMember(Value = "HOLOGRAPHICS")]
-        HOLOGRAPHICS = 64,
+        HOLOGRAPHICS = 67,
 
         /// <summary>
         /// Enum SHIPSALVAGE for value: SHIP_SALVAGE
         /// </summary>
         [EnumMember(Value = "SHIP_SALVAGE")]
-        SHIPSALVAGE = 65,
+        SHIPSALVAGE = 68,
 
         /// <summary>
         /// Enum RELICTECH for value: RELIC_TECH
         /// </summary>
         [EnumMember(Value = "RELIC_TECH")]
-        RELICTECH = 66,
+        RELICTECH = 69,
 
         /// <summary>
         /// Enum NOVELLIFEFORMS for value: NOVEL_LIFEFORMS
         /// </summary>
         [EnumMember(Value = "NOVEL_LIFEFORMS")]
-        NOVELLIFEFORMS = 67,
+        NOVELLIFEFORMS = 70,
 
         /// <summary>
         /// Enum BOTANICALSPECIMENS for value: BOTANICAL_SPECIMENS
         /// </summary>
         [EnumMember(Value = "BOTANICAL_SPECIMENS")]
-        BOTANICALSPECIMENS = 68,
+        BOTANICALSPECIMENS = 71,
 
         /// <summary>
         /// Enum CULTURALARTIFACTS for value: CULTURAL_ARTIFACTS
         /// </summary>
         [EnumMember(Value = "CULTURAL_ARTIFACTS")]
-        CULTURALARTIFACTS = 69,
+        CULTURALARTIFACTS = 72,
+
+        /// <summary>
+        /// Enum FRAMEPROBE for value: FRAME_PROBE
+        /// </summary>
+        [EnumMember(Value = "FRAME_PROBE")]
+        FRAMEPROBE = 73,
+
+        /// <summary>
+        /// Enum FRAMEDRONE for value: FRAME_DRONE
+        /// </summary>
+        [EnumMember(Value = "FRAME_DRONE")]
+        FRAMEDRONE = 74,
+
+        /// <summary>
+        /// Enum FRAMEINTERCEPTOR for value: FRAME_INTERCEPTOR
+        /// </summary>
+        [EnumMember(Value = "FRAME_INTERCEPTOR")]
+        FRAMEINTERCEPTOR = 75,
+
+        /// <summary>
+        /// Enum FRAMERACER for value: FRAME_RACER
+        /// </summary>
+        [EnumMember(Value = "FRAME_RACER")]
+        FRAMERACER = 76,
+
+        /// <summary>
+        /// Enum FRAMEFIGHTER for value: FRAME_FIGHTER
+        /// </summary>
+        [EnumMember(Value = "FRAME_FIGHTER")]
+        FRAMEFIGHTER = 77,
+
+        /// <summary>
+        /// Enum FRAMEFRIGATE for value: FRAME_FRIGATE
+        /// </summary>
+        [EnumMember(Value = "FRAME_FRIGATE")]
+        FRAMEFRIGATE = 78,
+
+        /// <summary>
+        /// Enum FRAMESHUTTLE for value: FRAME_SHUTTLE
+        /// </summary>
+        [EnumMember(Value = "FRAME_SHUTTLE")]
+        FRAMESHUTTLE = 79,
+
+        /// <summary>
+        /// Enum FRAMEEXPLORER for value: FRAME_EXPLORER
+        /// </summary>
+        [EnumMember(Value = "FRAME_EXPLORER")]
+        FRAMEEXPLORER = 80,
+
+        /// <summary>
+        /// Enum FRAMEMINER for value: FRAME_MINER
+        /// </summary>
+        [EnumMember(Value = "FRAME_MINER")]
+        FRAMEMINER = 81,
+
+        /// <summary>
+        /// Enum FRAMELIGHTFREIGHTER for value: FRAME_LIGHT_FREIGHTER
+        /// </summary>
+        [EnumMember(Value = "FRAME_LIGHT_FREIGHTER")]
+        FRAMELIGHTFREIGHTER = 82,
+
+        /// <summary>
+        /// Enum FRAMEHEAVYFREIGHTER for value: FRAME_HEAVY_FREIGHTER
+        /// </summary>
+        [EnumMember(Value = "FRAME_HEAVY_FREIGHTER")]
+        FRAMEHEAVYFREIGHTER = 83,
+
+        /// <summary>
+        /// Enum FRAMETRANSPORT for value: FRAME_TRANSPORT
+        /// </summary>
+        [EnumMember(Value = "FRAME_TRANSPORT")]
+        FRAMETRANSPORT = 84,
+
+        /// <summary>
+        /// Enum FRAMEDESTROYER for value: FRAME_DESTROYER
+        /// </summary>
+        [EnumMember(Value = "FRAME_DESTROYER")]
+        FRAMEDESTROYER = 85,
+
+        /// <summary>
+        /// Enum FRAMECRUISER for value: FRAME_CRUISER
+        /// </summary>
+        [EnumMember(Value = "FRAME_CRUISER")]
+        FRAMECRUISER = 86,
+
+        /// <summary>
+        /// Enum FRAMECARRIER for value: FRAME_CARRIER
+        /// </summary>
+        [EnumMember(Value = "FRAME_CARRIER")]
+        FRAMECARRIER = 87,
 
         /// <summary>
         /// Enum REACTORSOLARI for value: REACTOR_SOLAR_I
         /// </summary>
         [EnumMember(Value = "REACTOR_SOLAR_I")]
-        REACTORSOLARI = 70,
+        REACTORSOLARI = 88,
 
         /// <summary>
         /// Enum REACTORFUSIONI for value: REACTOR_FUSION_I
         /// </summary>
         [EnumMember(Value = "REACTOR_FUSION_I")]
-        REACTORFUSIONI = 71,
+        REACTORFUSIONI = 89,
 
         /// <summary>
         /// Enum REACTORFISSIONI for value: REACTOR_FISSION_I
         /// </summary>
         [EnumMember(Value = "REACTOR_FISSION_I")]
-        REACTORFISSIONI = 72,
+        REACTORFISSIONI = 90,
 
         /// <summary>
         /// Enum REACTORCHEMICALI for value: REACTOR_CHEMICAL_I
         /// </summary>
         [EnumMember(Value = "REACTOR_CHEMICAL_I")]
-        REACTORCHEMICALI = 73,
+        REACTORCHEMICALI = 91,
 
         /// <summary>
         /// Enum REACTORANTIMATTERI for value: REACTOR_ANTIMATTER_I
         /// </summary>
         [EnumMember(Value = "REACTOR_ANTIMATTER_I")]
-        REACTORANTIMATTERI = 74,
+        REACTORANTIMATTERI = 92,
 
         /// <summary>
         /// Enum ENGINEIMPULSEDRIVEI for value: ENGINE_IMPULSE_DRIVE_I
         /// </summary>
         [EnumMember(Value = "ENGINE_IMPULSE_DRIVE_I")]
-        ENGINEIMPULSEDRIVEI = 75,
+        ENGINEIMPULSEDRIVEI = 93,
 
         /// <summary>
         /// Enum ENGINEIONDRIVEI for value: ENGINE_ION_DRIVE_I
         /// </summary>
         [EnumMember(Value = "ENGINE_ION_DRIVE_I")]
-        ENGINEIONDRIVEI = 76,
+        ENGINEIONDRIVEI = 94,
 
         /// <summary>
         /// Enum ENGINEIONDRIVEII for value: ENGINE_ION_DRIVE_II
         /// </summary>
         [EnumMember(Value = "ENGINE_ION_DRIVE_II")]
-        ENGINEIONDRIVEII = 77,
+        ENGINEIONDRIVEII = 95,
 
         /// <summary>
         /// Enum ENGINEHYPERDRIVEI for value: ENGINE_HYPER_DRIVE_I
         /// </summary>
         [EnumMember(Value = "ENGINE_HYPER_DRIVE_I")]
-        ENGINEHYPERDRIVEI = 78,
+        ENGINEHYPERDRIVEI = 96,
 
         /// <summary>
         /// Enum MODULEMINERALPROCESSORI for value: MODULE_MINERAL_PROCESSOR_I
         /// </summary>
         [EnumMember(Value = "MODULE_MINERAL_PROCESSOR_I")]
-        MODULEMINERALPROCESSORI = 79,
+        MODULEMINERALPROCESSORI = 97,
+
+        /// <summary>
+        /// Enum MODULEGASPROCESSORI for value: MODULE_GAS_PROCESSOR_I
+        /// </summary>
+        [EnumMember(Value = "MODULE_GAS_PROCESSOR_I")]
+        MODULEGASPROCESSORI = 98,
 
         /// <summary>
         /// Enum MODULECARGOHOLDI for value: MODULE_CARGO_HOLD_I
         /// </summary>
         [EnumMember(Value = "MODULE_CARGO_HOLD_I")]
-        MODULECARGOHOLDI = 80,
+        MODULECARGOHOLDI = 99,
+
+        /// <summary>
+        /// Enum MODULECARGOHOLDII for value: MODULE_CARGO_HOLD_II
+        /// </summary>
+        [EnumMember(Value = "MODULE_CARGO_HOLD_II")]
+        MODULECARGOHOLDII = 100,
+
+        /// <summary>
+        /// Enum MODULECARGOHOLDIII for value: MODULE_CARGO_HOLD_III
+        /// </summary>
+        [EnumMember(Value = "MODULE_CARGO_HOLD_III")]
+        MODULECARGOHOLDIII = 101,
 
         /// <summary>
         /// Enum MODULECREWQUARTERSI for value: MODULE_CREW_QUARTERS_I
         /// </summary>
         [EnumMember(Value = "MODULE_CREW_QUARTERS_I")]
-        MODULECREWQUARTERSI = 81,
+        MODULECREWQUARTERSI = 102,
 
         /// <summary>
         /// Enum MODULEENVOYQUARTERSI for value: MODULE_ENVOY_QUARTERS_I
         /// </summary>
         [EnumMember(Value = "MODULE_ENVOY_QUARTERS_I")]
-        MODULEENVOYQUARTERSI = 82,
+        MODULEENVOYQUARTERSI = 103,
 
         /// <summary>
         /// Enum MODULEPASSENGERCABINI for value: MODULE_PASSENGER_CABIN_I
         /// </summary>
         [EnumMember(Value = "MODULE_PASSENGER_CABIN_I")]
-        MODULEPASSENGERCABINI = 83,
+        MODULEPASSENGERCABINI = 104,
 
         /// <summary>
         /// Enum MODULEMICROREFINERYI for value: MODULE_MICRO_REFINERY_I
         /// </summary>
         [EnumMember(Value = "MODULE_MICRO_REFINERY_I")]
-        MODULEMICROREFINERYI = 84,
-
-        /// <summary>
-        /// Enum MODULEOREREFINERYI for value: MODULE_ORE_REFINERY_I
-        /// </summary>
-        [EnumMember(Value = "MODULE_ORE_REFINERY_I")]
-        MODULEOREREFINERYI = 85,
-
-        /// <summary>
-        /// Enum MODULEFUELREFINERYI for value: MODULE_FUEL_REFINERY_I
-        /// </summary>
-        [EnumMember(Value = "MODULE_FUEL_REFINERY_I")]
-        MODULEFUELREFINERYI = 86,
+        MODULEMICROREFINERYI = 105,
 
         /// <summary>
         /// Enum MODULESCIENCELABI for value: MODULE_SCIENCE_LAB_I
         /// </summary>
         [EnumMember(Value = "MODULE_SCIENCE_LAB_I")]
-        MODULESCIENCELABI = 87,
+        MODULESCIENCELABI = 106,
 
         /// <summary>
         /// Enum MODULEJUMPDRIVEI for value: MODULE_JUMP_DRIVE_I
         /// </summary>
         [EnumMember(Value = "MODULE_JUMP_DRIVE_I")]
-        MODULEJUMPDRIVEI = 88,
+        MODULEJUMPDRIVEI = 107,
 
         /// <summary>
         /// Enum MODULEJUMPDRIVEII for value: MODULE_JUMP_DRIVE_II
         /// </summary>
         [EnumMember(Value = "MODULE_JUMP_DRIVE_II")]
-        MODULEJUMPDRIVEII = 89,
+        MODULEJUMPDRIVEII = 108,
 
         /// <summary>
         /// Enum MODULEJUMPDRIVEIII for value: MODULE_JUMP_DRIVE_III
         /// </summary>
         [EnumMember(Value = "MODULE_JUMP_DRIVE_III")]
-        MODULEJUMPDRIVEIII = 90,
+        MODULEJUMPDRIVEIII = 109,
 
         /// <summary>
         /// Enum MODULEWARPDRIVEI for value: MODULE_WARP_DRIVE_I
         /// </summary>
         [EnumMember(Value = "MODULE_WARP_DRIVE_I")]
-        MODULEWARPDRIVEI = 91,
+        MODULEWARPDRIVEI = 110,
 
         /// <summary>
         /// Enum MODULEWARPDRIVEII for value: MODULE_WARP_DRIVE_II
         /// </summary>
         [EnumMember(Value = "MODULE_WARP_DRIVE_II")]
-        MODULEWARPDRIVEII = 92,
+        MODULEWARPDRIVEII = 111,
 
         /// <summary>
         /// Enum MODULEWARPDRIVEIII for value: MODULE_WARP_DRIVE_III
         /// </summary>
         [EnumMember(Value = "MODULE_WARP_DRIVE_III")]
-        MODULEWARPDRIVEIII = 93,
+        MODULEWARPDRIVEIII = 112,
 
         /// <summary>
         /// Enum MODULESHIELDGENERATORI for value: MODULE_SHIELD_GENERATOR_I
         /// </summary>
         [EnumMember(Value = "MODULE_SHIELD_GENERATOR_I")]
-        MODULESHIELDGENERATORI = 94,
+        MODULESHIELDGENERATORI = 113,
 
         /// <summary>
         /// Enum MODULESHIELDGENERATORII for value: MODULE_SHIELD_GENERATOR_II
         /// </summary>
         [EnumMember(Value = "MODULE_SHIELD_GENERATOR_II")]
-        MODULESHIELDGENERATORII = 95,
+        MODULESHIELDGENERATORII = 114,
+
+        /// <summary>
+        /// Enum MODULEOREREFINERYI for value: MODULE_ORE_REFINERY_I
+        /// </summary>
+        [EnumMember(Value = "MODULE_ORE_REFINERY_I")]
+        MODULEOREREFINERYI = 115,
+
+        /// <summary>
+        /// Enum MODULEFUELREFINERYI for value: MODULE_FUEL_REFINERY_I
+        /// </summary>
+        [EnumMember(Value = "MODULE_FUEL_REFINERY_I")]
+        MODULEFUELREFINERYI = 116,
 
         /// <summary>
         /// Enum MOUNTGASSIPHONI for value: MOUNT_GAS_SIPHON_I
         /// </summary>
         [EnumMember(Value = "MOUNT_GAS_SIPHON_I")]
-        MOUNTGASSIPHONI = 96,
+        MOUNTGASSIPHONI = 117,
 
         /// <summary>
         /// Enum MOUNTGASSIPHONII for value: MOUNT_GAS_SIPHON_II
         /// </summary>
         [EnumMember(Value = "MOUNT_GAS_SIPHON_II")]
-        MOUNTGASSIPHONII = 97,
+        MOUNTGASSIPHONII = 118,
 
         /// <summary>
         /// Enum MOUNTGASSIPHONIII for value: MOUNT_GAS_SIPHON_III
         /// </summary>
         [EnumMember(Value = "MOUNT_GAS_SIPHON_III")]
-        MOUNTGASSIPHONIII = 98,
+        MOUNTGASSIPHONIII = 119,
 
         /// <summary>
         /// Enum MOUNTSURVEYORI for value: MOUNT_SURVEYOR_I
         /// </summary>
         [EnumMember(Value = "MOUNT_SURVEYOR_I")]
-        MOUNTSURVEYORI = 99,
+        MOUNTSURVEYORI = 120,
 
         /// <summary>
         /// Enum MOUNTSURVEYORII for value: MOUNT_SURVEYOR_II
         /// </summary>
         [EnumMember(Value = "MOUNT_SURVEYOR_II")]
-        MOUNTSURVEYORII = 100,
+        MOUNTSURVEYORII = 121,
 
         /// <summary>
         /// Enum MOUNTSURVEYORIII for value: MOUNT_SURVEYOR_III
         /// </summary>
         [EnumMember(Value = "MOUNT_SURVEYOR_III")]
-        MOUNTSURVEYORIII = 101,
+        MOUNTSURVEYORIII = 122,
 
         /// <summary>
         /// Enum MOUNTSENSORARRAYI for value: MOUNT_SENSOR_ARRAY_I
         /// </summary>
         [EnumMember(Value = "MOUNT_SENSOR_ARRAY_I")]
-        MOUNTSENSORARRAYI = 102,
+        MOUNTSENSORARRAYI = 123,
 
         /// <summary>
         /// Enum MOUNTSENSORARRAYII for value: MOUNT_SENSOR_ARRAY_II
         /// </summary>
         [EnumMember(Value = "MOUNT_SENSOR_ARRAY_II")]
-        MOUNTSENSORARRAYII = 103,
+        MOUNTSENSORARRAYII = 124,
 
         /// <summary>
         /// Enum MOUNTSENSORARRAYIII for value: MOUNT_SENSOR_ARRAY_III
         /// </summary>
         [EnumMember(Value = "MOUNT_SENSOR_ARRAY_III")]
-        MOUNTSENSORARRAYIII = 104,
+        MOUNTSENSORARRAYIII = 125,
 
         /// <summary>
         /// Enum MOUNTMININGLASERI for value: MOUNT_MINING_LASER_I
         /// </summary>
         [EnumMember(Value = "MOUNT_MINING_LASER_I")]
-        MOUNTMININGLASERI = 105,
+        MOUNTMININGLASERI = 126,
 
         /// <summary>
         /// Enum MOUNTMININGLASERII for value: MOUNT_MINING_LASER_II
         /// </summary>
         [EnumMember(Value = "MOUNT_MINING_LASER_II")]
-        MOUNTMININGLASERII = 106,
+        MOUNTMININGLASERII = 127,
 
         /// <summary>
         /// Enum MOUNTMININGLASERIII for value: MOUNT_MINING_LASER_III
         /// </summary>
         [EnumMember(Value = "MOUNT_MINING_LASER_III")]
-        MOUNTMININGLASERIII = 107,
+        MOUNTMININGLASERIII = 128,
 
         /// <summary>
         /// Enum MOUNTLASERCANNONI for value: MOUNT_LASER_CANNON_I
         /// </summary>
         [EnumMember(Value = "MOUNT_LASER_CANNON_I")]
-        MOUNTLASERCANNONI = 108,
+        MOUNTLASERCANNONI = 129,
 
         /// <summary>
         /// Enum MOUNTMISSILELAUNCHERI for value: MOUNT_MISSILE_LAUNCHER_I
         /// </summary>
         [EnumMember(Value = "MOUNT_MISSILE_LAUNCHER_I")]
-        MOUNTMISSILELAUNCHERI = 109,
+        MOUNTMISSILELAUNCHERI = 130,
 
         /// <summary>
         /// Enum MOUNTTURRETI for value: MOUNT_TURRET_I
         /// </summary>
         [EnumMember(Value = "MOUNT_TURRET_I")]
-        MOUNTTURRETI = 110
+        MOUNTTURRETI = 131,
+
+        /// <summary>
+        /// Enum SHIPPROBE for value: SHIP_PROBE
+        /// </summary>
+        [EnumMember(Value = "SHIP_PROBE")]
+        SHIPPROBE = 132,
+
+        /// <summary>
+        /// Enum SHIPMININGDRONE for value: SHIP_MINING_DRONE
+        /// </summary>
+        [EnumMember(Value = "SHIP_MINING_DRONE")]
+        SHIPMININGDRONE = 133,
+
+        /// <summary>
+        /// Enum SHIPSIPHONDRONE for value: SHIP_SIPHON_DRONE
+        /// </summary>
+        [EnumMember(Value = "SHIP_SIPHON_DRONE")]
+        SHIPSIPHONDRONE = 134,
+
+        /// <summary>
+        /// Enum SHIPINTERCEPTOR for value: SHIP_INTERCEPTOR
+        /// </summary>
+        [EnumMember(Value = "SHIP_INTERCEPTOR")]
+        SHIPINTERCEPTOR = 135,
+
+        /// <summary>
+        /// Enum SHIPLIGHTHAULER for value: SHIP_LIGHT_HAULER
+        /// </summary>
+        [EnumMember(Value = "SHIP_LIGHT_HAULER")]
+        SHIPLIGHTHAULER = 136,
+
+        /// <summary>
+        /// Enum SHIPCOMMANDFRIGATE for value: SHIP_COMMAND_FRIGATE
+        /// </summary>
+        [EnumMember(Value = "SHIP_COMMAND_FRIGATE")]
+        SHIPCOMMANDFRIGATE = 137,
+
+        /// <summary>
+        /// Enum SHIPEXPLORER for value: SHIP_EXPLORER
+        /// </summary>
+        [EnumMember(Value = "SHIP_EXPLORER")]
+        SHIPEXPLORER = 138,
+
+        /// <summary>
+        /// Enum SHIPHEAVYFREIGHTER for value: SHIP_HEAVY_FREIGHTER
+        /// </summary>
+        [EnumMember(Value = "SHIP_HEAVY_FREIGHTER")]
+        SHIPHEAVYFREIGHTER = 139,
+
+        /// <summary>
+        /// Enum SHIPLIGHTSHUTTLE for value: SHIP_LIGHT_SHUTTLE
+        /// </summary>
+        [EnumMember(Value = "SHIP_LIGHT_SHUTTLE")]
+        SHIPLIGHTSHUTTLE = 140,
+
+        /// <summary>
+        /// Enum SHIPOREHOUND for value: SHIP_ORE_HOUND
+        /// </summary>
+        [EnumMember(Value = "SHIP_ORE_HOUND")]
+        SHIPOREHOUND = 141,
+
+        /// <summary>
+        /// Enum SHIPREFININGFREIGHTER for value: SHIP_REFINING_FREIGHTER
+        /// </summary>
+        [EnumMember(Value = "SHIP_REFINING_FREIGHTER")]
+        SHIPREFININGFREIGHTER = 142,
+
+        /// <summary>
+        /// Enum SHIPSURVEYOR for value: SHIP_SURVEYOR
+        /// </summary>
+        [EnumMember(Value = "SHIP_SURVEYOR")]
+        SHIPSURVEYOR = 143
 
     }
 

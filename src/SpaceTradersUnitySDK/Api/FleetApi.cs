@@ -286,6 +286,48 @@ namespace SpaceTradersUnitySDK.Api
         /// <returns>ApiResponse of GetMyShips200Response</returns>
         ApiResponse<GetMyShips200Response> GetMyShipsWithHttpInfo(int? page = default(int?), int? limit = default(int?));
         /// <summary>
+        /// Get Repair Ship
+        /// </summary>
+        /// <remarks>
+        /// Get the cost of repairing a ship.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <returns>GetRepairShip200Response</returns>
+        GetRepairShip200Response GetRepairShip(string shipSymbol);
+
+        /// <summary>
+        /// Get Repair Ship
+        /// </summary>
+        /// <remarks>
+        /// Get the cost of repairing a ship.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <returns>ApiResponse of GetRepairShip200Response</returns>
+        ApiResponse<GetRepairShip200Response> GetRepairShipWithHttpInfo(string shipSymbol);
+        /// <summary>
+        /// Get Scrap Ship
+        /// </summary>
+        /// <remarks>
+        /// Get the amount of value that will be returned when scrapping a ship.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <returns>GetScrapShip200Response</returns>
+        GetScrapShip200Response GetScrapShip(string shipSymbol);
+
+        /// <summary>
+        /// Get Scrap Ship
+        /// </summary>
+        /// <remarks>
+        /// Get the amount of value that will be returned when scrapping a ship.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <returns>ApiResponse of GetScrapShip200Response</returns>
+        ApiResponse<GetScrapShip200Response> GetScrapShipWithHttpInfo(string shipSymbol);
+        /// <summary>
         /// Get Ship Cooldown
         /// </summary>
         /// <remarks>
@@ -377,7 +419,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Jump Ship
         /// </summary>
         /// <remarks>
-        /// Jump your ship instantly to a target system. The ship must be in orbit to use this function. When used while in orbit of a Jump Gate waypoint, any ship can use this command, jumping to the target system&#39;s Jump Gate waypoint.  When used elsewhere, jumping requires the ship to have a &#x60;Jump Drive&#x60; module installed and consumes a unit of antimatter from the ship&#39;s cargo. The command will fail if there is no antimatter to consume. When jumping via the &#x60;Jump Drive&#x60; module, the ship ends up at its largest source of energy in the system, such as a gas planet or a jump gate.
+        /// Jump your ship instantly to a target connected waypoint. The ship must be in orbit to execute a jump.  A unit of antimatter is purchased and consumed from the market when jumping. The price of antimatter is determined by the market and is subject to change. A ship can only jump to connected waypoints
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
@@ -389,7 +431,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Jump Ship
         /// </summary>
         /// <remarks>
-        /// Jump your ship instantly to a target system. The ship must be in orbit to use this function. When used while in orbit of a Jump Gate waypoint, any ship can use this command, jumping to the target system&#39;s Jump Gate waypoint.  When used elsewhere, jumping requires the ship to have a &#x60;Jump Drive&#x60; module installed and consumes a unit of antimatter from the ship&#39;s cargo. The command will fail if there is no antimatter to consume. When jumping via the &#x60;Jump Drive&#x60; module, the ship ends up at its largest source of energy in the system, such as a gas planet or a jump gate.
+        /// Jump your ship instantly to a target connected waypoint. The ship must be in orbit to execute a jump.  A unit of antimatter is purchased and consumed from the market when jumping. The price of antimatter is determined by the market and is subject to change. A ship can only jump to connected waypoints
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
@@ -423,7 +465,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Negotiate Contract
         /// </summary>
         /// <remarks>
-        /// Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at a faction&#39;s HQ waypoint to negotiate a contract with that faction.
+        /// Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at any waypoint with a faction present to negotiate a contract with that faction.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship&#39;s symbol.</param>
@@ -434,7 +476,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Negotiate Contract
         /// </summary>
         /// <remarks>
-        /// Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at a faction&#39;s HQ waypoint to negotiate a contract with that faction.
+        /// Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at any waypoint with a faction present to negotiate a contract with that faction.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship&#39;s symbol.</param>
@@ -575,6 +617,48 @@ namespace SpaceTradersUnitySDK.Api
         /// <returns>ApiResponse of RemoveMount201Response</returns>
         ApiResponse<RemoveMount201Response> RemoveMountWithHttpInfo(string shipSymbol, RemoveMountRequest removeMountRequest = default(RemoveMountRequest));
         /// <summary>
+        /// Repair Ship
+        /// </summary>
+        /// <remarks>
+        /// Repair a ship, restoring the ship to maximum condition. The ship must be docked at a waypoint that has the &#x60;Shipyard&#x60; trait in order to use this function. To preview the cost of repairing the ship, use the Get action.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <returns>RepairShip200Response</returns>
+        RepairShip200Response RepairShip(string shipSymbol);
+
+        /// <summary>
+        /// Repair Ship
+        /// </summary>
+        /// <remarks>
+        /// Repair a ship, restoring the ship to maximum condition. The ship must be docked at a waypoint that has the &#x60;Shipyard&#x60; trait in order to use this function. To preview the cost of repairing the ship, use the Get action.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <returns>ApiResponse of RepairShip200Response</returns>
+        ApiResponse<RepairShip200Response> RepairShipWithHttpInfo(string shipSymbol);
+        /// <summary>
+        /// Scrap Ship
+        /// </summary>
+        /// <remarks>
+        /// Scrap a ship, removing it from the game and returning a portion of the ship&#39;s value to the agent. The ship must be docked in a waypoint that has the &#x60;Shipyard&#x60; trait in order to use this function. To preview the amount of value that will be returned, use the Get Ship action.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <returns>ScrapShip200Response</returns>
+        ScrapShip200Response ScrapShip(string shipSymbol);
+
+        /// <summary>
+        /// Scrap Ship
+        /// </summary>
+        /// <remarks>
+        /// Scrap a ship, removing it from the game and returning a portion of the ship&#39;s value to the agent. The ship must be docked in a waypoint that has the &#x60;Shipyard&#x60; trait in order to use this function. To preview the amount of value that will be returned, use the Get Ship action.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <returns>ApiResponse of ScrapShip200Response</returns>
+        ApiResponse<ScrapShip200Response> ScrapShipWithHttpInfo(string shipSymbol);
+        /// <summary>
         /// Sell Cargo
         /// </summary>
         /// <remarks>
@@ -621,6 +705,27 @@ namespace SpaceTradersUnitySDK.Api
         /// <returns>ApiResponse of ShipRefine201Response</returns>
         ApiResponse<ShipRefine201Response> ShipRefineWithHttpInfo(string shipSymbol, ShipRefineRequest shipRefineRequest = default(ShipRefineRequest));
         /// <summary>
+        /// Siphon Resources
+        /// </summary>
+        /// <remarks>
+        /// Siphon gases, such as hydrocarbon, from gas giants.  The ship must be in orbit to be able to siphon and must have siphon mounts and a gas processor installed.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <returns>SiphonResources201Response</returns>
+        SiphonResources201Response SiphonResources(string shipSymbol);
+
+        /// <summary>
+        /// Siphon Resources
+        /// </summary>
+        /// <remarks>
+        /// Siphon gases, such as hydrocarbon, from gas giants.  The ship must be in orbit to be able to siphon and must have siphon mounts and a gas processor installed.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <returns>ApiResponse of SiphonResources201Response</returns>
+        ApiResponse<SiphonResources201Response> SiphonResourcesWithHttpInfo(string shipSymbol);
+        /// <summary>
         /// Transfer Cargo
         /// </summary>
         /// <remarks>
@@ -652,8 +757,8 @@ namespace SpaceTradersUnitySDK.Api
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="navigateShipRequest"> (optional)</param>
-        /// <returns>NavigateShip200Response</returns>
-        NavigateShip200Response WarpShip(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest));
+        /// <returns>WarpShip200Response</returns>
+        WarpShip200Response WarpShip(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest));
 
         /// <summary>
         /// Warp Ship
@@ -664,8 +769,8 @@ namespace SpaceTradersUnitySDK.Api
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="navigateShipRequest"> (optional)</param>
-        /// <returns>ApiResponse of NavigateShip200Response</returns>
-        ApiResponse<NavigateShip200Response> WarpShipWithHttpInfo(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest));
+        /// <returns>ApiResponse of WarpShip200Response</returns>
+        ApiResponse<WarpShip200Response> WarpShipWithHttpInfo(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest));
         #endregion Synchronous Operations
     }
 
@@ -958,6 +1063,52 @@ namespace SpaceTradersUnitySDK.Api
         /// <returns>Task of ApiResponse (GetMyShips200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetMyShips200Response>> GetMyShipsWithHttpInfoAsync(int? page = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
+        /// Get Repair Ship
+        /// </summary>
+        /// <remarks>
+        /// Get the cost of repairing a ship.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetRepairShip200Response</returns>
+        System.Threading.Tasks.Task<GetRepairShip200Response> GetRepairShipAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Get Repair Ship
+        /// </summary>
+        /// <remarks>
+        /// Get the cost of repairing a ship.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetRepairShip200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetRepairShip200Response>> GetRepairShipWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Get Scrap Ship
+        /// </summary>
+        /// <remarks>
+        /// Get the amount of value that will be returned when scrapping a ship.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetScrapShip200Response</returns>
+        System.Threading.Tasks.Task<GetScrapShip200Response> GetScrapShipAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Get Scrap Ship
+        /// </summary>
+        /// <remarks>
+        /// Get the amount of value that will be returned when scrapping a ship.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetScrapShip200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetScrapShip200Response>> GetScrapShipWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
         /// Get Ship Cooldown
         /// </summary>
         /// <remarks>
@@ -1057,7 +1208,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Jump Ship
         /// </summary>
         /// <remarks>
-        /// Jump your ship instantly to a target system. The ship must be in orbit to use this function. When used while in orbit of a Jump Gate waypoint, any ship can use this command, jumping to the target system&#39;s Jump Gate waypoint.  When used elsewhere, jumping requires the ship to have a &#x60;Jump Drive&#x60; module installed and consumes a unit of antimatter from the ship&#39;s cargo. The command will fail if there is no antimatter to consume. When jumping via the &#x60;Jump Drive&#x60; module, the ship ends up at its largest source of energy in the system, such as a gas planet or a jump gate.
+        /// Jump your ship instantly to a target connected waypoint. The ship must be in orbit to execute a jump.  A unit of antimatter is purchased and consumed from the market when jumping. The price of antimatter is determined by the market and is subject to change. A ship can only jump to connected waypoints
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
@@ -1070,7 +1221,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Jump Ship
         /// </summary>
         /// <remarks>
-        /// Jump your ship instantly to a target system. The ship must be in orbit to use this function. When used while in orbit of a Jump Gate waypoint, any ship can use this command, jumping to the target system&#39;s Jump Gate waypoint.  When used elsewhere, jumping requires the ship to have a &#x60;Jump Drive&#x60; module installed and consumes a unit of antimatter from the ship&#39;s cargo. The command will fail if there is no antimatter to consume. When jumping via the &#x60;Jump Drive&#x60; module, the ship ends up at its largest source of energy in the system, such as a gas planet or a jump gate.
+        /// Jump your ship instantly to a target connected waypoint. The ship must be in orbit to execute a jump.  A unit of antimatter is purchased and consumed from the market when jumping. The price of antimatter is determined by the market and is subject to change. A ship can only jump to connected waypoints
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
@@ -1107,7 +1258,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Negotiate Contract
         /// </summary>
         /// <remarks>
-        /// Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at a faction&#39;s HQ waypoint to negotiate a contract with that faction.
+        /// Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at any waypoint with a faction present to negotiate a contract with that faction.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship&#39;s symbol.</param>
@@ -1119,7 +1270,7 @@ namespace SpaceTradersUnitySDK.Api
         /// Negotiate Contract
         /// </summary>
         /// <remarks>
-        /// Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at a faction&#39;s HQ waypoint to negotiate a contract with that faction.
+        /// Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at any waypoint with a faction present to negotiate a contract with that faction.
         /// </remarks>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship&#39;s symbol.</param>
@@ -1273,6 +1424,52 @@ namespace SpaceTradersUnitySDK.Api
         /// <returns>Task of ApiResponse (RemoveMount201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<RemoveMount201Response>> RemoveMountWithHttpInfoAsync(string shipSymbol, RemoveMountRequest removeMountRequest = default(RemoveMountRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
+        /// Repair Ship
+        /// </summary>
+        /// <remarks>
+        /// Repair a ship, restoring the ship to maximum condition. The ship must be docked at a waypoint that has the &#x60;Shipyard&#x60; trait in order to use this function. To preview the cost of repairing the ship, use the Get action.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RepairShip200Response</returns>
+        System.Threading.Tasks.Task<RepairShip200Response> RepairShipAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Repair Ship
+        /// </summary>
+        /// <remarks>
+        /// Repair a ship, restoring the ship to maximum condition. The ship must be docked at a waypoint that has the &#x60;Shipyard&#x60; trait in order to use this function. To preview the cost of repairing the ship, use the Get action.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RepairShip200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RepairShip200Response>> RepairShipWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Scrap Ship
+        /// </summary>
+        /// <remarks>
+        /// Scrap a ship, removing it from the game and returning a portion of the ship&#39;s value to the agent. The ship must be docked in a waypoint that has the &#x60;Shipyard&#x60; trait in order to use this function. To preview the amount of value that will be returned, use the Get Ship action.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ScrapShip200Response</returns>
+        System.Threading.Tasks.Task<ScrapShip200Response> ScrapShipAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Scrap Ship
+        /// </summary>
+        /// <remarks>
+        /// Scrap a ship, removing it from the game and returning a portion of the ship&#39;s value to the agent. The ship must be docked in a waypoint that has the &#x60;Shipyard&#x60; trait in order to use this function. To preview the amount of value that will be returned, use the Get Ship action.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ScrapShip200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ScrapShip200Response>> ScrapShipWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
         /// Sell Cargo
         /// </summary>
         /// <remarks>
@@ -1323,6 +1520,29 @@ namespace SpaceTradersUnitySDK.Api
         /// <returns>Task of ApiResponse (ShipRefine201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ShipRefine201Response>> ShipRefineWithHttpInfoAsync(string shipSymbol, ShipRefineRequest shipRefineRequest = default(ShipRefineRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
+        /// Siphon Resources
+        /// </summary>
+        /// <remarks>
+        /// Siphon gases, such as hydrocarbon, from gas giants.  The ship must be in orbit to be able to siphon and must have siphon mounts and a gas processor installed.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SiphonResources201Response</returns>
+        System.Threading.Tasks.Task<SiphonResources201Response> SiphonResourcesAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Siphon Resources
+        /// </summary>
+        /// <remarks>
+        /// Siphon gases, such as hydrocarbon, from gas giants.  The ship must be in orbit to be able to siphon and must have siphon mounts and a gas processor installed.
+        /// </remarks>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SiphonResources201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SiphonResources201Response>> SiphonResourcesWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
         /// Transfer Cargo
         /// </summary>
         /// <remarks>
@@ -1357,8 +1577,8 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="navigateShipRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of NavigateShip200Response</returns>
-        System.Threading.Tasks.Task<NavigateShip200Response> WarpShipAsync(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of WarpShip200Response</returns>
+        System.Threading.Tasks.Task<WarpShip200Response> WarpShipAsync(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Warp Ship
@@ -1370,8 +1590,8 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="navigateShipRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (NavigateShip200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<NavigateShip200Response>> WarpShipWithHttpInfoAsync(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (WarpShip200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<WarpShip200Response>> WarpShipWithHttpInfoAsync(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -3199,6 +3419,282 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
+        /// Get Repair Ship Get the cost of repairing a ship.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <returns>GetRepairShip200Response</returns>
+        public GetRepairShip200Response GetRepairShip(string shipSymbol)
+        {
+            SpaceTradersUnitySDK.Client.ApiResponse<GetRepairShip200Response> localVarResponse = GetRepairShipWithHttpInfo(shipSymbol);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Repair Ship Get the cost of repairing a ship.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <returns>ApiResponse of GetRepairShip200Response</returns>
+        public SpaceTradersUnitySDK.Client.ApiResponse<GetRepairShip200Response> GetRepairShipWithHttpInfo(string shipSymbol)
+        {
+            // verify the required parameter 'shipSymbol' is set
+            if (shipSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'shipSymbol' when calling FleetApi->GetRepairShip");
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("shipSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(shipSymbol)); // path parameter
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetRepairShip200Response>("/my/ships/{shipSymbol}/repair", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetRepairShip", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Repair Ship Get the cost of repairing a ship.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetRepairShip200Response</returns>
+        public async System.Threading.Tasks.Task<GetRepairShip200Response> GetRepairShipAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = GetRepairShipWithHttpInfoAsync(shipSymbol, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            SpaceTradersUnitySDK.Client.ApiResponse<GetRepairShip200Response> localVarResponse = await task.ConfigureAwait(false);
+#else
+            SpaceTradersUnitySDK.Client.ApiResponse<GetRepairShip200Response> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Repair Ship Get the cost of repairing a ship.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetRepairShip200Response)</returns>
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetRepairShip200Response>> GetRepairShipWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'shipSymbol' is set
+            if (shipSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'shipSymbol' when calling FleetApi->GetRepairShip");
+
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("shipSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(shipSymbol)); // path parameter
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.GetAsync<GetRepairShip200Response>("/my/ships/{shipSymbol}/repair", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetRepairShip", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Scrap Ship Get the amount of value that will be returned when scrapping a ship.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <returns>GetScrapShip200Response</returns>
+        public GetScrapShip200Response GetScrapShip(string shipSymbol)
+        {
+            SpaceTradersUnitySDK.Client.ApiResponse<GetScrapShip200Response> localVarResponse = GetScrapShipWithHttpInfo(shipSymbol);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Scrap Ship Get the amount of value that will be returned when scrapping a ship.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <returns>ApiResponse of GetScrapShip200Response</returns>
+        public SpaceTradersUnitySDK.Client.ApiResponse<GetScrapShip200Response> GetScrapShipWithHttpInfo(string shipSymbol)
+        {
+            // verify the required parameter 'shipSymbol' is set
+            if (shipSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'shipSymbol' when calling FleetApi->GetScrapShip");
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("shipSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(shipSymbol)); // path parameter
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetScrapShip200Response>("/my/ships/{shipSymbol}/scrap", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetScrapShip", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Scrap Ship Get the amount of value that will be returned when scrapping a ship.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetScrapShip200Response</returns>
+        public async System.Threading.Tasks.Task<GetScrapShip200Response> GetScrapShipAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = GetScrapShipWithHttpInfoAsync(shipSymbol, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            SpaceTradersUnitySDK.Client.ApiResponse<GetScrapShip200Response> localVarResponse = await task.ConfigureAwait(false);
+#else
+            SpaceTradersUnitySDK.Client.ApiResponse<GetScrapShip200Response> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Scrap Ship Get the amount of value that will be returned when scrapping a ship.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetScrapShip200Response)</returns>
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<GetScrapShip200Response>> GetScrapShipWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'shipSymbol' is set
+            if (shipSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'shipSymbol' when calling FleetApi->GetScrapShip");
+
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("shipSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(shipSymbol)); // path parameter
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.GetAsync<GetScrapShip200Response>("/my/ships/{shipSymbol}/scrap", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetScrapShip", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Get Ship Cooldown Retrieve the details of your ship&#39;s reactor cooldown. Some actions such as activating your jump drive, scanning, or extracting resources taxes your reactor and results in a cooldown.  Your ship cannot perform additional actions until your cooldown has expired. The duration of your cooldown is relative to the power consumption of the related modules or mounts for the action taken.  Response returns a 204 status code (no-content) when the ship has no cooldown.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
@@ -3767,7 +4263,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Jump Ship Jump your ship instantly to a target system. The ship must be in orbit to use this function. When used while in orbit of a Jump Gate waypoint, any ship can use this command, jumping to the target system&#39;s Jump Gate waypoint.  When used elsewhere, jumping requires the ship to have a &#x60;Jump Drive&#x60; module installed and consumes a unit of antimatter from the ship&#39;s cargo. The command will fail if there is no antimatter to consume. When jumping via the &#x60;Jump Drive&#x60; module, the ship ends up at its largest source of energy in the system, such as a gas planet or a jump gate.
+        /// Jump Ship Jump your ship instantly to a target connected waypoint. The ship must be in orbit to execute a jump.  A unit of antimatter is purchased and consumed from the market when jumping. The price of antimatter is determined by the market and is subject to change. A ship can only jump to connected waypoints
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
@@ -3780,7 +4276,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Jump Ship Jump your ship instantly to a target system. The ship must be in orbit to use this function. When used while in orbit of a Jump Gate waypoint, any ship can use this command, jumping to the target system&#39;s Jump Gate waypoint.  When used elsewhere, jumping requires the ship to have a &#x60;Jump Drive&#x60; module installed and consumes a unit of antimatter from the ship&#39;s cargo. The command will fail if there is no antimatter to consume. When jumping via the &#x60;Jump Drive&#x60; module, the ship ends up at its largest source of energy in the system, such as a gas planet or a jump gate.
+        /// Jump Ship Jump your ship instantly to a target connected waypoint. The ship must be in orbit to execute a jump.  A unit of antimatter is purchased and consumed from the market when jumping. The price of antimatter is determined by the market and is subject to change. A ship can only jump to connected waypoints
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
@@ -3832,7 +4328,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Jump Ship Jump your ship instantly to a target system. The ship must be in orbit to use this function. When used while in orbit of a Jump Gate waypoint, any ship can use this command, jumping to the target system&#39;s Jump Gate waypoint.  When used elsewhere, jumping requires the ship to have a &#x60;Jump Drive&#x60; module installed and consumes a unit of antimatter from the ship&#39;s cargo. The command will fail if there is no antimatter to consume. When jumping via the &#x60;Jump Drive&#x60; module, the ship ends up at its largest source of energy in the system, such as a gas planet or a jump gate.
+        /// Jump Ship Jump your ship instantly to a target connected waypoint. The ship must be in orbit to execute a jump.  A unit of antimatter is purchased and consumed from the market when jumping. The price of antimatter is determined by the market and is subject to change. A ship can only jump to connected waypoints
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
@@ -3851,7 +4347,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Jump Ship Jump your ship instantly to a target system. The ship must be in orbit to use this function. When used while in orbit of a Jump Gate waypoint, any ship can use this command, jumping to the target system&#39;s Jump Gate waypoint.  When used elsewhere, jumping requires the ship to have a &#x60;Jump Drive&#x60; module installed and consumes a unit of antimatter from the ship&#39;s cargo. The command will fail if there is no antimatter to consume. When jumping via the &#x60;Jump Drive&#x60; module, the ship ends up at its largest source of energy in the system, such as a gas planet or a jump gate.
+        /// Jump Ship Jump your ship instantly to a target connected waypoint. The ship must be in orbit to execute a jump.  A unit of antimatter is purchased and consumed from the market when jumping. The price of antimatter is determined by the market and is subject to change. A ship can only jump to connected waypoints
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
@@ -4059,7 +4555,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Negotiate Contract Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at a faction&#39;s HQ waypoint to negotiate a contract with that faction.
+        /// Negotiate Contract Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at any waypoint with a faction present to negotiate a contract with that faction.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship&#39;s symbol.</param>
@@ -4071,7 +4567,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Negotiate Contract Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at a faction&#39;s HQ waypoint to negotiate a contract with that faction.
+        /// Negotiate Contract Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at any waypoint with a faction present to negotiate a contract with that faction.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship&#39;s symbol.</param>
@@ -4120,7 +4616,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Negotiate Contract Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at a faction&#39;s HQ waypoint to negotiate a contract with that faction.
+        /// Negotiate Contract Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at any waypoint with a faction present to negotiate a contract with that faction.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship&#39;s symbol.</param>
@@ -4138,7 +4634,7 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
-        /// Negotiate Contract Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at a faction&#39;s HQ waypoint to negotiate a contract with that faction.
+        /// Negotiate Contract Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at any waypoint with a faction present to negotiate a contract with that faction.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship&#39;s symbol.</param>
@@ -5051,6 +5547,282 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
+        /// Repair Ship Repair a ship, restoring the ship to maximum condition. The ship must be docked at a waypoint that has the &#x60;Shipyard&#x60; trait in order to use this function. To preview the cost of repairing the ship, use the Get action.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <returns>RepairShip200Response</returns>
+        public RepairShip200Response RepairShip(string shipSymbol)
+        {
+            SpaceTradersUnitySDK.Client.ApiResponse<RepairShip200Response> localVarResponse = RepairShipWithHttpInfo(shipSymbol);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Repair Ship Repair a ship, restoring the ship to maximum condition. The ship must be docked at a waypoint that has the &#x60;Shipyard&#x60; trait in order to use this function. To preview the cost of repairing the ship, use the Get action.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <returns>ApiResponse of RepairShip200Response</returns>
+        public SpaceTradersUnitySDK.Client.ApiResponse<RepairShip200Response> RepairShipWithHttpInfo(string shipSymbol)
+        {
+            // verify the required parameter 'shipSymbol' is set
+            if (shipSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'shipSymbol' when calling FleetApi->RepairShip");
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("shipSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(shipSymbol)); // path parameter
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<RepairShip200Response>("/my/ships/{shipSymbol}/repair", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RepairShip", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Repair Ship Repair a ship, restoring the ship to maximum condition. The ship must be docked at a waypoint that has the &#x60;Shipyard&#x60; trait in order to use this function. To preview the cost of repairing the ship, use the Get action.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RepairShip200Response</returns>
+        public async System.Threading.Tasks.Task<RepairShip200Response> RepairShipAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = RepairShipWithHttpInfoAsync(shipSymbol, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            SpaceTradersUnitySDK.Client.ApiResponse<RepairShip200Response> localVarResponse = await task.ConfigureAwait(false);
+#else
+            SpaceTradersUnitySDK.Client.ApiResponse<RepairShip200Response> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Repair Ship Repair a ship, restoring the ship to maximum condition. The ship must be docked at a waypoint that has the &#x60;Shipyard&#x60; trait in order to use this function. To preview the cost of repairing the ship, use the Get action.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RepairShip200Response)</returns>
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<RepairShip200Response>> RepairShipWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'shipSymbol' is set
+            if (shipSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'shipSymbol' when calling FleetApi->RepairShip");
+
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("shipSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(shipSymbol)); // path parameter
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.PostAsync<RepairShip200Response>("/my/ships/{shipSymbol}/repair", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RepairShip", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Scrap Ship Scrap a ship, removing it from the game and returning a portion of the ship&#39;s value to the agent. The ship must be docked in a waypoint that has the &#x60;Shipyard&#x60; trait in order to use this function. To preview the amount of value that will be returned, use the Get Ship action.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <returns>ScrapShip200Response</returns>
+        public ScrapShip200Response ScrapShip(string shipSymbol)
+        {
+            SpaceTradersUnitySDK.Client.ApiResponse<ScrapShip200Response> localVarResponse = ScrapShipWithHttpInfo(shipSymbol);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Scrap Ship Scrap a ship, removing it from the game and returning a portion of the ship&#39;s value to the agent. The ship must be docked in a waypoint that has the &#x60;Shipyard&#x60; trait in order to use this function. To preview the amount of value that will be returned, use the Get Ship action.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <returns>ApiResponse of ScrapShip200Response</returns>
+        public SpaceTradersUnitySDK.Client.ApiResponse<ScrapShip200Response> ScrapShipWithHttpInfo(string shipSymbol)
+        {
+            // verify the required parameter 'shipSymbol' is set
+            if (shipSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'shipSymbol' when calling FleetApi->ScrapShip");
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("shipSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(shipSymbol)); // path parameter
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<ScrapShip200Response>("/my/ships/{shipSymbol}/scrap", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ScrapShip", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Scrap Ship Scrap a ship, removing it from the game and returning a portion of the ship&#39;s value to the agent. The ship must be docked in a waypoint that has the &#x60;Shipyard&#x60; trait in order to use this function. To preview the amount of value that will be returned, use the Get Ship action.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ScrapShip200Response</returns>
+        public async System.Threading.Tasks.Task<ScrapShip200Response> ScrapShipAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = ScrapShipWithHttpInfoAsync(shipSymbol, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            SpaceTradersUnitySDK.Client.ApiResponse<ScrapShip200Response> localVarResponse = await task.ConfigureAwait(false);
+#else
+            SpaceTradersUnitySDK.Client.ApiResponse<ScrapShip200Response> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Scrap Ship Scrap a ship, removing it from the game and returning a portion of the ship&#39;s value to the agent. The ship must be docked in a waypoint that has the &#x60;Shipyard&#x60; trait in order to use this function. To preview the amount of value that will be returned, use the Get Ship action.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ScrapShip200Response)</returns>
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<ScrapShip200Response>> ScrapShipWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'shipSymbol' is set
+            if (shipSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'shipSymbol' when calling FleetApi->ScrapShip");
+
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("shipSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(shipSymbol)); // path parameter
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.PostAsync<ScrapShip200Response>("/my/ships/{shipSymbol}/scrap", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ScrapShip", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Sell Cargo Sell cargo in your ship to a market that trades this cargo. The ship must be docked in a waypoint that has the &#x60;Marketplace&#x60; trait in order to use this function.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
@@ -5343,6 +6115,144 @@ namespace SpaceTradersUnitySDK.Api
         }
 
         /// <summary>
+        /// Siphon Resources Siphon gases, such as hydrocarbon, from gas giants.  The ship must be in orbit to be able to siphon and must have siphon mounts and a gas processor installed.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <returns>SiphonResources201Response</returns>
+        public SiphonResources201Response SiphonResources(string shipSymbol)
+        {
+            SpaceTradersUnitySDK.Client.ApiResponse<SiphonResources201Response> localVarResponse = SiphonResourcesWithHttpInfo(shipSymbol);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Siphon Resources Siphon gases, such as hydrocarbon, from gas giants.  The ship must be in orbit to be able to siphon and must have siphon mounts and a gas processor installed.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <returns>ApiResponse of SiphonResources201Response</returns>
+        public SpaceTradersUnitySDK.Client.ApiResponse<SiphonResources201Response> SiphonResourcesWithHttpInfo(string shipSymbol)
+        {
+            // verify the required parameter 'shipSymbol' is set
+            if (shipSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'shipSymbol' when calling FleetApi->SiphonResources");
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("shipSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(shipSymbol)); // path parameter
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<SiphonResources201Response>("/my/ships/{shipSymbol}/siphon", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SiphonResources", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Siphon Resources Siphon gases, such as hydrocarbon, from gas giants.  The ship must be in orbit to be able to siphon and must have siphon mounts and a gas processor installed.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SiphonResources201Response</returns>
+        public async System.Threading.Tasks.Task<SiphonResources201Response> SiphonResourcesAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var task = SiphonResourcesWithHttpInfoAsync(shipSymbol, cancellationToken);
+#if UNITY_EDITOR || !UNITY_WEBGL
+            SpaceTradersUnitySDK.Client.ApiResponse<SiphonResources201Response> localVarResponse = await task.ConfigureAwait(false);
+#else
+            SpaceTradersUnitySDK.Client.ApiResponse<SiphonResources201Response> localVarResponse = await task;
+#endif
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Siphon Resources Siphon gases, such as hydrocarbon, from gas giants.  The ship must be in orbit to be able to siphon and must have siphon mounts and a gas processor installed.
+        /// </summary>
+        /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipSymbol">The ship symbol.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SiphonResources201Response)</returns>
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<SiphonResources201Response>> SiphonResourcesWithHttpInfoAsync(string shipSymbol, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'shipSymbol' is set
+            if (shipSymbol == null)
+                throw new SpaceTradersUnitySDK.Client.ApiException(400, "Missing required parameter 'shipSymbol' when calling FleetApi->SiphonResources");
+
+
+            SpaceTradersUnitySDK.Client.RequestOptions localVarRequestOptions = new SpaceTradersUnitySDK.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = SpaceTradersUnitySDK.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("shipSymbol", SpaceTradersUnitySDK.Client.ClientUtils.ParameterToString(shipSymbol)); // path parameter
+
+            // authentication (AgentToken) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var task = this.AsynchronousClient.PostAsync<SiphonResources201Response>("/my/ships/{shipSymbol}/siphon", localVarRequestOptions, this.Configuration, cancellationToken);
+
+#if UNITY_EDITOR || !UNITY_WEBGL
+            var localVarResponse = await task.ConfigureAwait(false);
+#else
+            var localVarResponse = await task;
+#endif
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SiphonResources", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Transfer Cargo Transfer cargo between ships.  The receiving ship must be in the same waypoint as the transferring ship, and it must able to hold the additional cargo after the transfer is complete. Both ships also must be in the same state, either both are docked or both are orbiting.  The response body&#39;s cargo shows the cargo of the transferring ship after the transfer is complete.
         /// </summary>
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
@@ -5494,10 +6404,10 @@ namespace SpaceTradersUnitySDK.Api
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="navigateShipRequest"> (optional)</param>
-        /// <returns>NavigateShip200Response</returns>
-        public NavigateShip200Response WarpShip(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest))
+        /// <returns>WarpShip200Response</returns>
+        public WarpShip200Response WarpShip(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest))
         {
-            SpaceTradersUnitySDK.Client.ApiResponse<NavigateShip200Response> localVarResponse = WarpShipWithHttpInfo(shipSymbol, navigateShipRequest);
+            SpaceTradersUnitySDK.Client.ApiResponse<WarpShip200Response> localVarResponse = WarpShipWithHttpInfo(shipSymbol, navigateShipRequest);
             return localVarResponse.Data;
         }
 
@@ -5507,8 +6417,8 @@ namespace SpaceTradersUnitySDK.Api
         /// <exception cref="SpaceTradersUnitySDK.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="navigateShipRequest"> (optional)</param>
-        /// <returns>ApiResponse of NavigateShip200Response</returns>
-        public SpaceTradersUnitySDK.Client.ApiResponse<NavigateShip200Response> WarpShipWithHttpInfo(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest))
+        /// <returns>ApiResponse of WarpShip200Response</returns>
+        public SpaceTradersUnitySDK.Client.ApiResponse<WarpShip200Response> WarpShipWithHttpInfo(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest))
         {
             // verify the required parameter 'shipSymbol' is set
             if (shipSymbol == null)
@@ -5542,7 +6452,7 @@ namespace SpaceTradersUnitySDK.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<NavigateShip200Response>("/my/ships/{shipSymbol}/warp", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<WarpShip200Response>("/my/ships/{shipSymbol}/warp", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -5560,14 +6470,14 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="navigateShipRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of NavigateShip200Response</returns>
-        public async System.Threading.Tasks.Task<NavigateShip200Response> WarpShipAsync(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of WarpShip200Response</returns>
+        public async System.Threading.Tasks.Task<WarpShip200Response> WarpShipAsync(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var task = WarpShipWithHttpInfoAsync(shipSymbol, navigateShipRequest, cancellationToken);
 #if UNITY_EDITOR || !UNITY_WEBGL
-            SpaceTradersUnitySDK.Client.ApiResponse<NavigateShip200Response> localVarResponse = await task.ConfigureAwait(false);
+            SpaceTradersUnitySDK.Client.ApiResponse<WarpShip200Response> localVarResponse = await task.ConfigureAwait(false);
 #else
-            SpaceTradersUnitySDK.Client.ApiResponse<NavigateShip200Response> localVarResponse = await task;
+            SpaceTradersUnitySDK.Client.ApiResponse<WarpShip200Response> localVarResponse = await task;
 #endif
             return localVarResponse.Data;
         }
@@ -5579,8 +6489,8 @@ namespace SpaceTradersUnitySDK.Api
         /// <param name="shipSymbol">The ship symbol.</param>
         /// <param name="navigateShipRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (NavigateShip200Response)</returns>
-        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<NavigateShip200Response>> WarpShipWithHttpInfoAsync(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (WarpShip200Response)</returns>
+        public async System.Threading.Tasks.Task<SpaceTradersUnitySDK.Client.ApiResponse<WarpShip200Response>> WarpShipWithHttpInfoAsync(string shipSymbol, NavigateShipRequest navigateShipRequest = default(NavigateShipRequest), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'shipSymbol' is set
             if (shipSymbol == null)
@@ -5617,7 +6527,7 @@ namespace SpaceTradersUnitySDK.Api
 
             // make the HTTP request
 
-            var task = this.AsynchronousClient.PostAsync<NavigateShip200Response>("/my/ships/{shipSymbol}/warp", localVarRequestOptions, this.Configuration, cancellationToken);
+            var task = this.AsynchronousClient.PostAsync<WarpShip200Response>("/my/ships/{shipSymbol}/warp", localVarRequestOptions, this.Configuration, cancellationToken);
 
 #if UNITY_EDITOR || !UNITY_WEBGL
             var localVarResponse = await task.ConfigureAwait(false);

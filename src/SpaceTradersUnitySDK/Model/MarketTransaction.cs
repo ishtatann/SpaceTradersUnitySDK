@@ -67,7 +67,7 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MarketTransaction" /> class.
         /// </summary>
-        /// <param name="waypointSymbol">The symbol of the waypoint where the transaction took place. (required).</param>
+        /// <param name="waypointSymbol">The symbol of the waypoint. (required).</param>
         /// <param name="shipSymbol">The symbol of the ship that made the transaction. (required).</param>
         /// <param name="tradeSymbol">The symbol of the trade good. (required).</param>
         /// <param name="type">The type of transaction. (required).</param>
@@ -103,9 +103,9 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// The symbol of the waypoint where the transaction took place.
+        /// The symbol of the waypoint.
         /// </summary>
-        /// <value>The symbol of the waypoint where the transaction took place.</value>
+        /// <value>The symbol of the waypoint.</value>
         [DataMember(Name = "waypointSymbol", IsRequired = true, EmitDefaultValue = true)]
         public string WaypointSymbol { get; set; }
 

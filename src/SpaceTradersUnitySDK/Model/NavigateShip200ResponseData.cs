@@ -41,7 +41,8 @@ namespace SpaceTradersUnitySDK.Model
         /// </summary>
         /// <param name="fuel">fuel (required).</param>
         /// <param name="nav">nav (required).</param>
-        public NavigateShip200ResponseData(ShipFuel fuel = default(ShipFuel), ShipNav nav = default(ShipNav))
+        /// <param name="events">events (required).</param>
+        public NavigateShip200ResponseData(ShipFuel fuel = default(ShipFuel), ShipNav nav = default(ShipNav), List<ExtractResources201ResponseDataEventsInner> events = default(List<ExtractResources201ResponseDataEventsInner>))
         {
             // to ensure "fuel" is required (not null)
             if (fuel == null)
@@ -55,6 +56,12 @@ namespace SpaceTradersUnitySDK.Model
                 throw new ArgumentNullException("nav is a required property for NavigateShip200ResponseData and cannot be null");
             }
             this.Nav = nav;
+            // to ensure "events" is required (not null)
+            if (events == null)
+            {
+                throw new ArgumentNullException("events is a required property for NavigateShip200ResponseData and cannot be null");
+            }
+            this.Events = events;
         }
 
         /// <summary>
@@ -70,6 +77,12 @@ namespace SpaceTradersUnitySDK.Model
         public ShipNav Nav { get; set; }
 
         /// <summary>
+        /// Gets or Sets Events
+        /// </summary>
+        [DataMember(Name = "events", IsRequired = true, EmitDefaultValue = true)]
+        public List<ExtractResources201ResponseDataEventsInner> Events { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -79,6 +92,7 @@ namespace SpaceTradersUnitySDK.Model
             sb.Append("class NavigateShip200ResponseData {\n");
             sb.Append("  Fuel: ").Append(Fuel).Append("\n");
             sb.Append("  Nav: ").Append(Nav).Append("\n");
+            sb.Append("  Events: ").Append(Events).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -123,6 +137,12 @@ namespace SpaceTradersUnitySDK.Model
                     this.Nav == input.Nav ||
                     (this.Nav != null &&
                     this.Nav.Equals(input.Nav))
+                ) && 
+                (
+                    this.Events == input.Events ||
+                    this.Events != null &&
+                    input.Events != null &&
+                    this.Events.SequenceEqual(input.Events)
                 );
         }
 
@@ -142,6 +162,10 @@ namespace SpaceTradersUnitySDK.Model
                 if (this.Nav != null)
                 {
                     hashCode = (hashCode * 59) + this.Nav.GetHashCode();
+                }
+                if (this.Events != null)
+                {
+                    hashCode = (hashCode * 59) + this.Events.GetHashCode();
                 }
                 return hashCode;
             }

@@ -26,9 +26,9 @@ using OpenAPIDateConverter = SpaceTradersUnitySDK.Client.OpenAPIDateConverter;
 namespace SpaceTradersUnitySDK.Model
 {
     /// <summary>
-    /// The type of waypoint.
+    /// The type of system.
     /// </summary>
-    /// <value>The type of waypoint.</value>
+    /// <value>The type of system.</value>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum SystemType
     {

@@ -1,5 +1,5 @@
 # SpaceTradersUnitySDK.Model.ContractTerms
-Terms of the contract needed to fulfill it.
+The terms to fulfill the contract.
 
 ## Properties
 

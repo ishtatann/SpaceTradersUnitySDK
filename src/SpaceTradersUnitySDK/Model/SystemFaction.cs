@@ -36,7 +36,7 @@ namespace SpaceTradersUnitySDK.Model
         /// Gets or Sets Symbol
         /// </summary>
         [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
-        public FactionSymbols Symbol { get; set; }
+        public FactionSymbol Symbol { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="SystemFaction" /> class.
         /// </summary>
@@ -46,7 +46,7 @@ namespace SpaceTradersUnitySDK.Model
         /// Initializes a new instance of the <see cref="SystemFaction" /> class.
         /// </summary>
         /// <param name="symbol">symbol (required).</param>
-        public SystemFaction(FactionSymbols symbol = default(FactionSymbols))
+        public SystemFaction(FactionSymbol symbol = default(FactionSymbol))
         {
             this.Symbol = symbol;
         }

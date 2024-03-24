@@ -35,8 +35,20 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Gets or Sets Type
         /// </summary>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
-        public ShipType? Type { get; set; }
+        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+        public ShipType Type { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Supply
+        /// </summary>
+        [DataMember(Name = "supply", IsRequired = true, EmitDefaultValue = true)]
+        public SupplyLevel Supply { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Activity
+        /// </summary>
+        [DataMember(Name = "activity", EmitDefaultValue = false)]
+        public ActivityLevel? Activity { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ShipyardShip" /> class.
         /// </summary>
@@ -45,9 +57,11 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ShipyardShip" /> class.
         /// </summary>
-        /// <param name="type">type.</param>
+        /// <param name="type">type (required).</param>
         /// <param name="name">name (required).</param>
         /// <param name="description">description (required).</param>
+        /// <param name="supply">supply (required).</param>
+        /// <param name="activity">activity.</param>
         /// <param name="purchasePrice">purchasePrice (required).</param>
         /// <param name="frame">frame (required).</param>
         /// <param name="reactor">reactor (required).</param>
@@ -55,8 +69,9 @@ namespace SpaceTradersUnitySDK.Model
         /// <param name="modules">modules (required).</param>
         /// <param name="mounts">mounts (required).</param>
         /// <param name="crew">crew (required).</param>
-        public ShipyardShip(ShipType? type = default(ShipType?), string name = default(string), string description = default(string), int purchasePrice = default(int), ShipFrame frame = default(ShipFrame), ShipReactor reactor = default(ShipReactor), ShipEngine engine = default(ShipEngine), List<ShipModule> modules = default(List<ShipModule>), List<ShipMount> mounts = default(List<ShipMount>), ShipyardShipCrew crew = default(ShipyardShipCrew))
+        public ShipyardShip(ShipType type = default(ShipType), string name = default(string), string description = default(string), SupplyLevel supply = default(SupplyLevel), ActivityLevel? activity = default(ActivityLevel?), int purchasePrice = default(int), ShipFrame frame = default(ShipFrame), ShipReactor reactor = default(ShipReactor), ShipEngine engine = default(ShipEngine), List<ShipModule> modules = default(List<ShipModule>), List<ShipMount> mounts = default(List<ShipMount>), ShipyardShipCrew crew = default(ShipyardShipCrew))
         {
+            this.Type = type;
             // to ensure "name" is required (not null)
             if (name == null)
             {
@@ -69,6 +84,7 @@ namespace SpaceTradersUnitySDK.Model
                 throw new ArgumentNullException("description is a required property for ShipyardShip and cannot be null");
             }
             this.Description = description;
+            this.Supply = supply;
             this.PurchasePrice = purchasePrice;
             // to ensure "frame" is required (not null)
             if (frame == null)
@@ -106,7 +122,7 @@ namespace SpaceTradersUnitySDK.Model
                 throw new ArgumentNullException("crew is a required property for ShipyardShip and cannot be null");
             }
             this.Crew = crew;
-            this.Type = type;
+            this.Activity = activity;
         }
 
         /// <summary>
@@ -174,6 +190,8 @@ namespace SpaceTradersUnitySDK.Model
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  Supply: ").Append(Supply).Append("\n");
+            sb.Append("  Activity: ").Append(Activity).Append("\n");
             sb.Append("  PurchasePrice: ").Append(PurchasePrice).Append("\n");
             sb.Append("  Frame: ").Append(Frame).Append("\n");
             sb.Append("  Reactor: ").Append(Reactor).Append("\n");
@@ -231,6 +249,14 @@ namespace SpaceTradersUnitySDK.Model
                     this.Description.Equals(input.Description))
                 ) && 
                 (
+                    this.Supply == input.Supply ||
+                    this.Supply.Equals(input.Supply)
+                ) && 
+                (
+                    this.Activity == input.Activity ||
+                    this.Activity.Equals(input.Activity)
+                ) && 
+                (
                     this.PurchasePrice == input.PurchasePrice ||
                     this.PurchasePrice.Equals(input.PurchasePrice)
                 ) && 
@@ -286,6 +312,8 @@ namespace SpaceTradersUnitySDK.Model
                 {
                     hashCode = (hashCode * 59) + this.Description.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.Supply.GetHashCode();
+                hashCode = (hashCode * 59) + this.Activity.GetHashCode();
                 hashCode = (hashCode * 59) + this.PurchasePrice.GetHashCode();
                 if (this.Frame != null)
                 {

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | **string** | The unique identifier of the trait. | 
+**Symbol** | **WaypointTraitSymbol** |  | 
 **Name** | **string** | The name of the trait. | 
 **Description** | **string** | A description of the trait. | 
 

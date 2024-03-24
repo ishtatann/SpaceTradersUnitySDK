@@ -45,52 +45,64 @@ namespace SpaceTradersUnitySDK.Model
         MININGDRONE = 2,
 
         /// <summary>
+        /// Enum SIPHONDRONE for value: SHIP_SIPHON_DRONE
+        /// </summary>
+        [EnumMember(Value = "SHIP_SIPHON_DRONE")]
+        SIPHONDRONE = 3,
+
+        /// <summary>
         /// Enum INTERCEPTOR for value: SHIP_INTERCEPTOR
         /// </summary>
         [EnumMember(Value = "SHIP_INTERCEPTOR")]
-        INTERCEPTOR = 3,
+        INTERCEPTOR = 4,
 
         /// <summary>
         /// Enum LIGHTHAULER for value: SHIP_LIGHT_HAULER
         /// </summary>
         [EnumMember(Value = "SHIP_LIGHT_HAULER")]
-        LIGHTHAULER = 4,
+        LIGHTHAULER = 5,
 
         /// <summary>
         /// Enum COMMANDFRIGATE for value: SHIP_COMMAND_FRIGATE
         /// </summary>
         [EnumMember(Value = "SHIP_COMMAND_FRIGATE")]
-        COMMANDFRIGATE = 5,
+        COMMANDFRIGATE = 6,
 
         /// <summary>
         /// Enum EXPLORER for value: SHIP_EXPLORER
         /// </summary>
         [EnumMember(Value = "SHIP_EXPLORER")]
-        EXPLORER = 6,
+        EXPLORER = 7,
 
         /// <summary>
         /// Enum HEAVYFREIGHTER for value: SHIP_HEAVY_FREIGHTER
         /// </summary>
         [EnumMember(Value = "SHIP_HEAVY_FREIGHTER")]
-        HEAVYFREIGHTER = 7,
+        HEAVYFREIGHTER = 8,
 
         /// <summary>
         /// Enum LIGHTSHUTTLE for value: SHIP_LIGHT_SHUTTLE
         /// </summary>
         [EnumMember(Value = "SHIP_LIGHT_SHUTTLE")]
-        LIGHTSHUTTLE = 8,
+        LIGHTSHUTTLE = 9,
 
         /// <summary>
         /// Enum OREHOUND for value: SHIP_ORE_HOUND
         /// </summary>
         [EnumMember(Value = "SHIP_ORE_HOUND")]
-        OREHOUND = 9,
+        OREHOUND = 10,
 
         /// <summary>
         /// Enum REFININGFREIGHTER for value: SHIP_REFINING_FREIGHTER
         /// </summary>
         [EnumMember(Value = "SHIP_REFINING_FREIGHTER")]
-        REFININGFREIGHTER = 10
+        REFININGFREIGHTER = 11,
+
+        /// <summary>
+        /// Enum SURVEYOR for value: SHIP_SURVEYOR
+        /// </summary>
+        [EnumMember(Value = "SHIP_SURVEYOR")]
+        SURVEYOR = 12
 
     }
 

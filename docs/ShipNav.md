@@ -5,8 +5,8 @@ The navigation information of the ship.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SystemSymbol** | **string** | The system symbol of the ship&#39;s current location. | 
-**WaypointSymbol** | **string** | The waypoint symbol of the ship&#39;s current location, or if the ship is in-transit, the waypoint symbol of the ship&#39;s destination. | 
+**SystemSymbol** | **string** | The symbol of the system. | 
+**WaypointSymbol** | **string** | The symbol of the waypoint. | 
 **Route** | [**ShipNavRoute**](ShipNavRoute.md) |  | 
 **Status** | **ShipNavStatus** |  | 
 **FlightMode** | **ShipNavFlightMode** |  | 

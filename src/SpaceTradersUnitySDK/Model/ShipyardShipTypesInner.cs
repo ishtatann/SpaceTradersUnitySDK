@@ -35,13 +35,18 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Gets or Sets Type
         /// </summary>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
-        public ShipType? Type { get; set; }
+        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+        public ShipType Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ShipyardShipTypesInner" /> class.
         /// </summary>
-        /// <param name="type">type.</param>
-        public ShipyardShipTypesInner(ShipType? type = default(ShipType?))
+        [JsonConstructorAttribute]
+        protected ShipyardShipTypesInner() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ShipyardShipTypesInner" /> class.
+        /// </summary>
+        /// <param name="type">type (required).</param>
+        public ShipyardShipTypesInner(ShipType type = default(ShipType))
         {
             this.Type = type;
         }

@@ -51,8 +51,8 @@ namespace SpaceTradersUnitySDK.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ShipNav" /> class.
         /// </summary>
-        /// <param name="systemSymbol">The system symbol of the ship&#39;s current location. (required).</param>
-        /// <param name="waypointSymbol">The waypoint symbol of the ship&#39;s current location, or if the ship is in-transit, the waypoint symbol of the ship&#39;s destination. (required).</param>
+        /// <param name="systemSymbol">The symbol of the system. (required).</param>
+        /// <param name="waypointSymbol">The symbol of the waypoint. (required).</param>
         /// <param name="route">route (required).</param>
         /// <param name="status">status (required).</param>
         /// <param name="flightMode">flightMode (required).</param>
@@ -81,16 +81,16 @@ namespace SpaceTradersUnitySDK.Model
         }
 
         /// <summary>
-        /// The system symbol of the ship&#39;s current location.
+        /// The symbol of the system.
         /// </summary>
-        /// <value>The system symbol of the ship&#39;s current location.</value>
+        /// <value>The symbol of the system.</value>
         [DataMember(Name = "systemSymbol", IsRequired = true, EmitDefaultValue = true)]
         public string SystemSymbol { get; set; }
 
         /// <summary>
-        /// The waypoint symbol of the ship&#39;s current location, or if the ship is in-transit, the waypoint symbol of the ship&#39;s destination.
+        /// The symbol of the waypoint.
         /// </summary>
-        /// <value>The waypoint symbol of the ship&#39;s current location, or if the ship is in-transit, the waypoint symbol of the ship&#39;s destination.</value>
+        /// <value>The symbol of the waypoint.</value>
         [DataMember(Name = "waypointSymbol", IsRequired = true, EmitDefaultValue = true)]
         public string WaypointSymbol { get; set; }
 

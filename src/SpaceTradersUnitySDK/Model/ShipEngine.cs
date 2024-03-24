@@ -82,10 +82,11 @@ namespace SpaceTradersUnitySDK.Model
         /// <param name="symbol">The symbol of the engine. (required).</param>
         /// <param name="name">The name of the engine. (required).</param>
         /// <param name="description">The description of the engine. (required).</param>
-        /// <param name="condition">Condition is a range of 0 to 100 where 0 is completely worn out and 100 is brand new..</param>
+        /// <param name="condition">The repairable condition of a component. A value of 0 indicates the component needs significant repairs, while a value of 1 indicates the component is in near perfect condition. As the condition of a component is repaired, the overall integrity of the component decreases. (required).</param>
+        /// <param name="integrity">The overall integrity of the component, which determines the performance of the component. A value of 0 indicates that the component is almost completely degraded, while a value of 1 indicates that the component is in near perfect condition. The integrity of the component is non-repairable, and represents permanent wear over time. (required).</param>
         /// <param name="speed">The speed stat of this engine. The higher the speed, the faster a ship can travel from one point to another. Reduces the time of arrival when navigating the ship. (required).</param>
         /// <param name="requirements">requirements (required).</param>
-        public ShipEngine(SymbolEnum symbol = default(SymbolEnum), string name = default(string), string description = default(string), int condition = default(int), int speed = default(int), ShipRequirements requirements = default(ShipRequirements))
+        public ShipEngine(SymbolEnum symbol = default(SymbolEnum), string name = default(string), string description = default(string), double condition = default(double), double integrity = default(double), int speed = default(int), ShipRequirements requirements = default(ShipRequirements))
         {
             this.Symbol = symbol;
             // to ensure "name" is required (not null)
@@ -100,6 +101,8 @@ namespace SpaceTradersUnitySDK.Model
                 throw new ArgumentNullException("description is a required property for ShipEngine and cannot be null");
             }
             this.Description = description;
+            this.Condition = condition;
+            this.Integrity = integrity;
             this.Speed = speed;
             // to ensure "requirements" is required (not null)
             if (requirements == null)
@@ -107,7 +110,6 @@ namespace SpaceTradersUnitySDK.Model
                 throw new ArgumentNullException("requirements is a required property for ShipEngine and cannot be null");
             }
             this.Requirements = requirements;
-            this.Condition = condition;
         }
 
         /// <summary>
@@ -125,11 +127,18 @@ namespace SpaceTradersUnitySDK.Model
         public string Description { get; set; }
 
         /// <summary>
-        /// Condition is a range of 0 to 100 where 0 is completely worn out and 100 is brand new.
+        /// The repairable condition of a component. A value of 0 indicates the component needs significant repairs, while a value of 1 indicates the component is in near perfect condition. As the condition of a component is repaired, the overall integrity of the component decreases.
         /// </summary>
-        /// <value>Condition is a range of 0 to 100 where 0 is completely worn out and 100 is brand new.</value>
-        [DataMember(Name = "condition", EmitDefaultValue = false)]
-        public int Condition { get; set; }
+        /// <value>The repairable condition of a component. A value of 0 indicates the component needs significant repairs, while a value of 1 indicates the component is in near perfect condition. As the condition of a component is repaired, the overall integrity of the component decreases.</value>
+        [DataMember(Name = "condition", IsRequired = true, EmitDefaultValue = true)]
+        public double Condition { get; set; }
+
+        /// <summary>
+        /// The overall integrity of the component, which determines the performance of the component. A value of 0 indicates that the component is almost completely degraded, while a value of 1 indicates that the component is in near perfect condition. The integrity of the component is non-repairable, and represents permanent wear over time.
+        /// </summary>
+        /// <value>The overall integrity of the component, which determines the performance of the component. A value of 0 indicates that the component is almost completely degraded, while a value of 1 indicates that the component is in near perfect condition. The integrity of the component is non-repairable, and represents permanent wear over time.</value>
+        [DataMember(Name = "integrity", IsRequired = true, EmitDefaultValue = true)]
+        public double Integrity { get; set; }
 
         /// <summary>
         /// The speed stat of this engine. The higher the speed, the faster a ship can travel from one point to another. Reduces the time of arrival when navigating the ship.
@@ -156,6 +165,7 @@ namespace SpaceTradersUnitySDK.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Condition: ").Append(Condition).Append("\n");
+            sb.Append("  Integrity: ").Append(Integrity).Append("\n");
             sb.Append("  Speed: ").Append(Speed).Append("\n");
             sb.Append("  Requirements: ").Append(Requirements).Append("\n");
             sb.Append("}\n");
@@ -212,6 +222,10 @@ namespace SpaceTradersUnitySDK.Model
                     this.Condition.Equals(input.Condition)
                 ) && 
                 (
+                    this.Integrity == input.Integrity ||
+                    this.Integrity.Equals(input.Integrity)
+                ) && 
+                (
                     this.Speed == input.Speed ||
                     this.Speed.Equals(input.Speed)
                 ) && 
@@ -241,6 +255,7 @@ namespace SpaceTradersUnitySDK.Model
                     hashCode = (hashCode * 59) + this.Description.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Condition.GetHashCode();
+                hashCode = (hashCode * 59) + this.Integrity.GetHashCode();
                 hashCode = (hashCode * 59) + this.Speed.GetHashCode();
                 if (this.Requirements != null)
                 {

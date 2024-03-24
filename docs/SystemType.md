@@ -1,5 +1,5 @@
 # SpaceTradersUnitySDK.Model.SystemType
-The type of waypoint.
+The type of system.
 
 ## Properties
 

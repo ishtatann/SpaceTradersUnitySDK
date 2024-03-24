@@ -42,7 +42,8 @@ namespace SpaceTradersUnitySDK.Model
         /// <param name="cooldown">cooldown (required).</param>
         /// <param name="extraction">extraction (required).</param>
         /// <param name="cargo">cargo (required).</param>
-        public ExtractResources201ResponseData(Cooldown cooldown = default(Cooldown), Extraction extraction = default(Extraction), ShipCargo cargo = default(ShipCargo))
+        /// <param name="events">events (required).</param>
+        public ExtractResources201ResponseData(Cooldown cooldown = default(Cooldown), Extraction extraction = default(Extraction), ShipCargo cargo = default(ShipCargo), List<ExtractResources201ResponseDataEventsInner> events = default(List<ExtractResources201ResponseDataEventsInner>))
         {
             // to ensure "cooldown" is required (not null)
             if (cooldown == null)
@@ -62,6 +63,12 @@ namespace SpaceTradersUnitySDK.Model
                 throw new ArgumentNullException("cargo is a required property for ExtractResources201ResponseData and cannot be null");
             }
             this.Cargo = cargo;
+            // to ensure "events" is required (not null)
+            if (events == null)
+            {
+                throw new ArgumentNullException("events is a required property for ExtractResources201ResponseData and cannot be null");
+            }
+            this.Events = events;
         }
 
         /// <summary>
@@ -83,6 +90,12 @@ namespace SpaceTradersUnitySDK.Model
         public ShipCargo Cargo { get; set; }
 
         /// <summary>
+        /// Gets or Sets Events
+        /// </summary>
+        [DataMember(Name = "events", IsRequired = true, EmitDefaultValue = true)]
+        public List<ExtractResources201ResponseDataEventsInner> Events { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -93,6 +106,7 @@ namespace SpaceTradersUnitySDK.Model
             sb.Append("  Cooldown: ").Append(Cooldown).Append("\n");
             sb.Append("  Extraction: ").Append(Extraction).Append("\n");
             sb.Append("  Cargo: ").Append(Cargo).Append("\n");
+            sb.Append("  Events: ").Append(Events).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -142,6 +156,12 @@ namespace SpaceTradersUnitySDK.Model
                     this.Cargo == input.Cargo ||
                     (this.Cargo != null &&
                     this.Cargo.Equals(input.Cargo))
+                ) && 
+                (
+                    this.Events == input.Events ||
+                    this.Events != null &&
+                    input.Events != null &&
+                    this.Events.SequenceEqual(input.Events)
                 );
         }
 
@@ -165,6 +185,10 @@ namespace SpaceTradersUnitySDK.Model
                 if (this.Cargo != null)
                 {
                     hashCode = (hashCode * 59) + this.Cargo.GetHashCode();
+                }
+                if (this.Events != null)
+                {
+                    hashCode = (hashCode * 59) + this.Events.GetHashCode();
                 }
                 return hashCode;
             }

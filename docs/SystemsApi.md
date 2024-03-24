@@ -4,6 +4,7 @@ All URIs are relative to *https://api.spacetraders.io/v2*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
+| [**GetConstruction**](SystemsApi.md#getconstruction) | **GET** /systems/{systemSymbol}/waypoints/{waypointSymbol}/construction | Get Construction Site |
 | [**GetJumpGate**](SystemsApi.md#getjumpgate) | **GET** /systems/{systemSymbol}/waypoints/{waypointSymbol}/jump-gate | Get Jump Gate |
 | [**GetMarket**](SystemsApi.md#getmarket) | **GET** /systems/{systemSymbol}/waypoints/{waypointSymbol}/market | Get Market |
 | [**GetShipyard**](SystemsApi.md#getshipyard) | **GET** /systems/{systemSymbol}/waypoints/{waypointSymbol}/shipyard | Get Shipyard |
@@ -11,6 +12,103 @@ All URIs are relative to *https://api.spacetraders.io/v2*
 | [**GetSystemWaypoints**](SystemsApi.md#getsystemwaypoints) | **GET** /systems/{systemSymbol}/waypoints | List Waypoints in System |
 | [**GetSystems**](SystemsApi.md#getsystems) | **GET** /systems | List Systems |
 | [**GetWaypoint**](SystemsApi.md#getwaypoint) | **GET** /systems/{systemSymbol}/waypoints/{waypointSymbol} | Get Waypoint |
+| [**SupplyConstruction**](SystemsApi.md#supplyconstruction) | **POST** /systems/{systemSymbol}/waypoints/{waypointSymbol}/construction/supply | Supply Construction Site |
+
+<a id="getconstruction"></a>
+# **GetConstruction**
+> GetConstruction200Response GetConstruction (string systemSymbol, string waypointSymbol)
+
+Get Construction Site
+
+Get construction details for a waypoint. Requires a waypoint with a property of `isUnderConstruction` to be true.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using SpaceTradersUnitySDK.Api;
+using SpaceTradersUnitySDK.Client;
+using SpaceTradersUnitySDK.Model;
+
+namespace Example
+{
+    public class GetConstructionExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.spacetraders.io/v2";
+            // Configure Bearer token for authorization: AgentToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new SystemsApi(config);
+            var systemSymbol = "systemSymbol_example";  // string | The system symbol
+            var waypointSymbol = "waypointSymbol_example";  // string | The waypoint symbol
+
+            try
+            {
+                // Get Construction Site
+                GetConstruction200Response result = apiInstance.GetConstruction(systemSymbol, waypointSymbol);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SystemsApi.GetConstruction: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetConstructionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get Construction Site
+    ApiResponse<GetConstruction200Response> response = apiInstance.GetConstructionWithHttpInfo(systemSymbol, waypointSymbol);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SystemsApi.GetConstructionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **systemSymbol** | **string** | The system symbol |  |
+| **waypointSymbol** | **string** | The waypoint symbol |  |
+
+### Return type
+
+[**GetConstruction200Response**](GetConstruction200Response.md)
+
+### Authorization
+
+[AgentToken](../README.md#AgentToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully fetched construction site. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getjumpgate"></a>
 # **GetJumpGate**
@@ -18,7 +116,7 @@ All URIs are relative to *https://api.spacetraders.io/v2*
 
 Get Jump Gate
 
-Get jump gate details for a waypoint. Requires a waypoint of type `JUMP_GATE` to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
+Get jump gate details for a waypoint. Requires a waypoint of type `JUMP_GATE` to use.  Waypoints connected to this jump gate can be 
 
 ### Example
 ```csharp
@@ -396,7 +494,7 @@ catch (ApiException e)
 
 <a id="getsystemwaypoints"></a>
 # **GetSystemWaypoints**
-> GetSystemWaypoints200Response GetSystemWaypoints (string systemSymbol, int? page = null, int? limit = null)
+> GetSystemWaypoints200Response GetSystemWaypoints (string systemSymbol, int? page = null, int? limit = null, WaypointType? type = null, GetSystemWaypointsTraitsParameter traits = null)
 
 List Waypoints in System
 
@@ -425,11 +523,13 @@ namespace Example
             var systemSymbol = "systemSymbol_example";  // string | The system symbol
             var page = 1;  // int? | What entry offset to request (optional)  (default to 1)
             var limit = 10;  // int? | How many entries to return per page (optional)  (default to 10)
+            var type = (WaypointType) "PLANET";  // WaypointType? | Filter waypoints by type. (optional) 
+            var traits = new GetSystemWaypointsTraitsParameter(); // GetSystemWaypointsTraitsParameter | Filter waypoints by one or more traits. (optional) 
 
             try
             {
                 // List Waypoints in System
-                GetSystemWaypoints200Response result = apiInstance.GetSystemWaypoints(systemSymbol, page, limit);
+                GetSystemWaypoints200Response result = apiInstance.GetSystemWaypoints(systemSymbol, page, limit, type, traits);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -450,7 +550,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List Waypoints in System
-    ApiResponse<GetSystemWaypoints200Response> response = apiInstance.GetSystemWaypointsWithHttpInfo(systemSymbol, page, limit);
+    ApiResponse<GetSystemWaypoints200Response> response = apiInstance.GetSystemWaypointsWithHttpInfo(systemSymbol, page, limit, type, traits);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -470,6 +570,8 @@ catch (ApiException e)
 | **systemSymbol** | **string** | The system symbol |  |
 | **page** | **int?** | What entry offset to request | [optional] [default to 1] |
 | **limit** | **int?** | How many entries to return per page | [optional] [default to 10] |
+| **type** | **WaypointType?** | Filter waypoints by type. | [optional]  |
+| **traits** | [**GetSystemWaypointsTraitsParameter**](GetSystemWaypointsTraitsParameter.md) | Filter waypoints by one or more traits. | [optional]  |
 
 ### Return type
 
@@ -681,6 +783,104 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successfully fetched waypoint. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="supplyconstruction"></a>
+# **SupplyConstruction**
+> SupplyConstruction201Response SupplyConstruction (string systemSymbol, string waypointSymbol, SupplyConstructionRequest supplyConstructionRequest = null)
+
+Supply Construction Site
+
+Supply a construction site with the specified good. Requires a waypoint with a property of `isUnderConstruction` to be true.  The good must be in your ship's cargo. The good will be removed from your ship's cargo and added to the construction site's materials.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using SpaceTradersUnitySDK.Api;
+using SpaceTradersUnitySDK.Client;
+using SpaceTradersUnitySDK.Model;
+
+namespace Example
+{
+    public class SupplyConstructionExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.spacetraders.io/v2";
+            // Configure Bearer token for authorization: AgentToken
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new SystemsApi(config);
+            var systemSymbol = "systemSymbol_example";  // string | The system symbol
+            var waypointSymbol = "waypointSymbol_example";  // string | The waypoint symbol
+            var supplyConstructionRequest = new SupplyConstructionRequest(); // SupplyConstructionRequest |  (optional) 
+
+            try
+            {
+                // Supply Construction Site
+                SupplyConstruction201Response result = apiInstance.SupplyConstruction(systemSymbol, waypointSymbol, supplyConstructionRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SystemsApi.SupplyConstruction: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the SupplyConstructionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Supply Construction Site
+    ApiResponse<SupplyConstruction201Response> response = apiInstance.SupplyConstructionWithHttpInfo(systemSymbol, waypointSymbol, supplyConstructionRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SystemsApi.SupplyConstructionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **systemSymbol** | **string** | The system symbol |  |
+| **waypointSymbol** | **string** | The waypoint symbol |  |
+| **supplyConstructionRequest** | [**SupplyConstructionRequest**](SupplyConstructionRequest.md) |  | [optional]  |
+
+### Return type
+
+[**SupplyConstruction201Response**](SupplyConstruction201Response.md)
+
+### Authorization
+
+[AgentToken](../README.md#AgentToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Successfully supplied construction site. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

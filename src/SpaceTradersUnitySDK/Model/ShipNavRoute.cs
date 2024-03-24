@@ -40,11 +40,10 @@ namespace SpaceTradersUnitySDK.Model
         /// Initializes a new instance of the <see cref="ShipNavRoute" /> class.
         /// </summary>
         /// <param name="destination">destination (required).</param>
-        /// <param name="departure">departure (required).</param>
         /// <param name="origin">origin (required).</param>
         /// <param name="departureTime">The date time of the ship&#39;s departure. (required).</param>
         /// <param name="arrival">The date time of the ship&#39;s arrival. If the ship is in-transit, this is the expected time of arrival. (required).</param>
-        public ShipNavRoute(ShipNavRouteWaypoint destination = default(ShipNavRouteWaypoint), ShipNavRouteWaypoint departure = default(ShipNavRouteWaypoint), ShipNavRouteWaypoint origin = default(ShipNavRouteWaypoint), DateTime departureTime = default(DateTime), DateTime arrival = default(DateTime))
+        public ShipNavRoute(ShipNavRouteWaypoint destination = default(ShipNavRouteWaypoint), ShipNavRouteWaypoint origin = default(ShipNavRouteWaypoint), DateTime departureTime = default(DateTime), DateTime arrival = default(DateTime))
         {
             // to ensure "destination" is required (not null)
             if (destination == null)
@@ -52,12 +51,6 @@ namespace SpaceTradersUnitySDK.Model
                 throw new ArgumentNullException("destination is a required property for ShipNavRoute and cannot be null");
             }
             this.Destination = destination;
-            // to ensure "departure" is required (not null)
-            if (departure == null)
-            {
-                throw new ArgumentNullException("departure is a required property for ShipNavRoute and cannot be null");
-            }
-            this.Departure = departure;
             // to ensure "origin" is required (not null)
             if (origin == null)
             {
@@ -73,12 +66,6 @@ namespace SpaceTradersUnitySDK.Model
         /// </summary>
         [DataMember(Name = "destination", IsRequired = true, EmitDefaultValue = true)]
         public ShipNavRouteWaypoint Destination { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Departure
-        /// </summary>
-        [DataMember(Name = "departure", IsRequired = true, EmitDefaultValue = true)]
-        public ShipNavRouteWaypoint Departure { get; set; }
 
         /// <summary>
         /// Gets or Sets Origin
@@ -109,7 +96,6 @@ namespace SpaceTradersUnitySDK.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class ShipNavRoute {\n");
             sb.Append("  Destination: ").Append(Destination).Append("\n");
-            sb.Append("  Departure: ").Append(Departure).Append("\n");
             sb.Append("  Origin: ").Append(Origin).Append("\n");
             sb.Append("  DepartureTime: ").Append(DepartureTime).Append("\n");
             sb.Append("  Arrival: ").Append(Arrival).Append("\n");
@@ -154,11 +140,6 @@ namespace SpaceTradersUnitySDK.Model
                     this.Destination.Equals(input.Destination))
                 ) && 
                 (
-                    this.Departure == input.Departure ||
-                    (this.Departure != null &&
-                    this.Departure.Equals(input.Departure))
-                ) && 
-                (
                     this.Origin == input.Origin ||
                     (this.Origin != null &&
                     this.Origin.Equals(input.Origin))
@@ -187,10 +168,6 @@ namespace SpaceTradersUnitySDK.Model
                 if (this.Destination != null)
                 {
                     hashCode = (hashCode * 59) + this.Destination.GetHashCode();
-                }
-                if (this.Departure != null)
-                {
-                    hashCode = (hashCode * 59) + this.Departure.GetHashCode();
                 }
                 if (this.Origin != null)
                 {

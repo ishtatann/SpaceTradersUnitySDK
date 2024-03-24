@@ -5,7 +5,7 @@ Result of a transaction with a market.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**WaypointSymbol** | **string** | The symbol of the waypoint where the transaction took place. | 
+**WaypointSymbol** | **string** | The symbol of the waypoint. | 
 **ShipSymbol** | **string** | The symbol of the ship that made the transaction. | 
 **TradeSymbol** | **string** | The symbol of the trade good. | 
 **Type** | **string** | The type of transaction. | 

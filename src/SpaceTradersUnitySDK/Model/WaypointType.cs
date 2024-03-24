@@ -69,22 +69,52 @@ namespace SpaceTradersUnitySDK.Model
         ASTEROIDFIELD = 6,
 
         /// <summary>
+        /// Enum ASTEROID for value: ASTEROID
+        /// </summary>
+        [EnumMember(Value = "ASTEROID")]
+        ASTEROID = 7,
+
+        /// <summary>
+        /// Enum ENGINEEREDASTEROID for value: ENGINEERED_ASTEROID
+        /// </summary>
+        [EnumMember(Value = "ENGINEERED_ASTEROID")]
+        ENGINEEREDASTEROID = 8,
+
+        /// <summary>
+        /// Enum ASTEROIDBASE for value: ASTEROID_BASE
+        /// </summary>
+        [EnumMember(Value = "ASTEROID_BASE")]
+        ASTEROIDBASE = 9,
+
+        /// <summary>
         /// Enum NEBULA for value: NEBULA
         /// </summary>
         [EnumMember(Value = "NEBULA")]
-        NEBULA = 7,
+        NEBULA = 10,
 
         /// <summary>
         /// Enum DEBRISFIELD for value: DEBRIS_FIELD
         /// </summary>
         [EnumMember(Value = "DEBRIS_FIELD")]
-        DEBRISFIELD = 8,
+        DEBRISFIELD = 11,
 
         /// <summary>
         /// Enum GRAVITYWELL for value: GRAVITY_WELL
         /// </summary>
         [EnumMember(Value = "GRAVITY_WELL")]
-        GRAVITYWELL = 9
+        GRAVITYWELL = 12,
+
+        /// <summary>
+        /// Enum ARTIFICIALGRAVITYWELL for value: ARTIFICIAL_GRAVITY_WELL
+        /// </summary>
+        [EnumMember(Value = "ARTIFICIAL_GRAVITY_WELL")]
+        ARTIFICIALGRAVITYWELL = 13,
+
+        /// <summary>
+        /// Enum FUELSTATION for value: FUEL_STATION
+        /// </summary>
+        [EnumMember(Value = "FUEL_STATION")]
+        FUELSTATION = 14
 
     }
 

@@ -5,9 +5,9 @@ A waypoint that was scanned by a ship.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Symbol** | **string** | Symbol of the waypoint. | 
+**Symbol** | **string** | The symbol of the waypoint. | 
 **Type** | **WaypointType** |  | 
-**SystemSymbol** | **string** | Symbol of the system. | 
+**SystemSymbol** | **string** | The symbol of the system. | 
 **X** | **int** | Position in the universe in the x axis. | 
 **Y** | **int** | Position in the universe in the y axis. | 
 **Orbitals** | [**List&lt;WaypointOrbital&gt;**](WaypointOrbital.md) | List of waypoints that orbit this waypoint. | 

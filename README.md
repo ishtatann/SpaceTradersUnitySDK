@@ -132,6 +132,8 @@ Class | Method | HTTP request | Description
 *FleetApi* | [**GetMyShip**](FleetApi.md#getmyship) | **GET** /my/ships/{shipSymbol} | Get Ship
 *FleetApi* | [**GetMyShipCargo**](FleetApi.md#getmyshipcargo) | **GET** /my/ships/{shipSymbol}/cargo | Get Ship Cargo
 *FleetApi* | [**GetMyShips**](FleetApi.md#getmyships) | **GET** /my/ships | List Ships
+*FleetApi* | [**GetRepairShip**](FleetApi.md#getrepairship) | **GET** /my/ships/{shipSymbol}/repair | Get Repair Ship
+*FleetApi* | [**GetScrapShip**](FleetApi.md#getscrapship) | **GET** /my/ships/{shipSymbol}/scrap | Get Scrap Ship
 *FleetApi* | [**GetShipCooldown**](FleetApi.md#getshipcooldown) | **GET** /my/ships/{shipSymbol}/cooldown | Get Ship Cooldown
 *FleetApi* | [**GetShipNav**](FleetApi.md#getshipnav) | **GET** /my/ships/{shipSymbol}/nav | Get Ship Nav
 *FleetApi* | [**InstallMount**](FleetApi.md#installmount) | **POST** /my/ships/{shipSymbol}/mounts/install | Install Mount
@@ -145,10 +147,14 @@ Class | Method | HTTP request | Description
 *FleetApi* | [**PurchaseShip**](FleetApi.md#purchaseship) | **POST** /my/ships | Purchase Ship
 *FleetApi* | [**RefuelShip**](FleetApi.md#refuelship) | **POST** /my/ships/{shipSymbol}/refuel | Refuel Ship
 *FleetApi* | [**RemoveMount**](FleetApi.md#removemount) | **POST** /my/ships/{shipSymbol}/mounts/remove | Remove Mount
+*FleetApi* | [**RepairShip**](FleetApi.md#repairship) | **POST** /my/ships/{shipSymbol}/repair | Repair Ship
+*FleetApi* | [**ScrapShip**](FleetApi.md#scrapship) | **POST** /my/ships/{shipSymbol}/scrap | Scrap Ship
 *FleetApi* | [**SellCargo**](FleetApi.md#sellcargo) | **POST** /my/ships/{shipSymbol}/sell | Sell Cargo
 *FleetApi* | [**ShipRefine**](FleetApi.md#shiprefine) | **POST** /my/ships/{shipSymbol}/refine | Ship Refine
+*FleetApi* | [**SiphonResources**](FleetApi.md#siphonresources) | **POST** /my/ships/{shipSymbol}/siphon | Siphon Resources
 *FleetApi* | [**TransferCargo**](FleetApi.md#transfercargo) | **POST** /my/ships/{shipSymbol}/transfer | Transfer Cargo
 *FleetApi* | [**WarpShip**](FleetApi.md#warpship) | **POST** /my/ships/{shipSymbol}/warp | Warp Ship
+*SystemsApi* | [**GetConstruction**](SystemsApi.md#getconstruction) | **GET** /systems/{systemSymbol}/waypoints/{waypointSymbol}/construction | Get Construction Site
 *SystemsApi* | [**GetJumpGate**](SystemsApi.md#getjumpgate) | **GET** /systems/{systemSymbol}/waypoints/{waypointSymbol}/jump-gate | Get Jump Gate
 *SystemsApi* | [**GetMarket**](SystemsApi.md#getmarket) | **GET** /systems/{systemSymbol}/waypoints/{waypointSymbol}/market | Get Market
 *SystemsApi* | [**GetShipyard**](SystemsApi.md#getshipyard) | **GET** /systems/{systemSymbol}/waypoints/{waypointSymbol}/shipyard | Get Shipyard
@@ -156,6 +162,7 @@ Class | Method | HTTP request | Description
 *SystemsApi* | [**GetSystemWaypoints**](SystemsApi.md#getsystemwaypoints) | **GET** /systems/{systemSymbol}/waypoints | List Waypoints in System
 *SystemsApi* | [**GetSystems**](SystemsApi.md#getsystems) | **GET** /systems | List Systems
 *SystemsApi* | [**GetWaypoint**](SystemsApi.md#getwaypoint) | **GET** /systems/{systemSymbol}/waypoints/{waypointSymbol} | Get Waypoint
+*SystemsApi* | [**SupplyConstruction**](SystemsApi.md#supplyconstruction) | **POST** /systems/{systemSymbol}/waypoints/{waypointSymbol}/construction/supply | Supply Construction Site
 
 
 <a id="documentation-for-models"></a>
@@ -163,9 +170,11 @@ Class | Method | HTTP request | Description
 
  - [Model.AcceptContract200Response](AcceptContract200Response.md)
  - [Model.AcceptContract200ResponseData](AcceptContract200ResponseData.md)
+ - [Model.ActivityLevel](ActivityLevel.md)
  - [Model.Agent](Agent.md)
  - [Model.Chart](Chart.md)
- - [Model.ConnectedSystem](ConnectedSystem.md)
+ - [Model.Construction](Construction.md)
+ - [Model.ConstructionMaterial](ConstructionMaterial.md)
  - [Model.Contract](Contract.md)
  - [Model.ContractDeliverGood](ContractDeliverGood.md)
  - [Model.ContractPayment](ContractPayment.md)
@@ -187,14 +196,17 @@ Class | Method | HTTP request | Description
  - [Model.DockShip200Response](DockShip200Response.md)
  - [Model.ExtractResources201Response](ExtractResources201Response.md)
  - [Model.ExtractResources201ResponseData](ExtractResources201ResponseData.md)
+ - [Model.ExtractResources201ResponseDataEventsInner](ExtractResources201ResponseDataEventsInner.md)
  - [Model.ExtractResourcesRequest](ExtractResourcesRequest.md)
  - [Model.Extraction](Extraction.md)
  - [Model.ExtractionYield](ExtractionYield.md)
  - [Model.Faction](Faction.md)
- - [Model.FactionSymbols](FactionSymbols.md)
+ - [Model.FactionSymbol](FactionSymbol.md)
  - [Model.FactionTrait](FactionTrait.md)
+ - [Model.FactionTraitSymbol](FactionTraitSymbol.md)
  - [Model.FulfillContract200Response](FulfillContract200Response.md)
  - [Model.GetAgents200Response](GetAgents200Response.md)
+ - [Model.GetConstruction200Response](GetConstruction200Response.md)
  - [Model.GetContract200Response](GetContract200Response.md)
  - [Model.GetContracts200Response](GetContracts200Response.md)
  - [Model.GetFaction200Response](GetFaction200Response.md)
@@ -206,6 +218,10 @@ Class | Method | HTTP request | Description
  - [Model.GetMyShip200Response](GetMyShip200Response.md)
  - [Model.GetMyShipCargo200Response](GetMyShipCargo200Response.md)
  - [Model.GetMyShips200Response](GetMyShips200Response.md)
+ - [Model.GetRepairShip200Response](GetRepairShip200Response.md)
+ - [Model.GetRepairShip200ResponseData](GetRepairShip200ResponseData.md)
+ - [Model.GetScrapShip200Response](GetScrapShip200Response.md)
+ - [Model.GetScrapShip200ResponseData](GetScrapShip200ResponseData.md)
  - [Model.GetShipCooldown200Response](GetShipCooldown200Response.md)
  - [Model.GetShipNav200Response](GetShipNav200Response.md)
  - [Model.GetShipyard200Response](GetShipyard200Response.md)
@@ -219,6 +235,7 @@ Class | Method | HTTP request | Description
  - [Model.GetStatus200ResponseStats](GetStatus200ResponseStats.md)
  - [Model.GetSystem200Response](GetSystem200Response.md)
  - [Model.GetSystemWaypoints200Response](GetSystemWaypoints200Response.md)
+ - [Model.GetSystemWaypointsTraitsParameter](GetSystemWaypointsTraitsParameter.md)
  - [Model.GetSystems200Response](GetSystems200Response.md)
  - [Model.GetWaypoint200Response](GetWaypoint200Response.md)
  - [Model.InstallMount201Response](InstallMount201Response.md)
@@ -257,6 +274,9 @@ Class | Method | HTTP request | Description
  - [Model.RemoveMount201Response](RemoveMount201Response.md)
  - [Model.RemoveMount201ResponseData](RemoveMount201ResponseData.md)
  - [Model.RemoveMountRequest](RemoveMountRequest.md)
+ - [Model.RepairShip200Response](RepairShip200Response.md)
+ - [Model.RepairShip200ResponseData](RepairShip200ResponseData.md)
+ - [Model.RepairTransaction](RepairTransaction.md)
  - [Model.ScannedShip](ScannedShip.md)
  - [Model.ScannedShipEngine](ScannedShipEngine.md)
  - [Model.ScannedShipFrame](ScannedShipFrame.md)
@@ -264,12 +284,16 @@ Class | Method | HTTP request | Description
  - [Model.ScannedShipReactor](ScannedShipReactor.md)
  - [Model.ScannedSystem](ScannedSystem.md)
  - [Model.ScannedWaypoint](ScannedWaypoint.md)
+ - [Model.ScrapShip200Response](ScrapShip200Response.md)
+ - [Model.ScrapShip200ResponseData](ScrapShip200ResponseData.md)
+ - [Model.ScrapTransaction](ScrapTransaction.md)
  - [Model.SellCargo201Response](SellCargo201Response.md)
  - [Model.SellCargo201ResponseData](SellCargo201ResponseData.md)
  - [Model.SellCargoRequest](SellCargoRequest.md)
  - [Model.Ship](Ship.md)
  - [Model.ShipCargo](ShipCargo.md)
  - [Model.ShipCargoItem](ShipCargoItem.md)
+ - [Model.ShipConditionEvent](ShipConditionEvent.md)
  - [Model.ShipCrew](ShipCrew.md)
  - [Model.ShipEngine](ShipEngine.md)
  - [Model.ShipFrame](ShipFrame.md)
@@ -297,6 +321,14 @@ Class | Method | HTTP request | Description
  - [Model.ShipyardShipCrew](ShipyardShipCrew.md)
  - [Model.ShipyardShipTypesInner](ShipyardShipTypesInner.md)
  - [Model.ShipyardTransaction](ShipyardTransaction.md)
+ - [Model.Siphon](Siphon.md)
+ - [Model.SiphonResources201Response](SiphonResources201Response.md)
+ - [Model.SiphonResources201ResponseData](SiphonResources201ResponseData.md)
+ - [Model.SiphonYield](SiphonYield.md)
+ - [Model.SupplyConstruction201Response](SupplyConstruction201Response.md)
+ - [Model.SupplyConstruction201ResponseData](SupplyConstruction201ResponseData.md)
+ - [Model.SupplyConstructionRequest](SupplyConstructionRequest.md)
+ - [Model.SupplyLevel](SupplyLevel.md)
  - [Model.Survey](Survey.md)
  - [Model.SurveyDeposit](SurveyDeposit.md)
  - [Model.System](System.md)
@@ -307,10 +339,15 @@ Class | Method | HTTP request | Description
  - [Model.TradeSymbol](TradeSymbol.md)
  - [Model.TransferCargo200Response](TransferCargo200Response.md)
  - [Model.TransferCargoRequest](TransferCargoRequest.md)
+ - [Model.WarpShip200Response](WarpShip200Response.md)
+ - [Model.WarpShip200ResponseData](WarpShip200ResponseData.md)
  - [Model.Waypoint](Waypoint.md)
  - [Model.WaypointFaction](WaypointFaction.md)
+ - [Model.WaypointModifier](WaypointModifier.md)
+ - [Model.WaypointModifierSymbol](WaypointModifierSymbol.md)
  - [Model.WaypointOrbital](WaypointOrbital.md)
  - [Model.WaypointTrait](WaypointTrait.md)
+ - [Model.WaypointTraitSymbol](WaypointTraitSymbol.md)
  - [Model.WaypointType](WaypointType.md)
 
 
